@@ -1,0 +1,35 @@
+1|Book|armor|The pages and binding are in pretty decent condition, but the text is barely legible.|0|1|0|0|none|
+2|Clothing|armor|A jean jacket. Has some rips and tears, but they don't look accidental. On the collar, there appears to be an underlined 's' with three rays over the top."|1|0|0|0|none|
+3|H|artifacts|A wooden block shaped like an 'H'|0|0|0|0|none|
+4|Square|artifacts|A wooden block shaped like an 'Square'.|0|0|0|0|none|
+5|Zig-Zag|artifacts|A wooden block shaped like an 'Z'.|0|0|0|0|none|
+6|U|artifacts|A wooden block shaped like an 'U'.|0|0|0|0|none|
+7|Cross|artifacts|A wooden block shaped like an 'Cross'|0|0|0|1|solves level 2|
+8|Metal Cross|armor|A medium size metal molding of a cross, given to followers of the church.|0|2|0|0|none|
+9|Robe|armor|A brown robe made of cloth.|1|0|0|0|none|
+10|Rosary|armor|An accessory with a small cross on the end of a string of beads.|1|0|0|0|none|
+11|Sandals|armor|A pair of sandals made out of leather hides from local animals.|1|0|0|0|none|
+12|Biretta|armor|A religious hat worn by priests.|3|0|0|0|none|
+13|Shears|armor|A sharp pair of shears.|0|4|0|0|none|
+14|Straw Hat|armor|A light hat made of straw, made to shield your eyes from the sun.|2|0|0|0|none|
+15|Garden Gloves|armor|Gloves that will keep your thumb from turning green.|1|0|0|0|none|
+16|Apron|armor|A green apron that looks over-used. It might make good protection.|1|0|0|0|none|
+17|Unlit Torch|artifacts|A used torch that currently seems to be out.|0|0|0|1|create 18|
+18|Torch|artifacts|A used torch that's lit with passionate fire!|0|0|0|1|burns bush|
+19|Apple|consumable|A shiny red apple!|0|0|10|0|adds HP|
+20|Health Capsule|armor|This boosts your health permanently!|0|0|5|0|adds HP|
+21|Short Piece|artifacts|A short piece of driftwood with a peg sticking out on one side.|0|0|0|1|solves puzzle|
+22|Long Piece|artifacts|A long piece of driftwood with a hole poking in on both sides.|0|0|0|1|solves puzzle|
+23|'L'Piece|artifacts|After having pieced the long and the short together, an L-like shape has been given to the driftwood.|0|0|0|1|solves puzzle|
+24|‘C’ Driftwood|artifacts|The driftwood now looks like a 'C'! This resembles the shape of the path of the rooms that make up the level you’ve been traversing!|0|0|0|1|solves puzzle|
+25|Melty Ice Cream|artifacts|It’s essentially soup in a cone.|0|0|0|1|solves puzzle|
+26|Ice Cream|artifacts|Now it’s ice cream!|0|0|0|1|solves puzzle|
+27|Flame Sword|armor|The sword you saw previously is now burning with blue hot fire! It’s sure to be powerful.”|0|8|0|0|none|
+28|Granola Bar|consumable|A happy, healthy treat!|0|0|15|0|none|
+29|Slacks|armor|Comfy, reliable working pants.|3|0|0|0|none|
+30|Attack Scroll|armor|You read through the scroll… Power flows through you! Your attack increases!|0|1|0|0|none|
+31|Large Bone|armor|It’s a large, worn down bone.. It seems to have lots of teeth marks in it. Is it made of rubber..? It squeaks?!|0|11|0|0|none|
+32|Chest Plate|armor|It looks like a piece of armor made for a warrior… You’ll wear it proudly.|7|0|0|0|none|
+33|Chainmail Gloves|armor|They’re really heavy and make your skin chafe, but you can tell with certainty they’re made for a warrior.|4|0|0|0|none|
+34|Scales|armor|It seems like something must've shed these... They're pretty sticky, so they can stay together like a necklace!|6|0|0|0|none|
+35|Revive|consumable|This will revive you if you fall in battle. It must be a gift of the Gods.|0|0|100|0|none|
