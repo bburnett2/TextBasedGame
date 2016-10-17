@@ -1,0 +1,11 @@
+package database;
+
+public class DBController 
+{
+
+	public String getTest() {
+		// TODO Auto-generated method stub
+		return "this is from the DB";
+	}
+
+}

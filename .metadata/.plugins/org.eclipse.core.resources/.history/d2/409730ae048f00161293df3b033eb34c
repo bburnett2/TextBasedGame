@@ -1,0 +1,17 @@
+package model;
+
+public class Player extends GameModel.Character {
+
+	public void hasItem() {
+
+	}
+
+	public void useItem() {
+
+	}
+
+	public void run() {
+
+	}
+
+}

@@ -1,0 +1,24 @@
+package model;
+
+public class Player extends Character 
+{
+
+	private int completedPuzzles;
+	private int currentRoom;
+	
+	public void hasItem() 
+	{
+
+	}
+
+	public void useItem() 
+	{
+
+	}
+
+	public void run() 
+	{
+
+	}
+
+}

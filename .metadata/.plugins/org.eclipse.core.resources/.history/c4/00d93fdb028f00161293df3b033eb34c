@@ -1,0 +1,22 @@
+package Controller;
+
+import java.util.Scanner;
+
+public class GameControl 
+{
+	Scanner input = new Scanner(System.in);
+
+	private String commands;
+
+	public void read() 
+	{
+		
+
+	}
+
+	public void parsString() 
+	{
+
+	}
+
+}

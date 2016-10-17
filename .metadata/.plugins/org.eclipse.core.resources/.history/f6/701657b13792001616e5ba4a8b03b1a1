@@ -1,0 +1,13 @@
+package model;
+
+public class Monster extends Character
+{
+
+	private int id;
+
+	public void startFight() 
+	{
+
+	}
+
+}

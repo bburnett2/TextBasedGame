@@ -1,0 +1,21 @@
+package model;
+
+import java.util.Arrays;
+
+public class Room {
+
+	private int id;
+
+	private String discription;
+
+	private Arrays itemList;
+
+	private int doors;
+
+	private int monster;
+
+	public String move() {
+		return null;
+	}
+
+}

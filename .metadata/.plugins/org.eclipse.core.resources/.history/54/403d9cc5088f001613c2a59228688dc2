@@ -1,0 +1,14 @@
+package model;
+
+public class Monsters extends Character
+{
+
+	private int id;
+	private int isDead;
+
+	public void startFight() 
+	{
+
+	}
+
+}

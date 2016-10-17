@@ -1,0 +1,20 @@
+package model;
+
+public class Player extends Character {
+
+	public void hasItem() 
+	{
+
+	}
+
+	public void useItem() 
+	{
+
+	}
+
+	public void run() 
+	{
+
+	}
+
+}

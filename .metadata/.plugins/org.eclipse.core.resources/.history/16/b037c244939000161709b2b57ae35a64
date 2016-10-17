@@ -1,0 +1,13 @@
+package DatabaseManagement.DBManagement;
+
+public class SavedGamesDB {
+
+	public void getGame() {
+
+	}
+
+	public void saveGame() {
+
+	}
+
+}

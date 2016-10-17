@@ -1,0 +1,13 @@
+package model;
+
+public class Monsters extends GameModel.Character {
+
+	private int id;
+
+	private int isDead;
+
+	public void startFight() {
+
+	}
+
+}

@@ -1,0 +1,9 @@
+package View.View;
+
+public class Console {
+
+	public void print() {
+
+	}
+
+}

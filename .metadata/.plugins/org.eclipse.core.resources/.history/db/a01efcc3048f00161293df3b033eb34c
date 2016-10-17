@@ -1,0 +1,13 @@
+package model;
+
+public class Armor extends GameModel.Items {
+
+	public void use() {
+
+	}
+
+	public void pickUp() {
+
+	}
+
+}
