@@ -11,7 +11,7 @@ public class GameModel
 	
 	private Elevator elevator = new Elevator();
 	private view.Console console = new view.Console();
-	private database.DBController DB = new database.DBController();
+	private database.DatabaseManager DB = new database.DatabaseManager();
 	
 	public void go(String direction)
 	{
@@ -20,7 +20,7 @@ public class GameModel
 	
 	public void print(String str)
 	{
-		console.print(DB.getTest());
+//		console.print(DB.getTest());
 	}
 	
 	private void exitRoom()

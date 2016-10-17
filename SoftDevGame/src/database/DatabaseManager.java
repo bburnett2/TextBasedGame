@@ -1,3 +1,5 @@
+package database;
+
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -15,7 +17,7 @@ public class DatabaseManager {
 	protected int timeOut = 30;
 	protected Statement statement;
 
-	protected DatabaseManager(){
+	public DatabaseManager(){
 		try{
 			String sDriverName = "org.sqlite.JDBC";
 			Class.forName(sDriverName);
