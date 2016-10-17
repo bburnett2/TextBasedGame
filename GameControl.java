@@ -3,6 +3,7 @@ package Controller;
 public class GameControl 
 {
 	model.GameModel model = new model.GameModel();
+	
 	private String commands;
 	
 	public static void main(String[] args)
