@@ -16,6 +16,8 @@ public class DatabaseManager {
 	protected Connection connection;
 	protected int timeOut = 30;
 	protected Statement statement;
+	protected String sqlCall;
+	protected ResultSet resultSet;
 
 	public DatabaseManager(){
 		try{
@@ -29,7 +31,7 @@ public class DatabaseManager {
 			System.out.println("conection not made");
 		}
 		catch (ClassNotFoundException e) {
-			System.out.println("class not foun");
+			System.out.println("class not found");
 		}
 	}
 
@@ -51,7 +53,7 @@ public class DatabaseManager {
 		catch(Exception ex){
 			System.out.println(ex.getMessage());
 		}
-		Object[] room = dbManage.getRoom(3);
+		Object[] room = dbManage.getRoom(1);
 		for(int i = 0; i < room.length; i++){
 			if(room[i] != null){
 				System.out.println(room[i].toString());
@@ -61,12 +63,12 @@ public class DatabaseManager {
 			}
 		}
 		int[] items = (int[]) room[8];
-		if(items[0] != 0){
-			for(int i = 0; i <items.length; i++){
+		int i = 0;
+		while(items[i] != 0){
 				Object[] item = dbManage.getItem(items[i]);
+				i++;
 				for(int j = 0; j < item.length; j++){
 					System.out.println(item[j]);
-				}
 			}
 		}
 
