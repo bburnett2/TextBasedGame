@@ -3,6 +3,7 @@ package database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class RoomDB extends DatabaseManager {
 
@@ -32,16 +33,13 @@ public class RoomDB extends DatabaseManager {
 		return roomInfo;
 	}
 
-	protected int[] getRoomItems(int roomNum) {
+	protected ArrayList<Integer> getRoomItems(int roomNum) {
 		sqlCall = "SELECT ItemID FROM Room_Item WHERE roomID = " + roomNum;
-		int[] itemIDS = new int[10];
-		int index = 0;
-
+		ArrayList<Integer> itemIDS = new ArrayList<Integer>();
 		try{
 			resultSet = super.statement.executeQuery(sqlCall);
 			while(resultSet.next()){
-				itemIDS[index] = resultSet.getInt("ItemID");
-				index++;
+				itemIDS.add(resultSet.getInt("ItemID"));
 			}
 		}
 		catch(SQLException ex){

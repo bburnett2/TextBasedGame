@@ -1,7 +1,7 @@
 package database;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class MonsterDB extends DatabaseManager
 {
@@ -24,15 +24,13 @@ public class MonsterDB extends DatabaseManager
 		return monster;
 	}
 	
-	public int[] getMonsterItems(int monsterNum){
+	public ArrayList<Integer> getMonsterItems(int monsterNum){
 		sqlCall = "SELECT itemID FROM monster_item WHERE monsterID = " + monsterNum;
-		int[] items = new int[10];
-		int i = 0;
+		ArrayList<Integer> items = new ArrayList<Integer>();
 		try{
 			resultSet = statement.executeQuery(sqlCall);
 			while(resultSet.next()){
-				items[i] = resultSet.getInt("ItemID");
-				i++;
+				items.add(resultSet.getInt("ItemID"));
 			}
 		}
 		catch(SQLException ex){
