@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class PuzzleDB extends DatabaseManager{
 
-	public Object[] getPuzzle(int puzzleNum) {
+	protected Object[] getPuzzleInformationPro(int puzzleNum) {
 		sqlCall = "SELECT * FROM puzzle WHERE puzzleID = " + puzzleNum;
 		Object[] puzzle = new Object[6];
 		try{

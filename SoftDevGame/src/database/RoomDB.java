@@ -11,7 +11,7 @@ public class RoomDB extends DatabaseManager {
 
 	}
 
-	protected Object[] getRoomPro(int roomNum){
+	protected Object[] getRoomInformationPro(int roomNum){
 		sqlCall = "SELECT * FROM Room WHERE roomID = " + roomNum;
 		Object[] roomInfo = new Object[10];
 		try{
@@ -24,7 +24,7 @@ public class RoomDB extends DatabaseManager {
 			roomInfo[5] = resultSet.getInt("East");;
 			roomInfo[6] = resultSet.getInt("West");;
 			roomInfo[7] = 0;
-			roomInfo[8] = getRoomItems(roomNum);
+			roomInfo[8] = getRoomItemInts(roomNum);
 			roomInfo[9] = getRoomPuzzles(roomNum);
 		}
 		catch(SQLException ex){
@@ -33,7 +33,7 @@ public class RoomDB extends DatabaseManager {
 		return roomInfo;
 	}
 
-	protected ArrayList<Integer> getRoomItems(int roomNum) {
+	protected ArrayList<Integer> getRoomItemInts(int roomNum) {
 		sqlCall = "SELECT ItemID FROM Room_Item WHERE roomID = " + roomNum;
 		ArrayList<Integer> itemIDS = new ArrayList<Integer>();
 		try{

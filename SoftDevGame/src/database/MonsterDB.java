@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class MonsterDB extends DatabaseManager
 {
 
-	public Object[] getMonster(int monsterNum){
+	protected Object[] getMonsterInformationPro(int monsterNum){
 		sqlCall = "SELECT * FROM monster WHERE monsterID = " + monsterNum;
 		Object[] monster = new Object[6];
 		try{
@@ -16,7 +16,7 @@ public class MonsterDB extends DatabaseManager
 			monster[2] = resultSet.getInt("Attack");
 			monster[3] = resultSet.getInt("Health");
 			monster[4] = resultSet.getInt("Defense");
-			monster[5] = getMonsterItems(monsterNum);
+			monster[5] = getMonsterItemsInts(monsterNum);
 		}
 		catch(SQLException ex){
 
@@ -24,7 +24,7 @@ public class MonsterDB extends DatabaseManager
 		return monster;
 	}
 	
-	public ArrayList<Integer> getMonsterItems(int monsterNum){
+	protected ArrayList<Integer> getMonsterItemsInts(int monsterNum){
 		sqlCall = "SELECT itemID FROM monster_item WHERE monsterID = " + monsterNum;
 		ArrayList<Integer> items = new ArrayList<Integer>();
 		try{

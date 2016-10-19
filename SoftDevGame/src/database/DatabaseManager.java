@@ -2,6 +2,7 @@ package database;
 
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -35,52 +36,51 @@ public class DatabaseManager {
 		}
 	}
 
-	public Object[] getRoom(int roomNum){
+	public Object[] getRoomInformation(int roomNum){
 		RoomDB roomDB = new RoomDB();
-		return roomDB.getRoomPro(roomNum);
+		return roomDB.getRoomInformationPro(roomNum);
 	}
 
-	public Object[] getItem(int itemNum){
+	public Object[] getItemInformation(int itemNum){
 		ItemDB itemDB = new ItemDB();
 		return itemDB.getItemPro(itemNum);
 	}
 	
-	public Object[] getMonster(int monsterNum){
+	public Object[] getMonsterInformation(int monsterNum){
 		MonsterDB monsterDB = new MonsterDB();
-		return monsterDB.getMonster(monsterNum);
+		return monsterDB.getMonsterInformationPro(monsterNum);
 	}
 	
-	public Object[] getPuzzle(int puzzleNum){
+	public Object[] getPuzzleInformation(int puzzleNum){
 		PuzzleDB puzzleDB = new PuzzleDB();
-		return puzzleDB.getPuzzle(puzzleNum);
+		return puzzleDB.getPuzzleInformationPro(puzzleNum);
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException{
-		DatabaseManager dbManage = null;
-		try{
-			dbManage = new RoomDB();
-		}
-		catch(Exception ex){
-			System.out.println(ex.getMessage());
-		}
-		Object[] room = dbManage.getRoom(1);
-		for(int i = 0; i < room.length; i++){
-			if(room[i] != null){
-				System.out.println(room[i].toString());
-			}
-			else{
-				System.out.println("null");
-			}
-		}
-		int[] items = (int[]) room[8];
-		int i = 0;
-		while(items[i] != 0){
-				Object[] item = dbManage.getItem(items[i]);
-				i++;
-				for(int j = 0; j < item.length; j++){
-					System.out.println(item[j]);
-			}
-		}
-
-	}
+//	public static void main(String[] args) throws ClassNotFoundException{
+//		DatabaseManager dbManage = null;
+//		try{
+//			dbManage = new RoomDB();
+//		}
+//		catch(Exception ex){
+//			System.out.println(ex.getMessage());
+//		}
+//		Object[] room = dbManage.getRoomInformation(1);
+//		for(int i = 0; i < room.length; i++){
+//			if(room[i] != null){
+//				System.out.println(room[i].toString());
+//			}
+//			else{
+//				System.out.println("null");
+//			}
+//		}
+//		ArrayList<Integer> items = (ArrayList<Integer>) room[8];
+//		int i = 0;
+//		for(Integer integer : items){
+//				Object[] item = dbManage.getItemInformation(integer);
+//				for(int j = 0; j < item.length; j++){
+//					System.out.println(item[j]);
+//			}
+//		}
+//
+//	}
 }
