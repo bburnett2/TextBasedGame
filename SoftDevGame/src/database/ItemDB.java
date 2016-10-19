@@ -11,18 +11,18 @@ public class ItemDB extends DatabaseManager {
 	
 	protected Object[] getItemPro(int itemNum){
 		Object[] item = new Object[9];
-		String sqlCall = "SELECT * FROM item WHERE itemID = " + itemNum;
+		sqlCall = "SELECT * FROM item WHERE itemID = " + itemNum;
 		try{
-		ResultSet itemRS = super.statement.executeQuery(sqlCall);
-		item[0] = itemRS.getInt("ItemID");
-		item[1] = itemRS.getString("Name");
-		item[2] = itemRS.getString("Type");
-		item[3] = itemRS.getString("Description");
-		item[4] = itemRS.getInt("Defense");
-		item[5] = itemRS.getInt("Attack");
-		item[6] = itemRS.getInt("HP");
-		item[7] = (itemRS.getInt("isKey") == 0) ? false : true;
-		item[8] = itemRS.getString("Action");
+		resultSet = super.statement.executeQuery(sqlCall);
+		item[0] = resultSet.getInt("ItemID");
+		item[1] = resultSet.getString("Name");
+		item[2] = resultSet.getString("Type");
+		item[3] = resultSet.getString("Description");
+		item[4] = resultSet.getInt("Defense");
+		item[5] = resultSet.getInt("Attack");
+		item[6] = resultSet.getInt("HP");
+		item[7] = (resultSet.getInt("isKey") == 0) ? false : true;
+		item[8] = resultSet.getString("Action");
 		}
 		catch(SQLException ex){
 			
