@@ -1,11 +1,25 @@
 package database;
 
-public class PuzzleDB 
-{
+import java.sql.SQLException;
 
-	public void getPuzzle() 
-	{
+public class PuzzleDB extends DatabaseManager{
 
+	public Object[] getPuzzle(int puzzleNum) {
+		sqlCall = "SELECT * FROM puzzle WHERE puzzleID = " + puzzleNum;
+		Object[] puzzle = new Object[6];
+		try{
+			resultSet = statement.executeQuery(sqlCall);
+			puzzle[0] = resultSet.getInt("PuzzleID");
+			puzzle[1] = resultSet.getString("Description");
+			puzzle[2] = resultSet.getString("Answer");
+			puzzle[3] = resultSet.getInt("ItemNeeded");
+			puzzle[4] = resultSet.getInt("ItemReturned");
+			puzzle[5] = (resultSet.getInt("CompletesLevel") == 0) ? false : true;
+		}
+		catch(SQLException ex){
+
+		}
+		return puzzle;
 	}
 
 }

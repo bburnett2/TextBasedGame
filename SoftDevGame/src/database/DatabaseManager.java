@@ -44,6 +44,16 @@ public class DatabaseManager {
 		ItemDB itemDB = new ItemDB();
 		return itemDB.getItemPro(itemNum);
 	}
+	
+	public Object[] getMonster(int monsterNum){
+		MonsterDB monsterDB = new MonsterDB();
+		return monsterDB.getMonster(monsterNum);
+	}
+	
+	public Object[] getPuzzle(int puzzleNum){
+		PuzzleDB puzzleDB = new PuzzleDB();
+		return puzzleDB.getPuzzle(puzzleNum);
+	}
 
 	public static void main(String[] args) throws ClassNotFoundException{
 		DatabaseManager dbManage = null;
