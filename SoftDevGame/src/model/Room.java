@@ -8,7 +8,7 @@ public class Room
 	private int id;
 	private String discription;
 	private ArrayList<Items> itemList;
-	private int doors;
+	private int north, south, east, west;
 	private int monster;
 
 	public String move() 
