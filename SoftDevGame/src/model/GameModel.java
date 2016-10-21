@@ -28,7 +28,7 @@ public class GameModel
 
 	public void firstRoom()
 	{
-		room = new Room(DB.getRoomInformation(45));
+		room = new Room(DB.getRoomInformation(1));
 		print(room.toString());
 	}
 
