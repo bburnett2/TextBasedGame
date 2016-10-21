@@ -10,7 +10,7 @@ public class Room
 	private ArrayList<Item> itemList;
 	private int north, south, east, west;
 	private int monster, puzzle;
-	
+
 	protected Room(Object[] room)
 	{
 		this.id = (int)room[0];
@@ -24,18 +24,28 @@ public class Room
 		this.itemList = buildItems((ArrayList<Integer>) room[8]);
 		this.puzzle = (int)room[9];
 	}
-	
+
 	private ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
 	{
 		GameModel model = new GameModel();
-		ArrayList<Item> items;
-		
-		int count = 0;
-		while(!itemInts.isEmpty())
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		int count = 1;
+		if(!itemInts.isEmpty())
 		{
-			
-			items.add(new Item(model.getItemInfo(count)));
-			count++;
+			while(count <= itemInts.size())
+			{
+				Object[] item = model.getItemInfo(count);
+				String type = (String)item[2];
+
+				if (type.equalsIgnoreCase("Armor"))
+					items.add(new Armor(item));
+				else if(type.equalsIgnoreCase("Artifacts"))
+					items.add(new Artifacts(item));
+				else if(type.equalsIgnoreCase("Consumables"))
+					items.add(new Consumables(item));
+				count++;
+			}
 		}
 		return items;
 	}
