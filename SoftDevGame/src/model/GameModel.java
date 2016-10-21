@@ -2,11 +2,8 @@ package model;
 
 public class GameModel 
 {
-	private Armor armor = null;
-	private Artifacts art = null;
-	private Monster monster = null;
+
 	private Player player = null;
-	private Puzzle puzzle = null;
 	private Room room = null;
 	
 	private Elevator elevator = new Elevator();
@@ -25,10 +22,7 @@ public class GameModel
 	
 	public void exitRoom()
 	{
-		armor = null;
-		art = null;
-		monster = null;
-		puzzle = null;
+
 		room = null;
 	}
 
@@ -36,5 +30,10 @@ public class GameModel
 	{
 		room = new Room(DB.getRoomInformation(1));
 		print(room.toString());
+	}
+
+	public Object[] getItemInfo(int itemNum)
+	{
+		return DB.getItemInformation(itemNum);
 	}
 }

@@ -21,10 +21,25 @@ public class Room
 		this.east = (int)room[5];
 		this.west = (int)room[6];
 		// room[7] is restriction
-		this.itemList = (ArrayList<Item>) room[8];
+		this.itemList = buildItems(room[8]);
 		this.puzzle = (int)room[9];
 	}
 	
+	private ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
+	{
+		GameModel model = new GameModel();
+		ArrayList<Item> items;
+		
+		int count = 0;
+		while(!itemInts.isEmpty())
+		{
+			
+			items.add(new Item(model.getItemInfo(count)));
+			count++;
+		}
+		return items;
+	}
+
 	public String toString()
 	{
 		String str;
