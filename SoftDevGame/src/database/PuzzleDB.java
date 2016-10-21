@@ -13,7 +13,7 @@ public class PuzzleDB extends DatabaseManager{
 			puzzle[1] = resultSet.getString("Description");
 			puzzle[2] = resultSet.getString("Answer");
 			puzzle[3] = resultSet.getInt("ItemNeeded");
-			puzzle[4] = resultSet.getInt("ItemReturned");
+			puzzle[4] = resultSet.getInt("ItemRecieved");
 			puzzle[5] = (resultSet.getInt("CompletesLevel") == 0) ? false : true;
 		}
 		catch(SQLException ex){
