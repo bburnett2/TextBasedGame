@@ -1,5 +1,5 @@
 package Controller;
-
+//get commit
 public class GameControl 
 {
 	model.GameModel model = new model.GameModel();
