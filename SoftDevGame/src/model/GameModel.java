@@ -20,15 +20,21 @@ public class GameModel
 	
 	public void print(String str)
 	{
-//		console.print(DB.getTest());
+		console.print(str);
 	}
 	
-	private void exitRoom()
+	public void exitRoom()
 	{
 		armor = null;
 		art = null;
 		monster = null;
 		puzzle = null;
 		room = null;
+	}
+
+	public void firstRoom()
+	{
+		room = new Room(DB.getRoomInformation(1));
+		print(room.toString());
 	}
 }

@@ -16,6 +16,21 @@ public abstract class Item
 		this.action = (String) item[8];
 	}
 
+	public String getName()
+	{
+		return name;
+	}
+
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public String getAction()
+	{
+		return action;
+	}
+
 	public boolean isKeyItem() 
 	{
 		return keyItem;

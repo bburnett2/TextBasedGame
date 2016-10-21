@@ -9,9 +9,14 @@ public class GameControl
 	public static void main(String[] args)
 	{
 		GameControl run = new GameControl();
-		run.print("Testing");
+		run.startGame();
 	}
 	
+	private void startGame()
+	{
+		model.firstRoom();		
+	}
+
 	private void print(String str)
 	{
 		model.print(str);

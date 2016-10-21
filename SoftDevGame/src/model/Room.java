@@ -21,19 +21,23 @@ public class Room
 		this.east = (int)room[5];
 		this.west = (int)room[6];
 		// room[7] is restriction
-		this.itemList = (ArrayList<Item>) room[7];
+		this.itemList = (ArrayList<Item>) room[8];
 		this.puzzle = (int)room[9];
 	}
-
-	public String move() 
+	
+	public String toString()
 	{
-		return null;
-	}
-
-	public int getDirection(String direction)
-	{
-		// TODO Auto-generated method stub
-		return 1;
+		String str;
+		str = discription;
+		if (itemList.isEmpty())
+		{
+			str += "\n In this room there is:";
+			for (int i = 0; i < itemList.size(); i++)
+			{
+				str += "\n " + itemList.get(i).getDescription();
+			}
+		}
+		return str;	
 	}
 
 }
