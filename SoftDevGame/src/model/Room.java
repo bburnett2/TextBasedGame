@@ -21,7 +21,7 @@ public class Room
 		this.east = (int)room[5];
 		this.west = (int)room[6];
 		// room[7] is restriction
-		this.itemList = buildItems(room[8]);
+		this.itemList = buildItems((ArrayList<Integer>) room[8]);
 		this.puzzle = (int)room[9];
 	}
 	
