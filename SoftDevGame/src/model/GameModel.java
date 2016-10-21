@@ -28,7 +28,7 @@ public class GameModel
 
 	public void firstRoom()
 	{
-		room = new Room(DB.getRoomInformation(1));
+		room = new Room(DB.getRoomInformation(45));
 		print(room.toString());
 	}
 
@@ -36,4 +36,15 @@ public class GameModel
 	{
 		return DB.getItemInformation(itemNum);
 	}
+
+	public Object[] getMonster(int monsterNumber)
+	{
+		return DB.getMonsterInformation(monsterNumber);
+	}
+
+	public Object[] getPuzzle(int puzzleID)
+	{
+		return DB.getPuzzleInformation(puzzleID);
+	}
+
 }

@@ -9,20 +9,39 @@ public class Room
 	private String discription;
 	private ArrayList<Item> itemList;
 	private int north, south, east, west;
-	private int monster, puzzle;
+	private Monster monster;
+	private Puzzle puzzle;
 
 	protected Room(Object[] room)
 	{
 		this.id = (int)room[0];
 		this.discription = (String) room[1];
-		this.monster = (int)room[2];
+		this.monster = buildMonster((int)room[2]);
 		this.north = (int)room[3];
 		this.south = (int)room[4];
 		this.east = (int)room[5];
 		this.west = (int)room[6];
 		// room[7] is restriction
 		this.itemList = buildItems((ArrayList<Integer>) room[8]);
-		this.puzzle = (int)room[9];
+		this.puzzle = buildPuzzle((int)room[9]);
+	}
+
+	private Puzzle buildPuzzle(int puzzleID)
+	{
+		GameModel model = new GameModel();
+		if (puzzleID > 0)
+			return new Puzzle(model.getPuzzle(puzzleID));
+		else
+			return null;
+	}
+
+	private Monster buildMonster(int monsterNumber)
+	{
+		GameModel model = new GameModel();
+		if (monsterNumber > 0)
+			return new Monster(model.getMonster(monsterNumber));
+		else
+			return null;
 	}
 
 	private ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
@@ -54,14 +73,18 @@ public class Room
 	{
 		String str;
 		str = discription;
-		if (itemList.isEmpty())
+		if (!itemList.isEmpty())
 		{
-			str += "\n In this room there is:";
+			str += "\n In the room:";
 			for (int i = 0; i < itemList.size(); i++)
 			{
-				str += "\n " + itemList.get(i).getDescription();
+				str += "\n " + itemList.get(i).getName();
+				str += "\n\t " + itemList.get(i).getDescription();
 			}
 		}
+		
+		if (!(monster == null))
+				str += "\n" + monster.getDiscription();
 		return str;	
 	}
 
