@@ -9,7 +9,7 @@ public class GameControl
 	public static void main(String[] args)
 	{
 		GameControl run = new GameControl();
-		run.print("Testing");
+		
 	}
 	
 	private void print(String str)
