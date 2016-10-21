@@ -7,6 +7,11 @@ public abstract class Items
 	private String name;
 	private String description;
 	private boolean keyItem;
+	
+	public Items(Object[] item)
+	{
+		
+	}
 
 	public boolean isKeyItem() 
 	{
