@@ -20,7 +20,7 @@ public class ItemDB extends DatabaseManager {
 		item[3] = resultSet.getString("Description");
 		item[4] = resultSet.getInt("Defense");
 		item[5] = resultSet.getInt("Attack");
-		item[6] = resultSet.getInt("HP");
+		item[6] = resultSet.getInt("HealthPoints");
 		item[7] = (resultSet.getInt("isKey") == 0) ? false : true;
 		item[8] = resultSet.getString("Action");
 		}
