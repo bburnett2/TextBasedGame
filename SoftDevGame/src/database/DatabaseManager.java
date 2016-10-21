@@ -43,7 +43,7 @@ public class DatabaseManager {
 
 	public Object[] getItemInformation(int itemNum){
 		ItemDB itemDB = new ItemDB();
-		return itemDB.getItemPro(itemNum);
+		return itemDB.getItemInformationPro(itemNum);
 	}
 	
 	public Object[] getMonsterInformation(int monsterNum){

@@ -9,7 +9,7 @@ public class ItemDB extends DatabaseManager {
 		
 	}
 	
-	protected Object[] getItemPro(int itemNum){
+	protected Object[] getItemInformationPro(int itemNum){
 		Object[] item = new Object[9];
 		sqlCall = "SELECT * FROM item WHERE itemID = " + itemNum;
 		try{
