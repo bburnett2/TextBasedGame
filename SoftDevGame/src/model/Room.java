@@ -7,7 +7,7 @@ public class Room
 
 	private int id;
 	private String discription;
-	private ArrayList<Items> itemList;
+	private ArrayList<Item> itemList;
 	private int north, south, east, west;
 	private int monster, puzzle;
 	
@@ -21,7 +21,7 @@ public class Room
 		this.east = (int)room[5];
 		this.west = (int)room[6];
 		// room[7] is restriction
-		this.itemList = (ArrayList<Items>) room[7];
+		this.itemList = (ArrayList<Item>) room[7];
 		this.puzzle = (int)room[9];
 	}
 

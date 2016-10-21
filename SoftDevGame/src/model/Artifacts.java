@@ -1,6 +1,6 @@
 package model;
 
-public class Artifacts extends Items 
+public class Artifacts extends Item 
 {
 	
 

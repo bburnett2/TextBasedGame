@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Items 
+public abstract class Item 
 {
 
 	private int id;
@@ -28,9 +28,6 @@ public abstract class Items
 
 	}
 
-	public void use() {
-
-		
-	}
+	abstract public void use();
 
 }

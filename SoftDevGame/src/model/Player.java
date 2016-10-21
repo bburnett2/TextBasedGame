@@ -7,7 +7,7 @@ public class Player extends Character
 
 	private int[] completedPuzzles = new int[11];
 	private int[] defetedMonsters = new int[8];
-	private ArrayList<Items> equipedItems = new ArrayList<Items>();
+	private ArrayList<Item> equipedItems = new ArrayList<Item>();
 	private int currentRoom;
 	
 	public void hasItem() 

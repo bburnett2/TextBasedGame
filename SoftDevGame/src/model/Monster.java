@@ -8,7 +8,7 @@ public class Monster extends Character
 	private int id;
 	private String discription;
 	private int attack, health, defence;
-	private ArrayList<Items> items;
+	private ArrayList<Item> items;
 	
 	public Monster(Object[] monster)
 	{
@@ -17,7 +17,7 @@ public class Monster extends Character
 		this.attack = (int)monster[2];
 		this.health = (int)monster[3];
 		this.defence = (int)monster[4];
-		this.items = (ArrayList<Items>) monster[5];
+		this.items = (ArrayList<Item>) monster[5];
 		
 	}
 
