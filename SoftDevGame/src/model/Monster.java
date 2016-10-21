@@ -1,17 +1,23 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Monster extends Character
 {
 
 	private int id;
-	
-	public Monster()
-	{
-		
-	}
+	private String discription;
+	private int attack, health, defence;
+	private ArrayList<Items> items;
 	
 	public Monster(Object[] monster)
 	{
+		this.id = (int)monster[0];
+		this.discription = (String)monster[1];
+		this.attack = (int)monster[2];
+		this.health = (int)monster[3];
+		this.defence = (int)monster[4];
+		this.items = (ArrayList<Items>) monster[5];
 		
 	}
 
