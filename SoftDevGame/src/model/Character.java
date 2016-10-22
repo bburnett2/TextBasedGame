@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+//Test Comment
+
 public abstract class Character 
 {
 
