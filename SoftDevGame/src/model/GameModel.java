@@ -2,6 +2,7 @@ package model;
 
 public class GameModel 
 {
+	public 
 
 	private Player player = null;
 	private Room room = null;
