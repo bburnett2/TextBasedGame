@@ -55,9 +55,30 @@ public class DatabaseManager {
 		PuzzleDB puzzleDB = new PuzzleDB();
 		return puzzleDB.getPuzzleInformationPro(puzzleNum);
 	}
+	
+	public void saveGame(Object[] gameInfo) throws SQLException{
+		SavedGamesDB savedGamesDB = new SavedGamesDB();
+		savedGamesDB.saveGamePro(gameInfo);
+	}
 
 //	public static void main(String[] args) throws ClassNotFoundException{
-//		DatabaseManager dbManage = null;
+//		DatabaseManager dbManage = new DatabaseManager();
+//		dbManage = new SavedGamesDB();
+//		Object[] tester = new Object[5];
+//		tester[0] = "testPlayer1";
+//		tester[1] = 2;
+//		tester[2] = 4;
+//		tester[3] = 43;
+//		tester[4] = 42;
+//		
+//		try{
+//			dbManage.saveGame(tester);
+//			System.out.println("ok");
+//		}
+//		catch(SQLException ex){
+//			System.out.println(ex.getMessage());
+//		}
+
 //		try{
 //			dbManage = new RoomDB();
 //		}
