@@ -2,7 +2,7 @@ package model;
 
 public class GameModel 
 {
-	public 
+	public int FIRSTROOM = 1;
 
 	private Player player = null;
 	private Room room = null;
@@ -29,7 +29,7 @@ public class GameModel
 
 	public void firstRoom()
 	{
-		room = new Room(DB.getRoomInformation(1));
+		room = new Room(DB.getRoomInformation(FIRSTROOM));
 		print(room.toString());
 	}
 
