@@ -32,7 +32,7 @@ public class Room
 		str = discription;
 		if (!itemList.isEmpty())
 		{
-			str += "\n In the room:";
+			str += "\n The room has the folowing Items:";
 			for (int i = 0; i < itemList.size(); i++)
 			{
 				str += "\n " + itemList.get(i).getName();
@@ -41,29 +41,13 @@ public class Room
 		}
 		
 		if (!(monster == null))
-				str += "\n" + monster.getDiscription();
+				str += "\n" + monster.getDescription();
+		
+		if (!(puzzle == null))
+			str += "\n" + puzzle.getDescription();
 		return str;	
 	}
 
-	public int getNorth()
-	{
-		return north;
-	}
-
-	public int getSouth()
-	{
-		return south;
-	}
-
-	public int getEast()
-	{
-		return east;
-	}
-
-	public int getWest()
-	{
-		return west;
-	}
 
 	private Puzzle buildPuzzle(int puzzleID)
 	{
@@ -108,5 +92,24 @@ public class Room
 		return items;
 	}
 
+	public int getNorth()
+	{
+		return north;
+	}
 
+	public int getSouth()
+	{
+		return south;
+	}
+
+	public int getEast()
+	{
+		return east;
+	}
+
+	public int getWest()
+	{
+		return west;
+	}
+	
 }

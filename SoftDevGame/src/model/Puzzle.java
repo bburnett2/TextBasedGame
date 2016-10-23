@@ -11,6 +11,7 @@ public class Puzzle
 	private int itemReturned;
 	private boolean completesLevel;
 
+
 	public Puzzle(Object[] puzzle)
 	{
 		this.id = (int)puzzle[0];
@@ -24,6 +25,11 @@ public class Puzzle
 	public void answer() 
 	{
 
+	}
+	
+	protected String getDescription()
+	{
+		return description;
 	}
 
 }

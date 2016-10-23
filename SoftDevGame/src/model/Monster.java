@@ -6,14 +6,14 @@ public class Monster extends Character
 {
 
 	private int id;
-	private String discription;
+	private String description;
 	private int attack, health, defence;
 	private ArrayList<Item> items;
 	
 	public Monster(Object[] monster)
 	{
 		this.id = (int)monster[0];
-		this.discription = (String)monster[1];
+		this.description = (String)monster[1];
 		this.attack = (int)monster[2];
 		this.health = (int)monster[3];
 		this.defence = (int)monster[4];
@@ -26,9 +26,9 @@ public class Monster extends Character
 		return id;
 	}
 
-	public String getDiscription()
+	public String getDescription()
 	{
-		return discription;
+		return description;
 	}
 
 	public int getAttack()
