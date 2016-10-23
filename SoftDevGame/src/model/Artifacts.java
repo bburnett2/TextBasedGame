@@ -15,9 +15,5 @@ public class Artifacts extends Item
 
 	}
 
-	protected void pickUp() 
-	{
-
-	}
 
 }

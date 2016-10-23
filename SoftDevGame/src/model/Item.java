@@ -41,11 +41,6 @@ public abstract class Item
 
 	}
 
-	protected void add() 
-	{
-
-	}
-
 	protected void drop() 
 	{
 

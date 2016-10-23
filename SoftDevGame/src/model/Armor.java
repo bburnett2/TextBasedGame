@@ -19,9 +19,5 @@ public class Armor extends Item
 
 	}
 
-	protected void pickUp() 
-	{
-
-	}
 
 }
