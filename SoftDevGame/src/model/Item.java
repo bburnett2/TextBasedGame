@@ -16,37 +16,37 @@ public abstract class Item
 		this.action = (String) item[8];
 	}
 
-	public String getName()
+	protected String getName()
 	{
 		return name;
 	}
 
-	public String getDescription()
+	protected String getDescription()
 	{
 		return description;
 	}
 
-	public String getAction()
+	protected String getAction()
 	{
 		return action;
 	}
 
-	public boolean isKeyItem() 
+	protected boolean isKeyItem() 
 	{
 		return keyItem;
 	}
 
-	public void pickUp() 
+	protected void pickUp() 
 	{
 
 	}
 
-	public void add() 
+	protected void add() 
 	{
 
 	}
 
-	public void drop() 
+	protected void drop() 
 	{
 
 	}

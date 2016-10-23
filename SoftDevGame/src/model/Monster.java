@@ -21,37 +21,37 @@ public class Monster extends Character
 		
 	}
 
-	public int getId()
+	protected int getId()
 	{
 		return id;
 	}
 
-	public String getDescription()
+	protected String getDescription()
 	{
 		return description;
 	}
 
-	public int getAttack()
+	protected int getAttack()
 	{
 		return attack;
 	}
 
-	public int getHealth()
+	protected int getHealth()
 	{
 		return health;
 	}
 
-	public int getDefence()
+	protected int getDefence()
 	{
 		return defence;
 	}
 
-	public ArrayList<Item> getItems()
+	protected ArrayList<Item> getItems()
 	{
 		return items;
 	}
 
-	public void startFight() 
+	protected void startFight() 
 	{
 
 	}

@@ -33,6 +33,8 @@ public class GameControl
 			//cannot use a switch because of the complexity of the []
 			if (commands.get(0).equalsIgnoreCase("go"))
 				model.go(commands);
+			else if (commands.get(0).equalsIgnoreCase("answer"))
+				model.answer(commands);
 			
 			}catch (GameException exc)
 			{

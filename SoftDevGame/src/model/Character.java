@@ -13,12 +13,12 @@ public abstract class Character
 	private int attack;
 	private ArrayList itemList;
 
-	public void attack() 
+	protected void attack() 
 	{
 
 	}
 
-	public void takeDamage() 
+	protected void takeDamage() 
 	{
 
 	}

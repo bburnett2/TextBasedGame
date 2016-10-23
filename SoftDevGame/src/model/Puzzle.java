@@ -12,7 +12,7 @@ public class Puzzle
 	private boolean completesLevel;
 
 
-	public Puzzle(Object[] puzzle)
+	protected Puzzle(Object[] puzzle)
 	{
 		this.id = (int)puzzle[0];
 		this.description = (String)puzzle[1];
@@ -20,11 +20,25 @@ public class Puzzle
 		this.itemNeeded = (int)puzzle[3];
 		this.itemReturned = (int)puzzle[4];
 		this.completesLevel = (boolean)puzzle[5];
+		
+		this.isCompleted = false;
 	}
 
-	public void answer() 
+	protected boolean answer(String usrAmswer) 
 	{
+		if (answer.equalsIgnoreCase(usrAmswer))
+			isCompleted = true;
+		return isCompleted;
+	}
+	
+	protected int getId()
+	{
+		return id;
+	}
 
+	protected void setCompleted(boolean isCompleted)
+	{
+		this.isCompleted = isCompleted;
 	}
 	
 	protected String getDescription()

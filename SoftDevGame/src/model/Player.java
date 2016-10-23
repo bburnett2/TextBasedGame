@@ -5,22 +5,36 @@ import java.util.ArrayList;
 public class Player extends Character 
 {
 
-	private int[] completedPuzzles = new int[11];
-	private int[] defetedMonsters = new int[8];
+	private boolean[] completedPuzzles = new boolean[11];
+	private boolean[] defeatedMonsters = new boolean[8];
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
 	private int currentRoom;
 	
-	public void hasItem() 
+	protected Player()
+	{
+		for (int i = 0; i < completedPuzzles.length; i++)
+			completedPuzzles[i] = false;
+		for (int i = 0; i < defeatedMonsters.length; i ++)
+			defeatedMonsters[i] = false;
+	}
+	
+	protected void addCompletedPuzzle(int id)
+	{
+		completedPuzzles[id] = true;
+	}
+	
+
+	protected void hasItem() 
 	{
 
 	}
 
-	public void useItem() 
+	protected void useItem() 
 	{
 
 	}
 
-	public void run() 
+	protected void run() 
 	{
 
 	}
@@ -30,6 +44,16 @@ public class Player extends Character
 	{
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	protected int getCurrentRoom()
+	{
+		return currentRoom;
+	}
+
+	protected void setCurrentRoom(int currentRoom)
+	{
+		this.currentRoom = currentRoom;
 	}
 
 }

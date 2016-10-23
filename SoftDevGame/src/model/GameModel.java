@@ -8,7 +8,7 @@ public class GameModel
 {
 	public int FIRSTROOM = 1;
 
-	private Player player = null;
+	private Player player = new Player();;
 	private Room room = null;
 	
 	private Elevator elevator = new Elevator();
@@ -34,7 +34,26 @@ public class GameModel
 		
 		exitRoom();
 		room = new Room(DB.getRoomInformation(direction));
+		player.setCurrentRoom(room.getId());
 		print(room.toString());
+	}
+	
+	public void answer(ArrayList<String> commands) throws GameException
+	{
+		boolean correct = false;
+		if (room.hasPuzzle())
+			correct = room.answer(commands);
+		else 
+			throw new GameException("There is no puzzle to answer in this room");
+		
+		if (correct)
+		{
+			console.print("Congratulations that was correct!!!");
+			player.addCompletedPuzzle(room.puzzle.getId());
+		}
+		else
+			console.print("That was incorrect");
+		
 	}
 	
 	public void print(String str)

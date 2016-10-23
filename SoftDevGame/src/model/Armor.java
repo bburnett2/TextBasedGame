@@ -6,7 +6,7 @@ public class Armor extends Item
 	private int defense;
 	private int attack;
 	
-	public Armor(Object[] item)
+	protected Armor(Object[] item)
 	{
 		super(item);
 		this.defense = (int) item[4];
@@ -19,7 +19,7 @@ public class Armor extends Item
 
 	}
 
-	public void pickUp() 
+	protected void pickUp() 
 	{
 
 	}

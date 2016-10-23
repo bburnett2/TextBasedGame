@@ -10,7 +10,7 @@ public class Room
 	private ArrayList<Item> itemList;
 	private int north, south, east, west;
 	private Monster monster;
-	private Puzzle puzzle;
+	protected Puzzle puzzle;
 
 	protected Room(Object[] room)
 	{
@@ -26,6 +26,7 @@ public class Room
 		this.puzzle = buildPuzzle((int)room[9]);
 	}
 	
+	//toString is required to be public
 	public String toString()
 	{
 		String str;
@@ -49,7 +50,7 @@ public class Room
 	}
 
 
-	private Puzzle buildPuzzle(int puzzleID)
+	protected Puzzle buildPuzzle(int puzzleID)
 	{
 		GameModel model = new GameModel();
 		if (puzzleID > 0)
@@ -58,7 +59,7 @@ public class Room
 			return null;
 	}
 
-	private Monster buildMonster(int monsterNumber)
+	protected Monster buildMonster(int monsterNumber)
 	{
 		GameModel model = new GameModel();
 		if (monsterNumber > 0)
@@ -67,7 +68,7 @@ public class Room
 			return null;
 	}
 
-	private ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
+	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
 	{
 		GameModel model = new GameModel();
 		ArrayList<Item> items = new ArrayList<Item>();
@@ -91,25 +92,46 @@ public class Room
 		}
 		return items;
 	}
+	
+	protected boolean answer(ArrayList<String> commands)
+	{
+		boolean correct = false;
+		correct = puzzle.answer(commands.get(1));
+		return correct;	
+	}
 
-	public int getNorth()
+	protected int getNorth()
 	{
 		return north;
 	}
 
-	public int getSouth()
+	protected int getSouth()
 	{
 		return south;
 	}
 
-	public int getEast()
+	protected int getEast()
 	{
 		return east;
 	}
 
-	public int getWest()
+	protected int getWest()
 	{
 		return west;
 	}
+
+	protected int getId()
+	{
+		return id;
+	}
+
+	protected boolean hasPuzzle()
+	{
+		boolean hasPuzzle = false;
+		if (!(puzzle == null))
+			hasPuzzle = true;
+		return hasPuzzle;
+	}
+
 	
 }
