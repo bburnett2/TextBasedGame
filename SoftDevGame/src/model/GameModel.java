@@ -1,5 +1,9 @@
 package model;
 
+import java.util.ArrayList;
+
+import error.GameException;
+
 public class GameModel 
 {
 	public int FIRSTROOM = 1;
@@ -11,9 +15,26 @@ public class GameModel
 	private view.Console console = new view.Console();
 	private database.DatabaseManager DB = new database.DatabaseManager();
 	
-	public void go(String direction)
+	public void go(ArrayList<String> command) throws GameException
 	{
-//		DB.getRoom(room.getDirection(direction));
+		int direction;
+		if(command.get(1).equalsIgnoreCase("north"))
+			direction = room.getNorth();
+		else if(command.get(1).equalsIgnoreCase("south"))
+			direction = room.getSouth();
+		else if(command.get(1).equalsIgnoreCase("east"))
+			direction = room.getEast();
+		else if(command.get(1).equalsIgnoreCase("west"))
+			direction = room.getWest();
+		else
+			throw new GameException ("Not a valid direction");
+		
+		if(direction == 0)
+			throw new GameException("Not a valid direction");
+		
+		exitRoom();
+		room = new Room(DB.getRoomInformation(direction));
+		print(room.toString());
 	}
 	
 	public void print(String str)

@@ -25,6 +25,45 @@ public class Room
 		this.itemList = buildItems((ArrayList<Integer>) room[8]);
 		this.puzzle = buildPuzzle((int)room[9]);
 	}
+	
+	public String toString()
+	{
+		String str;
+		str = discription;
+		if (!itemList.isEmpty())
+		{
+			str += "\n In the room:";
+			for (int i = 0; i < itemList.size(); i++)
+			{
+				str += "\n " + itemList.get(i).getName();
+				str += "\n\t " + itemList.get(i).getDescription();
+			}
+		}
+		
+		if (!(monster == null))
+				str += "\n" + monster.getDiscription();
+		return str;	
+	}
+
+	public int getNorth()
+	{
+		return north;
+	}
+
+	public int getSouth()
+	{
+		return south;
+	}
+
+	public int getEast()
+	{
+		return east;
+	}
+
+	public int getWest()
+	{
+		return west;
+	}
 
 	private Puzzle buildPuzzle(int puzzleID)
 	{
@@ -69,23 +108,5 @@ public class Room
 		return items;
 	}
 
-	public String toString()
-	{
-		String str;
-		str = discription;
-		if (!itemList.isEmpty())
-		{
-			str += "\n In the room:";
-			for (int i = 0; i < itemList.size(); i++)
-			{
-				str += "\n " + itemList.get(i).getName();
-				str += "\n\t " + itemList.get(i).getDescription();
-			}
-		}
-		
-		if (!(monster == null))
-				str += "\n" + monster.getDiscription();
-		return str;	
-	}
 
 }

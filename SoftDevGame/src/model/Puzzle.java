@@ -9,7 +9,7 @@ public class Puzzle
 	private String answer;
 	private int itemNeeded;
 	private int itemReturned;
-	private int completesLevel;
+	private boolean completesLevel;
 
 	public Puzzle(Object[] puzzle)
 	{
@@ -18,7 +18,7 @@ public class Puzzle
 		this.answer = (String)puzzle[2];
 		this.itemNeeded = (int)puzzle[3];
 		this.itemReturned = (int)puzzle[4];
-		this.completesLevel = (int)puzzle[5];
+		this.completesLevel = (boolean)puzzle[5];
 	}
 
 	public void answer() 
