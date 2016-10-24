@@ -16,6 +16,10 @@ public abstract class Item
 		this.action = (String) item[8];
 	}
 
+	protected int getItemID(){
+		return id;
+	}
+	
 	protected String getName()
 	{
 		return name;
