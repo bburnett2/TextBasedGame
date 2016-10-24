@@ -6,7 +6,7 @@ import error.GameException;
 
 public class GameModel 
 {
-	public int FIRSTROOM = 1;
+	public final int FIRSTROOM = 3;
 
 	private Player player = new Player();;
 	private Room room = null;
