@@ -18,8 +18,8 @@ public class GameModel
 	public void go(ArrayList<String> command) throws GameException
 	{
 		int direction;
-//		if(command.get(1).equalsIgnoreCase("north"))
-		if(hasStr(command, "South"))
+
+		if(hasStr(command, "north"))
 			direction = room.getNorth();
 		else if(hasStr(command,"south"))
 			direction = room.getSouth();
@@ -39,17 +39,6 @@ public class GameModel
 		print(room.toString());
 	}
 	
-	private boolean hasStr(ArrayList<String> command, String str)
-	{
-		boolean hasStr = false;
-		for(int i = 1; i < command.size(); i ++)
-		{
-			if(command.get(i).equalsIgnoreCase(str))
-				hasStr = true;
-		}
-			
-		return hasStr;
-	}
 
 	public void answer(ArrayList<String> commands) throws GameException
 	{
@@ -67,6 +56,24 @@ public class GameModel
 		else
 			console.print("That was incorrect");
 		
+	}
+	
+	public void equip(ArrayList<String> commands)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private boolean hasStr(ArrayList<String> command, String str)
+	{
+		boolean hasStr = false;
+		for(int i = 1; i < command.size(); i ++)
+		{
+			if(command.get(i).equalsIgnoreCase(str))
+				hasStr = true;
+		}
+			
+		return hasStr;
 	}
 	
 	public void print(String str)
@@ -99,12 +106,6 @@ public class GameModel
 	public Object[] getPuzzle(int puzzleID)
 	{
 		return DB.getPuzzleInformation(puzzleID);
-	}
-
-	public void equip(ArrayList<String> commands)
-	{
-		// TODO Auto-generated method stub
-		
 	}
 
 }
