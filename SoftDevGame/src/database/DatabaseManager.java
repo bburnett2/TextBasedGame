@@ -22,7 +22,6 @@ public class DatabaseManager {
 
 	public DatabaseManager(){
 		try{
-			String sDriverName = "org.sqlite.JDBC";
 			Class.forName(sDriverName);
 			connection = DriverManager.getConnection(sDBURL);
 			statement = connection.createStatement();
@@ -65,7 +64,7 @@ public class DatabaseManager {
 //		DatabaseManager dbManage = new DatabaseManager();
 //		dbManage = new SavedGamesDB();
 //		Object[] tester = new Object[9];
-//		tester[0] = "testPlayer2";
+//		tester[0] = "testPlayer";
 //		tester[1] = 2;
 //		tester[2] = 4;
 //		tester[3] = 43;

@@ -4,29 +4,27 @@ import java.util.ArrayList;
 
 public class Player extends Character 
 {
-
-	private boolean[] completedPuzzles = new boolean[11];
-	private boolean[] defeatedMonsters = new boolean[8];
+	//ArrayList<Integer> contains the ID's of the completed/held things
+	private ArrayList<Integer> unequippedItems = new ArrayList<Integer>();;
+	private ArrayList<Integer> completedPuzzles = new ArrayList<Integer>();;
+	private ArrayList<Integer> defeatedMonsters = new ArrayList<Integer>();
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
 	private int currentRoom;
 	
 	protected Player()
 	{
-		for (int i = 0; i < completedPuzzles.length; i++)
-			completedPuzzles[i] = false;
-		for (int i = 0; i < defeatedMonsters.length; i ++)
-			defeatedMonsters[i] = false;
+		
 	}
 	
 	protected void addCompletedPuzzle(int id)
 	{
-		completedPuzzles[id] = true;
+		completedPuzzles.add(id);
 	}
 	
 
-	protected void hasItem() 
+	protected boolean hasItem(int itemID) 
 	{
-
+		return unequippedItems.contains(itemID);
 	}
 
 	protected void useItem() 

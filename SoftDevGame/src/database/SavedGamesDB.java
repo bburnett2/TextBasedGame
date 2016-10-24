@@ -31,7 +31,7 @@ public class SavedGamesDB extends DatabaseManager{
 		saveEquippedItems(playerID, equippedItems);
 	}
 
-	protected void saveItems(String playerID, ArrayList<Integer> items) throws SQLException{
+	private void saveItems(String playerID, ArrayList<Integer> items) throws SQLException{
 		for(Integer integer : items){
 			sqlCall = "INSERT INTO Player_Item (PlayerID, ItemID) VALUES(";
 			sqlCall += "'" +  playerID + "'" + "," +  (int)integer + ",";
@@ -41,7 +41,7 @@ public class SavedGamesDB extends DatabaseManager{
 		}
 	}
 	
-	protected void savePuzzles(String playerID, ArrayList<Integer> puzzles) throws SQLException{
+	private void savePuzzles(String playerID, ArrayList<Integer> puzzles) throws SQLException{
 		for(Integer integer : puzzles){
 			sqlCall = "INSERT INTO Player_CPuzzle (PlayerID, PuzzleID) VALUES(";
 			sqlCall += "'" + playerID + "'" +  "," +  (int)integer + ",";
@@ -52,7 +52,7 @@ public class SavedGamesDB extends DatabaseManager{
 		
 	}
 
-	protected void saveMonsters(String playerID, ArrayList<Integer> monsters) throws SQLException{
+	private void saveMonsters(String playerID, ArrayList<Integer> monsters) throws SQLException{
 		for(Integer integer : monsters){
 			sqlCall = "INSERT INTO Player_DMonster (PlayerID, MonsterID) VALUES(";
 			sqlCall += "'" + playerID + "'" +  "," + (int)integer + ",";
@@ -62,7 +62,7 @@ public class SavedGamesDB extends DatabaseManager{
 		}
 	}
 	
-	protected void saveEquippedItems(String playerID, ArrayList<Integer> equippedItems) throws SQLException{
+	private void saveEquippedItems(String playerID, ArrayList<Integer> equippedItems) throws SQLException{
 		for(Integer integer : equippedItems){
 			sqlCall = "INSERT INTO Player_Item_Equipped (PlayerID, ItemID) VALUES(";
 			sqlCall += "'" + playerID + "'" +  "," + (int)integer + ",";
