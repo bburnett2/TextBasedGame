@@ -64,12 +64,28 @@ public class DatabaseManager {
 //	public static void main(String[] args) throws ClassNotFoundException{
 //		DatabaseManager dbManage = new DatabaseManager();
 //		dbManage = new SavedGamesDB();
-//		Object[] tester = new Object[5];
-//		tester[0] = "testPlayer1";
+//		Object[] tester = new Object[9];
+//		tester[0] = "testPlayer2";
 //		tester[1] = 2;
 //		tester[2] = 4;
 //		tester[3] = 43;
 //		tester[4] = 42;
+//		ArrayList<Integer> items = new ArrayList<>();
+//		items.add(3);
+//		items.add(4);
+//		tester[5] = items;
+//		ArrayList<Integer> puz = new ArrayList<>();
+//		puz.add(3);
+//		puz.add(4);
+//		tester[6] = puz;
+//		ArrayList<Integer> mons = new ArrayList<>();
+//		mons.add(1);
+//		mons.add(2);
+//		tester[7] = mons;
+//		ArrayList<Integer> eItems = new ArrayList<>();
+//		eItems.add(12);
+//		eItems.add(23);
+//		tester[8] = eItems;
 //		
 //		try{
 //			dbManage.saveGame(tester);

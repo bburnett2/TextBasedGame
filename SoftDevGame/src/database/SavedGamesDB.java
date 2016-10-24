@@ -16,14 +16,59 @@ public class SavedGamesDB extends DatabaseManager{
 		int playerHealth = (int)gameInfo[2];
 		int playerDefense =(int) gameInfo[3];
 		int playerAttack = (int)gameInfo[4];
-//		ArrayList<Integer> items = (ArrayList<Integer>)gameInfo[5];
-//				[6] = completedPuzzle: 
-//				[7] = defeatedMonsters:
-//				[8] = equippedItems: ArrayList<Items> (? pass Integer)
-		sqlCall = "INSERT INTO Saved_Game (PlayerID,CurrentRoom,PlayerHealth,PlayerDefenese) "
+		ArrayList<Integer> items = (ArrayList<Integer>)gameInfo[5];
+		ArrayList<Integer> puzzles = (ArrayList<Integer>)gameInfo[6]; 
+		ArrayList<Integer> monsters = (ArrayList<Integer>)gameInfo[7];
+		ArrayList<Integer> equippedItems = (ArrayList<Integer>)gameInfo[8];
+
+		sqlCall = "INSERT INTO Saved_Game (PlayerID,CurrentRoom,PlayerHealth,PlayerDefenese,PlayerAttack) "
 				+ "VALUES(" + "'" + playerID + "'" + "," + "'" +  currentRoomID + "'" +  "," +
-				"'" + playerHealth + "'" + "," + "'" + playerDefense + "'" /* + ",'" + playerAttack + "'"*/ + ");";
+				"'" + playerHealth + "'" + "," + "'" + playerDefense + "'"  + ",'" + playerAttack + "'" + ");";
 		statement.executeUpdate(sqlCall);
+		saveItems(playerID, items);
+		savePuzzles(playerID, puzzles);
+		saveMonsters(playerID, monsters);
+		saveEquippedItems(playerID, equippedItems);
 	}
 
+	protected void saveItems(String playerID, ArrayList<Integer> items) throws SQLException{
+		for(Integer integer : items){
+			sqlCall = "INSERT INTO Player_Item (PlayerID, ItemID) VALUES(";
+			sqlCall += "'" +  playerID + "'" + "," +  (int)integer + ",";
+			sqlCall = sqlCall.substring(0, sqlCall.length() - 1);
+			sqlCall += ")";
+			statement.executeUpdate(sqlCall);
+		}
+	}
+	
+	protected void savePuzzles(String playerID, ArrayList<Integer> puzzles) throws SQLException{
+		for(Integer integer : puzzles){
+			sqlCall = "INSERT INTO Player_CPuzzle (PlayerID, PuzzleID) VALUES(";
+			sqlCall += "'" + playerID + "'" +  "," +  (int)integer + ",";
+			sqlCall = sqlCall.substring(0, sqlCall.length() - 1);
+			sqlCall += ")";
+			statement.executeUpdate(sqlCall);
+		}
+		
+	}
+
+	protected void saveMonsters(String playerID, ArrayList<Integer> monsters) throws SQLException{
+		for(Integer integer : monsters){
+			sqlCall = "INSERT INTO Player_DMonster (PlayerID, MonsterID) VALUES(";
+			sqlCall += "'" + playerID + "'" +  "," + (int)integer + ",";
+			sqlCall = sqlCall.substring(0, sqlCall.length() - 1);
+			sqlCall += ")";
+			statement.executeUpdate(sqlCall);
+		}
+	}
+	
+	protected void saveEquippedItems(String playerID, ArrayList<Integer> equippedItems) throws SQLException{
+		for(Integer integer : equippedItems){
+			sqlCall = "INSERT INTO Player_Item_Equipped (PlayerID, ItemID) VALUES(";
+			sqlCall += "'" + playerID + "'" +  "," + (int)integer + ",";
+			sqlCall = sqlCall.substring(0, sqlCall.length() - 1);
+			sqlCall += ")";
+			statement.executeUpdate(sqlCall);
+		}
+	}
 }
