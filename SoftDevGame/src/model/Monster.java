@@ -63,4 +63,18 @@ public class Monster extends Character
 		return null;
 	}
 
+	@Override
+	protected void attack()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void takeDamage()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 }

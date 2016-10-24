@@ -54,4 +54,18 @@ public class Player extends Character
 		this.currentRoom = currentRoom;
 	}
 
+	@Override
+	protected void attack()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void takeDamage()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 }
