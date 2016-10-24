@@ -88,4 +88,10 @@ public class GameModel
 		return DB.getPuzzleInformation(puzzleID);
 	}
 
+	public void equip(ArrayList<String> commands)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 }
