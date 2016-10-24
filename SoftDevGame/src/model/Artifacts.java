@@ -10,7 +10,7 @@ public class Artifacts extends Item
 		// TODO Auto-generated constructor stub
 	}
 
-	public void use() 
+	protected void use() 
 	{
 
 	}

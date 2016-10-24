@@ -11,7 +11,7 @@ public class Consumables extends Item
 	}
 
 	@Override
-	public void use()
+	protected void use()
 	{
 		// TODO Auto-generated method stub
 		

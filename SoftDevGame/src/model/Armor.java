@@ -14,7 +14,7 @@ public class Armor extends Item
 	}
 
 	//add defense or attack to total
-	public void use() 
+	protected void use() 
 	{
 
 	}

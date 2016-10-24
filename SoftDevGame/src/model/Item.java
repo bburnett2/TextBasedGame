@@ -46,6 +46,6 @@ public abstract class Item
 
 	}
 
-	abstract public void use();
+	abstract protected void use();
 
 }
