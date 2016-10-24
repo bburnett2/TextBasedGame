@@ -33,7 +33,7 @@ public class GameModel
 			throw new GameException("Not a valid direction");
 		
 		exitRoom();
-		room = new Room(DB.getRoomInformation(direction));
+		room = new Room(DB.getRoomInformation(direction), player);
 		player.setCurrentRoom(room.getId());
 		print(room.toString());
 	}
@@ -69,7 +69,7 @@ public class GameModel
 
 	public void firstRoom()
 	{
-		room = new Room(DB.getRoomInformation(FIRSTROOM));
+		room = new Room(DB.getRoomInformation(FIRSTROOM), player);
 		print(room.toString());
 	}
 

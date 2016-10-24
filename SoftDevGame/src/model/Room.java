@@ -11,8 +11,9 @@ public class Room
 	private int north, south, east, west;
 	private Monster monster;
 	protected Puzzle puzzle;
+	protected Player player;
 
-	protected Room(Object[] room)
+	protected Room(Object[] room, Player player)
 	{
 		this.id = (int)room[0];
 		this.discription = (String) room[1];
@@ -24,6 +25,8 @@ public class Room
 		// room[7] is restriction
 		this.itemList = buildItems((ArrayList<Integer>) room[8]);
 		this.puzzle = buildPuzzle((int)room[9]);
+		
+		this.player = player;
 	}
 	
 	//toString is required to be public
