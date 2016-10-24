@@ -35,6 +35,8 @@ public class GameControl
 				model.go(commands);
 			else if (commands.get(0).equalsIgnoreCase("answer"))
 				model.answer(commands);
+			else if (commands.get(0).equalsIgnoreCase("equip"))
+				model.equip(commands);
 			else
 				throw new GameException ("Not a valid action command.");
 			
