@@ -18,19 +18,20 @@ public class GameModel
 	public void go(ArrayList<String> command) throws GameException
 	{
 		int direction;
-		if(command.get(1).equalsIgnoreCase("north"))
+//		if(command.get(1).equalsIgnoreCase("north"))
+		if(hasStr(command, "South"))
 			direction = room.getNorth();
-		else if(command.get(1).equalsIgnoreCase("south"))
+		else if(hasStr(command,"south"))
 			direction = room.getSouth();
-		else if(command.get(1).equalsIgnoreCase("east"))
+		else if(hasStr(command,"east"))
 			direction = room.getEast();
-		else if(command.get(1).equalsIgnoreCase("west"))
+		else if(hasStr(command,"west"))
 			direction = room.getWest();
 		else
 			throw new GameException ("Not a valid direction");
 		
 		if(direction == 0)
-			throw new GameException("Not a valid direction");
+			throw new GameException("\nThere is not a door that direction\n");
 		
 		exitRoom();
 		room = new Room(DB.getRoomInformation(direction), player);
@@ -38,6 +39,18 @@ public class GameModel
 		print(room.toString());
 	}
 	
+	private boolean hasStr(ArrayList<String> command, String str)
+	{
+		boolean hasStr = false;
+		for(int i = 1; i < command.size(); i ++)
+		{
+			if(command.get(i).equalsIgnoreCase(str))
+				hasStr = true;
+		}
+			
+		return hasStr;
+	}
+
 	public void answer(ArrayList<String> commands) throws GameException
 	{
 		boolean correct = false;
