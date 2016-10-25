@@ -60,6 +60,11 @@ public class DatabaseManager {
 		savedGamesDB.saveGamePro(gameInfo);
 	}
 
+	public Object[] loadGame(String playerID){
+		SavedGamesDB savedGamesDB = new SavedGamesDB();
+		return savedGamesDB.loadGamePro(playerID);
+	}
+	
 //	public static void main(String[] args) throws ClassNotFoundException{
 //		DatabaseManager dbManage = new DatabaseManager();
 //		dbManage = new SavedGamesDB();
@@ -92,6 +97,11 @@ public class DatabaseManager {
 //		}
 //		catch(SQLException ex){
 //			System.out.println(ex.getMessage());
+//		}
+		
+//		Object[] testLoad = dbManage.loadGame("testPlayer");
+//		for(int i = 0; i < testLoad.length; i++){
+//			System.out.println(testLoad[i].toString());
 //		}
 
 //		try{

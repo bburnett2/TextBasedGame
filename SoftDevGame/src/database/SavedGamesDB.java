@@ -71,4 +71,85 @@ public class SavedGamesDB extends DatabaseManager{
 			statement.executeUpdate(sqlCall);
 		}
 	}
+	
+	protected Object[] loadGamePro(String PlayerID){
+		Object[] gameInfo = new Object[9];
+		sqlCall = "SELECT * FROM Saved_Game WHERE PlayerID = '" + PlayerID + "'";
+		try{
+		resultSet = statement.executeQuery(sqlCall);
+		gameInfo[0] = resultSet.getString("PlayerID");
+		gameInfo[1] = resultSet.getInt("CurrentRoom");
+		gameInfo[2] = resultSet.getInt("PlayerHealth");
+		gameInfo[3] = resultSet.getInt("PlayerDefenese");
+		gameInfo[4] = resultSet.getInt("PlayerAttack");
+		gameInfo[5] = loadItems(PlayerID);
+		gameInfo[6] = loadCompletedPuzzles(PlayerID);
+		gameInfo[7] = loadDefeatedMonsters(PlayerID);
+		gameInfo[8] = loadEquippedItems(PlayerID);
+		}
+		catch(SQLException ex){
+			System.out.println(ex.getMessage());
+		}
+		return gameInfo;
+	}
+	
+	private ArrayList<Integer> loadItems(String playerID){
+		ArrayList<Integer> items = new ArrayList<>();
+		sqlCall = "SELECT * FROM Player_Item WHERE PlayerID = " + playerID;
+		try{
+			resultSet = statement.executeQuery(sqlCall);
+			while(resultSet.next()){
+				items.add(resultSet.getInt("ItemID"));
+			}
+		}
+		catch(SQLException ex){
+			
+		}
+		return items;
+	}
+	
+	private ArrayList<Integer> loadCompletedPuzzles(String playerID){
+		ArrayList<Integer> puzzles = new ArrayList<>();
+		sqlCall = "SELECT * FROM Player_CPuzzle WHERE PlayerID = " + playerID;
+		try{
+			resultSet = statement.executeQuery(sqlCall);
+			while(resultSet.next()){
+				puzzles.add(resultSet.getInt("PuzzleID"));
+			}
+		}
+		catch(SQLException ex){
+			
+		}
+		return puzzles;
+	}
+	
+	private ArrayList<Integer> loadEquippedItems(String playerID){
+		ArrayList<Integer> equippedItems = new ArrayList<>();
+		sqlCall = "SELECT * FROM Player_Item_Equipped WHERE PlayerID = " + playerID;
+		try{
+			resultSet = statement.executeQuery(sqlCall);
+			while(resultSet.next()){
+				equippedItems.add(resultSet.getInt("ItemID"));
+			}
+		}
+		catch(SQLException ex){
+			
+		}
+		return equippedItems;
+	}
+	
+	private ArrayList<Integer> loadDefeatedMonsters(String playerID){
+		ArrayList<Integer> monsters = new ArrayList<>();
+		sqlCall = "SELECT * FROM Player_DMonster WHERE PlayerID = " + playerID;
+		try{
+			resultSet = statement.executeQuery(sqlCall);
+			while(resultSet.next()){
+				monsters.add(resultSet.getInt("MonsterID"));
+			}
+		}
+		catch(SQLException ex){
+			
+		}
+		return monsters;
+	}
 }
