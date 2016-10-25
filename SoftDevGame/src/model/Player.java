@@ -137,4 +137,19 @@ public class Player extends Character
 	{
 		return playerAttack;
 	}
+	
+	@Override
+	protected void attack()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void takeDamage()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 }

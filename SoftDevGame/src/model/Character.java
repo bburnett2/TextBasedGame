@@ -13,15 +13,9 @@ public abstract class Character
 	private int attack;
 	private ArrayList itemList;
 
-	protected void attack() 
-	{
+	abstract protected void attack();
 
-	}
-
-	protected void takeDamage() 
-	{
-
-	}
+	abstract void takeDamage();
 
 	abstract public String die();
 }
