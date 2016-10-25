@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import error.GameException;
 
-//get commit
+
 public class GameControl 
 {
 	model.GameModel model = new model.GameModel();
