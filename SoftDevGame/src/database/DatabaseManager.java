@@ -73,7 +73,7 @@ public class DatabaseManager {
 //		tester[1] = 2;
 //		tester[2] = 4;
 //		tester[3] = 43;
-//		tester[4] = 42;
+//		tester[4] = 10;
 //		ArrayList<Integer> items = new ArrayList<>();
 //		items.add(3);
 //		items.add(4);
@@ -98,7 +98,7 @@ public class DatabaseManager {
 //		catch(SQLException ex){
 //			System.out.println(ex.getMessage());
 //		}
-		
+//		
 //		Object[] testLoad = dbManage.loadGame("testPlayer");
 //		for(int i = 0; i < testLoad.length; i++){
 //			System.out.println(testLoad[i].toString());

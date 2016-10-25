@@ -3,6 +3,8 @@ package database;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import error.GameException;
+
 public class SavedGamesDB extends DatabaseManager{
 
 	public Object[] getGameInformation() {
@@ -10,7 +12,7 @@ public class SavedGamesDB extends DatabaseManager{
 		return gameInfo;
 	}
 
-	protected void saveGamePro(Object[] gameInfo) throws SQLException{
+	protected void saveGamePro(Object[] gameInfo){
 		String playerID = (String)gameInfo[0];
 		int currentRoomID = (int)gameInfo[1];
 		int playerHealth = (int)gameInfo[2];
@@ -24,11 +26,34 @@ public class SavedGamesDB extends DatabaseManager{
 		sqlCall = "INSERT INTO Saved_Game (PlayerID,CurrentRoom,PlayerHealth,PlayerDefenese,PlayerAttack) "
 				+ "VALUES(" + "'" + playerID + "'" + "," + "'" +  currentRoomID + "'" +  "," +
 				"'" + playerHealth + "'" + "," + "'" + playerDefense + "'"  + ",'" + playerAttack + "'" + ");";
-		statement.executeUpdate(sqlCall);
-		saveItems(playerID, items);
-		savePuzzles(playerID, puzzles);
-		saveMonsters(playerID, monsters);
-		saveEquippedItems(playerID, equippedItems);
+		try{
+			statement.executeUpdate(sqlCall);
+		}
+		catch(SQLException ex){
+			updateSavedGame(playerID, currentRoomID, playerHealth, playerDefense, playerAttack);
+		}
+		try{
+			saveItems(playerID, items);
+			savePuzzles(playerID, puzzles);
+			saveMonsters(playerID, monsters);
+			saveEquippedItems(playerID, equippedItems);
+		}
+		catch(SQLException ex){
+
+		}
+	}
+
+	private void updateSavedGame(String playerID, int currentRoomID, int playerHealth, int playerDefense,
+			int playerAttack){
+		sqlCall = "UPDATE Saved_Game SET CurrentRoom = '" + currentRoomID + "', PlayerHealth = '" + playerHealth + 
+				"', PlayerDefenese = '" + playerDefense + "', PlayerAttack = '" + playerAttack + "' WHERE PlayerID = '" + 
+				playerID + "';";
+		try{
+			statement.executeUpdate(sqlCall);
+		}
+		catch(SQLException ex){
+			
+		}
 	}
 
 	private void saveItems(String playerID, ArrayList<Integer> items) throws SQLException{
@@ -40,7 +65,7 @@ public class SavedGamesDB extends DatabaseManager{
 			statement.executeUpdate(sqlCall);
 		}
 	}
-	
+
 	private void savePuzzles(String playerID, ArrayList<Integer> puzzles) throws SQLException{
 		for(Integer integer : puzzles){
 			sqlCall = "INSERT INTO Player_CPuzzle (PlayerID, PuzzleID) VALUES(";
@@ -49,7 +74,7 @@ public class SavedGamesDB extends DatabaseManager{
 			sqlCall += ")";
 			statement.executeUpdate(sqlCall);
 		}
-		
+
 	}
 
 	private void saveMonsters(String playerID, ArrayList<Integer> monsters) throws SQLException{
@@ -61,7 +86,7 @@ public class SavedGamesDB extends DatabaseManager{
 			statement.executeUpdate(sqlCall);
 		}
 	}
-	
+
 	private void saveEquippedItems(String playerID, ArrayList<Integer> equippedItems) throws SQLException{
 		for(Integer integer : equippedItems){
 			sqlCall = "INSERT INTO Player_Item_Equipped (PlayerID, ItemID) VALUES(";
@@ -71,28 +96,28 @@ public class SavedGamesDB extends DatabaseManager{
 			statement.executeUpdate(sqlCall);
 		}
 	}
-	
+
 	protected Object[] loadGamePro(String PlayerID){
 		Object[] gameInfo = new Object[9];
 		sqlCall = "SELECT * FROM Saved_Game WHERE PlayerID = '" + PlayerID + "'";
 		try{
-		resultSet = statement.executeQuery(sqlCall);
-		gameInfo[0] = resultSet.getString("PlayerID");
-		gameInfo[1] = resultSet.getInt("CurrentRoom");
-		gameInfo[2] = resultSet.getInt("PlayerHealth");
-		gameInfo[3] = resultSet.getInt("PlayerDefenese");
-		gameInfo[4] = resultSet.getInt("PlayerAttack");
-		gameInfo[5] = loadItems(PlayerID);
-		gameInfo[6] = loadCompletedPuzzles(PlayerID);
-		gameInfo[7] = loadDefeatedMonsters(PlayerID);
-		gameInfo[8] = loadEquippedItems(PlayerID);
+			resultSet = statement.executeQuery(sqlCall);
+			gameInfo[0] = resultSet.getString("PlayerID");
+			gameInfo[1] = resultSet.getInt("CurrentRoom");
+			gameInfo[2] = resultSet.getInt("PlayerHealth");
+			gameInfo[3] = resultSet.getInt("PlayerDefenese");
+			gameInfo[4] = resultSet.getInt("PlayerAttack");
+			gameInfo[5] = loadItems(PlayerID);
+			gameInfo[6] = loadCompletedPuzzles(PlayerID);
+			gameInfo[7] = loadDefeatedMonsters(PlayerID);
+			gameInfo[8] = loadEquippedItems(PlayerID);
 		}
 		catch(SQLException ex){
 			System.out.println(ex.getMessage());
 		}
 		return gameInfo;
 	}
-	
+
 	private ArrayList<Integer> loadItems(String playerID){
 		ArrayList<Integer> items = new ArrayList<>();
 		sqlCall = "SELECT * FROM Player_Item WHERE PlayerID = " + playerID;
@@ -103,11 +128,11 @@ public class SavedGamesDB extends DatabaseManager{
 			}
 		}
 		catch(SQLException ex){
-			
+
 		}
 		return items;
 	}
-	
+
 	private ArrayList<Integer> loadCompletedPuzzles(String playerID){
 		ArrayList<Integer> puzzles = new ArrayList<>();
 		sqlCall = "SELECT * FROM Player_CPuzzle WHERE PlayerID = " + playerID;
@@ -118,11 +143,11 @@ public class SavedGamesDB extends DatabaseManager{
 			}
 		}
 		catch(SQLException ex){
-			
+
 		}
 		return puzzles;
 	}
-	
+
 	private ArrayList<Integer> loadEquippedItems(String playerID){
 		ArrayList<Integer> equippedItems = new ArrayList<>();
 		sqlCall = "SELECT * FROM Player_Item_Equipped WHERE PlayerID = " + playerID;
@@ -133,11 +158,11 @@ public class SavedGamesDB extends DatabaseManager{
 			}
 		}
 		catch(SQLException ex){
-			
+
 		}
 		return equippedItems;
 	}
-	
+
 	private ArrayList<Integer> loadDefeatedMonsters(String playerID){
 		ArrayList<Integer> monsters = new ArrayList<>();
 		sqlCall = "SELECT * FROM Player_DMonster WHERE PlayerID = " + playerID;
@@ -148,7 +173,7 @@ public class SavedGamesDB extends DatabaseManager{
 			}
 		}
 		catch(SQLException ex){
-			
+
 		}
 		return monsters;
 	}
