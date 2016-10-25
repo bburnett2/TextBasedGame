@@ -11,7 +11,7 @@ public class GameModel
 	private Player player = new Player();;
 	private Room room = null;
 	
-	private Elevator elevator = new Elevator();
+	private Elevator elevator = null;
 	private view.Console console = new view.Console();
 	private database.DatabaseManager DB = new database.DatabaseManager();
 	

@@ -1,9 +1,9 @@
 package model;
 
-import database.DatabaseManager;
-
-public class Elevator {
-	DatabaseManager databaseManager = new DatabaseManager();
+public class Elevator 
+{
+	private Player player = null;
+	
 	int Level1 = 3;
 	int Level2 = 11;
 	int Level3 = 17;
@@ -14,6 +14,11 @@ public class Elevator {
 	int LevelFinal = 46;
 	//needs methods to find completed and open floors and print that to user.  Then user will
 	//input which floor.
+	public Elevator(Player player)
+	{
+		this.player = player;
+	}
+	
 	public String floors(int[] monsters, int[] puzzles)
 	{
 
