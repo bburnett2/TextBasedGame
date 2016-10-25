@@ -23,7 +23,7 @@ public class RoomDB extends DatabaseManager {
 			roomInfo[4] = resultSet.getInt("South");;
 			roomInfo[5] = resultSet.getInt("East");;
 			roomInfo[6] = resultSet.getInt("West");;
-			roomInfo[7] = 0;
+			roomInfo[7] = resultSet.getString("Constraints");
 			roomInfo[8] = getRoomItemInts(roomNum);
 			roomInfo[9] = getRoomPuzzles(roomNum);
 		}
