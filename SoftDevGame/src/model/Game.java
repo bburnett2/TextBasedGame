@@ -10,7 +10,8 @@ public class Game
 	Player player;
 	DatabaseManager dbManage = new DatabaseManager();
 
-	public void save(){
+	public void save()
+	{
 		String playerID = player.getPlayerID();
 		int currentRoomID = player.getCurrentRoom();
 		int playerHealth = player.getPlayerHealth();
@@ -21,7 +22,8 @@ public class Game
 		ArrayList<Integer> monsters = player.getDefeatedMonsters();
 		ArrayList<Item> equippedItemsOb = player.getEquipedItems();
 		ArrayList<Integer> equppedItems = new ArrayList<>();
-		for(Item item: equippedItemsOb){
+		for(Item item: equippedItemsOb)
+		{
 			equppedItems.add(item.getItemID());
 		}
 		Object[] gameInfo = new Object[9];
@@ -35,10 +37,12 @@ public class Game
 		gameInfo[7] = monsters;
 		gameInfo[8] = equppedItems;
 		
-		try{
+		try
+		{
 		dbManage.saveGame(gameInfo);
 		}
-		catch(SQLException ex){
+		catch(SQLException ex)
+		{
 			System.out.println(ex.getMessage());
 		}
 	}
