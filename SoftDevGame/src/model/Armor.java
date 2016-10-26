@@ -6,9 +6,9 @@ public class Armor extends Item
 	private int defense;
 	private int attack;
 	
-	protected Armor(Object[] item)
+	protected Armor(Object[] item, Player player)
 	{
-		super(item);
+		super(item, player);
 		this.defense = (int) item[4];
 		this.attack = (int) item[5];
 	}

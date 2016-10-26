@@ -12,6 +12,7 @@ public class Room
 	private Monster monster;
 	protected Puzzle puzzle;
 	protected Player player;
+	private String restrictions;
 
 	protected Room(Object[] room, Player player)
 	{
@@ -22,7 +23,7 @@ public class Room
 		this.south = (int)room[4];
 		this.east = (int)room[5];
 		this.west = (int)room[6];
-		// room[7] is restriction
+		this.restrictions = (String)room[7];
 		this.itemList = buildItems((ArrayList<Integer>) room[8]);
 		this.puzzle = buildPuzzle((int)room[9]);
 
@@ -92,11 +93,11 @@ public class Room
 				String type = (String)item[2];
 
 				if (type.equalsIgnoreCase("Armor"))
-					items.add(new Armor(item));
+					items.add(new Armor(item, player));
 				else if(type.equalsIgnoreCase("Artifacts"))
-					items.add(new Artifacts(item));
+					items.add(new Artifacts(item, player));
 				else if(type.equalsIgnoreCase("Consumables"))
-					items.add(new Consumables(item));
+					items.add(new Consumables(item, player));
 				count++;
 			}
 		}
