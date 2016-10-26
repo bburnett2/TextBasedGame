@@ -11,63 +11,64 @@ public class GameControl
 	model.GameModel model = new model.GameModel();
 	Scanner input = new Scanner(System.in);
 	ArrayList<String> validCommands = new ArrayList<>();
-	
-	
+
+
 	public static void main(String[] args)
 	{
 		GameControl run = new GameControl();
 		run.startGame();
 		run.mainLoop();
 	}
-	
+
 
 	private void mainLoop()
 	{
 		String command;
 		ArrayList<String> commands = new ArrayList<String>();
-		
+
 		do{
 			command = read();
 			commands = parsString(command);
-			
+
 			try{
-			//cannot use a switch because of the complexity of the []
-			if (commands.get(0).equalsIgnoreCase("go"))
-				model.go(commands);
-			else if (commands.get(0).equalsIgnoreCase("answer"))
-				model.answer(commands);
-			else if (commands.get(0).equalsIgnoreCase("equip"))
-				model.equip(commands);
-			else if (commands.get(0).equalsIgnoreCase("enter"))
-				enterSubLoop();
-			else
-				throw new GameException ("Not a valid action command.");
-			
+				//cannot use a switch because of the complexity of the []
+				if (commands.get(0).equalsIgnoreCase("go"))
+					model.go(commands);
+				else if (commands.get(0).equalsIgnoreCase("answer"))
+					model.answer(commands);
+				else if (commands.get(0).equalsIgnoreCase("equip"))
+					model.equip(commands);
+				else if (commands.get(0).equalsIgnoreCase("enter"))
+					enterElevatorSubLoop();
+				else
+					throw new GameException ("Not a valid action command.");
+
 			}catch (GameException exc)
 			{
 				print(exc.getMessage());
 			}
-			
+
 		}while(!(command.equalsIgnoreCase("quit")));
-		
+
 	}
 
 
-	private void enterSubLoop()
+	private void enterElevatorSubLoop()
 	{
 		boolean inElevator = true;
 		String command;
 		ArrayList<String> commands = new ArrayList<String>();
-		
+
 		model.enterElevator();
-		
+
 		do
 		{
 			command = read();
 			commands = parsString(command);
-			
-			inElevator = model.pushElevator(commands);
-		}while(!(inElevator) || commands.get(0).equalsIgnoreCase("exit"));
+
+			if (!(commands.contains("exit")))
+				inElevator = model.pushElevator(commands);
+		}while(!(inElevator)|| !(commands.contains("exit")));
 	}
 
 
