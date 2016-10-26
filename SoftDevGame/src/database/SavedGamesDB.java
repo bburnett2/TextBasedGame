@@ -177,4 +177,18 @@ public class SavedGamesDB extends DatabaseManager{
 		}
 		return monsters;
 	}
+	
+	protected String getSavedGamesPro(){
+		String savedGames = "";
+		sqlCall = "SELECT PlayerID FROM Saved_Game";
+		try{
+			resultSet = statement.executeQuery(sqlCall);
+			while(resultSet.next()){
+				savedGames += resultSet.getString("PlayerID") + "\n";
+			}
+		} catch(SQLException ex){
+			
+		}
+		return savedGames;
+	}
 }

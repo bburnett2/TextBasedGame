@@ -65,6 +65,11 @@ public class DatabaseManager {
 		return savedGamesDB.loadGamePro(playerID);
 	}
 	
+	public String getSavedGames(){
+		SavedGamesDB savedGamesDB = new SavedGamesDB();
+		return savedGamesDB.getSavedGamesPro();
+	}
+	
 //	public static void main(String[] args) throws ClassNotFoundException{
 //		DatabaseManager dbManage = new DatabaseManager();
 //		dbManage = new SavedGamesDB();
