@@ -26,10 +26,10 @@ public class Elevator
 	{
 		checkCompleted();
 		
-		String str = "";
+		String str = "The elevator floor selection panel has: \n1";
 		
 		if (isL1Complete)
-			str+= "The elevator floor selection panel has: \n1 \n2 \n3";
+			str+= "\n2 \n3";
 		if (isL2Complete || isL3Complete)
 			str += "\n4 \n5";
 		if (isL4Complete || isL5Complete)
@@ -42,6 +42,33 @@ public class Elevator
 		return str;		
 	}
 	
+	public boolean canGoToLevel(int level)
+	{
+		boolean canGo = false;
+		
+		if (level == 1)
+			canGo = true;
+		if (level == 2 || level == 3)
+			canGo = isL1Complete;
+		if (level == 4 || level == 5)
+		{
+			if (isL2Complete || isL3Complete)
+			canGo = true;
+		}
+		if (level == 6 || level == 7)
+		{
+			if (isL4Complete || isL5Complete)
+			canGo = true;
+		}
+		if (level == 8)
+		{
+//			if (isL6Complete && isL7Complete)
+			canGo = true;
+		}
+		
+		return canGo;
+	}
+	
 	protected void checkCompleted()
 	{
 		compleateL1();
@@ -52,6 +79,7 @@ public class Elevator
 		compleateL6();
 		compleateL7();
 	}
+
 	
 	protected void compleateL7()
 	{
@@ -199,5 +227,6 @@ public class Elevator
 	{
 		LevelFinal = levelFinal;
 	}
+
 
 }

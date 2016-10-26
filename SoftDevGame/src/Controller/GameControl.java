@@ -37,6 +37,8 @@ public class GameControl
 				model.answer(commands);
 			else if (commands.get(0).equalsIgnoreCase("equip"))
 				model.equip(commands);
+			else if (commands.get(0).equalsIgnoreCase("enter"))
+				enterSubLoop();
 			else
 				throw new GameException ("Not a valid action command.");
 			
@@ -47,6 +49,24 @@ public class GameControl
 			
 		}while(!(command.equalsIgnoreCase("quit")));
 		
+	}
+
+
+	private void enterSubLoop()
+	{
+		boolean inElevator = true;
+		String command;
+		ArrayList<String> commands = new ArrayList<String>();
+		
+		model.enterElevator();
+		
+		do
+		{
+			command = read();
+			commands = parsString(command);
+			
+			inElevator = model.pushElevator(commands);
+		}while(!(inElevator) || commands.get(0).equalsIgnoreCase("exit"));
 	}
 
 

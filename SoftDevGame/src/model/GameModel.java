@@ -10,11 +10,11 @@ public class GameModel
 
 	private Player player = new Player();;
 	private Room room = null;
-	
-	private Elevator elevator = null;
+
+	private Elevator elevator = new Elevator(player);
 	private view.Console console = new view.Console();
 	private database.DatabaseManager DB = new database.DatabaseManager();
-	
+
 	public void go(ArrayList<String> command) throws GameException
 	{
 		int direction;
@@ -29,16 +29,16 @@ public class GameModel
 			direction = room.getWest();
 		else
 			throw new GameException ("Not a valid direction");
-		
+
 		if(direction == 0)
 			throw new GameException("\nThere is not a door that direction\n");
-		
+
 		exitRoom();
 		room = new Room(DB.getRoomInformation(direction), player);
 		player.setCurrentRoom(room.getId());
 		print(room.toString());
 	}
-	
+
 
 	public void answer(ArrayList<String> commands) throws GameException
 	{
@@ -47,7 +47,7 @@ public class GameModel
 			correct = room.answer(commands);
 		else 
 			throw new GameException("There is no puzzle to answer in this room");
-		
+
 		if (correct)
 		{
 			console.print("Congratulations that was correct!!!");
@@ -55,15 +55,15 @@ public class GameModel
 		}
 		else
 			console.print("That was incorrect");
-		
+
 	}
-	
+
 	public void equip(ArrayList<String> commands)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	private boolean hasStr(ArrayList<String> command, String str)
 	{
 		boolean hasStr = false;
@@ -72,15 +72,15 @@ public class GameModel
 			if(command.get(i).equalsIgnoreCase(str))
 				hasStr = true;
 		}
-			
+
 		return hasStr;
 	}
-	
+
 	public void print(String str)
 	{
 		console.print(str);
 	}
-	
+
 	public void exitRoom()
 	{
 
@@ -106,6 +106,137 @@ public class GameModel
 	public Object[] getPuzzle(int puzzleID)
 	{
 		return DB.getPuzzleInformation(puzzleID);
+	}
+
+
+	public void enterElevator()
+	{
+		console.print(elevator.toString());
+
+	}
+
+
+	public boolean pushElevator(ArrayList<String> commands)
+	{
+		boolean openFloor = true;
+		int goToFloor;
+
+		try
+		{
+			if (commands.contains("1"))
+			{
+				openFloor = elevator.canGoToLevel(1);
+				if (openFloor)
+				{
+					exitRoom();
+					room = new Room(DB.getRoomInformation(elevator.getLevel1()), player);
+					player.setCurrentRoom(room.getId());
+					print(room.toString());
+				}
+				else
+					console.print("Not a open floor that you can go to at this time\n");
+			}
+			else if (commands.contains("2"))
+			{
+				openFloor = elevator.canGoToLevel(2);
+				if (openFloor)
+				{
+					exitRoom();
+					room = new Room(DB.getRoomInformation(elevator.getLevel2()), player);
+					player.setCurrentRoom(room.getId());
+					print(room.toString());
+				}
+				else
+					console.print("Not a open floor that you can go to at this time\n");
+			}
+			else if (commands.contains("3"))
+			{
+				openFloor = elevator.canGoToLevel(3);
+				if (openFloor)
+				{
+					exitRoom();
+					room = new Room(DB.getRoomInformation(elevator.getLevel3()), player);
+					player.setCurrentRoom(room.getId());
+					print(room.toString());
+				}
+				else
+					console.print("Not a open floor that you can go to at this time\n");
+			}
+			else if (commands.contains("4"))
+			{
+				openFloor = elevator.canGoToLevel(4);
+				if (openFloor)
+				{
+					exitRoom();
+					room = new Room(DB.getRoomInformation(elevator.getLevel4()), player);
+					player.setCurrentRoom(room.getId());
+					print(room.toString());
+				}
+				else
+					console.print("Not a open floor that you can go to at this time\n");
+			}
+			else if (commands.contains("5"))
+			{
+				openFloor = elevator.canGoToLevel(5);
+				if (openFloor)
+				{
+					exitRoom();
+					room = new Room(DB.getRoomInformation(elevator.getLevel5()), player);
+					player.setCurrentRoom(room.getId());
+					print(room.toString());
+				}
+				else
+					console.print("Not a open floor that you can go to at this time\n");
+			}
+			else if (commands.contains("6"))
+			{
+				openFloor = elevator.canGoToLevel(6);
+				if (openFloor)
+				{
+					exitRoom();
+					room = new Room(DB.getRoomInformation(elevator.getLevel1()), player);
+					player.setCurrentRoom(room.getId());
+					print(room.toString());
+				}
+				else
+					console.print("Not a open floor that you can go to at this time\n");
+			}
+			else if (commands.contains("7"))
+			{
+				openFloor = elevator.canGoToLevel(7);
+				if (openFloor)
+				{
+					exitRoom();
+					room = new Room(DB.getRoomInformation(elevator.getLevel7()), player);
+					player.setCurrentRoom(room.getId());
+					print(room.toString());
+				}
+				else
+					console.print("Not a open floor that you can go to at this time\n");
+			}
+			else if (commands.contains("8"))
+			{
+				openFloor = elevator.canGoToLevel(8);
+				if (openFloor)
+				{
+					exitRoom();
+					room = new Room(DB.getRoomInformation(elevator.getLevelFinal()), player);
+					player.setCurrentRoom(room.getId());
+					print(room.toString());
+				}
+				else
+					console.print("Not a open floor that you can go to at this time\n");
+			}
+			else
+				throw new GameException("Not a valid command in the elevator");
+		}
+		catch (GameException e)
+		{
+			console.print(e.getMessage());
+		}
+
+
+		return openFloor;
 	}
 
 }
