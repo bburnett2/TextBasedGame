@@ -19,6 +19,10 @@ public class Elevator
 		this.player = player;
 	}
 	
+	public boolean levelComplete(){
+		return false;
+	}
+	
 	public String floors(int[] monsters, int[] puzzles)
 	{
 
