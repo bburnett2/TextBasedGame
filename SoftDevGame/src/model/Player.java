@@ -154,27 +154,12 @@ public class Player extends Character
 	
 	public boolean hasDefeated(int monster)
 	{
-		boolean defeated = false;
-		
-		for(int i = 0 ; i < defeatedMonsters.size() ; i++)
-		{
-			if (defeatedMonsters.contains(monster))
-				defeated = true;
-		}
-		
-		return defeated;
+		return defeatedMonsters.contains(monster);
 	}
 
 	public boolean hasCompleted(int puzzle)
 	{
-		boolean compleated = false;
-		
-		for (int i = 0; i < completedPuzzles.size(); i++)
-		{
-			if (completedPuzzles.contains(puzzle))
-				compleated = true;
-		}
-		return compleated;
+		return completedPuzzles.contains(puzzle);
 	}
 
 }
