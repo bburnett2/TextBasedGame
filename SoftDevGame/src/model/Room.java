@@ -25,10 +25,10 @@ public class Room
 		// room[7] is restriction
 		this.itemList = buildItems((ArrayList<Integer>) room[8]);
 		this.puzzle = buildPuzzle((int)room[9]);
-		
+
 		this.player = player;
 	}
-	
+
 	//toString is required to be public
 	public String toString()
 	{
@@ -43,12 +43,19 @@ public class Room
 				str += "\n\t " + itemList.get(i).getDescription();
 			}
 		}
-		
+
 		if (!(monster == null))
+		{
+			if (!(player.hasDefeated(monster.getId())))
 				str += "\n" + monster.getDescription();
-		
+		}
+
+
 		if (!(puzzle == null))
-			str += "\n" + puzzle.getDescription();
+			{
+			 if(!(player.hasCompleted(puzzle.getId())))
+					str += "\n" + puzzle.getDescription();
+			}
 		return str;	
 	}
 
@@ -95,7 +102,7 @@ public class Room
 		}
 		return items;
 	}
-	
+
 	protected boolean answer(ArrayList<String> commands)
 	{
 		boolean correct = false;
@@ -136,5 +143,5 @@ public class Room
 		return hasPuzzle;
 	}
 
-	
+
 }
