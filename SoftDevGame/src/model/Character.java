@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public abstract class Character 
 {
 
-	private String name;
-	private int health;
-	private int defence;
-	private int attack;
-	private ArrayList itemList;
+	protected String name;
+	protected int health;
+	protected int defence;
+	protected int attack;
+	protected ArrayList itemList;
 
 	/**
 	 * calls the takeDamage() method on the enemy, using this Character's attack power
