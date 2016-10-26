@@ -14,6 +14,7 @@ public class Player extends Character
 	private int playerHealth;
 	private int playerDefense;
 	private int playerAttack;
+	private boolean isFighting;
 	
 	protected Player()
 	{
@@ -25,6 +26,10 @@ public class Player extends Character
 		completedPuzzles.add(id);
 	}
 	
+	protected void addDefeatedMonster(int id)
+	{
+		defeatedMonsters.add(id);
+	}
 
 	protected boolean hasItem(int itemID) 
 	{
@@ -38,14 +43,16 @@ public class Player extends Character
 
 	protected void run() 
 	{
-
+		isFighting = false;
+		//this should definitely do other things as well
 	}
 
 	@Override
-	public String die()
+	public String die(Character monster)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String deathscription = ("You were killed by the " + monster + ".\n");
+		return deathscription;
+		//since the die() action is automatically called upon death, this method probably also ends the game or calls the method that does
 	}
 
 	protected int getCurrentRoom()
@@ -133,24 +140,40 @@ public class Player extends Character
 	 * 
 	 * returns the playerAttack
 	 */
+	
 	protected int getPlayerAttack()
 	{
 		return playerAttack;
 	}
 	
+	protected boolean getFightingStatus()
+	{
+		return isFighting;
+	}
+	
+	protected void setFightingStatus(boolean status)
+	{
+		isFighting = status;
+	}
+	
+	/*
 	@Override
 	protected void attack()
 	{
 		// TODO Auto-generated method stub
 		
 	}
+	*/
 
+	
+	/*
 	@Override
 	void takeDamage()
 	{
 		// TODO Auto-generated method stub
 		
 	}
+	*/
 	
 	public boolean hasDefeated(int monster)
 	{
@@ -161,5 +184,6 @@ public class Player extends Character
 	{
 		return completedPuzzles.contains(puzzle);
 	}
+
 
 }

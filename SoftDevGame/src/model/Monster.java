@@ -9,6 +9,8 @@ public class Monster extends Character
 	private String description;
 	private int attack, health, defence;
 	private ArrayList<Item> items;
+	private Player player;
+	private String deathscription;
 	
 	public Monster(Object[] monster)
 	{
@@ -18,7 +20,8 @@ public class Monster extends Character
 		this.health = (int)monster[3];
 		this.defence = (int)monster[4];
 		this.items = (ArrayList<Item>) monster[5];
-		
+		this.player = player;
+		this.deathscription = (String)monster[6];
 	}
 
 	protected int getId()
@@ -53,16 +56,19 @@ public class Monster extends Character
 
 	protected void startFight() 
 	{
-
+		player.setFightingStatus(true);
 	}
 
+	
 	@Override
-	public String die()
+	public String die(Character character)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		player.setFightingStatus(false);
+		player.addDefeatedMonster(this.id);
+		return deathscription;
 	}
 
+	/*
 	@Override
 	protected void attack()
 	{
@@ -76,5 +82,6 @@ public class Monster extends Character
 		// TODO Auto-generated method stub
 		
 	}
+	*/
 
 }
