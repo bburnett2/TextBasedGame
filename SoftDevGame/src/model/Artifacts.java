@@ -4,9 +4,9 @@ public class Artifacts extends Item
 {
 	
 
-	protected Artifacts(Object[] item)
+	protected Artifacts(Object[] item, Player player)
 	{
-		super(item);
+		super(item, player);
 		// TODO Auto-generated constructor stub
 	}
 

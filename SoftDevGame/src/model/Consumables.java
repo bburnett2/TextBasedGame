@@ -4,9 +4,9 @@ package model;
 public class Consumables extends Item 
 {
 
-	protected Consumables(Object[] item)
+	protected Consumables(Object[] item, Player player)
 	{
-		super(item);
+		super(item, player);
 		// TODO Auto-generated constructor stub
 	}
 
