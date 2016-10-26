@@ -14,6 +14,7 @@ public class Armor extends Item
 	}
 
 	//add defense or attack to total
+	//bess - will add if completes puzzle
 	protected void use() 
 	{
 

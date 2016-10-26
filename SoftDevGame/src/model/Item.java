@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 public abstract class Item 
 {
 
@@ -7,6 +10,7 @@ public abstract class Item
 	private String name, description, action;
 	private boolean keyItem;
 	private Player player;
+	private Map<Boolean, Integer> completesPuzzle;
 	
 	public Item(Object[] item, Player player)
 	{
@@ -16,6 +20,7 @@ public abstract class Item
 		this.keyItem = (boolean)item[7];
 		this.action = (String) item[8];
 		this.player = player;
+		this.completesPuzzle = (TreeMap<Boolean, Integer>)item[9];
 	}
 
 	protected int getItemID(){
