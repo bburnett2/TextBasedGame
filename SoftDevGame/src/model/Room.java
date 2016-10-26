@@ -44,10 +44,10 @@ public class Room
 			}
 		}
 		
-		if (!(monster == null))
+		if (!(monster == null) || !(player.hasDefeated(monster.getId())))
 				str += "\n" + monster.getDescription();
 		
-		if (!(puzzle == null))
+		if (!(puzzle == null) || !(player.hasCompleted(puzzle.getId())))
 			str += "\n" + puzzle.getDescription();
 		return str;	
 	}
