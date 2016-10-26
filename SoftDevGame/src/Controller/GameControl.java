@@ -10,6 +10,7 @@ public class GameControl
 {
 	model.GameModel model = new model.GameModel();
 	Scanner input = new Scanner(System.in);
+	ArrayList<String> validCommands = new ArrayList<>();
 	
 	
 	public static void main(String[] args)
@@ -52,7 +53,13 @@ public class GameControl
 
 	private void startGame()
 	{
-		model.firstRoom();		
+		model.firstRoom();
+		validCommands.add("Go");
+		validCommands.add("Answer");
+		validCommands.add("Equip");
+		validCommands.add("Help");
+		validCommands.add("Enter");
+		validCommands.add("Use");
 	}
 
 	private void print(String str)

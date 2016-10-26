@@ -11,6 +11,7 @@ public class Consumables extends Item
 	}
 
 	@Override
+	//bess - will add if completes puzzle
 	protected void use()
 	{
 		// TODO Auto-generated method stub

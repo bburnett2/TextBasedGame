@@ -10,6 +10,7 @@ public class Artifacts extends Item
 		// TODO Auto-generated constructor stub
 	}
 
+	//bess - will add if completes puzzle
 	protected void use() 
 	{
 
