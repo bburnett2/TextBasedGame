@@ -141,6 +141,11 @@ public class Player extends Character
 		return isFighting;
 	}
 	
+	public boolean isFighting()
+	{
+		return isFighting;
+	}
+
 	protected void setFightingStatus(boolean status)
 	{
 		isFighting = status;

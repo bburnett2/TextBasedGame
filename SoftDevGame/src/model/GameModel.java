@@ -70,6 +70,20 @@ public class GameModel
 		
 	}
 
+	public void run(ArrayList<String> commands)
+	{
+		if (player.isFighting())
+		{
+		exitRoom();
+		room = new Room(DB.getRoomInformation(player.getPreviousRoom()), player);
+		player.setCurrentRoom(room.getId());
+		player.setFightingStatus(false);
+		print(room.toString());	
+		}
+		else
+			print("There is nothing to run from");
+	}
+	
 	private boolean hasStr(ArrayList<String> command, String str)
 	{
 		boolean hasStr = false;
