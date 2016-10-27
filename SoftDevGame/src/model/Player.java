@@ -180,6 +180,10 @@ public class Player extends Character
 		this.playerDefense = newDefense;
 		
 	}
+	public void setPlayerHealth()
+	{
+		this.playerHealth = newHealth;
+	}
 
 
 }
