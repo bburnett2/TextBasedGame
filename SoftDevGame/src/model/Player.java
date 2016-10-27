@@ -52,7 +52,8 @@ public class Player extends Character
 	{
 		String deathscription = ("You were killed by the " + monster.name + ".\n");
 		return deathscription;
-		//since the die() action is automatically called upon death, this method probably also ends the game or calls the method that does
+		//since the die() action is automatically called upon death, 
+		//this method probably also ends the game or calls the method that does
 	}
 
 	protected int getCurrentRoom()

@@ -22,10 +22,10 @@ public class Monster extends Character
 		this.items = (ArrayList<Item>) monster[5];
 		this.player = player;
 
-		//At the moment there is not a object from the DB with this information therefore
-		//not in the object array.  We can derive this from the constructor if you would
-		//like.
-		//this.deathscription = (String)monster[6];
+		/**At the moment there is not a object from the DB with this information therefore
+		not in the object array.  We can derive this from the constructor if you would
+		like.
+		this.deathscription = (String)monster[6];**/
 	}
 	
 	@Override
