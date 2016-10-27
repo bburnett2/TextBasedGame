@@ -63,6 +63,12 @@ public class GameModel
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void use(ArrayList<String> commands)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 
 	private boolean hasStr(ArrayList<String> command, String str)
 	{
@@ -198,12 +204,6 @@ public class GameModel
 
 
 		return openFloor;
-	}
-	
-	public void use(ArrayList<String> commands)
-	{
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void print(String str)
