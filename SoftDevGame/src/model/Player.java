@@ -15,6 +15,7 @@ public class Player extends Character
 	private int playerDefense;
 	private int playerAttack;
 	private boolean isFighting;
+	public Object setPlayerAttack;
 	
 	protected Player()
 	{
@@ -165,6 +166,30 @@ public class Player extends Character
 	public boolean hasCompleted(int puzzle)
 	{
 		return completedPuzzles.contains(puzzle);
+	}
+
+	public void setPlayerAttack1()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setPlayerDefense1()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setPlayerAttack()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setPlayerDefense()
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 
