@@ -11,9 +11,6 @@ public class Player extends Character
 	private ArrayList<Integer> defeatedMonsters = new ArrayList<Integer>();
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
 	private int currentRoom;
-	private int playerHealth;
-	private int playerDefense;
-	private int playerAttack;
 	private boolean isFighting;
 	public Object setPlayerAttack;
 	
@@ -116,37 +113,6 @@ public class Player extends Character
 	{
 		return equipedItems;
 	}
-
-	/**getPlayerHealth
-	 * @return playerHealth: int - 
-	 * 
-	 * returns the playerHealth
-	 */
-	protected int getPlayerHealth()
-	{
-		return playerHealth;
-	}
-
-	/**getPlayerDefense
-	 * @return playerDefense: int - 
-	 * 
-	 * returns the playerDefense
-	 */
-	protected int getPlayerDefense()
-	{
-		return playerDefense;
-	}
-
-	/**getPlayerAttack
-	 * @return playerAttack: int - 
-	 * 
-	 * returns the playerAttack
-	 */
-	
-	protected int getPlayerAttack()
-	{
-		return playerAttack;
-	}
 	
 	protected boolean getFightingStatus()
 	{
@@ -167,19 +133,4 @@ public class Player extends Character
 	{
 		return completedPuzzles.contains(puzzle);
 	}
-
-
-	public void setPlayerAttack(int newAttack)
-	{
-		this.attack = newAttack;
-		
-	}
-
-	public void setPlayerDefense(int newDefense)
-	{
-		this.playerDefense = newDefense;
-		
-	}
-
-
 }

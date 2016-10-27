@@ -14,11 +14,10 @@ public class Armor extends Item
 	}
 
 	//add defense or attack to total
-	//bess - will add if completes puzzle
 	protected void use() 
 	{
-		player.setPlayerAttack(player.getPlayerAttack() + this.attack);
-	    player.setPlayerDefense(player.getPlayerDefense() + this.defense);
+		player.setAttack(player.getAttack() + this.attack);
+	    player.setDefense(player.getDefense() + this.defense);
 	    
 		
 	}
