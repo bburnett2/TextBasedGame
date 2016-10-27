@@ -34,7 +34,7 @@ public abstract class Character
 	{
 		if (damage > this.defence)
 		{
-			health -= (damage - defence);
+			health -= (damage - this.defence);
 		}
 		if (health < 1)
 		{

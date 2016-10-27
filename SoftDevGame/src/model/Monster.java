@@ -11,7 +11,7 @@ public class Monster extends Character
 	private ArrayList<Item> items;
 	private Player player;
 	private String deathscription;
-	
+
 	public Monster(Object[] monster)
 	{
 		this.id = (int)monster[0];
@@ -21,7 +21,22 @@ public class Monster extends Character
 		this.defence = (int)monster[4];
 		this.items = (ArrayList<Item>) monster[5];
 		this.player = player;
-		this.deathscription = (String)monster[6];
+
+		//At the moment there is not a object from the DB with this information therefore
+		//not in the object array.  We can derive this from the constructor if you would
+		//like.
+		//this.deathscription = (String)monster[6];
+	}
+	
+	@Override
+	public String die(Character character)
+	{
+		player.setFightingStatus(false);
+		player.addDefeatedMonster(this.id);
+		/** for now and testing adding a static string return
+		 * return deathscription;
+		**/
+		return "Monster died";
 	}
 
 	protected int getId()
@@ -58,30 +73,5 @@ public class Monster extends Character
 	{
 		player.setFightingStatus(true);
 	}
-
-	
-	@Override
-	public String die(Character character)
-	{
-		player.setFightingStatus(false);
-		player.addDefeatedMonster(this.id);
-		return deathscription;
-	}
-
-	/*
-	@Override
-	protected void attack()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	void takeDamage()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	*/
 
 }

@@ -156,25 +156,6 @@ public class Player extends Character
 		isFighting = status;
 	}
 	
-	/*
-	@Override
-	protected void attack()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	*/
-
-	
-	/*
-	@Override
-	void takeDamage()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	*/
-	
 	public boolean hasDefeated(int monster)
 	{
 		return defeatedMonsters.contains(monster);
