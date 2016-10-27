@@ -119,7 +119,7 @@ public class GameModel
 	public boolean pushElevator(ArrayList<String> commands)
 	{
 		boolean openFloor = true;
-		int goToFloor;
+
 
 		try
 		{
