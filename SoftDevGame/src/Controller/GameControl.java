@@ -69,7 +69,7 @@ public class GameControl
 
 			if (!(commands.contains("exit")))
 				inElevator = model.pushElevator(commands);
-		}while(!(inElevator)|| !(commands.contains("exit")));
+		}while(!(inElevator) && !(commands.contains("exit")));
 	}
 
 

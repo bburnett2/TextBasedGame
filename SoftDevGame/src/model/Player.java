@@ -15,6 +15,7 @@ public class Player extends Character
 	private int playerDefense;
 	private int playerAttack;
 	private boolean isFighting;
+	public Object setPlayerAttack;
 	
 	protected Player()
 	{
@@ -165,6 +166,19 @@ public class Player extends Character
 	public boolean hasCompleted(int puzzle)
 	{
 		return completedPuzzles.contains(puzzle);
+	}
+
+
+	public void setPlayerAttack(int newAttack)
+	{
+		this.attack = newAttack;
+		
+	}
+
+	public void setPlayerDefense(int newDefense)
+	{
+		this.playerDefense = newDefense;
+		
 	}
 
 

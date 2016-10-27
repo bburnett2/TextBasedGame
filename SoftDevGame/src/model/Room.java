@@ -48,14 +48,14 @@ public class Room
 		if (!(monster == null))
 		{
 			if (!(player.hasDefeated(monster.getId())))
-				str += "\n" + monster.getDescription();
+				str += "\n\n" + monster.getDescription();
 		}
 
 
 		if (!(puzzle == null))
 			{
 			 if(!(player.hasCompleted(puzzle.getId())))
-					str += "\n" + puzzle.getDescription();
+					str += "\n\n" + puzzle.getDescription();
 			}
 		return str;	
 	}

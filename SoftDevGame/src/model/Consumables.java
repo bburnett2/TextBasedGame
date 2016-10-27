@@ -4,10 +4,12 @@ package model;
 public class Consumables extends Item 
 {
 
+	int hp;
+	
 	protected Consumables(Object[] item, Player player)
 	{
 		super(item, player);
-		// TODO Auto-generated constructor stub
+		this.hp = (int) item[6];
 	}
 
 	@Override
