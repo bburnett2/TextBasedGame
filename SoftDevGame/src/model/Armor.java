@@ -18,7 +18,7 @@ public class Armor extends Item
 	protected void use() 
 	{
 		player.setPlayerAttack(player.getPlayerAttack() + this.attack);
-	    player.setPlayerDefense();
+	    player.setPlayerDefense(player.getPlayerDefense() + this.defense);
 	    player.getPlayerDefense();
 		
 	}
