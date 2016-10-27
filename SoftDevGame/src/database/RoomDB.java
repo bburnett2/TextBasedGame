@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class RoomDB extends DatabaseManager {
 
@@ -17,7 +18,7 @@ public class RoomDB extends DatabaseManager {
 		try{
 			resultSet = super.statement.executeQuery(sqlCall);
 			roomInfo[0] = resultSet.getInt("RoomID");
-			roomInfo[1] = resultSet.getString("Description");
+			roomInfo[1] = addLineBreaks(resultSet.getString("Description"));
 			roomInfo[2] = resultSet.getInt("MonsterID");
 			roomInfo[3] = resultSet.getInt("North");
 			roomInfo[4] = resultSet.getInt("South");;
@@ -31,6 +32,20 @@ public class RoomDB extends DatabaseManager {
 
 		}
 		return roomInfo;
+	}
+	
+	protected String addLineBreaks(String str){
+		StringBuilder strWithSpaces = new StringBuilder();
+		Scanner strScan = new Scanner(str);
+		int count = 0;
+		while(strScan.hasNext()){
+			strWithSpaces.append(strScan.next() + " ");
+			count++;
+			if(count % 15 == 0 && count !=0){
+				strWithSpaces.append('\n');
+			}
+		}
+		return strWithSpaces.toString();
 	}
 
 	protected ArrayList<Integer> getRoomItemInts(int roomNum) {
