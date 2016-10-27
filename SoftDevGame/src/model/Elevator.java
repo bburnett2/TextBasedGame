@@ -62,7 +62,7 @@ public class Elevator
 		}
 		if (level == 8)
 		{
-//			if (isL6Complete && isL7Complete)
+			if (isL6Complete && isL7Complete)
 			canGo = true;
 		}
 		

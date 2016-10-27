@@ -76,45 +76,6 @@ public class GameModel
 		return hasStr;
 	}
 
-	public void print(String str)
-	{
-		console.print(str);
-	}
-
-	public void exitRoom()
-	{
-
-		room = null;
-	}
-
-	public void firstRoom()
-	{
-		room = new Room(DB.getRoomInformation(FIRSTROOM), player);
-		print(room.toString());
-	}
-
-	public Object[] getItemInfo(int itemNum)
-	{
-		return DB.getItemInformation(itemNum);
-	}
-
-	public Object[] getMonster(int monsterNumber)
-	{
-		return DB.getMonsterInformation(monsterNumber);
-	}
-
-	public Object[] getPuzzle(int puzzleID)
-	{
-		return DB.getPuzzleInformation(puzzleID);
-	}
-
-
-	public void enterElevator()
-	{
-		console.print(elevator.toString());
-
-	}
-
 
 	public boolean pushElevator(ArrayList<String> commands)
 	{
@@ -237,6 +198,50 @@ public class GameModel
 
 
 		return openFloor;
+	}
+	
+	public void use(ArrayList<String> commands)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void print(String str)
+	{
+		console.print(str);
+	}
+
+	public void exitRoom()
+	{
+
+		room = null;
+	}
+
+	public void firstRoom()
+	{
+		room = new Room(DB.getRoomInformation(FIRSTROOM), player);
+		print(room.toString());
+	}
+
+	public void enterElevator()
+	{
+		console.print(elevator.toString());
+
+	}
+
+	public Object[] getItemInfo(int itemNum)
+	{
+		return DB.getItemInformation(itemNum);
+	}
+
+	public Object[] getMonster(int monsterNumber)
+	{
+		return DB.getMonsterInformation(monsterNumber);
+	}
+
+	public Object[] getPuzzle(int puzzleID)
+	{
+		return DB.getPuzzleInformation(puzzleID);
 	}
 
 }

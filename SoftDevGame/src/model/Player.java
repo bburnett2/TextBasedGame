@@ -12,7 +12,6 @@ public class Player extends Character
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
 	private int currentRoom;
 	private boolean isFighting;
-	public Object setPlayerAttack;
 	
 	protected Player()
 	{
@@ -28,12 +27,28 @@ public class Player extends Character
 	{
 		defeatedMonsters.add(id);
 	}
-
+	
+	protected boolean hasItem(String itemName) 
+	{
+		return unequippedItems.contains(itemName);
+	}
+	
+	//I dont know if we are going to need this.....Michael
 	protected boolean hasItem(int itemID) 
 	{
 		return unequippedItems.contains(itemID);
 	}
+	
+	protected boolean hasDefeated(int monster)
+	{
+		return defeatedMonsters.contains(monster);
+	}
 
+	protected boolean hasCompleted(int puzzle)
+	{
+		return completedPuzzles.contains(puzzle);
+	}
+	
 	protected void useItem() 
 	{
 
@@ -46,7 +61,7 @@ public class Player extends Character
 	}
 
 	@Override
-	public String die(Character monster)
+	protected String die(Character monster)
 	{
 		String deathscription = ("You were killed by the " + monster.name + ".\n");
 		return deathscription;
@@ -124,13 +139,4 @@ public class Player extends Character
 		isFighting = status;
 	}
 	
-	public boolean hasDefeated(int monster)
-	{
-		return defeatedMonsters.contains(monster);
-	}
-
-	public boolean hasCompleted(int puzzle)
-	{
-		return completedPuzzles.contains(puzzle);
-	}
 }

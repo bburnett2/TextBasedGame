@@ -40,6 +40,8 @@ public class GameControl
 					model.equip(commands);
 				else if (commands.get(0).equalsIgnoreCase("enter"))
 					enterElevatorSubLoop();
+				else if (commands.get(0).equalsIgnoreCase("use"))
+					model.use(commands);
 				else if (commands.get(0).equalsIgnoreCase("quit"));
 				else
 					throw new GameException ("Not a valid action command.");

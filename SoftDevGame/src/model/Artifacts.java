@@ -15,5 +15,4 @@ public class Artifacts extends Item
 
 	}
 
-
 }

@@ -43,8 +43,6 @@ public abstract class Character
 		}
 	}
 
-	abstract public String die(Character character);
-
 	/**getHealth
 	 * @return health: int - 
 	 * 
@@ -105,5 +103,6 @@ public abstract class Character
 		this.defense = defense;
 	}
 	
+	protected abstract String die(Character character);
 	
 }
