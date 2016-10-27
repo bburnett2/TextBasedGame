@@ -175,9 +175,9 @@ public class Player extends Character
 		
 	}
 
-	public void setPlayerDefense()
+	public void setPlayerDefense(int newDefense)
 	{
-		// TODO Auto-generated method stub
+		this.playerDefense = newDefense;
 		
 	}
 
