@@ -168,21 +168,10 @@ public class Player extends Character
 		return completedPuzzles.contains(puzzle);
 	}
 
-	public void setPlayerAttack1()
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
-	public void setPlayerDefense1()
+	public void setPlayerAttack(int newAttack)
 	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setPlayerAttack()
-	{
-		// TODO Auto-generated method stub
+		this.attack = newAttack;
 		
 	}
 

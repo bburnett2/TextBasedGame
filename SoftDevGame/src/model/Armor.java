@@ -17,8 +17,7 @@ public class Armor extends Item
 	//bess - will add if completes puzzle
 	protected void use() 
 	{
-		player.setPlayerAttack();
-	    player.getPlayerAttack();
+		player.setPlayerAttack(player.getPlayerAttack() + this.attack);
 	    player.setPlayerDefense();
 	    player.getPlayerDefense();
 		
