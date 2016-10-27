@@ -10,8 +10,9 @@ public class Player extends Character
 	private ArrayList<Integer> completedPuzzles = new ArrayList<Integer>();
 	private ArrayList<Integer> defeatedMonsters = new ArrayList<Integer>();
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
-	private int currentRoom;
+	private int currentRoom, previousRoom;
 	private boolean isFighting;
+	
 	
 	protected Player()
 	{
@@ -76,7 +77,13 @@ public class Player extends Character
 
 	protected void setCurrentRoom(int currentRoom)
 	{
+		this.previousRoom = this.currentRoom;
 		this.currentRoom = currentRoom;
+	}
+
+	public int getPreviousRoom()
+	{
+		return previousRoom;
 	}
 
 	/**getPlayerID
