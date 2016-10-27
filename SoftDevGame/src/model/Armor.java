@@ -19,7 +19,7 @@ public class Armor extends Item
 	{
 		player.setPlayerAttack(player.getPlayerAttack() + this.attack);
 	    player.setPlayerDefense(player.getPlayerDefense() + this.defense);
-	    player.getPlayerDefense();
+	    
 		
 	}
 
