@@ -10,7 +10,7 @@ public abstract class Item
 	private String name, description, action;
 	private boolean keyItem;
 	protected Player player;
-	private Map<Boolean, Integer> completesPuzzle;
+	protected Map<Boolean, Integer> completesPuzzle;
 	
 	public Item(Object[] item, Player player)
 	{

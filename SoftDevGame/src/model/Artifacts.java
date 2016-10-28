@@ -12,7 +12,12 @@ public class Artifacts extends Item
 
 	protected void use() 
 	{
-
+		if(completesPuzzle.keySet().contains(true)){
+			player.addCompletedPuzzle(completesPuzzle.get(true));
+		}
+		else{
+			
+		}
 	}
 
 }
