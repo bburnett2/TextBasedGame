@@ -14,9 +14,9 @@ public class Player extends Character
 	private boolean isFighting;
 	
 	
-	protected Player()
+	protected Player(Object[] player)
 	{
-		
+		super(player);
 	}
 		
 	protected void addCompletedPuzzle(int id)

@@ -8,7 +8,8 @@ public class GameModel
 {
 	public final int FIRSTROOM = 3;
 
-	private Player player = new Player();;
+	//needs to be working from DB
+	private Player player = new Player(null);;
 	private Room room = null;
 
 	private Elevator elevator = new Elevator(player);

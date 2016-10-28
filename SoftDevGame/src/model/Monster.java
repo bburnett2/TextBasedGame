@@ -14,13 +14,13 @@ public class Monster extends Character
 
 	public Monster(Object[] monster)
 	{
+		super(monster);
 		this.id = (int)monster[0];
-		this.description = (String)monster[1];
-		this.attack = (int)monster[2];
-		this.health = (int)monster[3];
-		this.defence = (int)monster[4];
-		this.items = (ArrayList<Item>) monster[5];
-		this.player = player;
+//		this.description = (String)monster[1];
+//		this.attack = (int)monster[2];
+//		this.health = (int)monster[3];
+//		this.defence = (int)monster[4];
+//		this.items = (ArrayList<Item>) monster[5];
 
 		/**At the moment there is not a object from the DB with this information therefore
 		not in the object array.  We can derive this from the constructor if you would
