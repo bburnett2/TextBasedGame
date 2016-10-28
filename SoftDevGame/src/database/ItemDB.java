@@ -19,7 +19,7 @@ public class ItemDB extends DatabaseManager {
 		item[0] = resultSet.getInt("ItemID");
 		item[1] = resultSet.getString("Name");
 		item[2] = resultSet.getString("Type");
-		item[3] = resultSet.getString("Description");
+		item[3] = addLineBreaks(resultSet.getString("Description"));
 		item[4] = resultSet.getInt("Defense");
 		item[5] = resultSet.getInt("Attack");
 		item[6] = resultSet.getInt("HealthPoints");

@@ -10,7 +10,7 @@ public class PuzzleDB extends DatabaseManager{
 		try{
 			resultSet = statement.executeQuery(sqlCall);
 			puzzle[0] = resultSet.getInt("PuzzleID");
-			puzzle[1] = resultSet.getString("Description");
+			puzzle[1] = addLineBreaks(resultSet.getString("Description"));
 			puzzle[2] = resultSet.getString("Answer");
 			puzzle[3] = resultSet.getInt("ItemNeeded");
 			puzzle[4] = resultSet.getInt("ItemRecieved");
