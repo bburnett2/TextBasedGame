@@ -46,14 +46,12 @@ public class Room
 
 		if (!(monster == null))
 		{
-			if (!(player.hasDefeated(monster.getId())))
 				str += "\n\n" + monster.getDescription();
 		}
 
 
 		if (!(puzzle == null))
 		{
-			if(!(player.hasCompleted(puzzle.getId())))
 				str += "\n\n" + puzzle.getDescription();
 		}
 		return str;	
@@ -63,7 +61,7 @@ public class Room
 	protected Puzzle buildPuzzle(int puzzleID)
 	{
 		GameModel model = new GameModel();
-		if (puzzleID > 0)
+		if (puzzleID > 0 && !(player.hasCompleted(puzzleID)))
 			return new Puzzle(model.getPuzzle(puzzleID));
 		else
 			return null;
@@ -72,7 +70,7 @@ public class Room
 	protected Monster buildMonster(int monsterNumber)
 	{
 		GameModel model = new GameModel();
-		if (monsterNumber > 0)
+		if (monsterNumber > 0  && !(player.hasDefeated(monsterNumber)))
 			return new Monster(model.getMonster(monsterNumber));
 		else
 			return null;
