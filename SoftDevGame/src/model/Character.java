@@ -38,10 +38,9 @@ public abstract class Character
 	 * @param enemy	the one who is being attacked
 	 */
 	
-	protected void attack(Character enemy) 
-	{
-//		//print something like (name + " attacks " + enemy.name + ".\n") 
-//		enemy.takeDamage(this, attack);
+	protected String attack(Character enemy) 
+	{ 
+		return (enemy.takeDamage(this));
 	}
 	
 	/**
@@ -50,18 +49,22 @@ public abstract class Character
 	 * if the defender would die from this, the die() method is invoked
 	 * @param attacker	the Character who is attacking
 	 * @param damage	the power of the attack before reduction by the enemy's defense
-	 */
+	 */	
 
-	protected void takeDamage(Character attacker) 
+	protected String takeDamage(Character attacker) 
 	{
+		StringBuilder text = new StringBuilder(attacker.name + " attacks " + this.name + ".\n");
 		if (attacker.attack > this.defence)
 		{
-			health -= (attacker.attack - this.defence);
+			int damage = (attacker.attack - this.defence);
+			health -= damage;
+			text.append(damage + " damage\n");
 		}
 		else
 		{
-			//print something signifying that the damage of the attack was completely negated
+			text.append(attacker.name + "'s attack was completely negated.\n");
 		}
+		return text.toString();
 	}
 	
 	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
