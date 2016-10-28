@@ -58,6 +58,11 @@ public class GameModel
 			console.print("That was incorrect");
 		return correct;
 	}
+	
+	public void listItems(ArrayList<String> commands)
+	{
+		console.print(player.listItems());		
+	}
 
 	public void equip(ArrayList<String> commands)
 	{
@@ -266,5 +271,6 @@ public class GameModel
 	{
 		return DB.getPuzzleInformation(puzzleID);
 	}
+
 
 }

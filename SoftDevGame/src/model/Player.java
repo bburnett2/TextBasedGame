@@ -6,7 +6,7 @@ public class Player extends Character
 {
 	//ArrayList<Integer> contains the ID's of the completed/held things
 	private String playerID;
-	private ArrayList<Integer> unequippedItems = new ArrayList<Integer>();
+	private ArrayList<Item> unequippedItems = new ArrayList<Item>();
 	private ArrayList<Integer> completedPuzzles = new ArrayList<Integer>();
 	private ArrayList<Integer> defeatedMonsters = new ArrayList<Integer>();
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
@@ -53,6 +53,26 @@ public class Player extends Character
 			}
 		}
 		return items;
+	}
+	
+	protected String listItems()
+	{
+		String str ="Your invatory\n";
+		
+		if (unequippedItems.size() > 0)
+		{
+			str += "Unequpped Items\n";
+			for (Item item : unequippedItems)
+				str += item.getName() + "\n";
+		}
+		
+		if (equipedItems.size() > 0)
+		{
+			str += "\nEquiped Items\n";
+			for (Item item : equipedItems)
+				str += item.getName() + "\n";
+		}
+		return str;
 	}
 		
 	protected void addCompletedPuzzle(int id)
@@ -122,7 +142,7 @@ public class Player extends Character
 	 * 
 	 * returns the unequippedItems
 	 */
-	protected ArrayList<Integer> getUnequippedItems()
+	protected ArrayList<Item> getUnequippedItems()
 	{
 		return unequippedItems;
 	}
