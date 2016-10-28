@@ -40,8 +40,8 @@ public abstract class Character
 	
 	protected void attack(Character enemy) 
 	{
-		//print something like (name + " attacks " + enemy.name + ".\n") 
-		enemy.takeDamage(this, attack);
+//		//print something like (name + " attacks " + enemy.name + ".\n") 
+//		enemy.takeDamage(this, attack);
 	}
 	
 	/**
@@ -52,11 +52,11 @@ public abstract class Character
 	 * @param damage	the power of the attack before reduction by the enemy's defense
 	 */
 
-	protected void takeDamage(Character attacker, int damage) 
+	protected void takeDamage(Character attacker) 
 	{
-		if (damage > this.defence)
+		if (attacker.attack > this.defence)
 		{
-			health -= (damage - this.defence);
+			health -= (attacker.attack - this.defence);
 		}
 		else
 		{
@@ -159,6 +159,9 @@ public abstract class Character
 	protected void addItem(Item itemToAdd){
 		itemList.add(itemToAdd);
 	}
+
+	abstract protected String die(Character attacker);
+
 
 //	void addCompletedPuzzle(Integer integer)
 //	{

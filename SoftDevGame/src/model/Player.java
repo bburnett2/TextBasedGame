@@ -23,20 +23,20 @@ public class Player extends Character
 	}
 	
 	@Override
-	protected void takeDamage(Character attacker, int damage)
+	protected void takeDamage(Character monster)
 	{		
-		super.takeDamage(attacker, damage);
+		super.takeDamage(monster);
 		
 		if (health < 1)
 		{
 			//print the string returned by the die() method
-			this.die(attacker);
+			this.die(monster);
 		}
 	}
 
-	protected String die(Monster monster)
+	protected String die(Character attacker)
 	{
-		String deathscription = ("You were killed by the " + monster.name + ".\n");
+		String deathscription = ("You were killed by the " + attacker.name + ".\n");
 		return deathscription;
 		//since the die() action is automatically called upon death, 
 		//this method probably also ends the game or calls the method that does

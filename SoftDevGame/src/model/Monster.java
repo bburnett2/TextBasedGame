@@ -26,29 +26,21 @@ public class Monster extends Character
 	}
 
 	@Override
-	protected void takeDamage(Character attacker, int damage)
+	protected void takeDamage(Character attacker)
 	{		
-//		super.takeDamage(attacker, damage);
-//		
-//		if (health < 1)
-//		{
-//			//print the string returned by the die() method
-//			this.die(attacker);
-//		}
-//		else
-//		{
-//			this.attack(player);
-//		}
+		super.takeDamage(attacker);
+		
+		if (health < 1)
+		{
+			//print the string returned by the die() method
+			this.die(attacker);
+		}
+
 	}
 	
 	@Override
-	protected String die()
+	protected String die(Character attacker)
 	{
-//		player.setFightingStatus(false);
-//		player.addDefeatedMonster(this.id);
-//		/** for now and testing adding a static string return
-//		 * return deathscription;
-//		**/
 		return "Monster died";
 	}
 
