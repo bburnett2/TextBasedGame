@@ -104,6 +104,15 @@ public class Room
 		return items;
 	}
 
+	/**getItemList
+	 * @return itemList: ArrayList<Item> - 
+	 * 
+	 * returns the itemList
+	 */
+	protected ArrayList<Item> getItemList(){
+		return itemList;
+	}
+
 	protected boolean answer(ArrayList<String> commands)
 	{
 		boolean correct = false;

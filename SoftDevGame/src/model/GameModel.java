@@ -9,7 +9,7 @@ public class GameModel
 	public final int FIRSTROOM = 3;
 
 	//needs to be working from DB
-	private Player player = new Player(null);;
+	private Player player = new Player();
 	private Room room = null;
 
 	private Elevator elevator = new Elevator(player);
@@ -219,6 +219,14 @@ public class GameModel
 
 
 		return openFloor;
+	}
+	
+	public void pickUp(ArrayList<String> commands){
+		for(Item item : room.getItemList()){
+			if(commands.contains(item.getName())){
+				room.player.addItem(item);
+			}
+		}
 	}
 	
 	public void print(String str)

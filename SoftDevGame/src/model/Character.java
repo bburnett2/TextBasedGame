@@ -10,7 +10,13 @@ public abstract class Character
 	protected int defence;
 	protected int attack;
 	private String description;
-	protected ArrayList itemList;
+	protected ArrayList<Item> itemList;
+	
+	public Character(){
+		health = 10;
+		defence = 5;
+		attack = 5;
+	}
 	
 	public Character(Object[] monster)
 	{
@@ -127,4 +133,7 @@ public abstract class Character
 	
 	protected abstract String die(Character character);
 	
+	protected void addItem(Item itemToAdd){
+		itemList.add(itemToAdd);
+	}
 }

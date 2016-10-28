@@ -13,7 +13,10 @@ public class Player extends Character
 	private int currentRoom, previousRoom;
 	private boolean isFighting;
 	
-	
+	protected Player(){
+		playerID = "default";
+		currentRoom = 3;
+	}
 	protected Player(Object[] player)
 	{
 		super(player);
