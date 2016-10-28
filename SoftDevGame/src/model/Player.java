@@ -21,18 +21,6 @@ public class Player extends Character
 	{
 		super(player);
 	}
-	
-	@Override
-	protected void takeDamage(Character monster)
-	{		
-		super.takeDamage(monster);
-		
-		if (health < 1)
-		{
-			//print the string returned by the die() method
-			this.die(monster);
-		}
-	}
 
 	protected String die(Character attacker)
 	{

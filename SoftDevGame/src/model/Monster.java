@@ -24,24 +24,11 @@ public class Monster extends Character
 	{
 				
 	}
-
-	@Override
-	protected void takeDamage(Character attacker)
-	{		
-		super.takeDamage(attacker);
-		
-		if (health < 1)
-		{
-			//print the string returned by the die() method
-			this.die(attacker);
-		}
-
-	}
 	
 	@Override
 	protected String die(Character attacker)
 	{
-		return "Monster died";
+		return "Monster died.";
 	}
 
 	protected int getId()
