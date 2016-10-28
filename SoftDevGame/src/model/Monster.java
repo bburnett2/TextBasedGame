@@ -13,17 +13,12 @@ public class Monster extends Character
 		super(monster);
 		this.id = (int)monster[0];
 		
-		addItemAttributes();
 		/**At the moment there is not a object from the DB with this information therefore
 		not in the object array.  We can derive this from the constructor if you would
 		like.
 		this.deathscription = (String)monster[6];**/
 	}
 	
-	private void addItemAttributes()
-	{
-				
-	}
 	
 	@Override
 	protected String die(Character attacker)
