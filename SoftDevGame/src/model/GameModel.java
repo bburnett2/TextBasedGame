@@ -40,7 +40,7 @@ public class GameModel
 	}
 
 
-	public void answer(ArrayList<String> commands) throws GameException
+	public boolean answer(ArrayList<String> commands) throws GameException
 	{
 		boolean correct = false;
 		if (room.hasPuzzle())
@@ -55,7 +55,7 @@ public class GameModel
 		}
 		else
 			console.print("That was incorrect");
-
+		return correct;
 	}
 
 	public void equip(ArrayList<String> commands)
