@@ -36,10 +36,9 @@ public abstract class Character
 		{
 			health -= (damage - this.defense);
 		}
-		if (health < 1)
+		else
 		{
-			//print the string returned by the die() method
-			die(attacker);
+			//print something signifying that the damage of the attack was completely negated
 		}
 	}
 
@@ -51,6 +50,13 @@ public abstract class Character
 	protected int getHealth()
 	{
 		return health;
+	}
+	
+	protected boolean isDead()
+	{
+		boolean dead = true;
+		if (health > 0) dead = false;
+		return dead;
 	}
 
 	/**getAttack

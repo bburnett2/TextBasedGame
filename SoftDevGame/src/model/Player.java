@@ -54,11 +54,17 @@ public class Player extends Character
 	{
 
 	}
-
-	protected void run() 
-	{
-		isFighting = false;
-		//this should definitely do other things as well
+	
+	@Override
+	protected void takeDamage(Character attacker, int damage)
+	{		
+		super.takeDamage(attacker, damage);
+		
+		if (health < 1)
+		{
+			//print the string returned by the die() method
+			die(attacker);
+		}
 	}
 
 	@Override
