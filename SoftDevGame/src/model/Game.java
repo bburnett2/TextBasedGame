@@ -17,7 +17,7 @@ public class Game
 		int playerHealth = player.getHealth();
 		int playerDefense = player.getDefense();
 		int playerAttack = player.getAttack();
-		ArrayList<Integer> items = player.getUnequippedItems();
+		ArrayList<Item> items = player.getUnequippedItems();
 		ArrayList<Integer> puzzles = player.getCompletedPuzzles(); 
 		ArrayList<Integer> monsters = player.getDefeatedMonsters();
 		ArrayList<Item> equippedItemsOb = player.getEquipedItems();
@@ -32,7 +32,7 @@ public class Game
 		gameInfo[2] = playerHealth;
 		gameInfo[3] = playerDefense;
 		gameInfo[4] = playerAttack;
-		gameInfo[5] = items;
+		gameInfo[5] = getIDS(items);
 		gameInfo[6] = puzzles;
 		gameInfo[7] = monsters;
 		gameInfo[8] = equppedItems;
@@ -45,6 +45,14 @@ public class Game
 		{
 			System.out.println(ex.getMessage());
 		}
+	}
+	
+	private ArrayList<Integer> getIDS(ArrayList<Item> items){
+		ArrayList<Integer> itemIDS = new ArrayList<>();
+		for(Item item : items){
+			itemIDS.add(item.getItemID());
+		}
+		return itemIDS;
 	}
 
 	public void load() 
