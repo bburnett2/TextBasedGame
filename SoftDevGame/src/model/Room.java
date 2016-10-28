@@ -84,12 +84,12 @@ public class Room
 		GameModel model = new GameModel();
 		ArrayList<Item> items = new ArrayList<Item>();
 
-		int count = 1;
+		int count = 0;
 		if(!itemInts.isEmpty())
 		{
-			while(count <= itemInts.size())
+			while(count < itemInts.size())
 			{
-				Object[] item = model.getItemInfo(count);
+				Object[] item = model.getItemInfo(itemInts.get(count));
 				String type = (String)item[2];
 
 				if (type.equalsIgnoreCase("Armor"))
