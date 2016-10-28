@@ -143,6 +143,13 @@ public class Room
 			hasPuzzle = true;
 		return hasPuzzle;
 	}
+	
+	//this is intended to be the method called when the player enters the attack command
+	//it contains the logic for one round attacks between the player and a monster
+	protected void fight()
+	{
+		player.attack(monster);
+	}
 
 
 }

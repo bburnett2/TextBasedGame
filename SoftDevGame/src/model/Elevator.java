@@ -21,6 +21,12 @@ public class Elevator
 	private boolean isL5Complete = false;
 	private boolean isL6Complete = false;
 	private boolean isL7Complete = false;
+	
+	
+	public Elevator(Player player)
+	{
+		this.player = player;
+	}
 
 	public String toString()
 	{
@@ -62,7 +68,7 @@ public class Elevator
 		}
 		if (level == 8)
 		{
-//			if (isL6Complete && isL7Complete)
+			if (isL6Complete && isL7Complete)
 			canGo = true;
 		}
 		
@@ -122,40 +128,10 @@ public class Elevator
 		if (player.hasCompleted(1))
 				isL1Complete = true;
 	}
-	
-	public Elevator(Player player)
-	{
-		this.player = player;
-	}
-	
-	public boolean levelComplete(){
-		return false;
-	}
-	
-	public String floors(int[] monsters, int[] puzzles)
-	{
-		
-		return "";
-	}
-
-	public Player getPlayer()
-	{
-		return player;
-	}
-
-	public void setPlayer(Player player)
-	{
-		this.player = player;
-	}
 
 	public int getLevel1()
 	{
 		return Level1;
-	}
-
-	public void setLevel1(int level1)
-	{
-		Level1 = level1;
 	}
 
 	public int getLevel2()
@@ -163,19 +139,9 @@ public class Elevator
 		return Level2;
 	}
 
-	public void setLevel2(int level2)
-	{
-		Level2 = level2;
-	}
-
 	public int getLevel3()
 	{
 		return Level3;
-	}
-
-	public void setLevel3(int level3)
-	{
-		Level3 = level3;
 	}
 
 	public int getLevel4()
@@ -183,19 +149,9 @@ public class Elevator
 		return Level4;
 	}
 
-	public void setLevel4(int level4)
-	{
-		Level4 = level4;
-	}
-
 	public int getLevel5()
 	{
 		return Level5;
-	}
-
-	public void setLevel5(int level5)
-	{
-		Level5 = level5;
 	}
 
 	public int getLevel6()
@@ -203,30 +159,14 @@ public class Elevator
 		return Level6;
 	}
 
-	public void setLevel6(int level6)
-	{
-		Level6 = level6;
-	}
-
 	public int getLevel7()
 	{
 		return Level7;
-	}
-
-	public void setLevel7(int level7)
-	{
-		Level7 = level7;
 	}
 
 	public int getLevelFinal()
 	{
 		return LevelFinal;
 	}
-
-	public void setLevelFinal(int levelFinal)
-	{
-		LevelFinal = levelFinal;
-	}
-
 
 }
