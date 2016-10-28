@@ -6,14 +6,14 @@ public class Consumables extends Item
 
 	int hp;
 	
-	protected Consumables(Object[] item, Player player)
+	protected Consumables(Object[] item)
 	{
-		super(item, player);
+		super(item);
 		this.hp = (int) item[6];
 	}
 
 	@Override
-	protected void use()
+	protected void use(Character character)
 	{
 		// TODO Auto-generated method stub
 		

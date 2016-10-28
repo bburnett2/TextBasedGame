@@ -93,11 +93,11 @@ public class Room
 				String type = (String)item[2];
 
 				if (type.equalsIgnoreCase("Armor"))
-					items.add(new Armor(item, player));
+					items.add(new Armor(item));
 				else if(type.equalsIgnoreCase("Artifacts"))
-					items.add(new Artifacts(item, player));
+					items.add(new Artifacts(item));
 				else if(type.equalsIgnoreCase("Consumables"))
-					items.add(new Consumables(item, player));
+					items.add(new Consumables(item));
 				count++;
 			}
 		}

@@ -25,7 +25,7 @@ public abstract class Character
 		this.attack = (int)monster[2];
 		this.health = (int)monster[3];
 		this.defence = (int)monster[4];
-		this.itemList = (ArrayList<Item>) monster[5];
+		this.itemList = buildItems((ArrayList<Integer>)monster[5]);
 
 		/**At the moment there is not a object from the DB with this information therefore
 		not in the object array.  We can derive this from the constructor if you would
@@ -62,6 +62,31 @@ public abstract class Character
 		{
 			//print something signifying that the damage of the attack was completely negated
 		}
+	}
+	
+	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
+	{
+		GameModel model = new GameModel();
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		int count = 0;
+		if(!itemInts.isEmpty())
+		{
+			while(count < itemInts.size())
+			{
+				Object[] item = model.getItemInfo(itemInts.get(count));
+				String type = (String)item[2];
+
+				if (type.equalsIgnoreCase("Armor"))
+					items.add(new Armor(item));
+				else if(type.equalsIgnoreCase("Artifacts"))
+					items.add(new Artifacts(item));
+				else if(type.equalsIgnoreCase("Consumables"))
+					items.add(new Consumables(item));
+				count++;
+			}
+		}
+		return items;
 	}
 
 	/**getHealth
@@ -136,4 +161,10 @@ public abstract class Character
 	protected void addItem(Item itemToAdd){
 		itemList.add(itemToAdd);
 	}
+
+//	void addCompletedPuzzle(Integer integer)
+//	{
+//		
+//	}
+
 }

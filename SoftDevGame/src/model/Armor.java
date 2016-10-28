@@ -6,18 +6,18 @@ public class Armor extends Item
 	private int defense;
 	private int attack;
 	
-	protected Armor(Object[] item, Player player)
+	protected Armor(Object[] item)
 	{
-		super(item, player);
+		super(item);
 		this.defense = (int) item[4];
 		this.attack = (int) item[5];
 	}
 
 	//add defense or attack to total
-	protected void use() 
+	protected void use(Character character) 
 	{
-		player.setAttack(player.getAttack() + this.attack);
-	    player.setDefense(player.getDefense() + this.defense);		
+		character.setAttack(character.getAttack() + this.attack);
+	    character.setDefense(character.getDefense() + this.defense);		
 	}
 
 }
