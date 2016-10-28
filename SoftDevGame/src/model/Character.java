@@ -7,9 +7,31 @@ public abstract class Character
 
 	protected String name;
 	protected int health;
-	protected int defense;
+	protected int defence;
 	protected int attack;
-	protected ArrayList itemList;
+	private String description;
+	protected ArrayList<Item> itemList;
+	
+	public Character(){
+		health = 10;
+		defence = 5;
+		attack = 5;
+	}
+	
+	public Character(Object[] monster)
+	{
+
+		this.description = (String)monster[1];
+		this.attack = (int)monster[2];
+		this.health = (int)monster[3];
+		this.defence = (int)monster[4];
+		this.itemList = (ArrayList<Item>) monster[5];
+
+		/**At the moment there is not a object from the DB with this information therefore
+		not in the object array.  We can derive this from the constructor if you would
+		like.
+		this.deathscription = (String)monster[6];**/
+	}
 
 	/**
 	 * calls the takeDamage() method on the enemy, using this Character's attack power
@@ -32,9 +54,9 @@ public abstract class Character
 
 	protected void takeDamage(Character attacker, int damage) 
 	{
-		if (damage > this.defense)
+		if (damage > this.defence)
 		{
-			health -= (damage - this.defense);
+			health -= (damage - this.defence);
 		}
 		else
 		{
@@ -96,7 +118,7 @@ public abstract class Character
 	 */
 	protected int getDefense()
 	{
-		return defense;
+		return defence;
 	}
 
 	/**setDefense
@@ -104,11 +126,14 @@ public abstract class Character
 	 *
 	 * sets defense to the given value
 	 */
-	protected void setDefense(int defense)
+	protected void setDefense(int defence)
 	{
-		this.defense = defense;
+		this.defence = defence;
 	}
 	
 	protected abstract String die(Character character);
 	
+	protected void addItem(Item itemToAdd){
+		itemList.add(itemToAdd);
+	}
 }

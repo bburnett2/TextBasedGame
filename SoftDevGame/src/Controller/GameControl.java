@@ -47,6 +47,10 @@ public class GameControl
 					model.use(commands);
 				else if (commands.get(0).equalsIgnoreCase("run"))
 					model.run(commands);
+				//doesn't work yet
+				else if ((commands.get(0) + commands.get(1)).equalsIgnoreCase("pick up")){
+					model.pickUp(commands);
+				}
 				else if (commands.get(0).equalsIgnoreCase("quit"));
 				else
 					throw new GameException ("Not a valid action command.");
