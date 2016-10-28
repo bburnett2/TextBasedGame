@@ -7,14 +7,14 @@ public abstract class Character
 
 	protected String name;
 	protected int health;
-	protected int defence;
+	protected int defense;
 	protected int attack;
 	private String description;
 	protected ArrayList<Item> itemList;
 	
 	public Character(){
 		health = 10;
-		defence = 5;
+		defense = 5;
 		attack = 5;
 		itemList = new ArrayList<>();
 	}
@@ -35,7 +35,7 @@ public abstract class Character
 		this.description = (String)monster[1];
 		this.attack = (int)monster[2];
 		this.health = (int)monster[3];
-		this.defence = (int)monster[4];
+		this.defense = (int)monster[4];
 		this.itemList = buildItems((ArrayList<Integer>)monster[5]);
 
 		/**At the moment there is not a object from the DB with this information therefore
@@ -49,10 +49,9 @@ public abstract class Character
 	 * @param enemy	the one who is being attacked
 	 */
 	
-	protected void attack(Character enemy) 
-	{
-//		//print something like (name + " attacks " + enemy.name + ".\n") 
-//		enemy.takeDamage(this, attack);
+	protected String attack(Character enemy) 
+	{ 
+		return (enemy.takeDamage(this));
 	}
 	
 	/**
@@ -61,18 +60,22 @@ public abstract class Character
 	 * if the defender would die from this, the die() method is invoked
 	 * @param attacker	the Character who is attacking
 	 * @param damage	the power of the attack before reduction by the enemy's defense
-	 */
+	 */	
 
-	protected void takeDamage(Character attacker) 
+	protected String takeDamage(Character attacker) 
 	{
-		if (attacker.attack > this.defence)
+		StringBuilder text = new StringBuilder(attacker.name + " attacks " + this.name + ".\n");
+		if (attacker.attack > this.defense)
 		{
-			health -= (attacker.attack - this.defence);
+			int damage = (attacker.attack - this.defense);
+			health -= damage;
+			text.append(damage + " damage\n");
 		}
 		else
 		{
-			//print something signifying that the damage of the attack was completely negated
+			text.append(attacker.name + "'s attack was completely negated.\n");
 		}
+		return text.toString();
 	}
 	
 	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
@@ -154,7 +157,7 @@ public abstract class Character
 	 */
 	protected int getDefense()
 	{
-		return defence;
+		return defense;
 	}
 
 	/**setDefense
@@ -164,7 +167,7 @@ public abstract class Character
 	 */
 	protected void setDefense(int defence)
 	{
-		this.defence = defence;
+		this.defense = defence;
 	}
 	
 	protected void addItem(Item itemToAdd){

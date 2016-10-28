@@ -104,14 +104,31 @@ public class Room
 		return items;
 	}
 	
+	protected void startFight()
+	{
+		player.setFightingStatus(true);
+		//maybe a generic "the monster attacks you!!" is here as well
+	}
+	
 	//this is intended to be the method called when the player enters the attack command
 	//it contains the logic for one round attacks between the player and a monster
 	protected String fight()
 	{
-		String str = "";
-		player.attack(monster);
-		
-		return str;
+		StringBuilder str = new StringBuilder();
+		str.append(player.attack(monster));
+		if(monster.isDead())
+		{
+			str.append(monster.die(player));
+		}
+		else
+		{
+			str.append(monster.attack(player));
+			if(player.isDead())
+			{
+				str.append(player.die(monster));
+			}
+		}
+		return str.toString();
 	}
 
 	/**getItemList

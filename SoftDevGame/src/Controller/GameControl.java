@@ -48,6 +48,8 @@ public class GameControl
 					model.use(commands);
 				else if (commands.get(0).equalsIgnoreCase("run"))
 					model.run(commands);
+				else if ((commands.size() > 2) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("listitems"))
+					model.listItems(commands);
 				//doesn't work yet
 				else if ((commands.size() > 2) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("pickup"))
 				{

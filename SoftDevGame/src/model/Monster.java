@@ -13,35 +13,17 @@ public class Monster extends Character
 		super(monster);
 		this.id = (int)monster[0];
 		
-		addItemAttributes();
 		/**At the moment there is not a object from the DB with this information therefore
 		not in the object array.  We can derive this from the constructor if you would
 		like.
 		this.deathscription = (String)monster[6];**/
 	}
 	
-	private void addItemAttributes()
-	{
-				
-	}
-
-	@Override
-	protected void takeDamage(Character attacker)
-	{		
-		super.takeDamage(attacker);
-		
-		if (health < 1)
-		{
-			//print the string returned by the die() method
-			this.die(attacker);
-		}
-
-	}
 	
 	@Override
 	protected String die(Character attacker)
 	{
-		return "Monster died";
+		return "Monster died.";
 	}
 
 	protected int getId()
@@ -66,7 +48,7 @@ public class Monster extends Character
 
 	protected int getDefence()
 	{
-		return defence;
+		return defense;
 	}
 
 
