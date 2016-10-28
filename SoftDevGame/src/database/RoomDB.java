@@ -18,20 +18,37 @@ public class RoomDB extends DatabaseManager {
 		try{
 			resultSet = super.statement.executeQuery(sqlCall);
 			roomInfo[0] = resultSet.getInt("RoomID");
-			roomInfo[1] = addLineBreaks(resultSet.getString("Description"));
+			String deString = addLineBreaks(resultSet.getString("Description"));
 			roomInfo[2] = resultSet.getInt("MonsterID");
 			roomInfo[3] = resultSet.getInt("North");
-			roomInfo[4] = resultSet.getInt("South");;
-			roomInfo[5] = resultSet.getInt("East");;
-			roomInfo[6] = resultSet.getInt("West");;
+			roomInfo[4] = resultSet.getInt("South");
+			roomInfo[5] = resultSet.getInt("East");
+			roomInfo[6] = resultSet.getInt("West");
+			roomInfo[1] = addExits(deString, (int)roomInfo[3], (int)roomInfo[4], (int)roomInfo[5], (int)roomInfo[6]);
 			roomInfo[7] = resultSet.getString("Constraints");
 			roomInfo[8] = getRoomItemInts(roomNum);
 			roomInfo[9] = getRoomPuzzles(roomNum);
-		}
+					}
 		catch(SQLException ex){
 
 		}
 		return roomInfo;
+	}
+
+	private String addExits(String description, int north, int south, int east, int west)
+	{
+		StringBuilder retString = new StringBuilder(description);
+		retString.append("  The exits are: ");
+		if(north != 0)
+			retString.append("north, ");
+		if(south != 0)
+			retString.append("south, ");
+		if(east != 0)
+			retString.append("east, ");
+		if(west != 0)
+			retString.append("west, ");
+		retString.delete(retString.length()-2, retString.length());
+		return retString.toString();
 	}
 
 	protected ArrayList<Integer> getRoomItemInts(int roomNum) {
