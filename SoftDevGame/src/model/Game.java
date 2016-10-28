@@ -14,9 +14,9 @@ public class Game
 	{
 		String playerID = player.getPlayerID();
 		int currentRoomID = player.getCurrentRoom();
-		int playerHealth = player.getPlayerHealth();
-		int playerDefense = player.getPlayerDefense();
-		int playerAttack = player.getPlayerAttack();
+		int playerHealth = player.getHealth();
+		int playerDefense = player.getDefense();
+		int playerAttack = player.getAttack();
 		ArrayList<Integer> items = player.getUnequippedItems();
 		ArrayList<Integer> puzzles = player.getCompletedPuzzles(); 
 		ArrayList<Integer> monsters = player.getDefeatedMonsters();

@@ -40,7 +40,7 @@ public class GameModel
 	}
 
 
-	public void answer(ArrayList<String> commands) throws GameException
+	public boolean answer(ArrayList<String> commands) throws GameException
 	{
 		boolean correct = false;
 		if (room.hasPuzzle())
@@ -55,7 +55,7 @@ public class GameModel
 		}
 		else
 			console.print("That was incorrect");
-
+		return correct;
 	}
 
 	public void equip(ArrayList<String> commands)
@@ -63,7 +63,27 @@ public class GameModel
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void use(ArrayList<String> commands)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 
+	public void run(ArrayList<String> commands)
+	{
+		if (player.isFighting())
+		{
+		exitRoom();
+		room = new Room(DB.getRoomInformation(player.getPreviousRoom()), player);
+		player.setCurrentRoom(room.getId());
+		player.setFightingStatus(false);
+		print(room.toString());	
+		}
+		else
+			print("There is nothing to run from");
+	}
+	
 	private boolean hasStr(ArrayList<String> command, String str)
 	{
 		boolean hasStr = false;
@@ -74,45 +94,6 @@ public class GameModel
 		}
 
 		return hasStr;
-	}
-
-	public void print(String str)
-	{
-		console.print(str);
-	}
-
-	public void exitRoom()
-	{
-
-		room = null;
-	}
-
-	public void firstRoom()
-	{
-		room = new Room(DB.getRoomInformation(FIRSTROOM), player);
-		print(room.toString());
-	}
-
-	public Object[] getItemInfo(int itemNum)
-	{
-		return DB.getItemInformation(itemNum);
-	}
-
-	public Object[] getMonster(int monsterNumber)
-	{
-		return DB.getMonsterInformation(monsterNumber);
-	}
-
-	public Object[] getPuzzle(int puzzleID)
-	{
-		return DB.getPuzzleInformation(puzzleID);
-	}
-
-
-	public void enterElevator()
-	{
-		console.print(elevator.toString());
-
 	}
 
 
@@ -237,6 +218,44 @@ public class GameModel
 
 
 		return openFloor;
+	}
+	
+	public void print(String str)
+	{
+		console.print(str);
+	}
+
+	public void exitRoom()
+	{
+
+		room = null;
+	}
+
+	public void firstRoom()
+	{
+		room = new Room(DB.getRoomInformation(FIRSTROOM), player);
+		print(room.toString());
+	}
+
+	public void enterElevator()
+	{
+		console.print(elevator.toString());
+
+	}
+
+	public Object[] getItemInfo(int itemNum)
+	{
+		return DB.getItemInformation(itemNum);
+	}
+
+	public Object[] getMonster(int monsterNumber)
+	{
+		return DB.getMonsterInformation(monsterNumber);
+	}
+
+	public Object[] getPuzzle(int puzzleID)
+	{
+		return DB.getPuzzleInformation(puzzleID);
 	}
 
 }

@@ -10,12 +10,9 @@ public class Player extends Character
 	private ArrayList<Integer> completedPuzzles = new ArrayList<Integer>();
 	private ArrayList<Integer> defeatedMonsters = new ArrayList<Integer>();
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
-	private int currentRoom;
-	private int playerHealth;
-	private int playerDefense;
-	private int playerAttack;
+	private int currentRoom, previousRoom;
 	private boolean isFighting;
-	public Object setPlayerAttack;
+	
 	
 	protected Player()
 	{
@@ -31,25 +28,47 @@ public class Player extends Character
 	{
 		defeatedMonsters.add(id);
 	}
-
+	
+	protected boolean hasItem(String itemName) 
+	{
+		return unequippedItems.contains(itemName);
+	}
+	
+	//I dont know if we are going to need this.....Michael
 	protected boolean hasItem(int itemID) 
 	{
 		return unequippedItems.contains(itemID);
 	}
+	
+	protected boolean hasDefeated(int monster)
+	{
+		return defeatedMonsters.contains(monster);
+	}
 
+	protected boolean hasCompleted(int puzzle)
+	{
+		return completedPuzzles.contains(puzzle);
+	}
+	
 	protected void useItem() 
 	{
 
 	}
-
-	protected void run() 
-	{
-		isFighting = false;
-		//this should definitely do other things as well
+	
+	@Override
+	protected void takeDamage(Character attacker, int damage)
+	{		
+		super.takeDamage(attacker, damage);
+		
+		if (health < 1)
+		{
+			//print the string returned by the die() method
+			this.die(attacker);
+		}
 	}
 
 	@Override
-	public String die(Character monster)
+	protected String die(Character monster)
 	{
 		String deathscription = ("You were killed by the " + monster.name + ".\n");
 		return deathscription;
@@ -64,7 +83,13 @@ public class Player extends Character
 
 	protected void setCurrentRoom(int currentRoom)
 	{
+		this.previousRoom = this.currentRoom;
 		this.currentRoom = currentRoom;
+	}
+
+	public int getPreviousRoom()
+	{
+		return previousRoom;
 	}
 
 	/**getPlayerID
@@ -116,74 +141,20 @@ public class Player extends Character
 	{
 		return equipedItems;
 	}
-
-	/**getPlayerHealth
-	 * @return playerHealth: int - 
-	 * 
-	 * returns the playerHealth
-	 */
-	protected int getPlayerHealth()
-	{
-		return playerHealth;
-	}
-
-	/**getPlayerDefense
-	 * @return playerDefense: int - 
-	 * 
-	 * returns the playerDefense
-	 */
-	protected int getPlayerDefense()
-	{
-		return playerDefense;
-	}
-
-	/**getPlayerAttack
-	 * @return playerAttack: int - 
-	 * 
-	 * returns the playerAttack
-	 */
-	
-	protected int getPlayerAttack()
-	{
-		return playerAttack;
-	}
 	
 	protected boolean getFightingStatus()
 	{
 		return isFighting;
 	}
 	
+	public boolean isFighting()
+	{
+		return isFighting;
+	}
+
 	protected void setFightingStatus(boolean status)
 	{
 		isFighting = status;
 	}
 	
-	public boolean hasDefeated(int monster)
-	{
-		return defeatedMonsters.contains(monster);
-	}
-
-	public boolean hasCompleted(int puzzle)
-	{
-		return completedPuzzles.contains(puzzle);
-	}
-
-
-	public void setPlayerAttack(int newAttack)
-	{
-		this.attack = newAttack;
-		
-	}
-
-	public void setPlayerDefense(int newDefense)
-	{
-		this.playerDefense = newDefense;
-		
-	}
-	public void setPlayerHealth()
-	{
-		this.playerHealth = newHealth;
-	}
-
-
 }

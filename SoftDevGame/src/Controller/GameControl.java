@@ -34,12 +34,19 @@ public class GameControl
 				//cannot use a switch because of the complexity of the []
 				if (commands.get(0).equalsIgnoreCase("go"))
 					model.go(commands);
-				else if (commands.get(0).equalsIgnoreCase("answer"))
-					model.answer(commands);
+				else if (commands.get(0).equalsIgnoreCase("answer")){
+					boolean completesLevel = model.answer(commands);
+					if(completesLevel)
+						enterElevatorSubLoop();
+				}
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
 				else if (commands.get(0).equalsIgnoreCase("enter"))
 					enterElevatorSubLoop();
+				else if (commands.get(0).equalsIgnoreCase("use"))
+					model.use(commands);
+				else if (commands.get(0).equalsIgnoreCase("run"))
+					model.run(commands);
 				else if (commands.get(0).equalsIgnoreCase("quit"));
 				else
 					throw new GameException ("Not a valid action command.");

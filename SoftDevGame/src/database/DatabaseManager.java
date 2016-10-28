@@ -3,6 +3,11 @@ package database;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
+
+import model.Item;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -72,6 +77,9 @@ public class DatabaseManager {
 	
 //	public static void main(String[] args) throws ClassNotFoundException{
 //		DatabaseManager dbManage = new DatabaseManager();
+//		Object[] item = dbManage.getItemInformation(25);
+//		Map<Boolean, Integer> itemCP = (TreeMap<Boolean, Integer>)item[9];
+//		System.out.println(itemCP.keySet());
 //		dbManage = new SavedGamesDB();
 //		Object[] tester = new Object[9];
 //		tester[0] = "testPlayer";

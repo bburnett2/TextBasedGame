@@ -41,6 +41,10 @@ public class Puzzle
 		this.isCompleted = isCompleted;
 	}
 	
+	protected boolean completesLevel(){
+		return completesLevel;
+	}
+	
 	protected String getDescription()
 	{
 		return description;

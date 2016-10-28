@@ -7,7 +7,7 @@ public abstract class Character
 
 	protected String name;
 	protected int health;
-	protected int defence;
+	protected int defense;
 	protected int attack;
 	protected ArrayList itemList;
 
@@ -32,16 +32,83 @@ public abstract class Character
 
 	protected void takeDamage(Character attacker, int damage) 
 	{
-		if (damage > this.defence)
+		if (damage > this.defense)
 		{
-			health -= (damage - this.defence);
+			health -= (damage - this.defense);
 		}
-		if (health < 1)
+		else
 		{
-			//print the string returned by the die() method
-			die(attacker);
+			//print something signifying that the damage of the attack was completely negated
 		}
 	}
 
-	abstract public String die(Character character);
+	/**getHealth
+	 * @return health: int - 
+	 * 
+	 * returns the health
+	 */
+	protected int getHealth()
+	{
+		return health;
+	}
+	
+	protected boolean isDead()
+	{
+		boolean dead = true;
+		if (health > 0) dead = false;
+		return dead;
+	}
+
+	/**getAttack
+	 * @return attack: int - 
+	 * 
+	 * returns the attack
+	 */
+	protected int getAttack()
+	{
+		return attack;
+	}
+
+	/**setHealth
+	 * @param health: int - health
+	 *
+	 * sets health to the given value
+	 */
+	protected void setHealth(int health)
+	{
+		this.health = health;
+	}
+
+	/**setAttack
+	 * @param attack: int - attack
+	 *
+	 * sets attack to the given value
+	 */
+	protected void setAttack(int attack)
+	{
+		this.attack = attack;
+	}
+
+	/**getDefense
+	 * @return defense: int - 
+	 * 
+	 * returns the defense
+	 */
+	protected int getDefense()
+	{
+		return defense;
+	}
+
+	/**setDefense
+	 * @param defense: int - defense
+	 *
+	 * sets defense to the given value
+	 */
+	protected void setDefense(int defense)
+	{
+		this.defense = defense;
+	}
+	
+	protected abstract String die(Character character);
+	
 }
