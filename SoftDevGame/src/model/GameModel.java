@@ -58,7 +58,7 @@ public class GameModel
 			console.print("That was incorrect");
 		return correct;
 	}
-	
+
 	public void listItems(ArrayList<String> commands)
 	{
 		console.print(player.listItems());		
@@ -69,7 +69,7 @@ public class GameModel
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public boolean use(ArrayList<String> commands)throws GameException
 	{
 		boolean completesLevel = false;
@@ -89,16 +89,16 @@ public class GameModel
 	{
 		if (player.isFighting())
 		{
-		exitRoom();
-		room = new Room(DB.getRoomInformation(player.getPreviousRoom()), player);
-		player.setCurrentRoom(room.getId());
-		player.setFightingStatus(false);
-		print(room.toString());	
+			exitRoom();
+			room = new Room(DB.getRoomInformation(player.getPreviousRoom()), player);
+			player.setCurrentRoom(room.getId());
+			player.setFightingStatus(false);
+			print(room.toString());	
 		}
 		else
 			print("There is nothing to run from");
 	}
-	
+
 	private boolean hasStr(ArrayList<String> command, String str)
 	{
 		boolean hasStr = false;
@@ -234,19 +234,20 @@ public class GameModel
 
 		return openFloor;
 	}
-	
+
 	public void pickUp(ArrayList<String> commands){
 		Item removeItem = null;
 		for(Item item : room.getItemList()){
-			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName())){
+			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName()))
+			{
 				removeItem = item;
 				room.player.addItem(item);
-				break;
+				//				break;
 			}
 		}
 		room.removeItem(removeItem);
 	}
-	
+
 	public void print(String str)
 	{
 		console.print(str);

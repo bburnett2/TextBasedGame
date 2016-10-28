@@ -16,6 +16,7 @@ public class Room
 
 	protected Room(Object[] room, Player player)
 	{
+		this.player = player;
 		this.id = (int)room[0];
 		this.discription = (String) room[1];
 		this.monster = buildMonster((int)room[2]);
@@ -26,8 +27,6 @@ public class Room
 		this.restrictions = (String)room[7];
 		this.itemList = buildItems((ArrayList<Integer>) room[8]);
 		this.puzzle = buildPuzzle((int)room[9]);
-
-		this.player = player;
 	}
 
 	//toString is required to be public
@@ -53,10 +52,10 @@ public class Room
 
 
 		if (!(puzzle == null))
-			{
-			 if(!(player.hasCompleted(puzzle.getId())))
-					str += "\n\n" + puzzle.getDescription();
-			}
+		{
+			if(!(player.hasCompleted(puzzle.getId())))
+				str += "\n\n" + puzzle.getDescription();
+		}
 		return str;	
 	}
 
@@ -89,27 +88,30 @@ public class Room
 		{
 			while(count < itemInts.size())
 			{
-				Object[] item = model.getItemInfo(itemInts.get(count));
-				String type = (String)item[2];
+				if (!(player.hasItem(itemInts.get(count))))
+				{
+					Object[] item = model.getItemInfo(itemInts.get(count));
+					String type = (String)item[2];
 
-				if (type.equalsIgnoreCase("Armor"))
-					items.add(new Armor(item));
-				else if(type.equalsIgnoreCase("Artifacts"))
-					items.add(new Artifacts(item));
-				else if(type.equalsIgnoreCase("Consumables"))
-					items.add(new Consumables(item));
+					if (type.equalsIgnoreCase("Armor"))
+						items.add(new Armor(item));
+					else if(type.equalsIgnoreCase("Artifacts"))
+						items.add(new Artifacts(item));
+					else if(type.equalsIgnoreCase("Consumables"))
+						items.add(new Consumables(item));
+				}
 				count++;
 			}
 		}
 		return items;
 	}
-	
+
 	protected void startFight()
 	{
 		player.setFightingStatus(true);
 		//maybe a generic "the monster attacks you!!" is here as well
 	}
-	
+
 	//this is intended to be the method called when the player enters the attack command
 	//it contains the logic for one round attacks between the player and a monster
 	protected String fight()
@@ -203,7 +205,7 @@ public class Room
 			hasPuzzle = true;
 		return hasPuzzle;
 	}
-	
+
 	protected void removeItem(Item item){
 		itemList.remove(item);
 	}

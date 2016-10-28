@@ -93,10 +93,21 @@ public class Player extends Character
 		return unequippedItems.contains(itemName);
 	}
 	
-	//I dont know if we are going to need this.....Michael
 	protected boolean hasItem(int itemID) 
 	{
-		return unequippedItems.contains(itemID);
+		boolean hasItem = false;
+		for (Item item : unequippedItems)
+		{
+			if (item.getItemID() == itemID)
+				hasItem = true;
+		}
+		
+		for (Item item : equipedItems)
+		{
+			if (item.getItemID() == itemID)
+				hasItem = true;
+		}
+		return hasItem;
 	}
 	
 	protected boolean hasDefeated(int monster)
