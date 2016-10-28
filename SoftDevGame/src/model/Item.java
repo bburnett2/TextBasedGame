@@ -9,17 +9,15 @@ public abstract class Item
 	private int id;
 	private String name, description, action;
 	private boolean keyItem;
-	protected Player player;
 	protected Map<Boolean, Integer> completesPuzzle;
 	
-	public Item(Object[] item, Player player)
+	public Item(Object[] item)
 	{
 		this.id = (int)item[0];
 		this.name = (String) item[1];
 		this.description = (String)item[3];
 		this.keyItem = (boolean)item[7];
 		this.action = (String) item[8];
-		this.player = player;
 		this.completesPuzzle = (TreeMap<Boolean, Integer>)item[9];
 	}
 
@@ -57,6 +55,6 @@ public abstract class Item
 
 	}
 
-	abstract protected void use();
+	abstract protected void use(Character character);
 
 }

@@ -93,15 +93,25 @@ public class Room
 				String type = (String)item[2];
 
 				if (type.equalsIgnoreCase("Armor"))
-					items.add(new Armor(item, player));
+					items.add(new Armor(item));
 				else if(type.equalsIgnoreCase("Artifacts"))
-					items.add(new Artifacts(item, player));
+					items.add(new Artifacts(item));
 				else if(type.equalsIgnoreCase("Consumables"))
-					items.add(new Consumables(item, player));
+					items.add(new Consumables(item));
 				count++;
 			}
 		}
 		return items;
+	}
+	
+	//this is intended to be the method called when the player enters the attack command
+	//it contains the logic for one round attacks between the player and a monster
+	protected String fight()
+	{
+		String str = "";
+		player.attack(monster);
+		
+		return str;
 	}
 
 	/**getItemList
@@ -153,12 +163,4 @@ public class Room
 		return hasPuzzle;
 	}
 	
-	//this is intended to be the method called when the player enters the attack command
-	//it contains the logic for one round attacks between the player and a monster
-	protected void fight()
-	{
-		player.attack(monster);
-	}
-
-
 }

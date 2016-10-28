@@ -33,20 +33,6 @@ public class RoomDB extends DatabaseManager {
 		}
 		return roomInfo;
 	}
-	
-	protected String addLineBreaks(String str){
-		StringBuilder strWithSpaces = new StringBuilder();
-		Scanner strScan = new Scanner(str);
-		int count = 0;
-		while(strScan.hasNext()){
-			strWithSpaces.append(strScan.next() + " ");
-			count++;
-			if(count % 15 == 0 && count !=0){
-				strWithSpaces.append('\n');
-			}
-		}
-		return strWithSpaces.toString();
-	}
 
 	protected ArrayList<Integer> getRoomItemInts(int roomNum) {
 		sqlCall = "SELECT ItemID FROM Room_Item WHERE roomID = " + roomNum;

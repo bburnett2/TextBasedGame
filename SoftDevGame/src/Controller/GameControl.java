@@ -34,7 +34,8 @@ public class GameControl
 				//cannot use a switch because of the complexity of the []
 				if (commands.get(0).equalsIgnoreCase("go"))
 					model.go(commands);
-				else if (commands.get(0).equalsIgnoreCase("answer")){
+				else if (commands.get(0).equalsIgnoreCase("answer"))
+				{
 					boolean completesLevel = model.answer(commands);
 					if(completesLevel)
 						enterElevatorSubLoop();
@@ -48,8 +49,9 @@ public class GameControl
 				else if (commands.get(0).equalsIgnoreCase("run"))
 					model.run(commands);
 				//doesn't work yet
-				else if ((commands.get(0) + commands.get(1)).equalsIgnoreCase("pick up")){
-					model.pickUp(commands);
+				else if ((commands.size() > 2) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("pick up"))
+				{
+				model.pickUp(commands);
 				}
 				else if (commands.get(0).equalsIgnoreCase("quit"));
 				else

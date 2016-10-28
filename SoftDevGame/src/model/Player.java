@@ -21,6 +21,51 @@ public class Player extends Character
 	{
 		super(player);
 	}
+	
+	@Override
+	protected void takeDamage(Character monster)
+	{		
+		super.takeDamage(monster);
+		
+		if (health < 1)
+		{
+			//print the string returned by the die() method
+			this.die(monster);
+		}
+	}
+
+	protected String die(Character attacker)
+	{
+		String deathscription = ("You were killed by the " + attacker.name + ".\n");
+		return deathscription;
+		//since the die() action is automatically called upon death, 
+		//this method probably also ends the game or calls the method that does
+	}
+	
+	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
+	{
+		GameModel model = new GameModel();
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		int count = 0;
+		if(!itemInts.isEmpty())
+		{
+			while(count < itemInts.size())
+			{
+				Object[] item = model.getItemInfo(itemInts.get(count));
+				String type = (String)item[2];
+
+				if (type.equalsIgnoreCase("Armor"))
+					items.add(new Armor(item));
+				else if(type.equalsIgnoreCase("Artifacts"))
+					items.add(new Artifacts(item));
+				else if(type.equalsIgnoreCase("Consumables"))
+					items.add(new Consumables(item));
+				count++;
+			}
+		}
+		return items;
+	}
 		
 	protected void addCompletedPuzzle(int id)
 	{
@@ -58,27 +103,6 @@ public class Player extends Character
 
 	}
 	
-	@Override
-	protected void takeDamage(Character attacker, int damage)
-	{		
-		super.takeDamage(attacker, damage);
-		
-		if (health < 1)
-		{
-			//print the string returned by the die() method
-			this.die(attacker);
-		}
-	}
-
-	@Override
-	protected String die(Character monster)
-	{
-		String deathscription = ("You were killed by the " + monster.name + ".\n");
-		return deathscription;
-		//since the die() action is automatically called upon death, 
-		//this method probably also ends the game or calls the method that does
-	}
-
 	protected int getCurrentRoom()
 	{
 		return currentRoom;

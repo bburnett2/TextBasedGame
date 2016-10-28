@@ -8,15 +8,16 @@ public class MonsterDB extends DatabaseManager
 
 	protected Object[] getMonsterInformationPro(int monsterNum){
 		sqlCall = "SELECT * FROM monster WHERE monsterID = " + monsterNum;
-		Object[] monster = new Object[6];
+		Object[] monster = new Object[7];
 		try{
 			resultSet = statement.executeQuery(sqlCall);
 			monster[0] = resultSet.getInt("MonsterID");
-			monster[1] = resultSet.getString("Description");
+			monster[1] = addLineBreaks(resultSet.getString("Description"));
 			monster[2] = resultSet.getInt("Attack");
 			monster[3] = resultSet.getInt("Health");
 			monster[4] = resultSet.getInt("Defense");
 			monster[5] = getMonsterItemsInts(monsterNum);
+			monster[6] = "fred";
 		}
 		catch(SQLException ex){
 
