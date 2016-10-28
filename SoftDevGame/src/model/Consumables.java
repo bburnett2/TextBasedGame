@@ -19,4 +19,11 @@ public class Consumables extends Item
 		
 	}
 
+	@Override
+	protected String use(Player player)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

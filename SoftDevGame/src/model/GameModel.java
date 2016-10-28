@@ -67,8 +67,12 @@ public class GameModel
 	
 	public void use(ArrayList<String> commands)
 	{
-		// TODO Auto-generated method stub
-		
+		for(Item item : room.player.getItemList()){
+			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName())){
+				console.print(player.useItem(item));
+				
+			}
+		}
 	}
 
 	public void run(ArrayList<String> commands)
@@ -222,11 +226,15 @@ public class GameModel
 	}
 	
 	public void pickUp(ArrayList<String> commands){
+		Item removeItem = null;
 		for(Item item : room.getItemList()){
-			if(commands.contains(item.getName())){
+			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName())){
+				removeItem = item;
 				room.player.addItem(item);
+				break;
 			}
 		}
+		room.removeItem(removeItem);
 	}
 	
 	public void print(String str)

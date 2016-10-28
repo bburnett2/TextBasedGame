@@ -163,4 +163,7 @@ public class Room
 		return hasPuzzle;
 	}
 	
+	protected void removeItem(Item item){
+		itemList.remove(item);
+	}
 }

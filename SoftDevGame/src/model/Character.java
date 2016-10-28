@@ -16,8 +16,19 @@ public abstract class Character
 		health = 10;
 		defence = 5;
 		attack = 5;
+		itemList = new ArrayList<>();
 	}
 	
+	/**getItemList
+	 * @return itemList: ArrayList<Item> - 
+	 * 
+	 * returns the itemList
+	 */
+	protected ArrayList<Item> getItemList()
+	{
+		return itemList;
+	}
+
 	public Character(Object[] monster)
 	{
 

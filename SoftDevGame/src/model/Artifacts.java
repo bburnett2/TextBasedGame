@@ -1,5 +1,7 @@
 package model;
 
+import view.Console;
+
 public class Artifacts extends Item 
 {
 	
@@ -10,14 +12,17 @@ public class Artifacts extends Item
 		// TODO Auto-generated constructor stubS
 	}
 
-	protected void use(Player player) 
+	protected String use(Player player) 
 	{
+		String retString = "";
 		if(completesPuzzle.keySet().contains(true)){
 			player.addCompletedPuzzle(completesPuzzle.get(true));
+			retString = "You solved a puzzle";
 		}
 		else{
-			
+			retString = "item used";
 		}
+		return retString;
 	}
 
 	@Override

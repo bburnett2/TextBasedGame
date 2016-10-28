@@ -20,4 +20,11 @@ public class Armor extends Item
 	    character.setDefense(character.getDefense() + this.defense);		
 	}
 
+	@Override
+	protected String use(Player player)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

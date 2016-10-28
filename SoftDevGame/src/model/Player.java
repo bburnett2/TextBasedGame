@@ -98,9 +98,9 @@ public class Player extends Character
 		return completedPuzzles.contains(puzzle);
 	}
 	
-	protected void useItem() 
+	protected String useItem(Item item) 
 	{
-
+		return item.use(this);
 	}
 	
 	protected int getCurrentRoom()
