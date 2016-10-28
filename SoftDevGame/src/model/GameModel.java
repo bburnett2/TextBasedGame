@@ -73,7 +73,7 @@ public class GameModel
 	public boolean use(ArrayList<String> commands)throws GameException
 	{
 		boolean completesLevel = false;
-		for(Item item : player.getItemList()){
+		for(Item item : player.getUnequippedItems()){
 			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase())){
 				boolean completesPuzzle = item.use(player);
 				ArrayList<String> answer = new ArrayList<>();

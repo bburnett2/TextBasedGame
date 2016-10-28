@@ -22,6 +22,9 @@ public class Player extends Character
 		super(player);
 	}
 
+	protected void addItem(Item item){
+		unequippedItems.add(item);
+	}
 	protected String die(Character attacker)
 	{
 		String deathscription = ("You were killed by the " + attacker.name + ".\n");

@@ -9,14 +9,12 @@ public abstract class Character
 	protected int health;
 	protected int defense;
 	protected int attack;
-	private String description;
-	protected ArrayList<Item> itemList;
+
 	
 	public Character(){
 		health = 10;
 		defense = 5;
 		attack = 5;
-		itemList = new ArrayList<>();
 	}
 	
 	/**getItemList
@@ -24,19 +22,12 @@ public abstract class Character
 	 * 
 	 * returns the itemList
 	 */
-	protected ArrayList<Item> getItemList()
-	{
-		return itemList;
-	}
 
 	public Character(Object[] monster)
 	{
-
-		this.description = (String)monster[1];
 		this.attack = (int)monster[2];
 		this.health = (int)monster[3];
 		this.defense = (int)monster[4];
-		this.itemList = buildItems((ArrayList<Integer>)monster[5]);
 
 		/**At the moment there is not a object from the DB with this information therefore
 		not in the object array.  We can derive this from the constructor if you would
@@ -165,10 +156,6 @@ public abstract class Character
 	protected void setDefense(int defence)
 	{
 		this.defense = defence;
-	}
-	
-	protected void addItem(Item itemToAdd){
-		itemList.add(itemToAdd);
 	}
 
 	abstract protected String die(Character attacker);
