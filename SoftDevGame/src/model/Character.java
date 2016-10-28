@@ -59,7 +59,6 @@ public abstract class Character
 	 * defender's health will then be reduced by nonnegative values
 	 * if the defender would die from this, the die() method is invoked
 	 * @param attacker	the Character who is attacking
-	 * @param damage	the power of the attack before reduction by the enemy's defense
 	 */	
 
 	protected String takeDamage(Character attacker) 
@@ -115,9 +114,7 @@ public abstract class Character
 	
 	protected boolean isDead()
 	{
-		boolean dead = true;
-		if (health > 0) dead = false;
-		return dead;
+		return (health < 1);
 	}
 
 	/**getAttack
