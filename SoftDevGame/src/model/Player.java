@@ -34,8 +34,7 @@ public class Player extends Character
 		}
 	}
 
-	@Override
-	protected String die(Character monster)
+	protected String die(Monster monster)
 	{
 		String deathscription = ("You were killed by the " + monster.name + ".\n");
 		return deathscription;

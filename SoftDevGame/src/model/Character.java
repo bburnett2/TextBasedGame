@@ -156,8 +156,6 @@ public abstract class Character
 		this.defence = defence;
 	}
 	
-	protected abstract String die(Character character);
-	
 	protected void addItem(Item itemToAdd){
 		itemList.add(itemToAdd);
 	}
