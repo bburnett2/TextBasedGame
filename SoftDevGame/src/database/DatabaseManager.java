@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 import model.Item;
@@ -73,6 +74,20 @@ public class DatabaseManager {
 	public String getSavedGames(){
 		SavedGamesDB savedGamesDB = new SavedGamesDB();
 		return savedGamesDB.getSavedGamesPro();
+	}
+	
+	protected String addLineBreaks(String str){
+		StringBuilder strWithSpaces = new StringBuilder();
+		Scanner strScan = new Scanner(str);
+		int count = 0;
+		while(strScan.hasNext()){
+			strWithSpaces.append(strScan.next() + " ");
+			count++;
+			if(count % 15 == 0 && count !=0){
+				strWithSpaces.append('\n');
+			}
+		}
+		return strWithSpaces.toString();
 	}
 	
 //	public static void main(String[] args) throws ClassNotFoundException{
