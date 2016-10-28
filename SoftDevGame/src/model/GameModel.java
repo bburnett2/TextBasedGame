@@ -79,6 +79,11 @@ public class GameModel
 			}
 		}
 	}
+	
+	public void attack(ArrayList<String> commands)
+	{
+		console.print(room.fight()); 
+	}
 
 	public void run(ArrayList<String> commands)
 	{

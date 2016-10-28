@@ -120,7 +120,29 @@ public class Room
 		{
 			str.append(monster.die(player));
 			player.addDefeatedMonster(monster.getId());
-			//method which adds the defeated monster's items to the player
+			if (monster.itemList.size() > 0)
+			{
+				//method which adds the defeated monster's items to the player
+				str.append("Upon death, " + monster.name + "dropped ");
+				if (monster.itemList.size() == 1)
+				{
+					for (int i = 0; i <= monster.itemList.size()-1; i++)
+					{
+						player.addItem(monster.itemList.get(i));
+					}
+					str.append(monster.itemList.get(0).getName());
+				}
+				else
+				{
+					int last = 0;
+					for (int i = 0; i < monster.itemList.size()-1; i++)
+					{
+						str.append(monster.itemList.get(i).getName() + ", ");
+						last = i;
+					}
+					str.append("and " + monster.itemList.get(last).getName() + ".\n");
+				}
+			}
 		}
 		else
 		{
