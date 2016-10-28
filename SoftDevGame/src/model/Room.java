@@ -119,6 +119,8 @@ public class Room
 		if(monster.isDead())
 		{
 			str.append(monster.die(player));
+			player.addDefeatedMonster(monster.getId());
+			//method which adds the defeated monster's items to the player
 		}
 		else
 		{

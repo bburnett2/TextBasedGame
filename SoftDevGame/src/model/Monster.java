@@ -28,6 +28,7 @@ public class Monster extends Character
 	@Override
 	protected String die(Character attacker)
 	{
+		//deathscription goes here
 		return "Monster died.";
 	}
 
@@ -56,10 +57,5 @@ public class Monster extends Character
 		return defense;
 	}
 
-
-//	protected void startFight() 
-//	{
-//		player.setFightingStatus(true);
-//	}
 
 }
