@@ -42,6 +42,31 @@ public class Player extends Character
 		//since the die() action is automatically called upon death, 
 		//this method probably also ends the game or calls the method that does
 	}
+	
+	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
+	{
+		GameModel model = new GameModel();
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		int count = 0;
+		if(!itemInts.isEmpty())
+		{
+			while(count < itemInts.size())
+			{
+				Object[] item = model.getItemInfo(itemInts.get(count));
+				String type = (String)item[2];
+
+				if (type.equalsIgnoreCase("Armor"))
+					items.add(new Armor(item));
+				else if(type.equalsIgnoreCase("Artifacts"))
+					items.add(new Artifacts(item));
+				else if(type.equalsIgnoreCase("Consumables"))
+					items.add(new Consumables(item));
+				count++;
+			}
+		}
+		return items;
+	}
 		
 	protected void addCompletedPuzzle(int id)
 	{
