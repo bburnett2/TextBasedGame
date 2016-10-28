@@ -60,7 +60,7 @@ public class Player extends Character
 	
 	protected String listItems()
 	{
-		String str ="Your invatory\n";
+		String str ="Your inventory\n";
 		
 		if (unequippedItems.size() > 0)
 		{
