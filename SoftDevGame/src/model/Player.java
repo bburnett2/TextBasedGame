@@ -22,8 +22,9 @@ public class Player extends Character
 		super(player);
 	}
 
-	protected void addItem(Item item){
+	protected String addItem(Item item){
 		unequippedItems.add(item);
+		return "Item added to unequipped items";
 	}
 	protected String die(Character attacker)
 	{
@@ -90,7 +91,19 @@ public class Player extends Character
 	
 	protected boolean hasItem(String itemName) 
 	{
-		return unequippedItems.contains(itemName);
+		boolean hasItem = false;
+		for (Item item : unequippedItems)
+		{
+			if (item.getName().equalsIgnoreCase(itemName))
+				hasItem = true;
+		}
+		
+		for (Item item : equipedItems)
+		{
+			if (item.getName().equalsIgnoreCase(itemName))
+				hasItem = true;
+		}
+		return hasItem;
 	}
 	
 	protected boolean hasItem(int itemID) 
@@ -101,6 +114,9 @@ public class Player extends Character
 			if (item.getItemID() == itemID)
 				hasItem = true;
 		}
+//		not sure exactly why but this does not work.		
+//		if (unequippedItems.contains(itemID))
+//			hasItem = true;
 		
 		for (Item item : equipedItems)
 		{

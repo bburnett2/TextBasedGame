@@ -45,11 +45,6 @@ public abstract class Item
 		return keyItem;
 	}
 
-	protected void pickUp() 
-	{
-
-	}
-
 	protected void drop() 
 	{
 

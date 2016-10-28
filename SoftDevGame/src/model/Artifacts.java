@@ -15,7 +15,8 @@ public class Artifacts extends Item
 	protected boolean use(Player player) 
 	{
 		boolean completes = false;
-		if(completesPuzzle.keySet().contains(true)){
+		if(completesPuzzle.keySet().contains(true))
+		{
 			completes = true;
 		}
 		return completes;

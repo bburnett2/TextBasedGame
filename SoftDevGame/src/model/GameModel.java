@@ -51,17 +51,17 @@ public class GameModel
 
 		if (correct)
 		{
-			console.print("Congratulations that was correct!!!");
+			print("Congratulations that was correct!!!");
 			player.addCompletedPuzzle(room.puzzle.getId());
 		}
 		else
-			console.print("That was incorrect");
+			print("That was incorrect");
 		return correct;
 	}
 
 	public void listItems(ArrayList<String> commands)
 	{
-		console.print(player.listItems());		
+		print(player.listItems());		
 	}
 
 	public void equip(ArrayList<String> commands)
@@ -228,9 +228,8 @@ public class GameModel
 		}
 		catch (GameException e)
 		{
-			console.print(e.getMessage());
+			print(e.getMessage());
 		}
-
 
 		return openFloor;
 	}
@@ -241,7 +240,7 @@ public class GameModel
 			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName()))
 			{
 				removeItem = item;
-				room.player.addItem(item);
+				print(room.player.addItem(item));
 				//				break;
 			}
 		}
@@ -267,7 +266,7 @@ public class GameModel
 
 	public void enterElevator()
 	{
-		console.print(elevator.toString());
+		print(elevator.toString());
 
 	}
 
