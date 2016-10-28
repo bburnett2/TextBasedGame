@@ -66,7 +66,7 @@ public class Monster extends Character
 
 	protected int getDefence()
 	{
-		return defence;
+		return defense;
 	}
 
 

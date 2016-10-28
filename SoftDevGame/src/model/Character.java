@@ -7,14 +7,14 @@ public abstract class Character
 
 	protected String name;
 	protected int health;
-	protected int defence;
+	protected int defense;
 	protected int attack;
 	private String description;
 	protected ArrayList<Item> itemList;
 	
 	public Character(){
 		health = 10;
-		defence = 5;
+		defense = 5;
 		attack = 5;
 	}
 	
@@ -24,7 +24,7 @@ public abstract class Character
 		this.description = (String)monster[1];
 		this.attack = (int)monster[2];
 		this.health = (int)monster[3];
-		this.defence = (int)monster[4];
+		this.defense = (int)monster[4];
 		this.itemList = buildItems((ArrayList<Integer>)monster[5]);
 
 		/**At the moment there is not a object from the DB with this information therefore
@@ -54,9 +54,9 @@ public abstract class Character
 	protected String takeDamage(Character attacker) 
 	{
 		StringBuilder text = new StringBuilder(attacker.name + " attacks " + this.name + ".\n");
-		if (attacker.attack > this.defence)
+		if (attacker.attack > this.defense)
 		{
-			int damage = (attacker.attack - this.defence);
+			int damage = (attacker.attack - this.defense);
 			health -= damage;
 			text.append(damage + " damage\n");
 		}
@@ -146,7 +146,7 @@ public abstract class Character
 	 */
 	protected int getDefense()
 	{
-		return defence;
+		return defense;
 	}
 
 	/**setDefense
@@ -156,7 +156,7 @@ public abstract class Character
 	 */
 	protected void setDefense(int defence)
 	{
-		this.defence = defence;
+		this.defense = defence;
 	}
 	
 	protected void addItem(Item itemToAdd){
