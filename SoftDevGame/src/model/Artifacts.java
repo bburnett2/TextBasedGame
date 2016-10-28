@@ -12,17 +12,13 @@ public class Artifacts extends Item
 		// TODO Auto-generated constructor stubS
 	}
 
-	protected String use(Player player) 
+	protected boolean use(Player player) 
 	{
-		String retString = "";
+		boolean completes = false;
 		if(completesPuzzle.keySet().contains(true)){
-			player.addCompletedPuzzle(completesPuzzle.get(true));
-			retString = "You solved a puzzle";
+			completes = true;
 		}
-		else{
-			retString = "item used";
-		}
-		return retString;
+		return completes;
 	}
 
 	@Override

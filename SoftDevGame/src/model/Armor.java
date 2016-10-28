@@ -21,10 +21,10 @@ public class Armor extends Item
 	}
 
 	@Override
-	protected String use(Player player)
+	protected boolean use(Player player)
 	{
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

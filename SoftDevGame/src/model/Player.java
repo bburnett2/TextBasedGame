@@ -57,7 +57,7 @@ public class Player extends Character
 	
 	protected String listItems()
 	{
-		String str ="Your inventory\n";
+		String str ="Your invatory\n";
 		
 		if (unequippedItems.size() > 0)
 		{
@@ -106,7 +106,7 @@ public class Player extends Character
 		return completedPuzzles.contains(puzzle);
 	}
 	
-	protected String useItem(Item item) 
+	protected boolean useItem(Item item) 
 	{
 		return item.use(this);
 	}

@@ -70,19 +70,19 @@ public class GameModel
 
 	}
 	
-	public void use(ArrayList<String> commands)
+	public boolean use(ArrayList<String> commands)throws GameException
 	{
-		for(Item item : room.player.getItemList()){
-			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName())){
-				console.print(player.useItem(item));
-				
+		boolean completesLevel = false;
+		for(Item item : player.getItemList()){
+			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase())){
+				boolean completesPuzzle = item.use(player);
+				ArrayList<String> answer = new ArrayList<>();
+				answer.add("space");
+				answer.add("use" + item.getName());
+				completesLevel = answer(answer);
 			}
 		}
-	}
-	
-	public void attack(ArrayList<String> commands)
-	{
-		console.print(room.fight()); 
+		return completesLevel;
 	}
 
 	public void run(ArrayList<String> commands)

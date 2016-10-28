@@ -57,6 +57,6 @@ public abstract class Item
 
 	abstract protected void use(Character character);
 	
-	abstract protected String use(Player player);
+	abstract protected boolean use(Player player);
 
 }

@@ -44,8 +44,11 @@ public class GameControl
 					model.equip(commands);
 				else if (commands.get(0).equalsIgnoreCase("enter"))
 					enterElevatorSubLoop();
-				else if (commands.get(0).equalsIgnoreCase("use"))
-					model.use(commands);
+				else if (commands.get(0).equalsIgnoreCase("use")){
+					boolean completesLevel = model.use(commands);
+					if(completesLevel)
+						enterElevatorSubLoop();
+				}
 				else if (commands.get(0).equalsIgnoreCase("run"))
 					model.run(commands);
 				else if ((commands.size() > 2) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("listitems"))
