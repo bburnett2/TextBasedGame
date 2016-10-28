@@ -36,7 +36,7 @@ public class Monster extends Character
 		if (health < 1)
 		{
 			//print the string returned by the die() method
-			die(attacker);
+			this.die(attacker);
 		}
 		else
 		{
