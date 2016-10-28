@@ -103,6 +103,16 @@ public class Room
 		}
 		return items;
 	}
+	
+	//this is intended to be the method called when the player enters the attack command
+	//it contains the logic for one round attacks between the player and a monster
+	protected String fight()
+	{
+		String str = "";
+		player.attack(monster);
+		
+		return str;
+	}
 
 	/**getItemList
 	 * @return itemList: ArrayList<Item> - 
@@ -153,12 +163,4 @@ public class Room
 		return hasPuzzle;
 	}
 	
-	//this is intended to be the method called when the player enters the attack command
-	//it contains the logic for one round attacks between the player and a monster
-	protected void fight()
-	{
-		player.attack(monster);
-	}
-
-
 }

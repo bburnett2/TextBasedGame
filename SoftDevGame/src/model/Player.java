@@ -21,6 +21,27 @@ public class Player extends Character
 	{
 		super(player);
 	}
+	
+	@Override
+	protected void takeDamage(Character attacker, int damage)
+	{		
+		super.takeDamage(attacker, damage);
+		
+		if (health < 1)
+		{
+			//print the string returned by the die() method
+			this.die(attacker);
+		}
+	}
+
+	@Override
+	protected String die(Character monster)
+	{
+		String deathscription = ("You were killed by the " + monster.name + ".\n");
+		return deathscription;
+		//since the die() action is automatically called upon death, 
+		//this method probably also ends the game or calls the method that does
+	}
 		
 	protected void addCompletedPuzzle(int id)
 	{
@@ -58,27 +79,6 @@ public class Player extends Character
 
 	}
 	
-	@Override
-	protected void takeDamage(Character attacker, int damage)
-	{		
-		super.takeDamage(attacker, damage);
-		
-		if (health < 1)
-		{
-			//print the string returned by the die() method
-			this.die(attacker);
-		}
-	}
-
-	@Override
-	protected String die(Character monster)
-	{
-		String deathscription = ("You were killed by the " + monster.name + ".\n");
-		return deathscription;
-		//since the die() action is automatically called upon death, 
-		//this method probably also ends the game or calls the method that does
-	}
-
 	protected int getCurrentRoom()
 	{
 		return currentRoom;
