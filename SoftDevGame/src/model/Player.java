@@ -27,12 +27,13 @@ public class Player extends Character
 		return "Item added to unequipped items";
 	}
 
-	public String addEquippedItems(Item item)
+	public String addEquippedItem(Item item)
 	{
 		equipedItems.add(item);
 		for(int i = 0 ; i < unequippedItems.size() ; i ++)
 		{
 			if (unequippedItems.get(i).equals(item.getName()))
+				unequippedItems.get(i).use(this);
 				unequippedItems.remove(i);
 		}
 		return "Item " + item.getName() + " has been equipped";		

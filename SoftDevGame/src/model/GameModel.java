@@ -66,16 +66,13 @@ public class GameModel
 
 	public void equip(ArrayList<String> commands)
 	{
-		String itemType;
 		for(Item item : player.getUnequippedItems())
 		{
 			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase()))
 			{
-				String className = item.getClass().getName();
-				itemType = className.substring(className.indexOf('.')+1, className.length());
-				if (itemType.equalsIgnoreCase("Armor"))
+				if (item.isEquippable())
 				{
-					print(player.addEquippedItems(item));
+					print(player.addEquippedItem(item));
 				}
 			}
 		}

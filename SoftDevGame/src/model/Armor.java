@@ -27,4 +27,10 @@ public class Armor extends Item
 		return false;
 	}
 
+	@Override
+	protected boolean isEquippable()
+	{
+		return true;
+	}
+
 }

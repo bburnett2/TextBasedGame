@@ -30,4 +30,10 @@ public class Artifacts extends Item
 		//if a monster is passed in and they will not use a artifacts.
 	}
 
+	@Override
+	protected boolean isEquippable()
+	{
+		return false;
+	}
+
 }
