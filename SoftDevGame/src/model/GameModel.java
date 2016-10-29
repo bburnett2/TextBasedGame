@@ -66,8 +66,19 @@ public class GameModel
 
 	public void equip(ArrayList<String> commands)
 	{
-		// TODO Auto-generated method stub
-
+		String itemType;
+		for(Item item : player.getUnequippedItems())
+		{
+			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase()))
+			{
+				String className = item.getClass().getName();
+				itemType = className.substring(className.indexOf('.')+1, className.length());
+				if (itemType.equalsIgnoreCase("Armor"))
+				{
+					print(player.addEquippedItems(item));
+				}
+			}
+		}
 	}
 
 	public boolean use(ArrayList<String> commands)throws GameException

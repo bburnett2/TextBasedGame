@@ -12,7 +12,7 @@ public class Player extends Character
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
 	private int currentRoom, previousRoom;
 	private boolean isFighting;
-	
+
 	protected Player(){
 		playerID = "default";
 		currentRoom = 3;
@@ -26,6 +26,18 @@ public class Player extends Character
 		unequippedItems.add(item);
 		return "Item added to unequipped items";
 	}
+
+	public String addEquippedItems(Item item)
+	{
+		equipedItems.add(item);
+		for(int i = 0 ; i < unequippedItems.size() ; i ++)
+		{
+			if (unequippedItems.get(i).equals(item.getName()))
+				unequippedItems.remove(i);
+		}
+		return "Item " + item.getName() + " has been equipped";		
+	}
+
 	protected String die(Character attacker)
 	{
 		String deathscription = ("You were killed by the " + attacker.name + ".\n");
@@ -33,7 +45,7 @@ public class Player extends Character
 		//since the die() action is automatically called upon death, 
 		//this method probably also ends the game or calls the method that does
 	}
-	
+
 	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
 	{
 		GameModel model = new GameModel();
@@ -58,18 +70,18 @@ public class Player extends Character
 		}
 		return items;
 	}
-	
+
 	protected String listItems()
 	{
 		String str ="Your inventory\n";
-		
+
 		if (unequippedItems.size() > 0)
 		{
 			str += "Unequpped Items\n";
 			for (Item item : unequippedItems)
 				str += item.getName() + "\n";
 		}
-		
+
 		if (equipedItems.size() > 0)
 		{
 			str += "\nEquiped Items\n";
@@ -78,17 +90,17 @@ public class Player extends Character
 		}
 		return str;
 	}
-		
+
 	protected void addCompletedPuzzle(int id)
 	{
 		completedPuzzles.add(id);
 	}
-	
+
 	protected void addDefeatedMonster(int id)
 	{
 		defeatedMonsters.add(id);
 	}
-	
+
 	protected boolean hasItem(String itemName) 
 	{
 		boolean hasItem = false;
@@ -97,7 +109,7 @@ public class Player extends Character
 			if (item.getName().equalsIgnoreCase(itemName))
 				hasItem = true;
 		}
-		
+
 		for (Item item : equipedItems)
 		{
 			if (item.getName().equalsIgnoreCase(itemName))
@@ -105,7 +117,7 @@ public class Player extends Character
 		}
 		return hasItem;
 	}
-	
+
 	protected boolean hasItem(int itemID) 
 	{
 		boolean hasItem = false;
@@ -114,10 +126,10 @@ public class Player extends Character
 			if (item.getItemID() == itemID)
 				hasItem = true;
 		}
-//		not sure exactly why but this does not work.		
-//		if (unequippedItems.contains(itemID))
-//			hasItem = true;
-		
+		//		not sure exactly why but this does not work.		
+		//		if (unequippedItems.contains(itemID))
+		//			hasItem = true;
+
 		for (Item item : equipedItems)
 		{
 			if (item.getItemID() == itemID)
@@ -125,7 +137,7 @@ public class Player extends Character
 		}
 		return hasItem;
 	}
-	
+
 	protected boolean hasDefeated(int monster)
 	{
 		return defeatedMonsters.contains(monster);
@@ -135,12 +147,12 @@ public class Player extends Character
 	{
 		return completedPuzzles.contains(puzzle);
 	}
-	
+
 	protected boolean useItem(Item item) 
 	{
 		return item.use(this);
 	}
-	
+
 	protected int getCurrentRoom()
 	{
 		return currentRoom;
@@ -206,12 +218,12 @@ public class Player extends Character
 	{
 		return equipedItems;
 	}
-	
+
 	protected boolean getFightingStatus()
 	{
 		return isFighting;
 	}
-	
+
 	public boolean isFighting()
 	{
 		return isFighting;
@@ -221,5 +233,5 @@ public class Player extends Character
 	{
 		isFighting = status;
 	}
-	
+
 }

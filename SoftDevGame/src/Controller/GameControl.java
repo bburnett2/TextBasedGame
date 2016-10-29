@@ -55,7 +55,7 @@ public class GameControl
 					model.listItems(commands);
 				else if ((commands.size() > 1) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("pickup"))
 				{
-				model.pickUp(commands);
+					model.pickUp(commands);
 				}
 				else if (commands.get(0).equalsIgnoreCase("quit"));
 				else
