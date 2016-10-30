@@ -26,4 +26,10 @@ public class Consumables extends Item
 		return false;
 	}
 
+	@Override
+	protected boolean isEquippable()
+	{
+		return false;
+	}
+
 }

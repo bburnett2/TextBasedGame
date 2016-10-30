@@ -15,7 +15,8 @@ public class Artifacts extends Item
 	protected boolean use(Player player) 
 	{
 		boolean completes = false;
-		if(completesPuzzle.keySet().contains(true)){
+		if(completesPuzzle.keySet().contains(true))
+		{
 			completes = true;
 		}
 		return completes;
@@ -27,6 +28,12 @@ public class Artifacts extends Item
 		
 		//This method does nothing at this time.  This wild only be called
 		//if a monster is passed in and they will not use a artifacts.
+	}
+
+	@Override
+	protected boolean isEquippable()
+	{
+		return false;
 	}
 
 }

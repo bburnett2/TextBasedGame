@@ -51,23 +51,31 @@ public class GameModel
 
 		if (correct)
 		{
-			console.print("Congratulations that was correct!!!");
+			print("Congratulations that was correct!!!");
 			player.addCompletedPuzzle(room.puzzle.getId());
 		}
 		else
-			console.print("That was incorrect");
+			print("That was incorrect");
 		return correct;
 	}
 
 	public void listItems(ArrayList<String> commands)
 	{
-		console.print(player.listItems());		
+		print(player.listItems());		
 	}
 
 	public void equip(ArrayList<String> commands)
 	{
-		// TODO Auto-generated method stub
-
+		for(Item item : player.getUnequippedItems())
+		{
+			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase()))
+			{
+				if (item.isEquippable())
+				{
+					print(player.addEquippedItem(item));
+				}
+			}
+		}
 	}
 
 	public boolean use(ArrayList<String> commands)throws GameException
@@ -109,6 +117,15 @@ public class GameModel
 		}
 
 		return hasStr;
+	}
+	
+	public void attack(ArrayList<String> commands)
+	{
+		if (room.hasMonster())
+			print(room.attack());
+		else
+			print("There is nothing to attack");
+		
 	}
 
 
@@ -228,9 +245,8 @@ public class GameModel
 		}
 		catch (GameException e)
 		{
-			console.print(e.getMessage());
+			print(e.getMessage());
 		}
-
 
 		return openFloor;
 	}
@@ -241,7 +257,7 @@ public class GameModel
 			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName()))
 			{
 				removeItem = item;
-				room.player.addItem(item);
+				print(room.player.addItem(item));
 				//				break;
 			}
 		}
@@ -267,7 +283,7 @@ public class GameModel
 
 	public void enterElevator()
 	{
-		console.print(elevator.toString());
+		print(elevator.toString());
 
 	}
 
@@ -285,6 +301,5 @@ public class GameModel
 	{
 		return DB.getPuzzleInformation(puzzleID);
 	}
-
 
 }

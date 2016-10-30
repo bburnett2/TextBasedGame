@@ -45,11 +45,6 @@ public abstract class Item
 		return keyItem;
 	}
 
-	protected void pickUp() 
-	{
-
-	}
-
 	protected void drop() 
 	{
 
@@ -58,5 +53,7 @@ public abstract class Item
 	abstract protected void use(Character character);
 	
 	abstract protected boolean use(Player player);
+	
+	abstract protected boolean isEquippable();
 
 }

@@ -42,6 +42,8 @@ public class GameControl
 				}
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
+				else if (commands.get(0).equalsIgnoreCase("attack"))
+					model.attack(commands);
 				else if (commands.get(0).equalsIgnoreCase("enter"))
 					enterElevatorSubLoop();
 				else if (commands.get(0).equalsIgnoreCase("use")){
@@ -55,7 +57,7 @@ public class GameControl
 					model.listItems(commands);
 				else if ((commands.size() > 14) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("pickup"))
 				{
-				model.pickUp(commands);
+					model.pickUp(commands);
 				}
 				else if (commands.get(0).equalsIgnoreCase("quit"));
 				else
