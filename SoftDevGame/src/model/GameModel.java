@@ -118,6 +118,15 @@ public class GameModel
 
 		return hasStr;
 	}
+	
+	public void attack(ArrayList<String> commands)
+	{
+		if (room.hasMonster())
+			print(room.attack());
+		else
+			print("There is nothing to attack");
+		
+	}
 
 
 	public boolean pushElevator(ArrayList<String> commands)
@@ -292,6 +301,5 @@ public class GameModel
 	{
 		return DB.getPuzzleInformation(puzzleID);
 	}
-
 
 }

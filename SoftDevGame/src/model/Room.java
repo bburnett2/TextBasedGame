@@ -109,6 +109,13 @@ public class Room
 		player.setFightingStatus(true);
 		//maybe a generic "the monster attacks you!!" is here as well
 	}
+	
+
+	public String attack()
+	{
+		String str = "";
+		return str;		
+	}
 
 	//this is intended to be the method called when the player enters the attack command
 	//it contains the logic for one round attacks between the player and a monster
@@ -207,4 +214,13 @@ public class Room
 	protected void removeItem(Item item){
 		itemList.remove(item);
 	}
+
+	public boolean hasMonster()
+	{
+		boolean hasMonster = true;
+		if (monster == null)
+			hasMonster = false;
+		return hasMonster;
+	}
+
 }
