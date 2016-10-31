@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import error.GameException;
 
@@ -261,6 +262,15 @@ public class GameModel
 	public void pickUp(ArrayList<String> commands){
 		Item removeItem = null;
 		for(Item item : room.getItemList()){
+			if(item.getName().contains(" ")){
+				Scanner itemScan = new Scanner(item.getName());
+				if(commands.contains(itemScan.next())){
+					if(commands.contains(itemScan.next())){
+						removeItem = item;
+						print(room.player.addItem(item));
+					}
+				}
+			}
 			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName()))
 			{
 				removeItem = item;

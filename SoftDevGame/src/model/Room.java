@@ -142,7 +142,7 @@ public class Room
 					for (int i = 0; i < monster.itemList.size()-1; i++)
 					{
 						str.append(monster.itemList.get(i).getName() + ", ");
-						last = i;
+						last = i + 1;
 					}
 					str.append("and " + monster.itemList.get(last).getName() + ".\n");
 				}
