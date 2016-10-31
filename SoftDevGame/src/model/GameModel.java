@@ -20,24 +20,31 @@ public class GameModel
 	{
 		int direction;
 
-		if(hasStr(command, "north"))
-			direction = room.getNorth();
-		else if(hasStr(command,"south"))
-			direction = room.getSouth();
-		else if(hasStr(command,"east"))
-			direction = room.getEast();
-		else if(hasStr(command,"west"))
-			direction = room.getWest();
+		if(player.isFighting())
+		{
+			throw new GameException("You must fight or run.");
+		}
 		else
-			throw new GameException ("Not a valid direction");
-
-		if(direction == 0)
-			throw new GameException("\nThere is not a door that direction\n");
-
-		exitRoom();
-		room = new Room(DB.getRoomInformation(direction), player);
-		player.setCurrentRoom(room.getId());
-		print(room.toString());
+		{
+			if(hasStr(command, "north"))
+				direction = room.getNorth();
+			else if(hasStr(command,"south"))
+				direction = room.getSouth();
+			else if(hasStr(command,"east"))
+				direction = room.getEast();
+			else if(hasStr(command,"west"))
+				direction = room.getWest();
+			else
+				throw new GameException ("Not a valid direction.");
+	
+			if(direction == 0)
+				throw new GameException("\nThere is not a door that direction.\n");
+	
+			exitRoom();
+			room = new Room(DB.getRoomInformation(direction), player);
+			player.setCurrentRoom(room.getId());
+			print(room.toString());
+		}
 	}
 
 
@@ -47,15 +54,15 @@ public class GameModel
 		if (room.hasPuzzle())
 			correct = room.answer(commands);
 		else 
-			throw new GameException("There is no puzzle to answer in this room");
+			throw new GameException("There is no puzzle to answer in this room.");
 
 		if (correct)
 		{
-			print("Congratulations that was correct!!!");
+			print("Congratulations, that was correct!!!");
 			player.addCompletedPuzzle(room.puzzle.getId());
 		}
 		else
-			print("That was incorrect");
+			print("That was incorrect.");
 		return correct;
 	}
 
@@ -104,7 +111,7 @@ public class GameModel
 			print(room.toString());	
 		}
 		else
-			print("There is nothing to run from");
+			print("There is nothing to run from.");
 	}
 
 	private boolean hasStr(ArrayList<String> command, String str)
@@ -122,7 +129,7 @@ public class GameModel
 	public void attack(ArrayList<String> commands)
 	{
 		if (room.hasMonster())
-			print(room.attack());
+			print(room.fight());
 		else
 			print("There is nothing to attack");
 		

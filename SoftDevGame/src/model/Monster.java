@@ -27,7 +27,7 @@ public class Monster extends Character
 	protected String die(Character attacker)
 	{
 		//deathscription goes here
-		return ("The " + name + " died.");
+		return ("The " + name + " died.\n");
 	}
 
 	protected int getId()

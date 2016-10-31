@@ -47,6 +47,7 @@ public class Room
 		if (!(monster == null))
 		{
 				str += "\n\n" + monster.getDescription();
+				str += startFight();
 		}
 
 
@@ -104,18 +105,13 @@ public class Room
 		return items;
 	}
 
-	protected void startFight()
+	protected String startFight()
 	{
 		player.setFightingStatus(true);
+		return("\n\nYou are fighting the " + monster.name + ".\n");
 		//maybe a generic "the monster attacks you!!" is here as well
 	}
 	
-
-	public String attack()
-	{
-		String str = "";
-		return str;		
-	}
 
 	//this is intended to be the method called when the player enters the attack command
 	//it contains the logic for one round attacks between the player and a monster
@@ -125,12 +121,13 @@ public class Room
 		str.append(player.attack(monster));
 		if(monster.isDead())
 		{
+			player.setFightingStatus(false);
 			str.append(monster.die(player));
 			player.addDefeatedMonster(monster.getId());
 			if (monster.itemList.size() > 0)
 			{
 				//method which adds the defeated monster's items to the player
-				str.append("Upon death, " + monster.name + "dropped ");
+				str.append("Upon death, " + monster.name + " dropped ");
 				if (monster.itemList.size() == 1)
 				{
 					for (int i = 0; i <= monster.itemList.size()-1; i++)
@@ -157,6 +154,10 @@ public class Room
 			if(player.isDead())
 			{
 				str.append(player.die(monster));
+			}
+			else
+			{
+				str.append("\n\nYou are fighting the " + monster.name + ".\n");
 			}
 		}
 		return str.toString();
