@@ -15,6 +15,7 @@ public abstract class Character
 		health = 10;
 		defense = 5;
 		attack = 5;
+		name = "Sally";
 	}
 	
 	/**getItemList
