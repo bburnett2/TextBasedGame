@@ -26,7 +26,7 @@ public abstract class Character
 
 	public Character(Object[] character)
 	{
-		name = (String)character[0];
+		this.name = (String)character[0];
 		this.attack = (int)character[3];
 		this.health = (int)character[4];
 		this.defense = (int)character[5];

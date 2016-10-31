@@ -9,17 +9,18 @@ public class Player extends Character
 	private ArrayList<Integer> completedPuzzles = new ArrayList<Integer>();
 	private ArrayList<Integer> defeatedMonsters = new ArrayList<Integer>();
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
-	private int currentRoom, previousRoom;
+	private int currentRoom, previousRoom, maxHealth;
 	private boolean isFighting;
 
 	protected Player(){
 		super();
 		currentRoom = 3;
 	}
-	
+
 	protected Player(Object[] player)
 	{
 		super(player);
+		this.maxHealth = (int)player[4]; //This is the original health
 	}
 
 	protected String addItem(Item item){
@@ -34,7 +35,7 @@ public class Player extends Character
 		{
 			if (unequippedItems.get(i).equals(item.getName()))
 				unequippedItems.get(i).use(this);
-				unequippedItems.remove(i);
+			unequippedItems.remove(i);
 		}
 		return "Item " + item.getName() + " has been equipped";		
 	}
@@ -222,6 +223,17 @@ public class Player extends Character
 	protected void setFightingStatus(boolean status)
 	{
 		isFighting = status;
+	}
+
+	public void addMaxHealth(int hp)
+	{
+		maxHealth += hp;		
+	}
+
+	public void addHealth(int hp)
+	{
+		if (super.health + hp <= maxHealth)
+			super.health += hp;		
 	}
 
 }

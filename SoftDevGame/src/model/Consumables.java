@@ -19,10 +19,19 @@ public class Consumables extends Item
 		
 	}
 
+	
+	/**
+	 * Item 20 is heard coded because it is the only one that will add to maxHealth.
+	 * @param player
+	 * @return
+	 */
 	@Override
 	protected boolean use(Player player)
 	{
-		// TODO Auto-generated method stub
+		if (this.getItemID() == 20)
+			player.addMaxHealth(hp);
+		else 
+			player.addHealth(hp);
 		return false;
 	}
 
