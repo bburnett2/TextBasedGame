@@ -12,7 +12,7 @@ public class Game
 
 	public void save()
 	{
-		String playerID = player.getPlayerID();
+		String name = player.getName();
 		int currentRoomID = player.getCurrentRoom();
 		int playerHealth = player.getHealth();
 		int playerDefense = player.getDefense();
@@ -27,7 +27,7 @@ public class Game
 			equppedItems.add(item.getItemID());
 		}
 		Object[] gameInfo = new Object[9];
-		gameInfo[0] = playerID;
+		gameInfo[0] = name;
 		gameInfo[1] = currentRoomID;
 		gameInfo[2] = playerHealth;
 		gameInfo[3] = playerDefense;

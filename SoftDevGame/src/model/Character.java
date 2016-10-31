@@ -168,3 +168,15 @@ public abstract class Character
 //	}
 
 }
+}
+}
+}
+}tring die(Character attacker);
+
+
+//	void addCompletedPuzzle(Integer integer)
+//	{
+//		
+//	}
+
+}

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Player extends Character 
 {
 	//ArrayList<Integer> contains the ID's of the completed/held things
-	private String playerID;
 	private ArrayList<Item> unequippedItems = new ArrayList<Item>();
 	private ArrayList<Integer> completedPuzzles = new ArrayList<Integer>();
 	private ArrayList<Integer> defeatedMonsters = new ArrayList<Integer>();
@@ -14,7 +13,7 @@ public class Player extends Character
 	private boolean isFighting;
 
 	protected Player(){
-		playerID = "default";
+		super();
 		currentRoom = 3;
 	}
 	
@@ -171,15 +170,6 @@ public class Player extends Character
 		return previousRoom;
 	}
 
-	/**getPlayerID
-	 * @return playerID: String - 
-	 * 
-	 * returns the playerID
-	 */
-	protected String getPlayerID()
-	{
-		return playerID;
-	}
 
 	/**getUnequippedItems
 	 * @return unequippedItems: ArrayList<Integer> - 
