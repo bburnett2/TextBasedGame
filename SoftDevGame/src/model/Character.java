@@ -26,9 +26,9 @@ public abstract class Character
 	public Character(Object[] character)
 	{
 		name = (String)character[0];
-		this.attack = (int)character[2];
-		this.health = (int)character[3];
-		this.defense = (int)character[4];
+		this.attack = (int)character[3];
+		this.health = (int)character[4];
+		this.defense = (int)character[5];
 
 		/**At the moment there is not a object from the DB with this information therefore
 		not in the object array.  We can derive this from the constructor if you would
