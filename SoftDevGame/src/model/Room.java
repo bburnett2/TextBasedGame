@@ -130,10 +130,7 @@ public class Room
 				str.append("Upon death, " + monster.name + " dropped ");
 				if (monster.itemList.size() == 1)
 				{
-					for (int i = 0; i <= monster.itemList.size()-1; i++)
-					{
-						player.addItem(monster.itemList.get(i));
-					}
+					player.addItem(monster.itemList.get(0));
 					str.append(monster.itemList.get(0).getName());
 				}
 				else
@@ -144,7 +141,7 @@ public class Room
 						str.append(monster.itemList.get(i).getName() + ", ");
 						last = i;
 					}
-					str.append("and " + monster.itemList.get(last).getName() + ".\n");
+					str.append("and " + monster.itemList.get(last+1).getName() + ".\n");
 				}
 			}
 		}
