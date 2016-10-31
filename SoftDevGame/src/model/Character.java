@@ -148,6 +148,16 @@ public abstract class Character
 	{
 		return defense;
 	}
+	
+	public String getName()
+	{
+		return name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
 
 	/**setDefense
 	 * @param defense: int - defense
@@ -160,23 +170,5 @@ public abstract class Character
 	}
 
 	abstract protected String die(Character attacker);
-
-
-//	void addCompletedPuzzle(Integer integer)
-//	{
-//		
-//	}
-
-}
-}
-}
-}
-}tring die(Character attacker);
-
-
-//	void addCompletedPuzzle(Integer integer)
-//	{
-//		
-//	}
 
 }
