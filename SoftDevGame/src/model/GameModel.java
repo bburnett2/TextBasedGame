@@ -271,12 +271,12 @@ public class GameModel
 		for(Item item : room.getItemList()){
 			if(item.getName().contains(" ")){
 				Scanner itemScan = new Scanner(item.getName());
-				if(commands.contains(itemScan.next())){
-					if(commands.contains(itemScan.next())){
+				String itemName1 = itemScan.next().toLowerCase();
+				String itemName2 = itemScan.next().toLowerCase();
+				if(commands.contains(itemName1) && commands.contains(itemName2)){
 						removeItem = item;
 						print(room.player.addItem(item));
 					}
-				}
 			}
 			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName()))
 			{
