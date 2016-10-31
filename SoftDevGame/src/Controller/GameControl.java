@@ -18,12 +18,21 @@ public class GameControl
 		GameControl run = new GameControl();
 		run.startGame();
 		run.mainLoop();
+		run.endOfGame();
+	}
+
+
+	private void endOfGame()
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 
 	private void mainLoop()
 	{
 		String command;
+		boolean endGame = false;
 		ArrayList<String> commands = new ArrayList<String>();
 
 		do{
@@ -43,7 +52,7 @@ public class GameControl
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
 				else if (commands.get(0).equalsIgnoreCase("attack"))
-					model.attack(commands);
+					endGame = model.attack(commands);
 				else if (commands.get(0).equalsIgnoreCase("enter"))
 					enterElevatorSubLoop();
 				else if (commands.get(0).equalsIgnoreCase("use")){
@@ -68,7 +77,7 @@ public class GameControl
 				print(exc.getMessage());
 			}
 
-		}while(!(command.equalsIgnoreCase("quit")));
+		}while(!(command.equalsIgnoreCase("quit")) && !(endGame));
 
 	}
 

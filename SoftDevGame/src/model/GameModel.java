@@ -126,12 +126,19 @@ public class GameModel
 		return hasStr;
 	}
 	
-	public void attack(ArrayList<String> commands)
+	public boolean attack(ArrayList<String> commands)
 	{
+		boolean youDied = false;
 		if (room.hasMonster())
+		{
 			print(room.fight());
+			if (player.isDead())
+				youDied = true;
+		}
 		else
 			print("There is nothing to attack");
+		
+		return youDied;
 		
 	}
 

@@ -41,10 +41,8 @@ public class Player extends Character
 
 	protected String die(Character attacker)
 	{
-		String deathscription = ("You were killed by the " + attacker.name + ".\n");
+		String deathscription = ("You were killed by the " + attacker.name + ".\n");	
 		return deathscription;
-		//since the die() action is automatically called upon death, 
-		//this method probably also ends the game or calls the method that does
 	}
 
 	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
