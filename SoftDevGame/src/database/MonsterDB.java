@@ -11,13 +11,13 @@ public class MonsterDB extends DatabaseManager
 		Object[] monster = new Object[7];
 		try{
 			resultSet = statement.executeQuery(sqlCall);
-			monster[0] = resultSet.getInt("MonsterID");
-			monster[1] = addLineBreaks(resultSet.getString("Description"));
-			monster[2] = resultSet.getInt("Attack");
-			monster[3] = resultSet.getInt("Health");
-			monster[4] = resultSet.getInt("Defense");
-			monster[5] = getMonsterItemsInts(monsterNum);
-			monster[6] = "fred";
+			monster[0] = "fred";
+			monster[1] = resultSet.getInt("MonsterID");
+			monster[2] = addLineBreaks(resultSet.getString("Description"));
+			monster[3] = resultSet.getInt("Attack");
+			monster[4] = resultSet.getInt("Health");
+			monster[5] = resultSet.getInt("Defense");
+			monster[6] = getMonsterItemsInts(monsterNum);
 		}
 		catch(SQLException ex){
 

@@ -17,6 +17,7 @@ public class Player extends Character
 		playerID = "default";
 		currentRoom = 3;
 	}
+	
 	protected Player(Object[] player)
 	{
 		super(player);

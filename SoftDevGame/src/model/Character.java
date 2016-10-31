@@ -23,11 +23,12 @@ public abstract class Character
 	 * returns the itemList
 	 */
 
-	public Character(Object[] monster)
+	public Character(Object[] character)
 	{
-		this.attack = (int)monster[2];
-		this.health = (int)monster[3];
-		this.defense = (int)monster[4];
+		name = (String)character[0];
+		this.attack = (int)character[2];
+		this.health = (int)character[3];
+		this.defense = (int)character[4];
 
 		/**At the moment there is not a object from the DB with this information therefore
 		not in the object array.  We can derive this from the constructor if you would
