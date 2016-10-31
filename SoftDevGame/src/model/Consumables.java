@@ -15,7 +15,7 @@ public class Consumables extends Item
 	@Override
 	protected void use(Character character)
 	{
-		
+		// TODO Auto-generated method stub
 		
 	}
 
