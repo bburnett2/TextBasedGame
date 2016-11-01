@@ -10,7 +10,7 @@ public class GameModel
 	public final int FIRSTROOM = 3;
 
 	//needs to be working from DB
-	private Player player = new Player();
+	private Player player;
 	private Room room = null;
 
 	private Elevator elevator = new Elevator(player);
@@ -37,10 +37,10 @@ public class GameModel
 				direction = room.getWest();
 			else
 				throw new GameException ("Not a valid direction.");
-	
+
 			if(direction == 0)
 				throw new GameException("\nThere is not a door that direction.\n");
-	
+
 			exitRoom();
 			room = new Room(DB.getRoomInformation(direction), player);
 			player.setCurrentRoom(room.getId());
@@ -101,7 +101,7 @@ public class GameModel
 		return completesLevel;
 	}
 
-	public void run(ArrayList<String> commands)
+	public void run(ArrayList<String> commands)throws GameException
 	{
 		if (player.isFighting())
 		{
@@ -126,7 +126,7 @@ public class GameModel
 
 		return hasStr;
 	}
-	
+
 	public boolean attack(ArrayList<String> commands)
 	{
 		boolean youDied = false;
@@ -138,9 +138,9 @@ public class GameModel
 		}
 		else
 			print("There is nothing to attack");
-		
+
 		return youDied;
-		
+
 	}
 
 
@@ -274,9 +274,9 @@ public class GameModel
 				String itemName1 = itemScan.next().toLowerCase();
 				String itemName2 = itemScan.next().toLowerCase();
 				if(commands.contains(itemName1) && commands.contains(itemName2)){
-						removeItem = item;
-						print(room.player.addItem(item));
-					}
+					removeItem = item;
+					print(room.player.addItem(item));
+				}
 			}
 			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName()))
 			{
@@ -299,9 +299,15 @@ public class GameModel
 		room = null;
 	}
 
-	public void firstRoom()
+	public void firstRoom(String playerID)
 	{
-		room = new Room(DB.getRoomInformation(FIRSTROOM), player);
+		player = new Player(playerID);
+		try{
+			room = new Room(DB.getRoomInformation(FIRSTROOM), player);
+		}
+		catch(GameException ex){
+			print(ex.getMessage());
+		}
 		print(room.toString());
 	}
 
@@ -316,7 +322,7 @@ public class GameModel
 		return DB.getItemInformation(itemNum);
 	}
 
-	public Object[] getMonster(int monsterNumber)
+	public Object[] getMonster(int monsterNumber) throws GameException
 	{
 		return DB.getMonsterInformation(monsterNumber);
 	}

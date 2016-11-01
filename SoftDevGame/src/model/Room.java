@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import error.GameException;
+
 public class Room 
 {
 
@@ -14,7 +16,7 @@ public class Room
 	protected Player player;
 	private String restrictions;
 
-	protected Room(Object[] room, Player player)
+	protected Room(Object[] room, Player player)throws GameException
 	{
 		this.player = player;
 		this.id = (int)room[0];
@@ -68,7 +70,7 @@ public class Room
 			return null;
 	}
 
-	protected Monster buildMonster(int monsterNumber)
+	protected Monster buildMonster(int monsterNumber) throws GameException
 	{
 		GameModel model = new GameModel();
 		if (monsterNumber > 0  && !(player.hasDefeated(monsterNumber)))

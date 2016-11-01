@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import error.GameException;
 import model.Item;
 
 import java.sql.DriverManager;
@@ -51,7 +52,7 @@ public class DatabaseManager {
 		return itemDB.getItemInformationPro(itemNum);
 	}
 	
-	public Object[] getMonsterInformation(int monsterNum){
+	public Object[] getMonsterInformation(int monsterNum) throws GameException{
 		MonsterDB monsterDB = new MonsterDB();
 		return monsterDB.getMonsterInformationPro(monsterNum);
 	}

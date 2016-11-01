@@ -12,7 +12,7 @@ public class Player extends Character
 	private int currentRoom, previousRoom, maxHealth;
 	private boolean isFighting;
 
-	protected Player(){
+	protected Player(String playerID){
 		super();
 		currentRoom = 3;
 	}

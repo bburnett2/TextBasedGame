@@ -3,15 +3,17 @@ package database;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import error.GameException;
+
 public class MonsterDB extends DatabaseManager
 {
 
-	protected Object[] getMonsterInformationPro(int monsterNum){
+	protected Object[] getMonsterInformationPro(int monsterNum) throws GameException{
 		sqlCall = "SELECT * FROM monster WHERE monsterID = " + monsterNum;
 		Object[] monster = new Object[7];
 		try{
 			resultSet = statement.executeQuery(sqlCall);
-			monster[0] = "fred";
+			monster[0] = resultSet.getString("MonsterName");
 			monster[1] = resultSet.getInt("MonsterID");
 			monster[2] = addLineBreaks(resultSet.getString("Description"));
 			monster[3] = resultSet.getInt("Attack");
@@ -20,7 +22,7 @@ public class MonsterDB extends DatabaseManager
 			monster[6] = getMonsterItemsInts(monsterNum);
 		}
 		catch(SQLException ex){
-
+			throw new GameException("monsterID invalid");
 		}
 		return monster;
 	}

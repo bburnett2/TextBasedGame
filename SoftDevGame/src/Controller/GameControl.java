@@ -11,11 +11,13 @@ public class GameControl
 	model.GameModel model = new model.GameModel();
 	Scanner input = new Scanner(System.in);
 	ArrayList<String> validCommands = new ArrayList<>();
+	String playerID;
 
 
 	public static void main(String[] args)
 	{
 		GameControl run = new GameControl();
+		run.loadOrNew();
 		run.startGame();
 		run.mainLoop();
 		run.endOfGame();
@@ -100,10 +102,15 @@ public class GameControl
 		}while(!(inElevator) && !(commands.contains("exit")));
 	}
 
-
+//start new game with playerID, selected by user, or load saved game
+	private void loadOrNew(){
+		print("Select new game or select from the list of saved games: \n");
+		String game = read();
+	}
+	
 	private void startGame()
 	{
-		model.firstRoom();
+		model.firstRoom(playerID);
 		validCommands.add("Go");
 		validCommands.add("Answer");
 		validCommands.add("Equip");
