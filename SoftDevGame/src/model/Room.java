@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import error.GameException;
 
@@ -14,7 +15,8 @@ public class Room
 	private Monster monster;
 	protected Puzzle puzzle;
 	protected Player player;
-	private String restrictions;
+	protected int restrictionPuzzleID;
+	protected String restrictedDoor;
 
 	protected Room(Object[] room, Player player)throws GameException
 	{
@@ -26,7 +28,11 @@ public class Room
 		this.south = (int)room[4];
 		this.east = (int)room[5];
 		this.west = (int)room[6];
-		this.restrictions = (String)room[7];
+		String restrictSt = (String)room[7];
+		Scanner restrict = new Scanner(restrictSt);
+		restrict.useDelimiter(",");
+		this.restrictionPuzzleID = restrict.nextInt();
+		this.restrictedDoor = restrict.next();
 		this.itemList = buildItems((ArrayList<Integer>) room[8]);
 		this.puzzle = buildPuzzle((int)room[9]);
 	}
@@ -143,7 +149,7 @@ public class Room
 						str.append(monster.itemList.get(i).getName() + ", ");
 						last = i + 1;
 					}
-					str.append("and " + monster.itemList.get(last+1).getName() + ".\n");
+					str.append("and " + monster.itemList.get(last).getName() + ".\n");
 				}
 			}
 		}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import error.GameException;
+import model.Player;
 
 
 public class GameControl 
@@ -11,14 +12,13 @@ public class GameControl
 	model.GameModel model = new model.GameModel();
 	Scanner input = new Scanner(System.in);
 	ArrayList<String> validCommands = new ArrayList<>();
-	String playerID;
 
 
 	public static void main(String[] args)
 	{
 		GameControl run = new GameControl();
 		run.loadOrNew();
-		run.startGame();
+		//run.startGame();
 		run.mainLoop();
 		run.endOfGame();
 	}
@@ -49,7 +49,7 @@ public class GameControl
 				{
 					boolean completesLevel = model.answer(commands);
 					if(completesLevel)
-						enterElevatorSubLoop();
+ 						enterElevatorSubLoop();
 				}
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
@@ -105,12 +105,23 @@ public class GameControl
 //start new game with playerID, selected by user, or load saved game
 	private void loadOrNew(){
 		print("Select new game or select from the list of saved games: \n");
-		String game = read();
+		ArrayList<String> loadableGames = model.getLoadableGames();
+		String name = read();
+		Player player;
+		if(loadableGames.contains(name)){
+			player = model.buildPlayer(name);
+		}
+		else{
+			print("What would you like your PlayerID to be");
+			name = read();
+			player = model.buildNewPlayer(name);
+		}
+		startGame(player);
 	}
 	
-	private void startGame()
+	private void startGame(Player player)
 	{
-		model.firstRoom(playerID);
+		model.firstRoom(player);
 		validCommands.add("Go");
 		validCommands.add("Answer");
 		validCommands.add("Equip");
@@ -119,6 +130,18 @@ public class GameControl
 		validCommands.add("Use");
 		validCommands.add("quit");
 	}
+	
+//	private void startGame()
+//	{
+//		model.firstRoom(playerID);
+//		validCommands.add("Go");
+//		validCommands.add("Answer");
+//		validCommands.add("Equip");
+//		validCommands.add("Help");
+//		validCommands.add("Enter");
+//		validCommands.add("Use");
+//		validCommands.add("quit");
+//	}
 
 	private void print(String str)
 	{

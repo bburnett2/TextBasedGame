@@ -4,7 +4,7 @@ public class Elevator
 {
 	private int currentLevel = 1;
 	
-	private Player player = null;
+	private Player player;
 	private int Level1 = 3;
 	private int Level2 = 11;
 	private int Level3 = 17;
@@ -22,6 +22,9 @@ public class Elevator
 	private boolean isL6Complete = false;
 	private boolean isL7Complete = false;
 	
+	public Elevator(){
+		
+	}
 	
 	public Elevator(Player player)
 	{

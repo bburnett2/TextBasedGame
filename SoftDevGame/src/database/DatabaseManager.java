@@ -72,11 +72,6 @@ public class DatabaseManager {
 		return savedGamesDB.loadGamePro(playerID);
 	}
 	
-	public String getSavedGames(){
-		SavedGamesDB savedGamesDB = new SavedGamesDB();
-		return savedGamesDB.getSavedGamesPro();
-	}
-	
 	protected String addLineBreaks(String str){
 		StringBuilder strWithSpaces = new StringBuilder();
 		Scanner strScan = new Scanner(str);
@@ -89,6 +84,12 @@ public class DatabaseManager {
 			}
 		}
 		return strWithSpaces.toString();
+	}
+
+	public ArrayList<String> getLoadableGames()
+	{
+		SavedGamesDB savedGamesDB = new SavedGamesDB();
+		return savedGamesDB.getLoadableGamesPro();
 	}
 	
 //	public static void main(String[] args) throws ClassNotFoundException{

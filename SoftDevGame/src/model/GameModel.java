@@ -13,7 +13,7 @@ public class GameModel
 	private Player player;
 	private Room room = null;
 
-	private Elevator elevator = new Elevator(player);
+	private Elevator elevator;
 	private view.Console console = new view.Console();
 	private database.DatabaseManager DB = new database.DatabaseManager();
 
@@ -25,15 +25,20 @@ public class GameModel
 		{
 			throw new GameException("You must fight or run.");
 		}
+//check if door has restrictions
+		String restricedDoor = "";
+		if(room.restrictionPuzzleID != 0){
+			restricedDoor = room.restrictedDoor;
+		}
 		else
 		{
-			if(hasStr(command, "north"))
+			if(hasStr(command, "north") && !restricedDoor.equals("north"))
 				direction = room.getNorth();
-			else if(hasStr(command,"south"))
+			else if(hasStr(command,"south") && !restricedDoor.equals("south"))
 				direction = room.getSouth();
-			else if(hasStr(command,"east"))
+			else if(hasStr(command,"east") && !restricedDoor.equals("east"))
 				direction = room.getEast();
-			else if(hasStr(command,"west"))
+			else if(hasStr(command,"west") && !restricedDoor.equals("west"))
 				direction = room.getWest();
 			else
 				throw new GameException ("Not a valid direction.");
@@ -299,9 +304,9 @@ public class GameModel
 		room = null;
 	}
 
-	public void firstRoom(String playerID)
+	public void firstRoom(Player player)
 	{
-		player = new Player(playerID);
+		this.player = player;
 		try{
 			room = new Room(DB.getRoomInformation(FIRSTROOM), player);
 		}
@@ -313,6 +318,7 @@ public class GameModel
 
 	public void enterElevator()
 	{
+		elevator = new Elevator(player);
 		print(elevator.toString());
 
 	}
@@ -330,6 +336,27 @@ public class GameModel
 	public Object[] getPuzzle(int puzzleID)
 	{
 		return DB.getPuzzleInformation(puzzleID);
+	}
+
+
+	public ArrayList<String> getLoadableGames()
+	{
+		ArrayList<String> loadableGames = DB.getLoadableGames();
+		return loadableGames;
+	}
+
+
+	public Player buildNewPlayer(String name)
+	{
+		player = new Player(name);
+		return player;
+	}
+
+
+	public Player buildPlayer(String name)
+	{
+		player = new Player(DB.loadGame(name));
+		return player;
 	}
 
 }
