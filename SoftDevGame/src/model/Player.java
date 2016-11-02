@@ -31,12 +31,13 @@ public class Player extends Character
 	public String addEquippedItem(Item item)
 	{
 		equipedItems.add(item);
-		for(int i = 0 ; i < unequippedItems.size() ; i ++)
-		{
-			if (unequippedItems.get(i).equals(item.getName()))
-				unequippedItems.get(i).use(this);
-			unequippedItems.remove(i);
-		}
+		unequippedItems.remove(item);
+//		for(int i = 0 ; i < unequippedItems.size() ; i ++)
+//		{
+//			if (unequippedItems.get(i).equals(item.getName()))
+//				unequippedItems.get(i).use(this);
+//			unequippedItems.remove(i);
+//		}
 		return "Item " + item.getName() + " has been equipped";		
 	}
 

@@ -79,16 +79,20 @@ public class GameModel
 
 	public void equip(ArrayList<String> commands)
 	{
+		Item itemToAdd = null;
 		for(Item item : player.getUnequippedItems())
 		{
 			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase()))
 			{
 				if (item.isEquippable())
 				{
-					print(player.addEquippedItem(item));
+					//print(player.addEquippedItem(item));
+					itemToAdd = item;
+					break;
 				}
 			}
 		}
+		print(player.addEquippedItem(itemToAdd));
 	}
 
 	public boolean use(ArrayList<String> commands)throws GameException
