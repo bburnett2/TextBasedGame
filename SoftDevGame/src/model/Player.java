@@ -9,17 +9,18 @@ public class Player extends Character
 	private ArrayList<Integer> completedPuzzles = new ArrayList<Integer>();
 	private ArrayList<Integer> defeatedMonsters = new ArrayList<Integer>();
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
-	private int currentRoom, previousRoom;
+	private int currentRoom, previousRoom, maxHealth;
 	private boolean isFighting;
 
-	protected Player(){
+	protected Player(String playerID){
 		super();
 		currentRoom = 3;
 	}
-	
+
 	protected Player(Object[] player)
 	{
 		super(player);
+		this.maxHealth = (int)player[4]; //This is the original health
 	}
 
 	protected String addItem(Item item){
@@ -30,21 +31,20 @@ public class Player extends Character
 	public String addEquippedItem(Item item)
 	{
 		equipedItems.add(item);
-		for(int i = 0 ; i < unequippedItems.size() ; i ++)
-		{
-			if (unequippedItems.get(i).equals(item.getName()))
-				unequippedItems.get(i).use(this);
-				unequippedItems.remove(i);
-		}
+		unequippedItems.remove(item);
+//		for(int i = 0 ; i < unequippedItems.size() ; i ++)
+//		{
+//			if (unequippedItems.get(i).equals(item.getName()))
+//				unequippedItems.get(i).use(this);
+//			unequippedItems.remove(i);
+//		}
 		return "Item " + item.getName() + " has been equipped";		
 	}
 
 	protected String die(Character attacker)
 	{
-		String deathscription = ("You were killed by the " + attacker.name + ".\n");
+		String deathscription = ("You were killed by the " + attacker.name + ".\n");	
 		return deathscription;
-		//since the die() action is automatically called upon death, 
-		//this method probably also ends the game or calls the method that does
 	}
 
 	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
@@ -224,6 +224,17 @@ public class Player extends Character
 	protected void setFightingStatus(boolean status)
 	{
 		isFighting = status;
+	}
+
+	public void addMaxHealth(int hp)
+	{
+		maxHealth += hp;		
+	}
+
+	public void addHealth(int hp)
+	{
+		if (super.health + hp <= maxHealth)
+			super.health += hp;		
 	}
 
 }

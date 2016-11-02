@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import error.GameException;
 
@@ -9,10 +10,10 @@ public class GameModel
 	public final int FIRSTROOM = 3;
 
 	//needs to be working from DB
-	private Player player = new Player();
+	private Player player;
 	private Room room = null;
 
-	private Elevator elevator = new Elevator(player);
+	private Elevator elevator;
 	private view.Console console = new view.Console();
 	private database.DatabaseManager DB = new database.DatabaseManager();
 
@@ -24,22 +25,27 @@ public class GameModel
 		{
 			throw new GameException("You must fight or run.");
 		}
+//check if door has restrictions
+		String restricedDoor = "";
+		if(room.restrictionPuzzleID != 0){
+			restricedDoor = room.restrictedDoor;
+		}
 		else
 		{
-			if(hasStr(command, "north"))
+			if(hasStr(command, "north") && !restricedDoor.equals("north"))
 				direction = room.getNorth();
-			else if(hasStr(command,"south"))
+			else if(hasStr(command,"south") && !restricedDoor.equals("south"))
 				direction = room.getSouth();
-			else if(hasStr(command,"east"))
+			else if(hasStr(command,"east") && !restricedDoor.equals("east"))
 				direction = room.getEast();
-			else if(hasStr(command,"west"))
+			else if(hasStr(command,"west") && !restricedDoor.equals("west"))
 				direction = room.getWest();
 			else
 				throw new GameException ("Not a valid direction.");
-	
+
 			if(direction == 0)
 				throw new GameException("\nThere is not a door that direction.\n");
-	
+
 			exitRoom();
 			room = new Room(DB.getRoomInformation(direction), player);
 			player.setCurrentRoom(room.getId());
@@ -73,16 +79,20 @@ public class GameModel
 
 	public void equip(ArrayList<String> commands)
 	{
+		Item itemToAdd = null;
 		for(Item item : player.getUnequippedItems())
 		{
 			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase()))
 			{
 				if (item.isEquippable())
 				{
-					print(player.addEquippedItem(item));
+					//print(player.addEquippedItem(item));
+					itemToAdd = item;
+					break;
 				}
 			}
 		}
+		print(player.addEquippedItem(itemToAdd));
 	}
 
 	public boolean use(ArrayList<String> commands)throws GameException
@@ -100,7 +110,7 @@ public class GameModel
 		return completesLevel;
 	}
 
-	public void run(ArrayList<String> commands)
+	public void run(ArrayList<String> commands)throws GameException
 	{
 		if (player.isFighting())
 		{
@@ -125,14 +135,21 @@ public class GameModel
 
 		return hasStr;
 	}
-	
-	public void attack(ArrayList<String> commands)
+
+	public boolean attack(ArrayList<String> commands)
 	{
+		boolean youDied = false;
 		if (room.hasMonster())
+		{
 			print(room.fight());
+			if (player.isDead())
+				youDied = true;
+		}
 		else
 			print("There is nothing to attack");
-		
+
+		return youDied;
+
 	}
 
 
@@ -261,6 +278,15 @@ public class GameModel
 	public void pickUp(ArrayList<String> commands){
 		Item removeItem = null;
 		for(Item item : room.getItemList()){
+			if(item.getName().contains(" ")){
+				Scanner itemScan = new Scanner(item.getName());
+				String itemName1 = itemScan.next().toLowerCase();
+				String itemName2 = itemScan.next().toLowerCase();
+				if(commands.contains(itemName1) && commands.contains(itemName2)){
+					removeItem = item;
+					print(room.player.addItem(item));
+				}
+			}
 			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName()))
 			{
 				removeItem = item;
@@ -282,14 +308,21 @@ public class GameModel
 		room = null;
 	}
 
-	public void firstRoom()
+	public void firstRoom(Player player)
 	{
-		room = new Room(DB.getRoomInformation(FIRSTROOM), player);
+		this.player = player;
+		try{
+			room = new Room(DB.getRoomInformation(FIRSTROOM), player);
+		}
+		catch(GameException ex){
+			print(ex.getMessage());
+		}
 		print(room.toString());
 	}
 
 	public void enterElevator()
 	{
+		elevator = new Elevator(player);
 		print(elevator.toString());
 
 	}
@@ -299,7 +332,7 @@ public class GameModel
 		return DB.getItemInformation(itemNum);
 	}
 
-	public Object[] getMonster(int monsterNumber)
+	public Object[] getMonster(int monsterNumber) throws GameException
 	{
 		return DB.getMonsterInformation(monsterNumber);
 	}
@@ -307,6 +340,27 @@ public class GameModel
 	public Object[] getPuzzle(int puzzleID)
 	{
 		return DB.getPuzzleInformation(puzzleID);
+	}
+
+
+	public ArrayList<String> getLoadableGames()
+	{
+		ArrayList<String> loadableGames = DB.getLoadableGames();
+		return loadableGames;
+	}
+
+
+	public Player buildNewPlayer(String name)
+	{
+		player = new Player(name);
+		return player;
+	}
+
+
+	public Player buildPlayer(String name)
+	{
+		player = new Player(DB.loadGame(name));
+		return player;
 	}
 
 }

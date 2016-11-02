@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import error.GameException;
 import model.Item;
 
 import java.sql.DriverManager;
@@ -51,7 +52,7 @@ public class DatabaseManager {
 		return itemDB.getItemInformationPro(itemNum);
 	}
 	
-	public Object[] getMonsterInformation(int monsterNum){
+	public Object[] getMonsterInformation(int monsterNum) throws GameException{
 		MonsterDB monsterDB = new MonsterDB();
 		return monsterDB.getMonsterInformationPro(monsterNum);
 	}
@@ -71,11 +72,6 @@ public class DatabaseManager {
 		return savedGamesDB.loadGamePro(playerID);
 	}
 	
-	public String getSavedGames(){
-		SavedGamesDB savedGamesDB = new SavedGamesDB();
-		return savedGamesDB.getSavedGamesPro();
-	}
-	
 	protected String addLineBreaks(String str){
 		StringBuilder strWithSpaces = new StringBuilder();
 		Scanner strScan = new Scanner(str);
@@ -88,6 +84,12 @@ public class DatabaseManager {
 			}
 		}
 		return strWithSpaces.toString();
+	}
+
+	public ArrayList<String> getLoadableGames()
+	{
+		SavedGamesDB savedGamesDB = new SavedGamesDB();
+		return savedGamesDB.getLoadableGamesPro();
 	}
 	
 //	public static void main(String[] args) throws ClassNotFoundException{

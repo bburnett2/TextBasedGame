@@ -1,6 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import error.GameException;
 
 public class Room 
 {
@@ -12,9 +15,10 @@ public class Room
 	private Monster monster;
 	protected Puzzle puzzle;
 	protected Player player;
-	private String restrictions;
+	protected int restrictionPuzzleID;
+	protected String restrictedDoor;
 
-	protected Room(Object[] room, Player player)
+	protected Room(Object[] room, Player player)throws GameException
 	{
 		this.player = player;
 		this.id = (int)room[0];
@@ -24,7 +28,11 @@ public class Room
 		this.south = (int)room[4];
 		this.east = (int)room[5];
 		this.west = (int)room[6];
-		this.restrictions = (String)room[7];
+		String restrictSt = (String)room[7];
+		Scanner restrict = new Scanner(restrictSt);
+		restrict.useDelimiter(",");
+		this.restrictionPuzzleID = restrict.nextInt();
+		this.restrictedDoor = restrict.next();
 		this.itemList = buildItems((ArrayList<Integer>) room[8]);
 		this.puzzle = buildPuzzle((int)room[9]);
 	}
@@ -68,7 +76,7 @@ public class Room
 			return null;
 	}
 
-	protected Monster buildMonster(int monsterNumber)
+	protected Monster buildMonster(int monsterNumber) throws GameException
 	{
 		GameModel model = new GameModel();
 		if (monsterNumber > 0  && !(player.hasDefeated(monsterNumber)))
@@ -130,10 +138,7 @@ public class Room
 				str.append("Upon death, " + monster.name + " dropped ");
 				if (monster.itemList.size() == 1)
 				{
-					for (int i = 0; i <= monster.itemList.size()-1; i++)
-					{
-						player.addItem(monster.itemList.get(i));
-					}
+					player.addItem(monster.itemList.get(0));
 					str.append(monster.itemList.get(0).getName());
 				}
 				else
@@ -142,7 +147,7 @@ public class Room
 					for (int i = 0; i < monster.itemList.size()-1; i++)
 					{
 						str.append(monster.itemList.get(i).getName() + ", ");
-						last = i;
+						last = i + 1;
 					}
 					str.append("and " + monster.itemList.get(last).getName() + ".\n");
 				}
