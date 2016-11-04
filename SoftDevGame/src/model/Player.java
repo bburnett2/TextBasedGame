@@ -19,8 +19,7 @@ public class Player extends Character
 
 	protected Player(Object[] player)
 	{
-		super(player);
-		this.maxHealth = (int)player[4]; //This is the original health
+		
 	}
 
 	protected String addItem(Item item){

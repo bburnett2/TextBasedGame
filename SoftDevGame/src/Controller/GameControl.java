@@ -106,6 +106,9 @@ public class GameControl
 	private void loadOrNew(){
 		print("Select new game or select from the list of saved games: \n");
 		ArrayList<String> loadableGames = model.getLoadableGames();
+		for(String playerID : loadableGames){
+			print(playerID);
+		}
 		String name = read();
 		Player player;
 		if(loadableGames.contains(name)){
