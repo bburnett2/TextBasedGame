@@ -19,7 +19,12 @@ public class Player extends Character
 
 	protected Player(Object[] player)
 	{
-		
+		super(player);
+		currentRoom = (int)player[1];
+		completedPuzzles = (ArrayList<Integer>)player[2];
+		unequippedItems = buildItems((ArrayList<Integer>)player[6]);
+		defeatedMonsters = (ArrayList<Integer>)player[7];
+		equipedItems = buildItems((ArrayList<Integer>)player[8]);
 	}
 
 	protected String addItem(Item item){

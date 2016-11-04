@@ -104,10 +104,10 @@ public class SavedGamesDB extends DatabaseManager{
 			resultSet = statement.executeQuery(sqlCall);
 			gameInfo[0] = resultSet.getString("PlayerID");
 			gameInfo[1] = resultSet.getInt("CurrentRoom");
-			gameInfo[2] = loadCompletedPuzzles(PlayerID);
 			gameInfo[3] = resultSet.getInt("PlayerAttack");
 			gameInfo[4] = resultSet.getInt("PlayerHealth");
 			gameInfo[5] = resultSet.getInt("PlayerDefenese");
+			gameInfo[2] = loadCompletedPuzzles(PlayerID);
 			gameInfo[6] = loadItems(PlayerID);
 			gameInfo[7] = loadDefeatedMonsters(PlayerID);
 			gameInfo[8] = loadEquippedItems(PlayerID);
