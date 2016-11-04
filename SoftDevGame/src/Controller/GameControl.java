@@ -70,6 +70,9 @@ public class GameControl
 				{
 					model.pickUp(commands);
 				}
+				else if(commands.get(0).equalsIgnoreCase("save")){
+					model.saveGame();
+				}
 				else if (commands.get(0).equalsIgnoreCase("quit"));
 				else
 					throw new GameException ("Not a valid action command.");

@@ -360,5 +360,9 @@ public class GameModel
 	{
 		player = new Player(DB.loadGame(name));
 	}
+	
+	public void saveGame(){
+		Game.save(player);
+	}
 
 }

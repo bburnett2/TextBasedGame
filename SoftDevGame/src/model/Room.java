@@ -146,10 +146,12 @@ public class Room
 					int last = 0;
 					for (int i = 0; i < monster.itemList.size()-1; i++)
 					{
+						player.addItem(monster.itemList.get(i));
 						str.append(monster.itemList.get(i).getName() + ", ");
 						last = i + 1;
 					}
 					str.append("and " + monster.itemList.get(last).getName() + ".\n");
+					player.addItem(monster.itemList.get(last));
 				}
 			}
 		}

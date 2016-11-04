@@ -7,10 +7,9 @@ import database.DatabaseManager;
 
 public class Game 
 {
-	Player player;
-	DatabaseManager dbManage = new DatabaseManager();
+	private static DatabaseManager dbManage = new DatabaseManager();
 
-	public void save()
+	public static void save(Player player)
 	{
 		String name = player.getName();
 		int currentRoomID = player.getCurrentRoom();
@@ -47,7 +46,7 @@ public class Game
 		}
 	}
 	
-	private ArrayList<Integer> getIDS(ArrayList<Item> items){
+	private static ArrayList<Integer> getIDS(ArrayList<Item> items){
 		ArrayList<Integer> itemIDS = new ArrayList<>();
 		for(Item item : items){
 			itemIDS.add(item.getItemID());
