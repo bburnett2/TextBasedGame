@@ -110,21 +110,20 @@ public class GameControl
 			print(playerID);
 		}
 		String name = read();
-		Player player;
 		if(loadableGames.contains(name)){
-			player = model.buildPlayer(name);
+			model.buildPlayer(name);
 		}
 		else{
 			print("What would you like your PlayerID to be");
 			name = read();
-			player = model.buildNewPlayer(name);
+			model.buildNewPlayer(name);
 		}
-		startGame(player);
+		startGame();
 	}
 	
-	private void startGame(Player player)
+	private void startGame()
 	{
-		model.firstRoom(player);
+		model.firstRoom();
 		validCommands.add("Go");
 		validCommands.add("Answer");
 		validCommands.add("Equip");

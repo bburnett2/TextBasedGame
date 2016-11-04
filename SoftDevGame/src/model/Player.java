@@ -13,7 +13,7 @@ public class Player extends Character
 	private boolean isFighting;
 
 	protected Player(String playerID){
-		super();
+		super(playerID);
 		currentRoom = 3;
 	}
 
