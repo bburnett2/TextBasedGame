@@ -11,11 +11,11 @@ public abstract class Character
 	protected int attack;
 
 	
-	public Character(){
+	public Character(String name){
 		health = 10;
 		defense = 5;
 		attack = 5;
-		name = "Sally";
+		this.name = name;
 	}
 	
 	/**getItemList
