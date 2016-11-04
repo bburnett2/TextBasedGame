@@ -308,9 +308,9 @@ public class GameModel
 		room = null;
 	}
 
-	public void firstRoom(Player player)
+	public void firstRoom()
 	{
-		this.player = player;
+
 		try{
 			room = new Room(DB.getRoomInformation(FIRSTROOM), player);
 		}
@@ -350,17 +350,15 @@ public class GameModel
 	}
 
 
-	public Player buildNewPlayer(String name)
+	public void buildNewPlayer(String name)
 	{
 		player = new Player(name);
-		return player;
 	}
 
 
-	public Player buildPlayer(String name)
+	public void buildPlayer(String name)
 	{
 		player = new Player(DB.loadGame(name));
-		return player;
 	}
 
 }
