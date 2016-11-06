@@ -32,17 +32,41 @@ public class Player extends Character
 		return "Item added to unequipped items";
 	}
 
-	public String addEquippedItem(Item item)
+	protected void addCompletedPuzzle(int id)
 	{
-		equipedItems.add(item);
-		unequippedItems.remove(item);
-//		for(int i = 0 ; i < unequippedItems.size() ; i ++)
-//		{
-//			if (unequippedItems.get(i).equals(item.getName()))
-//				unequippedItems.get(i).use(this);
-//			unequippedItems.remove(i);
-//		}
-		return "Item " + item.getName() + " has been equipped";		
+		completedPuzzles.add(id);
+	}
+
+	protected void addDefeatedMonster(int id)
+	{
+		defeatedMonsters.add(id);
+	}
+
+	public String addEquippedItem(String itemName)
+	{
+		String str = "";
+		if (hasUnequippedItem(itemName))
+		{
+			for (int i = 0; i < unequippedItems.size(); i++)
+			{
+				if (unequippedItems.get(i).getName().equalsIgnoreCase(itemName))
+				{
+					if(unequippedItems.get(i).isEquippable())
+					{
+						Armor temp = (Armor)unequippedItems.get(i);
+						equipedItems.add(temp);
+						unequippedItems.remove(temp);
+						str = "Item " + unequippedItems.get(i).getName() + " has been equipped";
+					}
+					else
+						return unequippedItems.get(i).getName() + " is not an item that can be equipped";
+				}
+
+			}
+		}
+		else
+			str = "No item can be quipped";
+		return str;	
 	}
 
 	protected String die(Character attacker)
@@ -82,7 +106,7 @@ public class Player extends Character
 
 		if (unequippedItems.size() > 0)
 		{
-			str += "Unequpped Items\n";
+			str += "Unequiped Items\n";
 			for (Item item : unequippedItems)
 				str += item.getName() + "\n";
 		}
@@ -96,18 +120,22 @@ public class Player extends Character
 		return str;
 	}
 
-	protected void addCompletedPuzzle(int id)
-	{
-		completedPuzzles.add(id);
-	}
 
-	protected void addDefeatedMonster(int id)
+	private boolean hasUnequippedItem(String itemName)
 	{
-		defeatedMonsters.add(id);
+		boolean hasItem = false;
+		for (Item item : unequippedItems)
+		{
+
+			if (item.getName().equalsIgnoreCase(itemName))
+				hasItem = true;
+		}
+		return hasItem;
 	}
 
 	protected boolean hasItem(String itemName) 
 	{
+		itemName.trim();
 		boolean hasItem = false;
 		for (Item item : unequippedItems)
 		{
@@ -238,7 +266,9 @@ public class Player extends Character
 	public void addHealth(int hp)
 	{
 		if (super.health + hp <= maxHealth)
-			super.health += hp;		
+			super.health += hp;	
+		else
+			super.health = maxHealth;
 	}
 
 }

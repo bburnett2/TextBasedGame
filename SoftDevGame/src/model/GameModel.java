@@ -25,7 +25,7 @@ public class GameModel
 		{
 			throw new GameException("You must fight or run.");
 		}
-//check if door has restrictions
+		//check if door has restrictions
 		String restricedDoor = "";
 		if(room.restrictionPuzzleID != 0){
 			restricedDoor = room.restrictedDoor;
@@ -79,20 +79,35 @@ public class GameModel
 
 	public void equip(ArrayList<String> commands)
 	{
-		Item itemToAdd = null;
-		for(Item item : player.getUnequippedItems())
+		String itemName = "";
+		if (commands.size() > 1)
 		{
-			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase()))
-			{
-				if (item.isEquippable())
-				{
-					//print(player.addEquippedItem(item));
-					itemToAdd = item;
-					break;
-				}
-			}
+			for (int i = 1; i < commands.size(); i++)
+				itemName += commands.get(i) + " ";
+			
+			itemName = itemName.trim();
+
+			print(player.addEquippedItem(itemName));
 		}
-		print(player.addEquippedItem(itemToAdd));
+		else
+			print("You need to state the item to equip");
+
+
+		// player should be telling if they have the item and equipping that item for good coding.
+		//		Item itemToAdd = null;
+		//		for(Item item : player.getUnequippedItems())
+		//		{
+		//			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase()))
+		//			{
+		//				if (item.isEquippable())
+		//				{
+		//					//print(player.addEquippedItem(item));
+		//					itemToAdd = item;
+		//					break;
+		//				}
+		//			}
+		//		}
+		//		print(player.addEquippedItem(itemToAdd));
 	}
 
 	public boolean use(ArrayList<String> commands)throws GameException
@@ -360,7 +375,7 @@ public class GameModel
 	{
 		player = new Player(DB.loadGame(name));
 	}
-	
+
 	public void saveGame(){
 		Game.save(player);
 	}
