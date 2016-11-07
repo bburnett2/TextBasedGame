@@ -327,7 +327,7 @@ public class GameModel
 	{
 
 		try{
-			room = new Room(DB.getRoomInformation(FIRSTROOM), player);
+			room = new Room(DB.getRoomInformation(player.getCurrentRoom()), player);
 		}
 		catch(GameException ex){
 			print(ex.getMessage());

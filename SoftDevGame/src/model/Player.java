@@ -55,8 +55,8 @@ public class Player extends Character
 					{
 						Armor temp = (Armor)unequippedItems.get(i);
 						equipedItems.add(temp);
-						unequippedItems.remove(temp);
 						str = "Item " + unequippedItems.get(i).getName() + " has been equipped";
+						unequippedItems.remove(temp);
 					}
 					else
 						return unequippedItems.get(i).getName() + " is not an item that can be equipped";
