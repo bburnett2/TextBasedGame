@@ -27,7 +27,7 @@ public class GameControl
 	private void endOfGame()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -49,7 +49,7 @@ public class GameControl
 				{
 					boolean completesLevel = model.answer(commands);
 					if(completesLevel)
- 						enterElevatorSubLoop();
+						enterElevatorSubLoop();
 				}
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
@@ -105,25 +105,34 @@ public class GameControl
 		}while(!(inElevator) && !(commands.contains("exit")));
 	}
 
-//start new game with playerID, selected by user, or load saved game
+	//start new game with playerID, selected by user, or load saved game
 	private void loadOrNew(){
-		print("Select new game or select from the list of saved games: \n");
-		ArrayList<String> loadableGames = model.getLoadableGames();
-		for(String playerID : loadableGames){
-			print(playerID);
-		}
-		String name = read();
-		if(loadableGames.contains(name)){
-			model.buildPlayer(name);
-		}
-		else{
-			print("What would you like your PlayerID to be");
-			name = read();
-			model.buildNewPlayer(name);
+
+		boolean hasPlayerID = false;
+		while(!hasPlayerID){
+			print("Select new game or select from the list of saved games: \n");
+			ArrayList<String> loadableGames = model.getLoadableGames();
+			for(String playerID : loadableGames){
+				print(playerID);
+			}
+			String name = read();
+			if(loadableGames.contains(name)){
+				model.buildPlayer(name);
+				hasPlayerID = true;
+			}
+			else if (name.equalsIgnoreCase("new")){
+				print("What would you like your PlayerID to be");
+				name = read();
+				model.buildNewPlayer(name);
+				hasPlayerID = true;
+			}
+			else {
+				print("invalid playerID");
+			}
 		}
 		startGame();
 	}
-	
+
 	private void startGame()
 	{
 		model.firstRoom();
@@ -135,18 +144,18 @@ public class GameControl
 		validCommands.add("Use");
 		validCommands.add("quit");
 	}
-	
-//	private void startGame()
-//	{
-//		model.firstRoom(playerID);
-//		validCommands.add("Go");
-//		validCommands.add("Answer");
-//		validCommands.add("Equip");
-//		validCommands.add("Help");
-//		validCommands.add("Enter");
-//		validCommands.add("Use");
-//		validCommands.add("quit");
-//	}
+
+	//	private void startGame()
+	//	{
+	//		model.firstRoom(playerID);
+	//		validCommands.add("Go");
+	//		validCommands.add("Answer");
+	//		validCommands.add("Equip");
+	//		validCommands.add("Help");
+	//		validCommands.add("Enter");
+	//		validCommands.add("Use");
+	//		validCommands.add("quit");
+	//	}
 
 	private void print(String str)
 	{
