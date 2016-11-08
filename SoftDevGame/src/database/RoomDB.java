@@ -31,6 +31,13 @@ public class RoomDB extends DatabaseManager {
 					}
 		catch(SQLException ex){
 
+		}		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
 		}
 		return roomInfo;
 	}
@@ -63,6 +70,14 @@ public class RoomDB extends DatabaseManager {
 		catch(SQLException ex){
 
 		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
+		}
 		return itemIDS;
 	}
 
@@ -75,6 +90,14 @@ public class RoomDB extends DatabaseManager {
 		}
 		catch(SQLException ex){
 			
+		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
 		}
 		return roomP;
 	}

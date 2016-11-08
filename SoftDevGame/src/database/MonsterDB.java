@@ -24,6 +24,14 @@ public class MonsterDB extends DatabaseManager
 		catch(SQLException ex){
 			throw new GameException("monsterID invalid");
 		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
+		}
 		return monster;
 	}
 	
@@ -38,6 +46,14 @@ public class MonsterDB extends DatabaseManager
 		}
 		catch(SQLException ex){
 			
+		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
 		}
 		return items;
 	}

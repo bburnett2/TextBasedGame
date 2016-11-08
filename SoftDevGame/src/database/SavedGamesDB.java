@@ -12,7 +12,7 @@ public class SavedGamesDB extends DatabaseManager{
 		return gameInfo;
 	}
 
-	protected void saveGamePro(Object[] gameInfo){
+	protected String saveGamePro(Object[] gameInfo){
 		String playerID = (String)gameInfo[0];
 		int currentRoomID = (int)gameInfo[1];
 		int playerHealth = (int)gameInfo[2];
@@ -30,7 +30,9 @@ public class SavedGamesDB extends DatabaseManager{
 			statement.executeUpdate(sqlCall);
 		}
 		catch(SQLException ex){
-			updateSavedGame(playerID, currentRoomID, playerHealth, playerDefense, playerAttack);
+			ex.getMessage();
+			return updateSavedGame(playerID, currentRoomID, playerHealth, playerDefense, playerAttack, items,
+					puzzles, monsters, equippedItems);
 		}
 		try{
 			saveItems(playerID, items);
@@ -39,21 +41,46 @@ public class SavedGamesDB extends DatabaseManager{
 			saveEquippedItems(playerID, equippedItems);
 		}
 		catch(SQLException ex){
-
+			System.out.println(ex.getMessage());
 		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+
+			}
+		}
+		return "Game Saved";
 	}
 
-	private void updateSavedGame(String playerID, int currentRoomID, int playerHealth, int playerDefense,
-			int playerAttack){
-		sqlCall = "UPDATE Saved_Game SET CurrentRoom = '" + currentRoomID + "', PlayerHealth = '" + playerHealth + 
-				"', PlayerDefenese = '" + playerDefense + "', PlayerAttack = '" + playerAttack + "' WHERE PlayerID = '" + 
+	private String updateSavedGame(String playerID, int currentRoomID, int playerHealth, int playerDefense,
+			int playerAttack, ArrayList<Integer> items, ArrayList<Integer> puzzles, 
+			ArrayList<Integer> monsters, ArrayList<Integer> equippedItems){
+
+		sqlCall = "UPDATE Saved_Game SET CurrentRoom = " + currentRoomID + ", PlayerHealth = " + playerHealth + 
+				", PlayerDefenese = " + playerDefense + ", PlayerAttack = " + playerAttack + " WHERE PlayerID = '" + 
 				playerID + "';";
 		try{
+			statement = connection.createStatement();
 			statement.executeUpdate(sqlCall);
+			saveItems(playerID, items);
+			savePuzzles(playerID, puzzles);
+			saveMonsters(playerID, monsters);
+			saveEquippedItems(playerID, equippedItems);
 		}
 		catch(SQLException ex){
-			
+			System.out.println(ex.getMessage());
 		}
+		finally{
+			try{
+				statement.close();
+			}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return "Game Saved";
 	}
 
 	private void saveItems(String playerID, ArrayList<Integer> items) throws SQLException{
@@ -63,6 +90,12 @@ public class SavedGamesDB extends DatabaseManager{
 			sqlCall = sqlCall.substring(0, sqlCall.length() - 1);
 			sqlCall += ")";
 			statement.executeUpdate(sqlCall);
+		}
+		try{
+			statement.close();
+		}
+		catch (SQLException e){
+
 		}
 	}
 
@@ -74,7 +107,12 @@ public class SavedGamesDB extends DatabaseManager{
 			sqlCall += ")";
 			statement.executeUpdate(sqlCall);
 		}
+		try{
+			statement.close();
+		}
+		catch(SQLException ex){
 
+		}
 	}
 
 	private void saveMonsters(String playerID, ArrayList<Integer> monsters) throws SQLException{
@@ -85,6 +123,12 @@ public class SavedGamesDB extends DatabaseManager{
 			sqlCall += ")";
 			statement.executeUpdate(sqlCall);
 		}
+		try{
+			statement.close();
+		}
+		catch(SQLException ex){
+
+		}
 	}
 
 	private void saveEquippedItems(String playerID, ArrayList<Integer> equippedItems) throws SQLException{
@@ -94,6 +138,12 @@ public class SavedGamesDB extends DatabaseManager{
 			sqlCall = sqlCall.substring(0, sqlCall.length() - 1);
 			sqlCall += ")";
 			statement.executeUpdate(sqlCall);
+		}
+		try{
+			statement.close();
+		}
+		catch(SQLException ex){
+
 		}
 	}
 
@@ -115,6 +165,14 @@ public class SavedGamesDB extends DatabaseManager{
 		catch(SQLException ex){
 			System.out.println(ex.getMessage());
 		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch (SQLException e){
+
+			}
+		}
 		return gameInfo;
 	}
 
@@ -126,9 +184,18 @@ public class SavedGamesDB extends DatabaseManager{
 			while(resultSet.next()){
 				items.add(resultSet.getInt("ItemID"));
 			}
+			statement.close();
 		}
 		catch(SQLException ex){
 
+		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+
+			}
 		}
 		return items;
 	}
@@ -145,6 +212,14 @@ public class SavedGamesDB extends DatabaseManager{
 		catch(SQLException ex){
 
 		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
+		}
 		return puzzles;
 	}
 
@@ -159,6 +234,14 @@ public class SavedGamesDB extends DatabaseManager{
 		}
 		catch(SQLException ex){
 
+		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
 		}
 		return equippedItems;
 	}
@@ -175,9 +258,17 @@ public class SavedGamesDB extends DatabaseManager{
 		catch(SQLException ex){
 
 		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
+		}
 		return monsters;
 	}
-	
+
 	protected ArrayList<String> getLoadableGamesPro(){
 		ArrayList<String> savedGames = new ArrayList<>();
 		sqlCall = "SELECT PlayerID FROM Saved_Game";
@@ -187,7 +278,15 @@ public class SavedGamesDB extends DatabaseManager{
 				savedGames.add(resultSet.getString("PlayerID"));
 			}
 		} catch(SQLException ex){
-			
+
+		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
 		}
 		return savedGames;
 	}

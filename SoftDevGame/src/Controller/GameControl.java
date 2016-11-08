@@ -71,7 +71,7 @@ public class GameControl
 					model.pickUp(commands);
 				}
 				else if(commands.get(0).equalsIgnoreCase("save")){
-					model.saveGame();
+					print(model.saveGame());
 				}
 				else if (commands.get(0).equalsIgnoreCase("quit"));
 				else
