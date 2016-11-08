@@ -30,8 +30,6 @@ public class GameModel
 		if(room.restrictionPuzzleID != 0){
 			restricedDoor = room.restrictedDoor;
 		}
-		else
-		{
 			if(hasStr(command, "north") && !restricedDoor.equals("north"))
 				direction = room.getNorth();
 			else if(hasStr(command,"south") && !restricedDoor.equals("south"))
@@ -40,6 +38,9 @@ public class GameModel
 				direction = room.getEast();
 			else if(hasStr(command,"west") && !restricedDoor.equals("west"))
 				direction = room.getWest();
+			else if(!restricedDoor.equalsIgnoreCase("")){
+				throw new GameException("Door is blocked, solve the puzzle first");
+			}
 			else
 				throw new GameException ("Not a valid direction.");
 
@@ -51,7 +52,7 @@ public class GameModel
 			player.setCurrentRoom(room.getId());
 			print(room.toString());
 		}
-	}
+	
 
 
 	public boolean answer(ArrayList<String> commands) throws GameException
@@ -397,7 +398,7 @@ public class GameModel
 	}
 
 
-	public void stats(ArrayList<String> commands)
+	public void stats()
 	{
 		print(player.stats());		
 	}

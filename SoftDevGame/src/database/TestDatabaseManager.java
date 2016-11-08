@@ -2,6 +2,7 @@ package database;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -44,7 +45,7 @@ public class TestDatabaseManager
 	@Test
 	public void testGetMonsterInformation(){
 		Object[] expected = new Object[7];
-		expected[0] = "The Gardener";
+		expected[0] = "Gardener";
 		expected[1] = 3;
 		expected[2] = dbmanage.addLineBreaks("A sweaty man who looks like he’s been working hard non-stop. He has a crazed look of over-exhaustion in his eyes.");
 		expected[3] = 1;
@@ -71,6 +72,25 @@ public class TestDatabaseManager
 		assertEquals(expected[4], actual[4]);
 		assertEquals(expected[5], actual[5]);
 		assertEquals(expected[6], actual[6]);
+	}
+	
+	@Test
+	public void testGetPuzzleInformation(){
+		Object[] expected = new Object[6];
+		expected[0] = 6;
+		expected[1] = "use 'C'";
+		expected[2] = "use 'C'";
+		expected[3] = 24;
+		expected[4] = null;
+		expected[5] = true;
+		Object[] actual = dbmanage.getPuzzleInformation(6);
+		
+		assertEquals(expected[0], actual[0]);
+		assertEquals(expected[1], actual[1]);
+		assertEquals(expected[2], actual[2]);
+		assertEquals(expected[3], actual[3]);
+		assertEquals(expected[4], actual[4]);
+		assertEquals(expected[5], actual[5]);
 	}
 
 }
