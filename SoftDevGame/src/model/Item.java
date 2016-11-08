@@ -45,12 +45,6 @@ public abstract class Item
 		return keyItem;
 	}
 
-	protected void drop() 
-	{
-
-	}
-
-	abstract protected void use(Character character);
 	
 	abstract protected boolean use(Player player);
 	

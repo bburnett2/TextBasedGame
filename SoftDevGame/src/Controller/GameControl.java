@@ -53,6 +53,10 @@ public class GameControl
 				}
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
+				else if ((commands.size() > 1) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("playerstats"))
+					model.stats(commands);
+				else if (commands.get(0).equalsIgnoreCase("drop"))
+					model.drop(commands);
 				else if (commands.get(0).equalsIgnoreCase("attack"))
 					endGame = model.attack(commands);
 				else if (commands.get(0).equalsIgnoreCase("enter"))

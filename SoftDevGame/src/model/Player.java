@@ -9,12 +9,15 @@ public class Player extends Character
 	private ArrayList<Integer> completedPuzzles = new ArrayList<Integer>();
 	private ArrayList<Integer> defeatedMonsters = new ArrayList<Integer>();
 	private ArrayList<Item> equipedItems = new ArrayList<Item>();
-	private int currentRoom, previousRoom, maxHealth;
+	protected int currentRoom, previousRoom, maxHealth;
 	private boolean isFighting;
 
 	protected Player(String playerID){
 		super(playerID);
 		currentRoom = 3;
+		previousRoom = 3;
+		maxHealth = 10;
+		isFighting = false;
 	}
 
 	protected Player(Object[] player)
@@ -53,9 +56,14 @@ public class Player extends Character
 				{
 					if(unequippedItems.get(i).isEquippable())
 					{
+						unequippedItems.get(i).use(this);
 						Armor temp = (Armor)unequippedItems.get(i);
 						equipedItems.add(temp);
 						str = "Item " + unequippedItems.get(i).getName() + " has been equipped";
+						if (temp.attack > 0)
+							str += "\n" + name + " attack has been increasted by " + temp.attack + " points.";
+						if (temp.defense > 0)
+							str += "\nDefense has been increased by " + temp.defense + " points.";
 						unequippedItems.remove(temp);
 					}
 					else
@@ -120,6 +128,36 @@ public class Player extends Character
 		return str;
 	}
 
+	protected String drop(String itemName)
+	{
+		String str = "";
+		if (hasItem(itemName))
+		{
+			for (int i = 0; i < unequippedItems.size(); i++)
+			{
+				if(unequippedItems.get(i).getName().equalsIgnoreCase(itemName) && !unequippedItems.get(i).isKeyItem())
+				{
+					str = "You have droped " + unequippedItems.get(i).getName();
+					unequippedItems.remove(i);
+				}
+			}
+			
+			for (int i = 0; i < equipedItems.size(); i++)
+			{
+				if(equipedItems.get(i).getName().equalsIgnoreCase(itemName) && !equipedItems.get(i).isKeyItem())
+				{
+					str = "You have droped " + equipedItems.get(i).getName();
+					Armor temp = (Armor)equipedItems.get(i);
+					setAttack(attack - temp.attack);
+					setDefense(defense - temp.defense);
+					equipedItems.remove(i);
+				}
+			}
+		}
+		else
+			str = "You do not have that item to drop";
+		return str;
+	}
 
 	private boolean hasUnequippedItem(String itemName)
 	{
@@ -269,6 +307,12 @@ public class Player extends Character
 			super.health += hp;	
 		else
 			super.health = maxHealth;
+	}
+
+	public String stats()
+	{
+		return name + " current health is " + health + " and  can have max health of " + maxHealth + ". \n" +
+				"They have " + attack + " attack and " + defense + " defense.";
 	}
 
 }

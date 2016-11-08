@@ -84,7 +84,7 @@ public class GameModel
 		{
 			for (int i = 1; i < commands.size(); i++)
 				itemName += commands.get(i) + " ";
-			
+
 			itemName = itemName.trim();
 
 			print(player.addEquippedItem(itemName));
@@ -123,6 +123,22 @@ public class GameModel
 			}
 		}
 		return completesLevel;
+	}
+
+	public void drop(ArrayList<String> commands)throws GameException
+	{
+		String itemName = "";
+		if (commands.size() > 1)
+		{
+			for (int i = 1; i < commands.size(); i++)
+				itemName += commands.get(i) + " ";
+
+			itemName = itemName.trim();
+
+			print(player.drop(itemName));
+		}
+		else
+			print("Please enter a item to drop");
 	}
 
 	public void run(ArrayList<String> commands)throws GameException
@@ -378,6 +394,12 @@ public class GameModel
 
 	public String saveGame(){
 		return Game.save(player);
+	}
+
+
+	public void stats(ArrayList<String> commands)
+	{
+		print(player.stats());		
 	}
 
 }

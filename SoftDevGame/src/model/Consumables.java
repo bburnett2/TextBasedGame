@@ -12,11 +12,6 @@ public class Consumables extends Item
 		this.hp = (int) item[6];
 	}
 
-	@Override
-	protected void use(Character character)
-	{		
-	}
-
 	
 	/**
 	 * Item 20 is heard coded because it is the only one that will add to maxHealth.
