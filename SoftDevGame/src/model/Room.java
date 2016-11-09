@@ -59,7 +59,7 @@ public class Room
 		}
 
 
-		if (!(puzzle == null))
+		if (!(puzzle == null) && id != 46)
 		{
 				str += "\n\n" + puzzle.getDescription();
 		}
@@ -233,6 +233,14 @@ public class Room
 		if (monster == null)
 			hasMonster = false;
 		return hasMonster;
+	}
+	
+	public boolean hasFinalPuzzle(){
+		boolean hasFinal = false;
+		if(id == 46){
+			hasFinal = true;
+		}
+		return hasFinal;
 	}
 
 }

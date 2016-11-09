@@ -1,6 +1,7 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 import error.GameException;
@@ -45,11 +46,14 @@ public class GameControl
 				//cannot use a switch because of the complexity of the []
 				if (commands.get(0).equalsIgnoreCase("go"))
 					model.go(commands);
-				else if (commands.get(0).equalsIgnoreCase("answer"))
+				else if (commands.get(0).equalsIgnoreCase("answer") && model.getPlayer().getCurrentRoom() != 46)
 				{
 					boolean completesLevel = model.answer(commands);
 					if(completesLevel)
 						enterElevatorSubLoop();
+				}
+				else if (commands.get(0).equalsIgnoreCase("answer") && model.getPlayer().getCurrentRoom() == 46){
+					enterFinalSubloop(commands.get(1));
 				}
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
@@ -183,4 +187,48 @@ public class GameControl
 		return parsCommand;
 	}
 
+	public void enterFinalSubloop(String answer1){
+		boolean hasValid = false;
+		
+		while(!hasValid){
+			try{
+				print(model.answerFinal1(answer1));
+				hasValid = true;
+			}
+			catch(GameException ex){
+				print(ex.getMessage());
+			}
+		}
+		
+		hasValid = false;
+		String answer2 = "";
+		
+		while(!hasValid){
+			answer2 = read();
+			try{
+				print(model.answerFinal2(answer2));
+				hasValid = true;
+			}
+			catch(GameException ex){
+				print(ex.getMessage());
+			}
+		}
+		
+		String answer3;
+		hasValid = false;
+		while(!hasValid){
+			answer3 = read();
+			try{
+				print(model.answerFinal3(answer1, answer2, answer3));
+				hasValid = true;
+			}
+			catch(GameException ex){
+				print(ex.getMessage());
+			}
+		}
+		
+		print("Which box do you think holds the treat?");
+		String answerFinal = read();
+		print(model.finalAnswer(answerFinal));
+	}
 }

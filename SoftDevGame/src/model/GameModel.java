@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 import error.GameException;
@@ -12,7 +13,7 @@ public class GameModel
 	//needs to be working from DB
 	private Player player;
 	private Room room = null;
-
+	private finalPuzzle fPuzzle = new finalPuzzle();
 	private Elevator elevator;
 	private view.Console console = new view.Console();
 	private database.DatabaseManager DB = new database.DatabaseManager();
@@ -30,55 +31,81 @@ public class GameModel
 		if(room.restrictionPuzzleID != 0 && !player.hasCompleted(room.restrictionPuzzleID)){
 			restricedDoor = room.restrictedDoor;
 		}
-			if(hasStr(command, "north") && !restricedDoor.equals("north"))
-				direction = room.getNorth();
-			else if(hasStr(command,"south") && !restricedDoor.equals("south"))
-				direction = room.getSouth();
-			else if(hasStr(command,"east") && !restricedDoor.equals("east"))
-				direction = room.getEast();
-			else if(hasStr(command,"west") && !restricedDoor.equals("west"))
-				direction = room.getWest();
-			else if(!restricedDoor.equalsIgnoreCase("")){
-				throw new GameException("Door is blocked, solve the puzzle first");
-			}
-			else
-				throw new GameException ("Not a valid direction.");
-
-			if(direction == 0)
-				throw new GameException("\nThere is not a door that direction.\n");
-
-			exitRoom();
-			room = new Room(DB.getRoomInformation(direction), player);
-			player.setCurrentRoom(room.getId());
-			print(room.toString());
+		if(hasStr(command, "north") && !restricedDoor.equals("north"))
+			direction = room.getNorth();
+		else if(hasStr(command,"south") && !restricedDoor.equals("south"))
+			direction = room.getSouth();
+		else if(hasStr(command,"east") && !restricedDoor.equals("east"))
+			direction = room.getEast();
+		else if(hasStr(command,"west") && !restricedDoor.equals("west"))
+			direction = room.getWest();
+		else if(!restricedDoor.equalsIgnoreCase("")){
+			throw new GameException("Door is blocked, solve the puzzle first");
 		}
-	
+		else
+			throw new GameException ("Not a valid direction.");
+
+		if(direction == 0)
+			throw new GameException("\nThere is not a door that direction.\n");
+
+		exitRoom();
+		room = new Room(DB.getRoomInformation(direction), player);
+		player.setCurrentRoom(room.getId());
+		print(room.toString());
+	}
+
 
 
 	public boolean answer(ArrayList<String> commands) throws GameException
 	{
 		boolean correct = false;
 		boolean completesLevel = false;
-		if (room.hasPuzzle())
-			correct = room.answer(commands);
-		else 
-			throw new GameException("There is no puzzle to answer in this room.");
+			if (room.hasPuzzle())
+				correct = room.answer(commands);
+			else 
+				throw new GameException("There is no puzzle to answer in this room.");
 
-		if (correct)
-		{
-			print("Congratulations, that was correct!!!");
-			completesLevel = room.puzzle.completesLevel();
-			player.addCompletedPuzzle(room.puzzle.getId());
-		}
-		else
-			print("That was incorrect.");
+			if (correct)
+			{
+				print("Congratulations, that was correct!!!");
+				completesLevel = room.puzzle.completesLevel();
+				player.addCompletedPuzzle(room.puzzle.getId());
+			}
+			else
+				print("That was incorrect.");
 		return completesLevel;
 	}
 
+	public String answerFinal1(String answer) throws GameException{
+		return fPuzzle.answer1(answer);
+	}
+	
+	public String answerFinal2(String answer) throws GameException{
+		return fPuzzle.answer2(answer);
+	}
+	
+	public String answerFinal3(String answer1, String answer2, String answer3) throws GameException{
+		return fPuzzle.answer3(answer1, answer2, answer3);
+	}
+	
+	public String finalAnswer(String answer){
+		Map<Boolean, String> result =  fPuzzle.finalAnswer(answer);
+		String retString;
+		if(result.containsKey(true)){
+			player.addItem(new Artifacts(getItemInfo(35)));
+			player.addCompletedPuzzle(11);
+			retString = result.get(true);
+		}
+		else{
+			retString = result.get(false);
+		}
+		return retString;
+	}
+	
 	public void listItems(ArrayList<String> commands)
 	{
 		print(player.listItems());		
-	}
+	}	
 
 	public void equip(ArrayList<String> commands)
 	{
@@ -403,6 +430,10 @@ public class GameModel
 	public void stats()
 	{
 		print(player.stats());		
+	}
+	
+	public Player getPlayer(){
+		return player;
 	}
 
 }
