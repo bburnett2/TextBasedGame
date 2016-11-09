@@ -27,7 +27,7 @@ public class GameModel
 		}
 		//check if door has restrictions
 		String restricedDoor = "";
-		if(room.restrictionPuzzleID != 0){
+		if(room.restrictionPuzzleID != 0 && !player.hasCompleted(room.restrictionPuzzleID)){
 			restricedDoor = room.restrictedDoor;
 		}
 			if(hasStr(command, "north") && !restricedDoor.equals("north"))
@@ -58,6 +58,7 @@ public class GameModel
 	public boolean answer(ArrayList<String> commands) throws GameException
 	{
 		boolean correct = false;
+		boolean completesLevel = false;
 		if (room.hasPuzzle())
 			correct = room.answer(commands);
 		else 
@@ -66,11 +67,12 @@ public class GameModel
 		if (correct)
 		{
 			print("Congratulations, that was correct!!!");
+			completesLevel = room.puzzle.completesLevel();
 			player.addCompletedPuzzle(room.puzzle.getId());
 		}
 		else
 			print("That was incorrect.");
-		return correct;
+		return completesLevel;
 	}
 
 	public void listItems(ArrayList<String> commands)
@@ -119,7 +121,7 @@ public class GameModel
 				boolean completesPuzzle = item.use(player);
 				ArrayList<String> answer = new ArrayList<>();
 				answer.add("space");
-				answer.add("use" + item.getName());
+				answer.add("use " + item.getName());
 				completesLevel = answer(answer);
 			}
 		}

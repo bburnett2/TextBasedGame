@@ -182,7 +182,11 @@ public class Room
 	protected boolean answer(ArrayList<String> commands)
 	{
 		boolean correct = false;
-		correct = puzzle.answer(commands.get(1));
+		String answerSt = "";
+		for(int i = 1; i < commands.size(); i++){
+			answerSt += commands.get(i);
+		}
+		correct = puzzle.answer(answerSt);
 		return correct;	
 	}
 
