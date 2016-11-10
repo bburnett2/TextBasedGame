@@ -5,11 +5,11 @@ import java.util.TreeMap;
 
 import error.GameException;
 
-public class finalPuzzle{
+public class FinalPuzzle{
 	private String answer = "right";
 	protected int puzzleID = 11;
 
-	public finalPuzzle()
+	public FinalPuzzle()
 	{
 
 	}
@@ -41,7 +41,7 @@ public class finalPuzzle{
 		}
 		return retString;
 	}
-
+//check against email for accuracy
 	public String answer3(String answer1, String answer2, String answer3)throws GameException{
 		String retString ="";
 		answer3 = answer3.toUpperCase();

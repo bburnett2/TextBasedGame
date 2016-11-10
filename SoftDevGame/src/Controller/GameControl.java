@@ -21,21 +21,23 @@ public class GameControl
 		run.loadOrNew();
 		//run.startGame();
 		run.mainLoop();
-		run.endOfGame();
+		run.endOfGameByCharacterDeath();
 	}
 
 
-	private void endOfGame()
-	{
-		// TODO Auto-generated method stub
-
+	private void endOfGameByCharacterDeath(){
+		print("You died, better luck next time");
 	}
 
+	private void endOfGameByWin(){
+		print("Congratulations!! You WON!!!!\n\n Game Designed By: \n  \n Game Coded By: \n \n");
+	}
 
 	private void mainLoop()
 	{
 		String command;
-		boolean endGame = false;
+		boolean endGameByDeath = false;
+		boolean endGameByWin = false;
 		ArrayList<String> commands = new ArrayList<String>();
 
 		do{
@@ -61,8 +63,17 @@ public class GameControl
 					model.stats();
 				else if (commands.get(0).equalsIgnoreCase("drop"))
 					model.drop(commands);
-				else if (commands.get(0).equalsIgnoreCase("attack"))
-					endGame = model.attack(commands);
+				else if (commands.get(0).equalsIgnoreCase("attack")){
+					Map<Boolean, Boolean> result = model.attack(commands);
+					endGameByDeath = (result.containsKey(true)) ? true : false;
+					if(endGameByDeath){
+						endOfGameByCharacterDeath();
+					}
+					endGameByWin = result.get(false);
+					if(endGameByWin){
+						endOfGameByWin();
+					}
+				}
 				else if (commands.get(0).equalsIgnoreCase("enter"))
 					enterElevatorSubLoop();
 				else if (commands.get(0).equalsIgnoreCase("use")){
@@ -90,7 +101,7 @@ public class GameControl
 				print(exc.getMessage());
 			}
 
-		}while(!(command.equalsIgnoreCase("quit")) && !(endGame));
+		}while(!(command.equalsIgnoreCase("quit")) && !(endGameByDeath) && !endGameByWin);
 
 	}
 

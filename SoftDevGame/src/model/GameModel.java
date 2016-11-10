@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import error.GameException;
 
@@ -13,7 +14,7 @@ public class GameModel
 	//needs to be working from DB
 	private Player player;
 	private Room room = null;
-	private finalPuzzle fPuzzle = new finalPuzzle();
+	private FinalPuzzle fPuzzle = new FinalPuzzle();
 	private Elevator elevator;
 	private view.Console console = new view.Console();
 	private database.DatabaseManager DB = new database.DatabaseManager();
@@ -197,14 +198,23 @@ public class GameModel
 		return hasStr;
 	}
 
-	public boolean attack(ArrayList<String> commands)
+	public Map<Boolean, Boolean> attack(ArrayList<String> commands)
 	{
-		boolean youDied = false;
+		Map<Boolean, Boolean> youDied = new TreeMap<>();
 		if (room.hasMonster())
 		{
 			print(room.fight());
-			if (player.isDead())
-				youDied = true;
+			if (!player.isDead()){
+				if(room.hasLevelCompletingMonster()){
+					youDied.put(false, true);
+				}
+				else{
+					youDied.put(false, false);
+				}
+			}
+			else{
+				youDied.put(false, false);
+			}
 		}
 		else
 			print("There is nothing to attack");

@@ -242,5 +242,14 @@ public class Room
 		}
 		return hasFinal;
 	}
+	
+	public boolean hasLevelCompletingMonster(){
+		if(monster.completesLevel()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 
 }
