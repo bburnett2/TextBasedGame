@@ -83,7 +83,9 @@ public class DatabaseManager {
 				strWithSpaces.append('\n');
 			}
 		}
-		return strWithSpaces.toString();
+		String retString = strWithSpaces.toString();
+		retString = retString.trim();
+		return retString;
 	}
 
 	public ArrayList<String> getLoadableGames()

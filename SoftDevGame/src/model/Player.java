@@ -227,7 +227,7 @@ public class Player extends Character
 		return item.use(this);
 	}
 
-	protected int getCurrentRoom()
+	public int getCurrentRoom()
 	{
 		return currentRoom;
 	}

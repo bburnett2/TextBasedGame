@@ -13,6 +13,7 @@ public class SavedGamesDB extends DatabaseManager{
 	}
 
 	protected String saveGamePro(Object[] gameInfo){
+		String retString ="";
 		String playerID = (String)gameInfo[0];
 		int currentRoomID = (int)gameInfo[1];
 		int playerHealth = (int)gameInfo[2];
@@ -31,7 +32,7 @@ public class SavedGamesDB extends DatabaseManager{
 		}
 		catch(SQLException ex){
 			ex.getMessage();
-			return updateSavedGame(playerID, currentRoomID, playerHealth, playerDefense, playerAttack, items,
+			retString = updateSavedGame(playerID, currentRoomID, playerHealth, playerDefense, playerAttack, items,
 					puzzles, monsters, equippedItems);
 		}
 		try{
@@ -51,7 +52,7 @@ public class SavedGamesDB extends DatabaseManager{
 
 			}
 		}
-		return "Game Saved";
+		return retString;
 	}
 
 	private String updateSavedGame(String playerID, int currentRoomID, int playerHealth, int playerDefense,
@@ -97,6 +98,14 @@ public class SavedGamesDB extends DatabaseManager{
 		catch (SQLException e){
 
 		}
+		finally{
+			try{
+				statement.close();
+			}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private void savePuzzles(String playerID, ArrayList<Integer> puzzles) throws SQLException{
@@ -112,6 +121,14 @@ public class SavedGamesDB extends DatabaseManager{
 		}
 		catch(SQLException ex){
 
+		}
+		finally{
+			try{
+				statement.close();
+			}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -129,6 +146,14 @@ public class SavedGamesDB extends DatabaseManager{
 		catch(SQLException ex){
 
 		}
+		finally{
+			try{
+				statement.close();
+			}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private void saveEquippedItems(String playerID, ArrayList<Integer> equippedItems) throws SQLException{
@@ -145,6 +170,14 @@ public class SavedGamesDB extends DatabaseManager{
 		catch(SQLException ex){
 
 		}
+		finally{
+			try{
+				statement.close();
+			}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	protected Object[] loadGamePro(String PlayerID){
@@ -157,6 +190,12 @@ public class SavedGamesDB extends DatabaseManager{
 			gameInfo[3] = resultSet.getInt("PlayerAttack");
 			gameInfo[4] = resultSet.getInt("PlayerHealth");
 			gameInfo[5] = resultSet.getInt("PlayerDefenese");
+			try{
+				statement.close();
+			}
+			catch (SQLException e){
+
+			}
 			gameInfo[2] = loadCompletedPuzzles(PlayerID);
 			gameInfo[6] = loadItems(PlayerID);
 			gameInfo[7] = loadDefeatedMonsters(PlayerID);
@@ -165,20 +204,12 @@ public class SavedGamesDB extends DatabaseManager{
 		catch(SQLException ex){
 			System.out.println(ex.getMessage());
 		}
-		finally {
-			try{
-				statement.close();
-			}
-			catch (SQLException e){
-
-			}
-		}
 		return gameInfo;
 	}
 
 	private ArrayList<Integer> loadItems(String playerID){
 		ArrayList<Integer> items = new ArrayList<>();
-		sqlCall = "SELECT * FROM Player_Item WHERE PlayerID = " + playerID;
+		sqlCall = "SELECT * FROM Player_Item WHERE PlayerID = '" + playerID + "'";
 		try{
 			resultSet = statement.executeQuery(sqlCall);
 			while(resultSet.next()){
@@ -202,7 +233,7 @@ public class SavedGamesDB extends DatabaseManager{
 
 	private ArrayList<Integer> loadCompletedPuzzles(String playerID){
 		ArrayList<Integer> puzzles = new ArrayList<>();
-		sqlCall = "SELECT * FROM Player_CPuzzle WHERE PlayerID = " + playerID;
+		sqlCall = "SELECT * FROM Player_CPuzzle WHERE PlayerID = '" + playerID + "'";
 		try{
 			resultSet = statement.executeQuery(sqlCall);
 			while(resultSet.next()){
@@ -210,7 +241,7 @@ public class SavedGamesDB extends DatabaseManager{
 			}
 		}
 		catch(SQLException ex){
-
+			System.out.println(ex.getMessage());
 		}
 		finally {
 			try{
@@ -225,7 +256,7 @@ public class SavedGamesDB extends DatabaseManager{
 
 	private ArrayList<Integer> loadEquippedItems(String playerID){
 		ArrayList<Integer> equippedItems = new ArrayList<>();
-		sqlCall = "SELECT * FROM Player_Item_Equipped WHERE PlayerID = " + playerID;
+		sqlCall = "SELECT * FROM Player_Item_Equipped WHERE PlayerID = '" + playerID + "'";
 		try{
 			resultSet = statement.executeQuery(sqlCall);
 			while(resultSet.next()){
@@ -248,7 +279,7 @@ public class SavedGamesDB extends DatabaseManager{
 
 	private ArrayList<Integer> loadDefeatedMonsters(String playerID){
 		ArrayList<Integer> monsters = new ArrayList<>();
-		sqlCall = "SELECT * FROM Player_DMonster WHERE PlayerID = " + playerID;
+		sqlCall = "SELECT * FROM Player_DMonster WHERE PlayerID = '" + playerID+ "'";
 		try{
 			resultSet = statement.executeQuery(sqlCall);
 			while(resultSet.next()){
