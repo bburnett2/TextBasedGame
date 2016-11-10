@@ -230,5 +230,13 @@ public class Room
 			hasMonster = false;
 		return hasMonster;
 	}
+	
+	public boolean hasLevelCompletingMonster(){
+		boolean hasCMonster = false;
+		if(monster.completesLevel()){
+			hasCMonster = true;
+		}
+		return hasCMonster;
+	}
 
 }
