@@ -61,6 +61,7 @@ public class Room
 
 		if (!(puzzle == null))
 		{
+			if(puzzle.getId() != 11)
 				str += "\n\n" + puzzle.getDescription();
 		}
 		return str;	
