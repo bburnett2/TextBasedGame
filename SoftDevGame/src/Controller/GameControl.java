@@ -26,7 +26,8 @@ public class GameControl
 
 	private void endOfGame()
 	{
-		// TODO Auto-generated method stub
+		print("Under The Feet of Many\n" +
+				"Implemented by \n\tBess Burnett\n\tDaniel Harris\n\tMichael Holtmann\n\tMarcus Moss");
 
 	}
 
