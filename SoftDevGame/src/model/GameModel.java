@@ -144,21 +144,8 @@ public class GameModel
 	public boolean use(ArrayList<String> commands)throws GameException
 	{
 		boolean completesLevel = false;
-		String itemName = "";
-		if (commands.size() > 1)
-		{
-			for (int i = 1; i < commands.size(); i++)
-				itemName += commands.get(i) + " ";
-
-			itemName = itemName.trim();
-
-			print(player.drop(itemName));
-		}
-	
 		for(Item item : player.getUnequippedItems()){
-			//if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase())){
-			if (item.getName().equalsIgnoreCase(itemName))
-			{
+			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase())){
 				boolean completesPuzzle = item.use(player);
 				ArrayList<String> answer = new ArrayList<>();
 				answer.add("space");
@@ -450,7 +437,7 @@ public class GameModel
 	}
 
 
-	public void stats(ArrayList<String> commands)
+	public void stats()
 	{
 		print(player.stats());		
 	}

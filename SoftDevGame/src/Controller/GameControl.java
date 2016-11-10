@@ -3,7 +3,6 @@ package Controller;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 import error.GameException;
 import model.Player;
@@ -22,23 +21,23 @@ public class GameControl
 		run.loadOrNew();
 		//run.startGame();
 		run.mainLoop();
-		run.endOfGame();
+		run.endOfGameByCharacterDeath();
 	}
 
 
-	private void endOfGame()
-	{
-		// TODO Auto-generated method stub
-
+	private void endOfGameByCharacterDeath(){
+		print("You died, better luck next time");
 	}
 
+	private void endOfGameByWin(){
+		print("Congratulations!! You WON!!!!\n\n Game Designed By: \n  \n Game Coded By: \n \n");
+	}
 
 	private void mainLoop()
 	{
 		String command;
-		boolean endGame = false;
-		Map<Boolean, Boolean> result = new TreeMap<>();
-		
+		boolean endGameByDeath = false;
+		boolean endGameByWin = false;
 		ArrayList<String> commands = new ArrayList<String>();
 
 		do{
@@ -61,18 +60,18 @@ public class GameControl
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
 				else if ((commands.size() > 1) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("playerstats"))
-					model.stats(commands);
+					model.stats();
 				else if (commands.get(0).equalsIgnoreCase("drop"))
 					model.drop(commands);
 				else if (commands.get(0).equalsIgnoreCase("attack")){
-					result = model.attack(commands);
-					if(result.containsKey(true)){
-						endGame = true;
+					Map<Boolean, Boolean> result = model.attack(commands);
+					endGameByDeath = (result.containsKey(true)) ? true : false;
+					if(endGameByDeath){
+						endOfGameByCharacterDeath();
 					}
-					else{
-						if(result.containsValue(true)){
-							enterElevatorSubLoop();
-						}
+					endGameByWin = result.get(false);
+					if(endGameByWin){
+						endOfGameByWin();
 					}
 				}
 				else if (commands.get(0).equalsIgnoreCase("enter"))
@@ -102,7 +101,7 @@ public class GameControl
 				print(exc.getMessage());
 			}
 
-		}while(!(command.equalsIgnoreCase("quit")) && !(endGame));
+		}while(!(command.equalsIgnoreCase("quit")) && !(endGameByDeath) && !endGameByWin);
 
 	}
 
@@ -190,7 +189,7 @@ public class GameControl
 
 	public ArrayList<String> parsString(String command) 
 	{
-		String[] splitStr = command.split(" ");
+		String[] splitStr = command.split(" ");;
 		ArrayList<String> parsCommand = new ArrayList<String>();
 		for (int i = 0; i < splitStr.length; i++)
 		{

@@ -9,7 +9,7 @@ public class Monster extends Character
 	private String description;
 	protected ArrayList<Item> itemList;
 	private boolean completesLevel;
-	
+
 	public Monster(Object[] monster)
 	{
 		super(monster);
