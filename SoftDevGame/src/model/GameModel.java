@@ -405,11 +405,11 @@ public class GameModel
 		print(room.toString());
 	}
 
-	public void enterElevator()
+	public boolean enterElevator()
 	{
 		elevator = new Elevator(player);
 		print(elevator.toString());
-
+		return elevator.hasWon();
 	}
 
 	public Object[] getItemInfo(int itemNum)

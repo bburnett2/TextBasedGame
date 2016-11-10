@@ -21,6 +21,7 @@ public class Elevator
 	private boolean isL5Complete = false;
 	private boolean isL6Complete = false;
 	private boolean isL7Complete = false;
+	private boolean isFianlComplete = false;
 	
 	public Elevator(){
 		
@@ -87,9 +88,14 @@ public class Elevator
 		compleateL5();
 		compleateL6();
 		compleateL7();
+		completeFinal();
 	}
 
-	
+	protected void completeFinal(){
+		if(player.hasDefeated(8)){
+			isFianlComplete = true;
+		}
+	}
 	protected void compleateL7()
 	{
 		if (player.hasCompleted(10))
@@ -172,4 +178,8 @@ public class Elevator
 		return LevelFinal;
 	}
 
+	public boolean hasWon(){
+		checkCompleted();
+		return isFianlComplete;
+	}
 }

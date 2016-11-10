@@ -78,9 +78,8 @@ public class GameControl
 					if(endGameByDeath){
 						endOfGameByCharacterDeath();
 					}
-					endGameByWin = result.get(false);
-					if(endGameByWin){
-						endOfGameByWin();
+					if(result.get(false)){
+						enterElevatorSubLoop();
 					}
 				}
 				else if (commands.get(0).equalsIgnoreCase("enter"))
@@ -121,8 +120,10 @@ public class GameControl
 		String command;
 		ArrayList<String> commands = new ArrayList<String>();
 
-		model.enterElevator();
-
+		boolean hasWon = model.enterElevator();
+		if(hasWon){
+			endOfGameByWin();
+		}
 		do
 		{
 			command = read();
