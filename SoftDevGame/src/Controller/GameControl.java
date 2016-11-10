@@ -27,11 +27,20 @@ public class GameControl
 
 	private void endOfGameByCharacterDeath(){
 		print("You died, better luck next time");
+		endOfGame();
 	}
 
 	private void endOfGameByWin(){
-		print("Congratulations!! You WON!!!!\n\n Game Designed By: \n  \n Game Coded By: \n \n");
+		print("Congratulations!! You WON!!!!");
+		endOfGame();
 	}
+	
+ 	private void endOfGame()
+  	{
+ 		print("Under The Feet of Many\n" +
+ 				"Implemented by: \n\tBess Burnett\n\tDaniel Harris\n\tMichael Holtmann\n\tMarcus Moss");
+  
+  	}
 
 	private void mainLoop()
 	{

@@ -59,7 +59,7 @@ public class Room
 		}
 
 
-		if (!(puzzle == null) && id != 46)
+		if (!(puzzle == null))
 		{
 				str += "\n\n" + puzzle.getDescription();
 		}

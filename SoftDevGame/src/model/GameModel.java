@@ -61,34 +61,34 @@ public class GameModel
 	{
 		boolean correct = false;
 		boolean completesLevel = false;
-			if (room.hasPuzzle())
-				correct = room.answer(commands);
-			else 
-				throw new GameException("There is no puzzle to answer in this room.");
+		if (room.hasPuzzle())
+			correct = room.answer(commands);
+		else 
+			throw new GameException("There is no puzzle to answer in this room.");
 
-			if (correct)
-			{
-				print("Congratulations, that was correct!!!");
-				completesLevel = room.puzzle.completesLevel();
-				player.addCompletedPuzzle(room.puzzle.getId());
-			}
-			else
-				print("That was incorrect.");
+		if (correct)
+		{
+			print("Congratulations, that was correct!!!");
+			completesLevel = room.puzzle.completesLevel();
+			player.addCompletedPuzzle(room.puzzle.getId());
+		}
+		else
+			print("That was incorrect.");
 		return completesLevel;
 	}
 
 	public String answerFinal1(String answer) throws GameException{
 		return fPuzzle.answer1(answer);
 	}
-	
+
 	public String answerFinal2(String answer) throws GameException{
 		return fPuzzle.answer2(answer);
 	}
-	
+
 	public String answerFinal3(String answer1, String answer2, String answer3) throws GameException{
 		return fPuzzle.answer3(answer1, answer2, answer3);
 	}
-	
+
 	public String finalAnswer(String answer){
 		Map<Boolean, String> result =  fPuzzle.finalAnswer(answer);
 		String retString;
@@ -102,7 +102,7 @@ public class GameModel
 		}
 		return retString;
 	}
-	
+
 	public void listItems(ArrayList<String> commands)
 	{
 		print(player.listItems());		
@@ -144,13 +144,28 @@ public class GameModel
 	public boolean use(ArrayList<String> commands)throws GameException
 	{
 		boolean completesLevel = false;
+		String itemName = "";
+		if (commands.size() > 1)
+		{
+			for (int i = 1; i < commands.size(); i++)
+				itemName += commands.get(i) + " ";
+
+			itemName = itemName.trim();
+
+			print(player.drop(itemName));
+		}
+
 		for(Item item : player.getUnequippedItems()){
 			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase())){
-				boolean completesPuzzle = item.use(player);
-				ArrayList<String> answer = new ArrayList<>();
-				answer.add("space");
-				answer.add("use " + item.getName());
-				completesLevel = answer(answer);
+				//if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase())){
+				if (item.getName().equalsIgnoreCase(itemName))
+				{
+					boolean completesPuzzle = item.use(player);
+					ArrayList<String> answer = new ArrayList<>();
+					answer.add("space");
+					answer.add("use" + item.getName());
+					completesLevel = answer(answer);
+				}
 			}
 		}
 		return completesLevel;
@@ -220,7 +235,6 @@ public class GameModel
 			print("There is nothing to attack");
 
 		return youDied;
-
 	}
 
 
@@ -441,7 +455,7 @@ public class GameModel
 	{
 		print(player.stats());		
 	}
-	
+
 	public Player getPlayer(){
 		return player;
 	}

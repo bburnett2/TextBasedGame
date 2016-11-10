@@ -125,6 +125,8 @@ public class Player extends Character
 			for (Item item : equipedItems)
 				str += item.getName() + "\n";
 		}
+		if (unequippedItems.size() == 0 && equipedItems.size() == 0)
+			 			str += "empty";
 		return str;
 	}
 
