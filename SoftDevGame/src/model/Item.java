@@ -21,7 +21,8 @@ public abstract class Item
 		this.completesPuzzle = (TreeMap<Boolean, Integer>)item[9];
 	}
 
-	protected int getItemID(){
+	protected int getItemID()
+	{
 		return id;
 	}
 	
@@ -45,12 +46,6 @@ public abstract class Item
 		return keyItem;
 	}
 
-	protected void drop() 
-	{
-
-	}
-
-	abstract protected void use(Character character);
 	
 	abstract protected boolean use(Player player);
 	

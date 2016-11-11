@@ -22,7 +22,7 @@ public class DatabaseManager {
 	private String sJDBC = "jdbc:sqlite";
 	private String sDBURL = sJDBC + ":" + sDBName;
 	protected Connection connection;
-	protected int timeOut = 30;
+	protected int timeOut = 10;
 	protected Statement statement;
 	protected String sqlCall;
 	protected ResultSet resultSet;
@@ -62,9 +62,9 @@ public class DatabaseManager {
 		return puzzleDB.getPuzzleInformationPro(puzzleNum);
 	}
 	
-	public void saveGame(Object[] gameInfo) throws SQLException{
+	public String saveGame(Object[] gameInfo) throws SQLException{
 		SavedGamesDB savedGamesDB = new SavedGamesDB();
-		savedGamesDB.saveGamePro(gameInfo);
+		return savedGamesDB.saveGamePro(gameInfo);
 	}
 
 	public Object[] loadGame(String playerID){
@@ -83,7 +83,9 @@ public class DatabaseManager {
 				strWithSpaces.append('\n');
 			}
 		}
-		return strWithSpaces.toString();
+		String retString = strWithSpaces.toString();
+		retString = retString.trim();
+		return retString;
 	}
 
 	public ArrayList<String> getLoadableGames()

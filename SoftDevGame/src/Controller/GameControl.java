@@ -1,6 +1,7 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 import error.GameException;
@@ -20,21 +21,34 @@ public class GameControl
 		run.loadOrNew();
 		//run.startGame();
 		run.mainLoop();
-		run.endOfGame();
+		//run.endOfGameByCharacterDeath();
 	}
 
+
+	private void endOfGameByCharacterDeath()
+	{
+		print("You died, better luck next time");
+		endOfGame();
+	}
+
+	private void endOfGameByWin()
+	{
+		print("Congratulations!! You WON!!!!");
+		endOfGame();
+	}
 
 	private void endOfGame()
 	{
-		// TODO Auto-generated method stub
-		
-	}
+		print("Under The Feet of Many\n" +
+				"Implemented by: \n\tBess Burnett\n\tDaniel Harris\n\tMichael Holtmann\n\tMarcus Moss");
 
+	}
 
 	private void mainLoop()
 	{
 		String command;
-		boolean endGame = false;
+		boolean endGameByDeath = false;
+		boolean endGameByWin = false;
 		ArrayList<String> commands = new ArrayList<String>();
 
 		do{
@@ -45,19 +59,39 @@ public class GameControl
 				//cannot use a switch because of the complexity of the []
 				if (commands.get(0).equalsIgnoreCase("go"))
 					model.go(commands);
-				else if (commands.get(0).equalsIgnoreCase("answer"))
+				else if (commands.get(0).equalsIgnoreCase("answer") && model.getPlayer().getCurrentRoom() != 46)
 				{
 					boolean completesLevel = model.answer(commands);
 					if(completesLevel)
- 						enterElevatorSubLoop();
+						enterElevatorSubLoop();
+				}
+				else if (commands.get(0).equalsIgnoreCase("answer") && model.getPlayer().getCurrentRoom() == 46){
+					enterFinalSubloop(commands.get(1));
 				}
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
+				else if ((commands.size() > 1) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("playerstats"))
+					model.stats();
+				else if (commands.get(0).equalsIgnoreCase("drop"))
+					model.drop(commands);
 				else if (commands.get(0).equalsIgnoreCase("attack"))
-					endGame = model.attack(commands);
+				{
+					Map<Boolean, Boolean> result = model.attack(commands);
+					endGameByDeath = (result.containsKey(true)) ? true : false;
+					if(endGameByDeath){
+						endOfGameByCharacterDeath();
+					}
+					if(!(model.getRoom().getMonster().getHealth() > 0))
+					{
+						if(result.get(false)){
+							enterElevatorSubLoop();
+						}
+					}
+				}
 				else if (commands.get(0).equalsIgnoreCase("enter"))
 					enterElevatorSubLoop();
-				else if (commands.get(0).equalsIgnoreCase("use")){
+				else if (commands.get(0).equalsIgnoreCase("use"))
+				{
 					boolean completesLevel = model.use(commands);
 					if(completesLevel)
 						enterElevatorSubLoop();
@@ -70,6 +104,13 @@ public class GameControl
 				{
 					model.pickUp(commands);
 				}
+<<<<<<< HEAD
+=======
+				else if(commands.get(0).equalsIgnoreCase("save"))
+				{
+					print(model.saveGame());
+				}
+>>>>>>> branch 'master' of https://github.com/bburnett2/TextBasedGame
 				else if (commands.get(0).equalsIgnoreCase("quit"));
 				else
 					throw new GameException ("Not a valid action command.");
@@ -79,7 +120,7 @@ public class GameControl
 				print(exc.getMessage());
 			}
 
-		}while(!(command.equalsIgnoreCase("quit")) && !(endGame));
+		}while(!(command.equalsIgnoreCase("quit")) && !(endGameByDeath) && !endGameByWin);
 
 	}
 
@@ -90,8 +131,10 @@ public class GameControl
 		String command;
 		ArrayList<String> commands = new ArrayList<String>();
 
-		model.enterElevator();
-
+		boolean hasWon = model.enterElevator();
+		if(hasWon){
+			endOfGameByWin();
+		}
 		do
 		{
 			command = read();
@@ -102,8 +145,9 @@ public class GameControl
 		}while(!(inElevator) && !(commands.contains("exit")));
 	}
 
-//start new game with playerID, selected by user, or load saved game
+	//start new game with playerID, selected by user, or load saved game
 	private void loadOrNew(){
+<<<<<<< HEAD
 		print("Select new game or select from the list of saved games: \n");
 		ArrayList<String> loadableGames = model.getLoadableGames();
 		String name = read();
@@ -115,10 +159,34 @@ public class GameControl
 			print("What would you like your PlayerID to be");
 			name = read();
 			model.buildNewPlayer(name);
+=======
+
+		boolean hasPlayerID = false;
+		while(!hasPlayerID){
+			print("Select new game or select from the list of saved games: \n");
+			ArrayList<String> loadableGames = model.getLoadableGames();
+			for(String playerID : loadableGames){
+				print(playerID);
+			}
+			String name = read();
+			if(loadableGames.contains(name)){
+				model.buildPlayer(name);
+				hasPlayerID = true;
+			}
+			else if (name.equalsIgnoreCase("new")){
+				print("What would you like your PlayerID to be");
+				name = read();
+				model.buildNewPlayer(name);
+				hasPlayerID = true;
+			}
+			else {
+				print("invalid playerID");
+			}
+>>>>>>> branch 'master' of https://github.com/bburnett2/TextBasedGame
 		}
 		startGame();
 	}
-	
+
 	private void startGame()
 	{
 		model.firstRoom();
@@ -130,18 +198,18 @@ public class GameControl
 		validCommands.add("Use");
 		validCommands.add("quit");
 	}
-	
-//	private void startGame()
-//	{
-//		model.firstRoom(playerID);
-//		validCommands.add("Go");
-//		validCommands.add("Answer");
-//		validCommands.add("Equip");
-//		validCommands.add("Help");
-//		validCommands.add("Enter");
-//		validCommands.add("Use");
-//		validCommands.add("quit");
-//	}
+
+	//	private void startGame()
+	//	{
+	//		model.firstRoom(playerID);
+	//		validCommands.add("Go");
+	//		validCommands.add("Answer");
+	//		validCommands.add("Equip");
+	//		validCommands.add("Help");
+	//		validCommands.add("Enter");
+	//		validCommands.add("Use");
+	//		validCommands.add("quit");
+	//	}
 
 	private void print(String str)
 	{
@@ -165,4 +233,58 @@ public class GameControl
 		return parsCommand;
 	}
 
+	public void enterFinalSubloop(String answer1)
+	{
+		boolean hasValid = false;
+
+		while(!hasValid)
+		{
+			try
+			{
+				print(model.answerFinal1(answer1));
+				hasValid = true;
+			}
+			catch(GameException ex)
+			{
+				print(ex.getMessage());
+			}
+		}
+
+		hasValid = false;
+		String answer2 = "";
+
+		while(!hasValid)
+		{
+			answer2 = read();
+			try
+			{
+				print(model.answerFinal2(answer2));
+				hasValid = true;
+			}
+			catch(GameException ex)
+			{
+				print(ex.getMessage());
+			}
+		}
+
+		String answer3;
+		hasValid = false;
+		while(!hasValid)
+		{
+			answer3 = read();
+			try
+			{
+				print(model.answerFinal3(answer1, answer2, answer3));
+				hasValid = true;
+			}
+			catch(GameException ex)
+			{
+				print(ex.getMessage());
+			}
+		}
+
+		print("Which box do you think holds the treat?");
+		String answerFinal = read();
+		print(model.finalAnswer(answerFinal));
+	}
 }

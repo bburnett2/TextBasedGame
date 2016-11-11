@@ -100,7 +100,7 @@ public abstract class Character
 	 * 
 	 * returns the health
 	 */
-	protected int getHealth()
+	public int getHealth()
 	{
 		return health;
 	}
@@ -150,12 +150,12 @@ public abstract class Character
 		return defense;
 	}
 	
-	public String getName()
+	protected String getName()
 	{
 		return name;
 	}
 
-	public void setName(String name)
+	protected void setName(String name)
 	{
 		this.name = name;
 	}

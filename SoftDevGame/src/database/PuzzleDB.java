@@ -19,6 +19,14 @@ public class PuzzleDB extends DatabaseManager{
 		catch(SQLException ex){
 
 		}
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
+		}
 		return puzzle;
 	}
 

@@ -9,7 +9,7 @@ public class Game
 {
 	private static DatabaseManager dbManage = new DatabaseManager();
 
-	public static void save(Player player)
+	public static String save(Player player)
 	{
 		String name = player.getName();
 		int currentRoomID = player.getCurrentRoom();
@@ -35,15 +35,16 @@ public class Game
 		gameInfo[6] = puzzles;
 		gameInfo[7] = monsters;
 		gameInfo[8] = equppedItems;
-		
+		String retString = "Game not saved";
 		try
 		{
-		dbManage.saveGame(gameInfo);
+		retString = dbManage.saveGame(gameInfo);
 		}
 		catch(SQLException ex)
 		{
 			System.out.println(ex.getMessage());
 		}
+		return retString;
 	}
 	
 	private static ArrayList<Integer> getIDS(ArrayList<Item> items){

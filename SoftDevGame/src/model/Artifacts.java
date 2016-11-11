@@ -23,14 +23,6 @@ public class Artifacts extends Item
 	}
 
 	@Override
-	protected void use(Character character)
-	{
-		
-		//This method does nothing at this time.  This wild only be called
-		//if a monster is passed in and they will not use a artifacts.
-	}
-
-	@Override
 	protected boolean isEquippable()
 	{
 		return false;

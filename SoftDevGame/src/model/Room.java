@@ -61,6 +61,7 @@ public class Room
 
 		if (!(puzzle == null))
 		{
+			if(puzzle.getId() != 11)
 				str += "\n\n" + puzzle.getDescription();
 		}
 		return str;	
@@ -175,17 +176,28 @@ public class Room
 	 * 
 	 * returns the itemList
 	 */
-	protected ArrayList<Item> getItemList(){
+	protected ArrayList<Item> getItemList()
+	{
 		return itemList;
 	}
 
 	protected boolean answer(ArrayList<String> commands)
 	{
 		boolean correct = false;
-		correct = puzzle.answer(commands.get(1));
+		String answerSt = "";
+		for(int i = 1; i < commands.size(); i++)
+		{
+			answerSt += commands.get(i);
+		}
+		correct = puzzle.answer(answerSt);
 		return correct;	
 	}
 
+	public Monster getMonster()
+	{
+		return monster;
+	}
+	
 	protected int getNorth()
 	{
 		return north;
@@ -219,7 +231,8 @@ public class Room
 		return hasPuzzle;
 	}
 
-	protected void removeItem(Item item){
+	protected void removeItem(Item item)
+	{
 		itemList.remove(item);
 	}
 
@@ -230,5 +243,26 @@ public class Room
 			hasMonster = false;
 		return hasMonster;
 	}
-
+	
+	public boolean hasFinalPuzzle()
+	{
+		boolean hasFinal = false;
+		if(id == 46)
+		{
+			hasFinal = true;
+		}
+		return hasFinal;
+	}
+	
+	public boolean hasLevelCompletingMonster()
+	{
+		if(monster.completesLevel())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

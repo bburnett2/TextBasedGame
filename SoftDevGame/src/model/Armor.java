@@ -3,8 +3,8 @@ package model;
 public class Armor extends Item 
 {
 	
-	private int defense;
-	private int attack;
+	protected int defense;
+	protected int attack;
 	
 	protected Armor(Object[] item)
 	{
@@ -13,17 +13,12 @@ public class Armor extends Item
 		this.attack = (int) item[5];
 	}
 
-	//add defense or attack to total
-	protected void use(Character character) 
-	{
-		character.setAttack(character.getAttack() + this.attack);
-	    character.setDefense(character.getDefense() + this.defense);		
-	}
 
 	@Override
 	protected boolean use(Player player)
 	{
-		// TODO Auto-generated method stub
+		player.setAttack(player.getAttack() + this.attack);
+	    player.setDefense(player.getDefense() + this.defense);
 		return false;
 	}
 

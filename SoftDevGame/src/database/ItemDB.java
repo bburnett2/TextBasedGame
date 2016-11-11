@@ -30,7 +30,14 @@ public class ItemDB extends DatabaseManager {
 		catch(SQLException ex){
 			
 		}
-		
+		finally {
+			try{
+				statement.close();
+			}
+			catch(SQLException ex){
+				
+			}
+		}
 		return item;
 	}
 	
