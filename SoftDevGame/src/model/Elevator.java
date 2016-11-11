@@ -79,7 +79,7 @@ public class Elevator
 		return canGo;
 	}
 	
-	protected void checkCompleted()
+	private void checkCompleted()
 	{
 		compleateL1();
 		compleateL2();
@@ -91,94 +91,98 @@ public class Elevator
 		completeFinal();
 	}
 
-	protected void completeFinal(){
-		if(player.hasDefeated(8)){
+	private void completeFinal()
+	{
+		if(player.hasDefeated(8))
+		{
 			isFianlComplete = true;
 		}
 	}
-	protected void compleateL7()
+	
+	private void compleateL7()
 	{
 		if (player.hasCompleted(10))
 				isL7Complete = true;
 	}
 	
-	protected void compleateL6()
+	private void compleateL6()
 	{
 		if (player.hasCompleted(9))
 				isL6Complete = true;
 	}
 	
-	protected void compleateL5()
+	private void compleateL5()
 	{
 		if (player.hasDefeated(5))
 				isL5Complete = true;
 	}
 	
-	protected void compleateL4()
+	private void compleateL4()
 	{
 		if (player.hasCompleted(6))
 				isL4Complete = true;
 	}
 	
-	protected void compleateL3()
+	private void compleateL3()
 	{
 		if (player.hasDefeated(3))
 				isL3Complete = true;
 	}
 	
-	protected void compleateL2()
+	private void compleateL2()
 	{
 		if (player.hasCompleted(2))
 				isL2Complete = true;
 	}
 	
-	protected void compleateL1()
+	private void compleateL1()
 	{
 		if (player.hasCompleted(1))
 				isL1Complete = true;
 	}
 
-	public int getLevel1()
+	protected int getLevel1()
 	{
 		return Level1;
 	}
 
-	public int getLevel2()
+	protected int getLevel2()
 	{
 		return Level2;
 	}
 
-	public int getLevel3()
+	protected int getLevel3()
 	{
 		return Level3;
 	}
 
-	public int getLevel4()
+	protected int getLevel4()
 	{
 		return Level4;
 	}
 
-	public int getLevel5()
+	protected int getLevel5()
 	{
 		return Level5;
 	}
 
-	public int getLevel6()
+	protected int getLevel6()
 	{
 		return Level6;
 	}
 
-	public int getLevel7()
+	protected int getLevel7()
 	{
 		return Level7;
 	}
 
-	public int getLevelFinal()
+	protected int getLevelFinal()
 	{
 		return LevelFinal;
 	}
 
-	public boolean hasWon(){
+	protected boolean hasWon()
+	{
 		checkCompleted();
 		return isFianlComplete;
 	}

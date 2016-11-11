@@ -14,39 +14,49 @@ public class FinalPuzzle{
 
 	}
 
-	public String answer1(String answer) throws GameException{
+	public String answer1(String answer) throws GameException
+	{
 		String retString;
-		if(answer.equalsIgnoreCase("right")){
+		if(answer.equalsIgnoreCase("right"))
+		{
 			retString = "You are asking the right gaurd a question, would you like to ask about the left or right box?";
 		}
-		else if(answer.equalsIgnoreCase("left")){
+		else if(answer.equalsIgnoreCase("left"))
+		{
 			retString = "You are asking the left gaurd a question, would you like to ask about the left or right box?";
 		}
-		else{
+		else
+		{
 			throw new GameException("invalid answer");
 		}
 		return retString;
 	}
 
-	public String answer2(String answer) throws GameException{
+	public String answer2(String answer) throws GameException
+	{
 		String retString = "Which question would you like to ask (select the letter): \n" +
 				"A.) Would the other guard say that this is the treat box? \n" +
 				"B.) Would the other guard say that you would say this is the treat box? \n" +
 				"C.) Is this the treat box? \nD.) Is the other box the treat box?"; 
-		if (answer.equalsIgnoreCase("right") || answer.equalsIgnoreCase("left")){
+		if (answer.equalsIgnoreCase("right") || answer.equalsIgnoreCase("left"))
+		{
 
 		}
-		else {
+		else 
+		{
 			throw new GameException("invalid answer");
 		}
 		return retString;
 	}
 //check against email for accuracy
-	public String answer3(String answer1, String answer2, String answer3)throws GameException{
+	public String answer3(String answer1, String answer2, String answer3)throws GameException
+	{
 		String retString ="";
 		answer3 = answer3.toUpperCase();
-		if(answer1.equalsIgnoreCase("left")){
-			if(answer2.equalsIgnoreCase("left")){
+		if(answer1.equalsIgnoreCase("left"))
+		{
+			if(answer2.equalsIgnoreCase("left"))
+			{
 				switch(answer3){
 					case "A": retString = "yes";
 					break;
@@ -59,8 +69,10 @@ public class FinalPuzzle{
 					default: throw new GameException("invalid input");
 				}
 			}
-			else{
-				switch(answer3){
+			else
+			{
+				switch(answer3)
+				{
 					case "A": retString = "no";
 					break;
 					case "B": retString = "no";
@@ -74,8 +86,10 @@ public class FinalPuzzle{
 			}
 		}
 		
-		if(answer1.equalsIgnoreCase("right")){
-			if(answer2.equalsIgnoreCase("left")){
+		if(answer1.equalsIgnoreCase("right"))
+		{
+			if(answer2.equalsIgnoreCase("left"))
+			{
 				switch(answer3){
 					case "A": retString = "yes";
 					break;
@@ -88,8 +102,10 @@ public class FinalPuzzle{
 					default: throw new GameException("invalid input");
 				}
 			}
-			else{
-				switch(answer3){
+			else
+			{
+				switch(answer3)
+				{
 					case "A": retString = "no";
 					break;
 					case "B": retString = "yes";
@@ -105,9 +121,11 @@ public class FinalPuzzle{
 		return retString;
 	}
 	
-	public Map<Boolean, String> finalAnswer(String answer){
+	public Map<Boolean, String> finalAnswer(String answer)
+	{
 		Map<Boolean, String> retMap = new TreeMap<>();
-		if(answer.equalsIgnoreCase("right")){
+		if(answer.equalsIgnoreCase("right"))
+		{
 			retMap.put(true, "Correct, your prize is a Revive");
 		}
 		else{

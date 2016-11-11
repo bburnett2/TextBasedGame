@@ -12,7 +12,8 @@ public class Player extends Character
 	protected int currentRoom, previousRoom, maxHealth;
 	private boolean isFighting;
 
-	protected Player(String playerID){
+	protected Player(String playerID)
+	{
 		super(playerID);
 		currentRoom = 3;
 		previousRoom = 3;
@@ -30,7 +31,8 @@ public class Player extends Character
 		equipedItems = buildItems((ArrayList<Integer>)player[8]);
 	}
 
-	protected String addItem(Item item){
+	protected String addItem(Item item)
+	{
 		unequippedItems.add(item);
 		return "Item added to unequipped items";
 	}
@@ -45,7 +47,7 @@ public class Player extends Character
 		defeatedMonsters.add(id);
 	}
 
-	public String addEquippedItem(String itemName)
+	protected String addEquippedItem(String itemName)
 	{
 		String str = "";
 		if (hasUnequippedItem(itemName))

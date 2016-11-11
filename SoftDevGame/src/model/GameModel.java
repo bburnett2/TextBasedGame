@@ -29,7 +29,8 @@ public class GameModel
 		}
 		//check if door has restrictions
 		String restricedDoor = "";
-		if(room.restrictionPuzzleID != 0 && !player.hasCompleted(room.restrictionPuzzleID)){
+		if(room.restrictionPuzzleID != 0 && !player.hasCompleted(room.restrictionPuzzleID))
+		{
 			restricedDoor = room.restrictedDoor;
 		}
 		if(hasStr(command, "north") && !restricedDoor.equals("north"))
@@ -40,7 +41,8 @@ public class GameModel
 			direction = room.getEast();
 		else if(hasStr(command,"west") && !restricedDoor.equals("west"))
 			direction = room.getWest();
-		else if(!restricedDoor.equalsIgnoreCase("")){
+		else if(!restricedDoor.equalsIgnoreCase(""))
+		{
 			throw new GameException("Door is blocked, solve the puzzle first");
 		}
 		else
@@ -77,27 +79,33 @@ public class GameModel
 		return completesLevel;
 	}
 
-	public String answerFinal1(String answer) throws GameException{
+	public String answerFinal1(String answer) throws GameException
+	{
 		return fPuzzle.answer1(answer);
 	}
 
-	public String answerFinal2(String answer) throws GameException{
+	public String answerFinal2(String answer) throws GameException
+	{
 		return fPuzzle.answer2(answer);
 	}
 
-	public String answerFinal3(String answer1, String answer2, String answer3) throws GameException{
+	public String answerFinal3(String answer1, String answer2, String answer3) throws GameException
+	{
 		return fPuzzle.answer3(answer1, answer2, answer3);
 	}
 
-	public String finalAnswer(String answer){
+	public String finalAnswer(String answer)
+	{
 		Map<Boolean, String> result =  fPuzzle.finalAnswer(answer);
 		String retString;
-		if(result.containsKey(true)){
+		if(result.containsKey(true))
+		{
 			player.addItem(new Artifacts(getItemInfo(35)));
 			player.addCompletedPuzzle(11);
 			retString = result.get(true);
 		}
-		else{
+		else
+		{
 			retString = result.get(false);
 		}
 		return retString;
@@ -155,8 +163,10 @@ public class GameModel
 			print(player.drop(itemName));
 		}
 
-		for(Item item : player.getUnequippedItems()){
-			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase())){
+		for(Item item : player.getUnequippedItems())
+		{
+			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase()))
+			{
 				//if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase())){
 				if (item.getName().equalsIgnoreCase(itemName))
 				{
@@ -218,18 +228,22 @@ public class GameModel
 		Map<Boolean, Boolean> youDied = new TreeMap<>();
 		if (room.hasMonster())
 		{
-				print(room.fight());
-				if (!player.isDead()){
-					if(room.hasLevelCompletingMonster()){
-						youDied.put(false, true);
-					}
-					else{
-						youDied.put(false, false);
-					}
+			print(room.fight());
+			if (!player.isDead())
+			{
+				if(room.hasLevelCompletingMonster())
+				{
+					youDied.put(false, true);
 				}
-				else{
-					youDied.put(true, false);
+				else
+				{
+					youDied.put(false, false);
 				}
+			}
+			else
+			{
+				youDied.put(true, false);
+			}
 		}
 		else
 			print("There is nothing to attack");
@@ -360,14 +374,18 @@ public class GameModel
 		return openFloor;
 	}
 
-	public void pickUp(ArrayList<String> commands){
+	public void pickUp(ArrayList<String> commands)
+	{
 		Item removeItem = null;
-		for(Item item : room.getItemList()){
-			if(item.getName().contains(" ")){
+		for(Item item : room.getItemList())
+		{
+			if(item.getName().contains(" "))
+			{
 				Scanner itemScan = new Scanner(item.getName());
 				String itemName1 = itemScan.next().toLowerCase();
 				String itemName2 = itemScan.next().toLowerCase();
-				if(commands.contains(itemName1) && commands.contains(itemName2)){
+				if(commands.contains(itemName1) && commands.contains(itemName2))
+				{
 					removeItem = item;
 					print(room.player.addItem(item));
 				}
@@ -398,8 +416,8 @@ public class GameModel
 
 		try{
 			room = new Room(DB.getRoomInformation(player.getCurrentRoom()), player);
-		}
-		catch(GameException ex){
+		}catch(GameException ex)
+		{
 			print(ex.getMessage());
 		}
 		print(room.toString());
@@ -459,7 +477,7 @@ public class GameModel
 	public Player getPlayer(){
 		return player;
 	}
-	
+
 	public Room getRoom(){
 		return room;
 	}

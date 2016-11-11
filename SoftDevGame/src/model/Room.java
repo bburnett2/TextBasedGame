@@ -176,7 +176,8 @@ public class Room
 	 * 
 	 * returns the itemList
 	 */
-	protected ArrayList<Item> getItemList(){
+	protected ArrayList<Item> getItemList()
+	{
 		return itemList;
 	}
 
@@ -184,14 +185,16 @@ public class Room
 	{
 		boolean correct = false;
 		String answerSt = "";
-		for(int i = 1; i < commands.size(); i++){
+		for(int i = 1; i < commands.size(); i++)
+		{
 			answerSt += commands.get(i);
 		}
 		correct = puzzle.answer(answerSt);
 		return correct;	
 	}
 
-	public Monster getMonster(){
+	public Monster getMonster()
+	{
 		return monster;
 	}
 	
@@ -228,7 +231,8 @@ public class Room
 		return hasPuzzle;
 	}
 
-	protected void removeItem(Item item){
+	protected void removeItem(Item item)
+	{
 		itemList.remove(item);
 	}
 
@@ -240,21 +244,25 @@ public class Room
 		return hasMonster;
 	}
 	
-	public boolean hasFinalPuzzle(){
+	public boolean hasFinalPuzzle()
+	{
 		boolean hasFinal = false;
-		if(id == 46){
+		if(id == 46)
+		{
 			hasFinal = true;
 		}
 		return hasFinal;
 	}
 	
-	public boolean hasLevelCompletingMonster(){
-		if(monster.completesLevel()){
+	public boolean hasLevelCompletingMonster()
+	{
+		if(monster.completesLevel())
+		{
 			return true;
 		}
-		else{
+		else
+		{
 			return false;
 		}
 	}
-
 }

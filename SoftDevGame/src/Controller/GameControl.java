@@ -25,12 +25,14 @@ public class GameControl
 	}
 
 
-	private void endOfGameByCharacterDeath(){
+	private void endOfGameByCharacterDeath()
+	{
 		print("You died, better luck next time");
 		endOfGame();
 	}
 
-	private void endOfGameByWin(){
+	private void endOfGameByWin()
+	{
 		print("Congratulations!! You WON!!!!");
 		endOfGame();
 	}
@@ -72,13 +74,15 @@ public class GameControl
 					model.stats();
 				else if (commands.get(0).equalsIgnoreCase("drop"))
 					model.drop(commands);
-				else if (commands.get(0).equalsIgnoreCase("attack")){
+				else if (commands.get(0).equalsIgnoreCase("attack"))
+				{
 					Map<Boolean, Boolean> result = model.attack(commands);
 					endGameByDeath = (result.containsKey(true)) ? true : false;
 					if(endGameByDeath){
 						endOfGameByCharacterDeath();
 					}
-					if(!(model.getRoom().getMonster().getHealth() > 0)){
+					if(!(model.getRoom().getMonster().getHealth() > 0))
+					{
 						if(result.get(false)){
 							enterElevatorSubLoop();
 						}
@@ -86,7 +90,8 @@ public class GameControl
 				}
 				else if (commands.get(0).equalsIgnoreCase("enter"))
 					enterElevatorSubLoop();
-				else if (commands.get(0).equalsIgnoreCase("use")){
+				else if (commands.get(0).equalsIgnoreCase("use"))
+				{
 					boolean completesLevel = model.use(commands);
 					if(completesLevel)
 						enterElevatorSubLoop();
@@ -99,7 +104,8 @@ public class GameControl
 				{
 					model.pickUp(commands);
 				}
-				else if(commands.get(0).equalsIgnoreCase("save")){
+				else if(commands.get(0).equalsIgnoreCase("save"))
+				{
 					print(model.saveGame());
 				}
 				else if (commands.get(0).equalsIgnoreCase("quit"));
@@ -210,15 +216,19 @@ public class GameControl
 		return parsCommand;
 	}
 
-	public void enterFinalSubloop(String answer1){
+	public void enterFinalSubloop(String answer1)
+	{
 		boolean hasValid = false;
 
-		while(!hasValid){
-			try{
+		while(!hasValid)
+		{
+			try
+			{
 				print(model.answerFinal1(answer1));
 				hasValid = true;
 			}
-			catch(GameException ex){
+			catch(GameException ex)
+			{
 				print(ex.getMessage());
 			}
 		}
@@ -226,26 +236,32 @@ public class GameControl
 		hasValid = false;
 		String answer2 = "";
 
-		while(!hasValid){
+		while(!hasValid)
+		{
 			answer2 = read();
-			try{
+			try
+			{
 				print(model.answerFinal2(answer2));
 				hasValid = true;
 			}
-			catch(GameException ex){
+			catch(GameException ex)
+			{
 				print(ex.getMessage());
 			}
 		}
 
 		String answer3;
 		hasValid = false;
-		while(!hasValid){
+		while(!hasValid)
+		{
 			answer3 = read();
-			try{
+			try
+			{
 				print(model.answerFinal3(answer1, answer2, answer3));
 				hasValid = true;
 			}
-			catch(GameException ex){
+			catch(GameException ex)
+			{
 				print(ex.getMessage());
 			}
 		}
