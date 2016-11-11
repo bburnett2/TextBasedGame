@@ -170,7 +170,6 @@ public class GameModel
 				//if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase())){
 				if (item.getName().equalsIgnoreCase(itemName))
 				{
-					boolean completesPuzzle = item.use(player);
 					ArrayList<String> answer = new ArrayList<>();
 					answer.add("space");
 					answer.add("use" + item.getName());
@@ -446,8 +445,10 @@ public class GameModel
 		help.append("\npick up <item>			(pickup bagel)");
 		help.append("\nequip <item>			(equip hat)");
 		help.append("\nuse <item>			(use bagel)");
+		help.append("\ncreate				(used to creat the C on floor 4)");
 		help.append("\ndrop <item>			(drop bagel)");
 		help.append("\nlist items			(lists items currently in your inventory)");
+		help.append("\nplayer stats			(lists player status)");
 		help.append("\nanswer <answer to puzzle> 	(answer 42)");
 		help.append("\nattack				(used to attack a monster during a battle)");
 		help.append("\nrun				(used to run from a monster during a battle)");
