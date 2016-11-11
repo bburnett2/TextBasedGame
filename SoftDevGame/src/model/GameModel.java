@@ -194,7 +194,7 @@ public class GameModel
 			print(player.drop(itemName));
 		}
 		else
-			print("Please enter a item to drop");
+			print("Please enter an item to drop");
 	}
 
 	public void run(ArrayList<String> commands)throws GameException
@@ -273,7 +273,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not a open floor that you can go to at this time\n");
+					console.print("Not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("2"))
 			{
@@ -287,7 +287,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not a open floor that you can go to at this time\n");
+					console.print("Not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("3"))
 			{
@@ -301,7 +301,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not a open floor that you can go to at this time\n");
+					console.print("Not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("4"))
 			{
@@ -315,7 +315,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not a open floor that you can go to at this time\n");
+					console.print("Not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("5"))
 			{
@@ -329,7 +329,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not a open floor that you can go to at this time\n");
+					console.print("Not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("6"))
 			{
@@ -343,7 +343,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not a open floor that you can go to at this time\n");
+					console.print("Not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("7"))
 			{
@@ -357,7 +357,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not a open floor that you can go to at this time\n");
+					console.print("Not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("8"))
 			{
@@ -371,7 +371,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not a open floor that you can go to at this time\n");
+					console.print("Not an open floor that you can go to at this time\n");
 			}
 			else
 				throw new GameException("Not a valid command in the elevator");
@@ -445,7 +445,7 @@ public class GameModel
 		StringBuilder help = new StringBuilder();
 		help.append("\n\nThis is the help menu. Some sample commands are listed below in the format of \"command <argument> (example or description)\":\n");
 		help.append("\ngo <direction>			(go north)");
-		help.append("\npick up <item>			(pickup bagel)");
+		help.append("\npick up <item>			(pickup clothing)");
 		help.append("\nequip <item>			(equip hat)");
 		help.append("\nuse <item>			(use bagel)");
 		help.append("\ncreate				(used to creat the C on floor 4)");

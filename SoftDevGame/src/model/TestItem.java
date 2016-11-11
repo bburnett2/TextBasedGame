@@ -34,7 +34,7 @@ public class TestItem
 	{
 		Object[] itemInfo = dbManage.getItemInformation(4);
 		item = new Artifacts(itemInfo);
-		assertEquals("A wooden block shaped like an 'Square'.", item.getDescription());
+		assertEquals("A wooden block shaped like a 'Square'.", item.getDescription());
 	}
 
 
