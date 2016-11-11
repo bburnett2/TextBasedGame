@@ -8,6 +8,16 @@ import error.GameException;
 import model.Player;
 
 
+/**Class: GameControl.java 
+   * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
+   * @version 1.0 
+   * Course : ITEC 3860 Fall 2016
+   * Written: Nov 11, 2016 
+  	   * 
+   * This class –  
+   * 
+   * Purpose: –  
+   */
 public class GameControl 
 {
 	model.GameModel model = new model.GameModel();
@@ -26,18 +36,27 @@ public class GameControl
 	}
 
 
+	/**
+	 * Method name: endOfGameByCharacterDeath
+	 */
 	private void endOfGameByCharacterDeath()
 	{
 		print("You died, better luck next time");
 		//endOfGame();
 	}
 
+	/**
+	 * Method name: endOfGameByWin
+	 */
 	private void endOfGameByWin()
 	{
 		print("Congratulations!! You WON!!!!");
 		//endOfGame();
 	}
 
+	/**
+	 * Method name: endOfGame
+	 */
 	private void endOfGame()
 	{
 		print("Under The Feet of Many\n" +
@@ -45,6 +64,9 @@ public class GameControl
 
 	}
 
+	/**
+	 * Method name: mainLoop
+	 */
 	private void mainLoop()
 	{
 		String command;
@@ -123,6 +145,9 @@ public class GameControl
 	}
 
 
+	/**
+	 * Method name: enterElevatorSubLoop
+	 */
 	private void enterElevatorSubLoop()
 	{
 		boolean inElevator = true;
@@ -144,6 +169,9 @@ public class GameControl
 	}
 
 	//start new game with playerID, selected by user, or load saved game
+	/**
+	 * Method name: loadOrNew
+	 */
 	private void loadOrNew(){
 
 		boolean hasPlayerID = false;
@@ -167,10 +195,14 @@ public class GameControl
 			else {
 				print("invalid playerID");
 			}
+
 		}
 		startGame();
 	}
 
+	/**
+	 * Method name: startGame
+	 */
 	private void startGame()
 	{
 		model.firstRoom();
@@ -195,17 +227,30 @@ public class GameControl
 	//		validCommands.add("quit");
 	//	}
 
+	/**
+	 * Method name: print
+	 * @param str
+	 */
 	private void print(String str)
 	{
 		model.print(str);
 	}
 
+	/**
+	 * Method name: read
+	 * @return
+	 */
 	public String read() 
 	{
 		String str=input.nextLine();
 		return str;
 	}
 
+	/**
+	 * Method name: parsString
+	 * @param command
+	 * @return
+	 */
 	public ArrayList<String> parsString(String command) 
 	{
 		String[] splitStr = command.split(" ");;
@@ -217,6 +262,10 @@ public class GameControl
 		return parsCommand;
 	}
 
+	/**
+	 * Method name: enterFinalSubloop
+	 * @param answer1
+	 */
 	public void enterFinalSubloop(String answer1)
 	{
 		boolean hasValid = false;
