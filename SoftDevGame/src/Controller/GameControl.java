@@ -129,6 +129,10 @@ public class GameControl
 				{
 					model.pickUp(commands);
 				}
+				else if(commands.get(0).equalsIgnoreCase("description"))
+				{
+					model.description();
+				}
 				else if(commands.get(0).equalsIgnoreCase("save"))
 				{
 					print(model.saveGame());

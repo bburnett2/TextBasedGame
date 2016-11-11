@@ -73,6 +73,7 @@ public class GameModel
 			print("Congratulations, that was correct!!!");
 			completesLevel = room.puzzle.completesLevel();
 			player.addCompletedPuzzle(room.puzzle.getId());
+			room.completePuzzle();
 		}
 		else
 			print("That was incorrect.");
@@ -509,6 +510,11 @@ public class GameModel
 
 	public Room getRoom(){
 		return room;
+	}
+
+	public void description()
+	{
+		print(room.toString());
 	}
 
 }
