@@ -267,6 +267,7 @@ public class GameModel
 					exitRoom();
 					room = new Room(DB.getRoomInformation(elevator.getLevel1()), player);
 					player.setCurrentRoom(room.getId());
+					elevator.setCurrentLevel(1);
 					print(room.toString());
 				}
 				else
@@ -280,6 +281,7 @@ public class GameModel
 					exitRoom();
 					room = new Room(DB.getRoomInformation(elevator.getLevel2()), player);
 					player.setCurrentRoom(room.getId());
+					elevator.setCurrentLevel(2);
 					print(room.toString());
 				}
 				else
@@ -293,6 +295,7 @@ public class GameModel
 					exitRoom();
 					room = new Room(DB.getRoomInformation(elevator.getLevel3()), player);
 					player.setCurrentRoom(room.getId());
+					elevator.setCurrentLevel(3);
 					print(room.toString());
 				}
 				else
@@ -306,6 +309,7 @@ public class GameModel
 					exitRoom();
 					room = new Room(DB.getRoomInformation(elevator.getLevel4()), player);
 					player.setCurrentRoom(room.getId());
+					elevator.setCurrentLevel(4);
 					print(room.toString());
 				}
 				else
@@ -319,6 +323,7 @@ public class GameModel
 					exitRoom();
 					room = new Room(DB.getRoomInformation(elevator.getLevel5()), player);
 					player.setCurrentRoom(room.getId());
+					elevator.setCurrentLevel(5);
 					print(room.toString());
 				}
 				else
@@ -332,6 +337,7 @@ public class GameModel
 					exitRoom();
 					room = new Room(DB.getRoomInformation(elevator.getLevel6()), player);
 					player.setCurrentRoom(room.getId());
+					elevator.setCurrentLevel(6);
 					print(room.toString());
 				}
 				else
@@ -345,6 +351,7 @@ public class GameModel
 					exitRoom();
 					room = new Room(DB.getRoomInformation(elevator.getLevel7()), player);
 					player.setCurrentRoom(room.getId());
+					elevator.setCurrentLevel(7);
 					print(room.toString());
 				}
 				else
@@ -358,6 +365,7 @@ public class GameModel
 					exitRoom();
 					room = new Room(DB.getRoomInformation(elevator.getLevelFinal()), player);
 					player.setCurrentRoom(room.getId());
+					elevator.setCurrentLevel(8);
 					print(room.toString());
 				}
 				else
@@ -435,11 +443,11 @@ public class GameModel
 		StringBuilder help = new StringBuilder();
 		help.append("\n\nThis is the help menu. Some sample commands are listed below in the format of \"command <argument> (example or description)\":\n");
 		help.append("\ngo <direction>			(go north)");
-		help.append("\npickup <item>			(pickup bagel)");
+		help.append("\npick up <item>			(pickup bagel)");
 		help.append("\nequip <item>			(equip hat)");
 		help.append("\nuse <item>			(use bagel)");
 		help.append("\ndrop <item>			(drop bagel)");
-		help.append("\nlistitems			(lists items currently in your inventory)");
+		help.append("\nlist items			(lists items currently in your inventory)");
 		help.append("\nanswer <answer to puzzle> 	(answer 42)");
 		help.append("\nattack				(used to attack a monster during a battle)");
 		help.append("\nrun				(used to run from a monster during a battle)");

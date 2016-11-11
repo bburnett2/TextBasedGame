@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import error.GameException;
-import model.Player;
+//import model.Player;
 
 
 /**Class: GameControl.java 
@@ -29,9 +29,7 @@ public class GameControl
 	{
 		GameControl run = new GameControl();
 		run.loadOrNew();
-		//run.startGame();
 		run.mainLoop();
-		//run.endOfGameByCharacterDeath();
 		run.endOfGame();
 	}
 
@@ -61,7 +59,7 @@ public class GameControl
 	{
 		print("Under The Feet of Many\n" +
 				"Implemented by: \n\tBess Burnett\n\tDaniel Harris\n\tMichael Holtmann\n\tMarcus Moss");
-
+		input.close();
 	}
 
 	/**
@@ -216,18 +214,6 @@ public class GameControl
 		validCommands.add("Use");
 		validCommands.add("quit");
 	}
-
-	//	private void startGame()
-	//	{
-	//		model.firstRoom(playerID);
-	//		validCommands.add("Go");
-	//		validCommands.add("Answer");
-	//		validCommands.add("Equip");
-	//		validCommands.add("Help");
-	//		validCommands.add("Enter");
-	//		validCommands.add("Use");
-	//		validCommands.add("quit");
-	//	}
 
 	/**
 	 * Method name: print

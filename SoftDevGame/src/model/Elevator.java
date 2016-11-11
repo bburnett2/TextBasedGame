@@ -186,4 +186,14 @@ public class Elevator
 		checkCompleted();
 		return isFianlComplete;
 	}
+
+	public int getCurrentLevel()
+	{
+		return currentLevel;
+	}
+
+	public void setCurrentLevel(int currentLevel)
+	{
+		this.currentLevel = currentLevel;
+	}
 }
