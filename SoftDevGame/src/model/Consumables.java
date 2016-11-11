@@ -5,14 +5,14 @@ public class Consumables extends Item
 {
 
 	int hp;
-	
+
 	protected Consumables(Object[] item)
 	{
 		super(item);
 		this.hp = (int) item[6];
 	}
 
-	
+
 	/**
 	 * Item 20 is heard coded because it is the only one that will add to maxHealth.
 	 * @param player

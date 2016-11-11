@@ -127,7 +127,7 @@ public class Player extends Character
 				str += item.getName() + "\n";
 		}
 		if (unequippedItems.size() == 0 && equipedItems.size() == 0)
-			 			str += "empty";
+			str += "empty";
 		return str;
 	}
 
@@ -144,7 +144,7 @@ public class Player extends Character
 					unequippedItems.remove(i);
 				}
 			}
-			
+
 			for (int i = 0; i < equipedItems.size(); i++)
 			{
 				if(equipedItems.get(i).getName().equalsIgnoreCase(itemName) && !equipedItems.get(i).isKeyItem())
@@ -281,10 +281,10 @@ public class Player extends Character
 		return equipedItems;
 	}
 
-//	protected boolean getFightingStatus()
-//	{
-//		return isFighting;
-//	}
+	//	protected boolean getFightingStatus()
+	//	{
+	//		return isFighting;
+	//	}
 
 	protected boolean isFighting()
 	{

@@ -20,7 +20,7 @@ public class Puzzle
 		this.itemNeeded = (int)puzzle[3];
 		this.itemReturned = (int)puzzle[4];
 		this.completesLevel = (boolean)puzzle[5];
-		
+
 		this.isCompleted = false;
 	}
 
@@ -30,7 +30,7 @@ public class Puzzle
 			isCompleted = true;
 		return isCompleted;
 	}
-	
+
 	protected int getId()
 	{
 		return id;
@@ -40,11 +40,11 @@ public class Puzzle
 	{
 		this.isCompleted = isCompleted;
 	}
-	
+
 	protected boolean completesLevel(){
 		return completesLevel;
 	}
-	
+
 	protected String getDescription()
 	{
 		return description;
