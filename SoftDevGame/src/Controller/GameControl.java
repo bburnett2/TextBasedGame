@@ -22,19 +22,20 @@ public class GameControl
 		//run.startGame();
 		run.mainLoop();
 		//run.endOfGameByCharacterDeath();
+		run.endOfGame();
 	}
 
 
 	private void endOfGameByCharacterDeath()
 	{
 		print("You died, better luck next time");
-		endOfGame();
+		//endOfGame();
 	}
 
 	private void endOfGameByWin()
 	{
 		print("Congratulations!! You WON!!!!");
-		endOfGame();
+		//endOfGame();
 	}
 
 	private void endOfGame()
