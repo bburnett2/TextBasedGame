@@ -3,7 +3,7 @@ package model;
 public class Elevator 
 {
 	private int currentLevel = 1;
-	
+
 	private Player player;
 	private int Level1 = 3;
 	private int Level2 = 11;
@@ -13,7 +13,7 @@ public class Elevator
 	private int Level6 = 37;
 	private int Level7 = 44;
 	private int LevelFinal = 46;
-	
+
 	private boolean isL1Complete = false;
 	private boolean isL2Complete = false;
 	private boolean isL3Complete = false;
@@ -22,11 +22,11 @@ public class Elevator
 	private boolean isL6Complete = false;
 	private boolean isL7Complete = false;
 	private boolean isFianlComplete = false;
-	
+
 	public Elevator(){
-		
+
 	}
-	
+
 	public Elevator(Player player)
 	{
 		this.player = player;
@@ -35,9 +35,9 @@ public class Elevator
 	public String toString()
 	{
 		checkCompleted();
-		
+
 		String str = "The elevator floor selection panel has: \n1";
-		
+
 		if (isL1Complete)
 			str+= "\n2 \n3";
 		if (isL2Complete || isL3Complete)
@@ -46,16 +46,16 @@ public class Elevator
 			str += " \n6 \n7";
 		if (isL6Complete && isL7Complete)
 			str += "\n8";
-		
+
 		str += "\nAre lit up";
-		
+
 		return str;		
 	}
-	
+
 	public boolean canGoToLevel(int level)
 	{
 		boolean canGo = false;
-		
+
 		if (level == 1)
 			canGo = true;
 		if (level == 2 || level == 3)
@@ -63,22 +63,22 @@ public class Elevator
 		if (level == 4 || level == 5)
 		{
 			if (isL2Complete || isL3Complete)
-			canGo = true;
+				canGo = true;
 		}
 		if (level == 6 || level == 7)
 		{
 			if (isL4Complete || isL5Complete)
-			canGo = true;
+				canGo = true;
 		}
 		if (level == 8)
 		{
 			if (isL6Complete && isL7Complete)
-			canGo = true;
+				canGo = true;
 		}
-		
+
 		return canGo;
 	}
-	
+
 	private void checkCompleted()
 	{
 		compleateL1();
@@ -98,47 +98,47 @@ public class Elevator
 			isFianlComplete = true;
 		}
 	}
-	
+
 	private void compleateL7()
 	{
 		if (player.hasCompleted(10))
-				isL7Complete = true;
+			isL7Complete = true;
 	}
-	
+
 	private void compleateL6()
 	{
 		if (player.hasCompleted(9))
-				isL6Complete = true;
+			isL6Complete = true;
 	}
-	
+
 	private void compleateL5()
 	{
 		if (player.hasDefeated(5))
-				isL5Complete = true;
+			isL5Complete = true;
 	}
-	
+
 	private void compleateL4()
 	{
 		if (player.hasCompleted(6))
-				isL4Complete = true;
+			isL4Complete = true;
 	}
-	
+
 	private void compleateL3()
 	{
 		if (player.hasDefeated(3))
-				isL3Complete = true;
+			isL3Complete = true;
 	}
-	
+
 	private void compleateL2()
 	{
 		if (player.hasCompleted(2))
-				isL2Complete = true;
+			isL2Complete = true;
 	}
-	
+
 	private void compleateL1()
 	{
 		if (player.hasCompleted(1))
-				isL1Complete = true;
+			isL1Complete = true;
 	}
 
 	protected int getLevel1()

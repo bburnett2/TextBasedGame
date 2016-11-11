@@ -10,7 +10,7 @@ public abstract class Item
 	private String name, description, action;
 	private boolean keyItem;
 	protected Map<Boolean, Integer> completesPuzzle;
-	
+
 	public Item(Object[] item)
 	{
 		this.id = (int)item[0];
@@ -25,7 +25,7 @@ public abstract class Item
 	{
 		return id;
 	}
-	
+
 	protected String getName()
 	{
 		return name;
@@ -46,9 +46,9 @@ public abstract class Item
 		return keyItem;
 	}
 
-	
+
 	abstract protected boolean use(Player player);
-	
+
 	abstract protected boolean isEquippable();
 
 }

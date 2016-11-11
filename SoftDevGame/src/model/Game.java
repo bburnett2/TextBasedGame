@@ -38,7 +38,7 @@ public class Game
 		String retString = "Game not saved";
 		try
 		{
-		retString = dbManage.saveGame(gameInfo);
+			retString = dbManage.saveGame(gameInfo);
 		}
 		catch(SQLException ex)
 		{
@@ -46,7 +46,7 @@ public class Game
 		}
 		return retString;
 	}
-	
+
 	private static ArrayList<Integer> getIDS(ArrayList<Item> items){
 		ArrayList<Integer> itemIDS = new ArrayList<>();
 		for(Item item : items){
