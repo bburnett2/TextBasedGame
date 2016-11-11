@@ -15,9 +15,9 @@ import error.GameException;
  * Course : ITEC 3860 Fall 2016
  * Written: Nov 11, 2016 
  * 
- * This class
+ * This class - runs the game
  * 
- * Purpose  
+ * Purpose  - to control all the interactions that happend during the course of the game
  */
 public class GameControl 
 {
@@ -37,6 +37,8 @@ public class GameControl
 
 	/**
 	 * Method name: endOfGameByCharacterDeath
+	 * 
+	 * prints game ending for character death
 	 */
 	private void endOfGameByCharacterDeath()
 	{
@@ -46,6 +48,8 @@ public class GameControl
 
 	/**
 	 * Method name: endOfGameByWin
+	 * 
+	 * prints gamed ending for a win
 	 */
 	private void endOfGameByWin()
 	{
@@ -55,6 +59,8 @@ public class GameControl
 
 	/**
 	 * Method name: endOfGame
+	 * 
+	 * prints the end credits
 	 */
 	private void endOfGame()
 	{
@@ -66,6 +72,8 @@ public class GameControl
 
 	/**
 	 * Method name: mainLoop
+	 * 
+	 * checks for any key words and preforms the action associated with it
 	 */
 	private void mainLoop()
 	{
@@ -143,6 +151,15 @@ public class GameControl
 					print(model.saveGame());
 				}
 				else if (commands.get(0).equalsIgnoreCase("quit"));
+				else if(commands.get(0).equalsIgnoreCase("create")){
+					boolean itemCreated = model.create();
+					if(itemCreated){
+						print("You made a 'C'");
+					}
+					else{
+						print("You don't have the items to create anything");
+					}
+				}
 				else
 					throw new GameException ("Not a valid action command.");
 
@@ -158,6 +175,8 @@ public class GameControl
 
 	/**
 	 * Method name: enterElevatorSubLoop
+	 * 
+	 * puts the player in the elevator where they may select from a list of valid levels
 	 */
 	private void enterElevatorSubLoop()
 	{
@@ -182,6 +201,8 @@ public class GameControl
 	//start new game with playerID, selected by user, or load saved game
 	/**
 	 * Method name: loadOrNew
+	 * 
+	 * allows the player to load a saved game or start a new one
 	 */
 	private void loadOrNew(){
 
@@ -213,6 +234,8 @@ public class GameControl
 
 	/**
 	 * Method name: startGame
+	 * 
+	 * begins the game
 	 */
 	private void startGame()
 	{
@@ -228,7 +251,9 @@ public class GameControl
 
 	/**
 	 * Method name: print
-	 * @param str
+	 * @param str: String
+	 * 
+	 * prints the given string
 	 */
 	private void print(String str)
 	{
@@ -237,7 +262,9 @@ public class GameControl
 
 	/**
 	 * Method name: read
-	 * @return
+	 * @return: String
+	 * 
+	 * reads in the user input and returns it
 	 */
 	public String read() 
 	{
@@ -247,8 +274,10 @@ public class GameControl
 
 	/**
 	 * Method name: parsString
-	 * @param command
-	 * @return
+	 * @param command: String
+	 * @return ArrayList<String>
+	 * 
+	 * takes a user input and parses it out into an ArrayList
 	 */
 	public ArrayList<String> parsString(String command) 
 	{
@@ -263,7 +292,9 @@ public class GameControl
 
 	/**
 	 * Method name: enterFinalSubloop
-	 * @param answer1
+	 * @param answer1: String
+	 * 
+	 * provides a loop where the player completes the final puzzle
 	 */
 	public void enterFinalSubloop(String answer1)
 	{

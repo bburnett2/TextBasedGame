@@ -47,7 +47,7 @@ public class Elevator
 		if (isL6Complete && isL7Complete)
 			str += "\n8";
 		
-		str += "\nAre lit up";
+		str += "\nare lit up";
 		
 		return str;		
 	}

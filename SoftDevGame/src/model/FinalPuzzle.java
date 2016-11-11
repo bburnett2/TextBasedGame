@@ -19,11 +19,11 @@ public class FinalPuzzle{
 		String retString;
 		if(answer.equalsIgnoreCase("right"))
 		{
-			retString = "You are asking the right gaurd a question, would you like to ask about the left or right box?";
+			retString = "You are asking the right guard a question, would you like to ask about the left or right box?";
 		}
 		else if(answer.equalsIgnoreCase("left"))
 		{
-			retString = "You are asking the left gaurd a question, would you like to ask about the left or right box?";
+			retString = "You are asking the left guard a question, would you like to ask about the left or right box?";
 		}
 		else
 		{
@@ -129,7 +129,7 @@ public class FinalPuzzle{
 			retMap.put(true, "Correct, your prize is a Revive");
 		}
 		else{
-			retMap.put(false, "The box opens and glitter flies out onto your face. You made the wrong choice, and you now look utterly silly."); 
+			retMap.put(false, "The box opens and glitter flies out into your face. You made the wrong choice, and you now look utterly silly."); 
 		}
 		return retMap;
 	}

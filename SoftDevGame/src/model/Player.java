@@ -33,7 +33,7 @@ public class Player extends Character
 	protected String addItem(Item item)
 	{
 		unequippedItems.add(item);
-		return "Item added to unequipped items";
+		return "Item has been added to unequipped items";
 	}
 
 	protected void addCompletedPuzzle(int id)
@@ -62,7 +62,7 @@ public class Player extends Character
 						equipedItems.add(temp);
 						str = "Item " + unequippedItems.get(i).getName() + " has been equipped";
 						if (temp.attack > 0)
-							str += "\n" + name + " attack has been increasted by " + temp.attack + " points.";
+							str += "\n" + name + " attack has been increased by " + temp.attack + " points.";
 						if (temp.defense > 0)
 							str += "\nDefense has been increased by " + temp.defense + " points.";
 						unequippedItems.remove(temp);
@@ -140,7 +140,7 @@ public class Player extends Character
 			{
 				if(unequippedItems.get(i).getName().equalsIgnoreCase(itemName) && !unequippedItems.get(i).isKeyItem())
 				{
-					str = "You have droped " + unequippedItems.get(i).getName();
+					str = "You have dropped " + unequippedItems.get(i).getName();
 					unequippedItems.remove(i);
 				}
 			}
@@ -149,7 +149,7 @@ public class Player extends Character
 			{
 				if(equipedItems.get(i).getName().equalsIgnoreCase(itemName) && !equipedItems.get(i).isKeyItem())
 				{
-					str = "You have droped " + equipedItems.get(i).getName();
+					str = "You have dropped " + equipedItems.get(i).getName();
 					Armor temp = (Armor)equipedItems.get(i);
 					setAttack(attack - temp.attack);
 					setDefense(defense - temp.defense);

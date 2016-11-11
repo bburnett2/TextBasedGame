@@ -137,7 +137,7 @@ public class Room
 			if (monster.itemList.size() > 0)
 			{
 				//method which adds the defeated monster's items to the player
-				str.append("Upon death, " + monster.name + " dropped ");
+				str.append("Upon death, " + monster.name + " dropped and gives you");
 				if (monster.itemList.size() == 1)
 				{
 					player.addItem(monster.itemList.get(0));
