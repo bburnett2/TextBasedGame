@@ -134,7 +134,6 @@ public class Room
 			player.setFightingStatus(false);
 			str.append(monster.die(player));
 			player.addDefeatedMonster(monster.getId());
-			monster = null;
 			if (monster.itemList.size() > 0)
 			{
 				//method which adds the defeated monster's items to the player
@@ -271,6 +270,12 @@ public class Room
 	public void completePuzzle()
 	{
 		puzzle = null;		
+	}
+
+	public void monsterKilled()
+	{
+		monster = null;
+		
 	}
 
 }

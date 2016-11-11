@@ -244,10 +244,12 @@ public class GameModel
 			{
 				youDied.put(true, false);
 			}
+			
 		}
 		else
 			print("There is nothing to attack");
 
+		
 		return youDied;
 	}
 
