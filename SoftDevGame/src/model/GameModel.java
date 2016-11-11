@@ -160,22 +160,16 @@ public class GameModel
 				itemName += commands.get(i) + " ";
 
 			itemName = itemName.trim();
-
-			print(player.drop(itemName));
 		}
 
 		for(Item item : player.getUnequippedItems())
 		{
-			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase()))
+			if (item.getName().equalsIgnoreCase(itemName))
 			{
-				//if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase())){
-				if (item.getName().equalsIgnoreCase(itemName))
-				{
-					ArrayList<String> answer = new ArrayList<>();
-					answer.add("space");
-					answer.add("use" + item.getName());
-					completesLevel = answer(answer);
-				}
+				ArrayList<String> answer = new ArrayList<>();
+				answer.add("space");
+				answer.add("use" + item.getName());
+				completesLevel = answer(answer);
 			}
 		}
 		return completesLevel;
@@ -244,12 +238,12 @@ public class GameModel
 			{
 				youDied.put(true, false);
 			}
-			
+
 		}
 		else
 			print("There is nothing to attack");
 
-		
+
 		return youDied;
 	}
 

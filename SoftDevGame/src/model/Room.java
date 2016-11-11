@@ -188,8 +188,9 @@ public class Room
 		String answerSt = "";
 		for(int i = 1; i < commands.size(); i++)
 		{
-			answerSt += commands.get(i);
+			answerSt += commands.get(i) + " ";
 		}
+		answerSt = answerSt.trim();
 		correct = puzzle.answer(answerSt);
 		return correct;	
 	}
