@@ -517,4 +517,12 @@ public class GameModel
 		print(room.toString());
 	}
 
+	public boolean create(){
+		boolean itemCreated = false;
+		if(player.hasItem(21) && player.hasItem(22)){
+			player.addItem(new Artifacts(getItemInfo(24)));
+			itemCreated = true;
+		}
+		return itemCreated;
+	}
 }
