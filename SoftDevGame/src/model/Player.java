@@ -33,7 +33,7 @@ public class Player extends Character
 	protected String addItem(Item item)
 	{
 		unequippedItems.add(item);
-		return "Item added to unequipped items";
+		return "Item has been added to unequipped items";
 	}
 
 	protected void addCompletedPuzzle(int id)

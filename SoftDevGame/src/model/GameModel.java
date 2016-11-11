@@ -49,7 +49,7 @@ public class GameModel
 			throw new GameException ("Not a valid direction.");
 
 		if(direction == 0)
-			throw new GameException("\nThere is not a door that direction.\n");
+			throw new GameException("\nThere is not a door in that direction.\n");
 
 		exitRoom();
 		room = new Room(DB.getRoomInformation(direction), player);
@@ -273,7 +273,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not an open floor that you can go to at this time\n");
+					console.print("This is not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("2"))
 			{
@@ -287,7 +287,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not an open floor that you can go to at this time\n");
+					console.print("This is not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("3"))
 			{
@@ -301,7 +301,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not an open floor that you can go to at this time\n");
+					console.print("This is not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("4"))
 			{
@@ -315,7 +315,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not an open floor that you can go to at this time\n");
+					console.print("This is not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("5"))
 			{
@@ -329,7 +329,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not an open floor that you can go to at this time\n");
+					console.print("This is not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("6"))
 			{
@@ -343,7 +343,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not an open floor that you can go to at this time\n");
+					console.print("This is not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("7"))
 			{
@@ -357,7 +357,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not an open floor that you can go to at this time\n");
+					console.print("This is not an open floor that you can go to at this time\n");
 			}
 			else if (commands.contains("8"))
 			{
@@ -371,7 +371,7 @@ public class GameModel
 					print(room.toString());
 				}
 				else
-					console.print("Not an open floor that you can go to at this time\n");
+					console.print("This is not an open floor that you can go to at this time\n");
 			}
 			else
 				throw new GameException("Not a valid command in the elevator");

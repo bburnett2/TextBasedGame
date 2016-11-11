@@ -65,7 +65,7 @@ public abstract class Character
 		}
 		else
 		{
-			text.append(attacker.name + "'s attack was completely negated.\n");
+			text.append(attacker.name + "'s attack was completely neutralized.\n");
 		}
 		return text.toString();
 	}
