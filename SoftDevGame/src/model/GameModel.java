@@ -218,18 +218,18 @@ public class GameModel
 		Map<Boolean, Boolean> youDied = new TreeMap<>();
 		if (room.hasMonster())
 		{
-			print(room.fight());
-			if (!player.isDead()){
-				if(room.hasLevelCompletingMonster()){
-					youDied.put(false, true);
+				print(room.fight());
+				if (!player.isDead()){
+					if(room.hasLevelCompletingMonster()){
+						youDied.put(false, true);
+					}
+					else{
+						youDied.put(false, false);
+					}
 				}
 				else{
-					youDied.put(false, false);
+					youDied.put(true, false);
 				}
-			}
-			else{
-				youDied.put(false, false);
-			}
 		}
 		else
 			print("There is nothing to attack");
@@ -316,7 +316,7 @@ public class GameModel
 				if (openFloor)
 				{
 					exitRoom();
-					room = new Room(DB.getRoomInformation(elevator.getLevel1()), player);
+					room = new Room(DB.getRoomInformation(elevator.getLevel6()), player);
 					player.setCurrentRoom(room.getId());
 					print(room.toString());
 				}
@@ -458,6 +458,10 @@ public class GameModel
 
 	public Player getPlayer(){
 		return player;
+	}
+	
+	public Room getRoom(){
+		return room;
 	}
 
 }

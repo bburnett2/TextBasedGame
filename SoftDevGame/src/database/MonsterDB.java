@@ -10,7 +10,7 @@ public class MonsterDB extends DatabaseManager
 
 	protected Object[] getMonsterInformationPro(int monsterNum) throws GameException{
 		sqlCall = "SELECT * FROM monster WHERE monsterID = " + monsterNum;
-		Object[] monster = new Object[7];
+		Object[] monster = new Object[8];
 		try{
 			resultSet = statement.executeQuery(sqlCall);
 			monster[0] = resultSet.getString("MonsterName");
@@ -19,6 +19,7 @@ public class MonsterDB extends DatabaseManager
 			monster[3] = resultSet.getInt("Attack");
 			monster[4] = resultSet.getInt("Health");
 			monster[5] = resultSet.getInt("Defense");
+			monster[7] = (resultSet.getInt("CompletesLevel") == 1) ? true : false;
 			monster[6] = getMonsterItemsInts(monsterNum);
 		}
 		catch(SQLException ex){

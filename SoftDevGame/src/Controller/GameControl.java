@@ -21,7 +21,7 @@ public class GameControl
 		run.loadOrNew();
 		//run.startGame();
 		run.mainLoop();
-		run.endOfGameByCharacterDeath();
+		//run.endOfGameByCharacterDeath();
 	}
 
 
@@ -34,13 +34,13 @@ public class GameControl
 		print("Congratulations!! You WON!!!!");
 		endOfGame();
 	}
-	
- 	private void endOfGame()
-  	{
- 		print("Under The Feet of Many\n" +
- 				"Implemented by: \n\tBess Burnett\n\tDaniel Harris\n\tMichael Holtmann\n\tMarcus Moss");
-  
-  	}
+
+	private void endOfGame()
+	{
+		print("Under The Feet of Many\n" +
+				"Implemented by: \n\tBess Burnett\n\tDaniel Harris\n\tMichael Holtmann\n\tMarcus Moss");
+
+	}
 
 	private void mainLoop()
 	{
@@ -78,8 +78,10 @@ public class GameControl
 					if(endGameByDeath){
 						endOfGameByCharacterDeath();
 					}
-					if(result.get(false)){
-						enterElevatorSubLoop();
+					if(!(model.getRoom().getMonster().getHealth() > 0)){
+						if(result.get(false)){
+							enterElevatorSubLoop();
+						}
 					}
 				}
 				else if (commands.get(0).equalsIgnoreCase("enter"))
@@ -210,7 +212,7 @@ public class GameControl
 
 	public void enterFinalSubloop(String answer1){
 		boolean hasValid = false;
-		
+
 		while(!hasValid){
 			try{
 				print(model.answerFinal1(answer1));
@@ -220,10 +222,10 @@ public class GameControl
 				print(ex.getMessage());
 			}
 		}
-		
+
 		hasValid = false;
 		String answer2 = "";
-		
+
 		while(!hasValid){
 			answer2 = read();
 			try{
@@ -234,7 +236,7 @@ public class GameControl
 				print(ex.getMessage());
 			}
 		}
-		
+
 		String answer3;
 		hasValid = false;
 		while(!hasValid){
@@ -247,7 +249,7 @@ public class GameControl
 				print(ex.getMessage());
 			}
 		}
-		
+
 		print("Which box do you think holds the treat?");
 		String answerFinal = read();
 		print(model.finalAnswer(answerFinal));

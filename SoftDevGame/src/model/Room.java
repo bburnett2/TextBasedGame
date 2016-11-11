@@ -191,6 +191,10 @@ public class Room
 		return correct;	
 	}
 
+	public Monster getMonster(){
+		return monster;
+	}
+	
 	protected int getNorth()
 	{
 		return north;

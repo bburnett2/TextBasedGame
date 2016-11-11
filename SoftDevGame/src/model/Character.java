@@ -100,7 +100,7 @@ public abstract class Character
 	 * 
 	 * returns the health
 	 */
-	protected int getHealth()
+	public int getHealth()
 	{
 		return health;
 	}
