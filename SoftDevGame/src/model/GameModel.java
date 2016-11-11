@@ -429,6 +429,26 @@ public class GameModel
 		print(elevator.toString());
 		return elevator.hasWon();
 	}
+	
+	public void help(ArrayList<String> command) throws GameException
+	{
+		StringBuilder help = new StringBuilder();
+		help.append("\n\nThis is the help menu. Some sample commands are listed below in the format of \"command <argument> (example or description)\":\n");
+		help.append("\ngo <direction>			(go north)");
+		help.append("\npickup <item>			(pickup bagel)");
+		help.append("\nequip <item>			(equip hat)");
+		help.append("\nuse <item>			(use bagel)");
+		help.append("\ndrop <item>			(drop bagel)");
+		help.append("\nlistitems			(lists items currently in your inventory)");
+		help.append("\nanswer <answer to puzzle> 	(answer 42)");
+		help.append("\nattack				(used to attack a monster during a battle)");
+		help.append("\nrun				(used to run from a monster during a battle)");
+		help.append("\nenter 				(enter the elevator from any room)");
+		help.append("\nexit				(leave the elevator, returning to your previous location)");
+		help.append("\nsave				(saves the game)");
+		help.append("\nquit				(ends the game)");
+		print(help.toString());
+	}
 
 	public Object[] getItemInfo(int itemNum)
 	{

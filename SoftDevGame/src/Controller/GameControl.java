@@ -14,9 +14,9 @@ import model.Player;
    * Course : ITEC 3860 Fall 2016
    * Written: Nov 11, 2016 
   	   * 
-   * This class –  
+   * This class
    * 
-   * Purpose: –  
+   * Purpose  
    */
 public class GameControl 
 {
@@ -92,6 +92,8 @@ public class GameControl
 				}
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
+				else if (commands.get(0).equalsIgnoreCase("help"))
+					model.help(commands);
 				else if ((commands.size() > 1) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("playerstats"))
 					model.stats();
 				else if (commands.get(0).equalsIgnoreCase("drop"))
