@@ -32,6 +32,7 @@ public class GameControl
 		//run.startGame();
 		run.mainLoop();
 		//run.endOfGameByCharacterDeath();
+		run.endOfGame();
 	}
 
 
@@ -41,7 +42,7 @@ public class GameControl
 	private void endOfGameByCharacterDeath()
 	{
 		print("You died, better luck next time");
-		endOfGame();
+		//endOfGame();
 	}
 
 	/**
@@ -50,7 +51,7 @@ public class GameControl
 	private void endOfGameByWin()
 	{
 		print("Congratulations!! You WON!!!!");
-		endOfGame();
+		//endOfGame();
 	}
 
 	/**
