@@ -10,14 +10,14 @@ public abstract class Character
 	protected int defense;
 	protected int attack;
 
-	
+
 	public Character(String name){
 		health = 10;
 		defense = 5;
 		attack = 5;
 		this.name = name;
 	}
-	
+
 	/**getItemList
 	 * @return itemList: ArrayList<Item> - 
 	 * 
@@ -41,12 +41,12 @@ public abstract class Character
 	 * calls the takeDamage() method on the enemy, using this Character's attack power
 	 * @param enemy	the one who is being attacked
 	 */
-	
+
 	protected String attack(Character enemy) 
 	{ 
 		return (enemy.takeDamage(this));
 	}
-	
+
 	/**
 	 * implements damage reduction based on the defender's defense value
 	 * defender's health will then be reduced by nonnegative values
@@ -69,7 +69,7 @@ public abstract class Character
 		}
 		return text.toString();
 	}
-	
+
 	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
 	{
 		GameModel model = new GameModel();
@@ -104,7 +104,7 @@ public abstract class Character
 	{
 		return health;
 	}
-	
+
 	protected boolean isDead()
 	{
 		return (health < 1);
@@ -149,7 +149,7 @@ public abstract class Character
 	{
 		return defense;
 	}
-	
+
 	protected String getName()
 	{
 		return name;

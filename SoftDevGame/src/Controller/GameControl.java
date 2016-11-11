@@ -10,15 +10,15 @@ import error.GameException;
 
 
 /**Class: GameControl.java 
-   * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
-   * @version 1.0 
-   * Course : ITEC 3860 Fall 2016
-   * Written: Nov 11, 2016 
-  	   * 
-   * This class
-   * 
-   * Purpose  
-   */
+ * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
+ * @version 1.0 
+ * Course : ITEC 3860 Fall 2016
+ * Written: Nov 11, 2016 
+ * 
+ * This class
+ * 
+ * Purpose  
+ */
 public class GameControl 
 {
 	model.GameModel model = new model.GameModel();
@@ -59,7 +59,7 @@ public class GameControl
 	private void endOfGame()
 	{
 		print("Under The Feet of Many\n" +
-				"Implemented by: \n\tBess Burnett\n\tDaniel Harris\n\tMichael Holtmann\n\tMarcus Moss" +
+				"Implemented by: \n\tBess Burnett\n\tDaniel Harris\n\tMichael Holtmann\n\tMarcus Moss \n" +
 				"Designed by: \n\tMatthew Xiong \n\tMatthew Nelson \n\tJohanna Timmer \n\tTimothy Warren");
 		input.close();
 	}

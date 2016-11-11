@@ -55,8 +55,8 @@ public class Room
 
 		if (!(monster == null))
 		{
-				str += "\n\n" + monster.getDescription();
-				str += startFight();
+			str += "\n\n" + monster.getDescription();
+			str += startFight();
 		}
 
 
@@ -121,7 +121,7 @@ public class Room
 		return("\n\nYou are fighting the " + monster.name + ".\n");
 		//maybe a generic "the monster attacks you!!" is here as well
 	}
-	
+
 
 	//this is intended to be the method called when the player enters the attack command
 	//it contains the logic for one round attacks between the player and a monster
@@ -199,7 +199,7 @@ public class Room
 	{
 		return monster;
 	}
-	
+
 	protected int getNorth()
 	{
 		return north;
@@ -245,7 +245,7 @@ public class Room
 			hasMonster = false;
 		return hasMonster;
 	}
-	
+
 	public boolean hasFinalPuzzle()
 	{
 		boolean hasFinal = false;
@@ -255,7 +255,7 @@ public class Room
 		}
 		return hasFinal;
 	}
-	
+
 	public boolean hasLevelCompletingMonster()
 	{
 		if(monster.completesLevel())

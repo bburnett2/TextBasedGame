@@ -12,7 +12,7 @@ public class TestItem
 {
 	Item item;
 	DatabaseManager dbManage = new DatabaseManager();
-	
+
 	@Test
 	public void testGetItemID()
 	{
@@ -20,7 +20,7 @@ public class TestItem
 		item = new Artifacts(itemInfo);
 		assertEquals(4, item.getItemID());
 	}
-	
+
 	@Test
 	public void testGetName()
 	{
@@ -37,6 +37,6 @@ public class TestItem
 		assertEquals("A wooden block shaped like an 'Square'.", item.getDescription());
 	}
 
-	
+
 
 }

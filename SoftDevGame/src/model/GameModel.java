@@ -437,7 +437,7 @@ public class GameModel
 		print(elevator.toString());
 		return elevator.hasWon();
 	}
-	
+
 	public void help(ArrayList<String> command) throws GameException
 	{
 		StringBuilder help = new StringBuilder();
