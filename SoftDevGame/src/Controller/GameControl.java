@@ -106,10 +106,15 @@ public class GameControl
 					if(endGameByDeath){
 						endOfGameByCharacterDeath();
 					}
-					if(!(model.getRoom().getMonster().getHealth() > 0))
+					if(model.getRoom().hasMonster())
 					{
-						if(result.get(false)){
-							enterElevatorSubLoop();
+						if(!(model.getRoom().getMonster().getHealth() > 0))
+						{
+							//last min bug fix.
+							model.getRoom().monsterKilled();
+							if(result.get(false)){
+								enterElevatorSubLoop();
+							}
 						}
 					}
 				}
