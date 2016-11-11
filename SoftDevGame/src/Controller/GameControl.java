@@ -177,8 +177,9 @@ public class GameControl
 	 * Method name: enterElevatorSubLoop
 	 * 
 	 * puts the player in the elevator where they may select from a list of valid levels
+	 * @throws GameException 
 	 */
-	private void enterElevatorSubLoop()
+	private void enterElevatorSubLoop() throws GameException
 	{
 		boolean inElevator = true;
 		String command;
