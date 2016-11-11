@@ -1,7 +1,5 @@
 package model;
 
-import view.Console;
-
 /**Class: Artifacts.java 
    * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
    * @version 1.0 

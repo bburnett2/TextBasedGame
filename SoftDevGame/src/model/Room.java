@@ -35,6 +35,7 @@ public class Room
 		this.restrictedDoor = restrict.next();
 		this.itemList = buildItems((ArrayList<Integer>) room[8]);
 		this.puzzle = buildPuzzle((int)room[9]);
+		restrict.close();
 	}
 
 	//toString is required to be public
@@ -265,4 +266,5 @@ public class Room
 			return false;
 		}
 	}
+
 }

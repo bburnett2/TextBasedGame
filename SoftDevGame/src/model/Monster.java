@@ -28,7 +28,6 @@ public class Monster extends Character
 	@Override
 	protected String die(Character attacker)
 	{
-		//deathscription goes here
 		return ("The " + name + " died.\n");
 	}
 

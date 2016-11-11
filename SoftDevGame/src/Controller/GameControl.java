@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import error.GameException;
-import model.Player;
+//import model.Player;
 
 
 /**Class: GameControl.java 
@@ -14,9 +14,9 @@ import model.Player;
    * Course : ITEC 3860 Fall 2016
    * Written: Nov 11, 2016 
   	   * 
-   * This class –  
+   * This class
    * 
-   * Purpose: –  
+   * Purpose  
    */
 public class GameControl 
 {
@@ -29,9 +29,7 @@ public class GameControl
 	{
 		GameControl run = new GameControl();
 		run.loadOrNew();
-		//run.startGame();
 		run.mainLoop();
-		//run.endOfGameByCharacterDeath();
 		run.endOfGame();
 	}
 
@@ -62,7 +60,7 @@ public class GameControl
 		print("Under The Feet of Many\n" +
 				"Implemented by: \n\tBess Burnett\n\tDaniel Harris\n\tMichael Holtmann\n\tMarcus Moss" +
 				"Designed by: \n\tMatthew Xiong \n\tMatthew Nelson \n\tJohanna Timmer \n\tTimothy Warren");
-
+		input.close();
 	}
 
 	/**
@@ -94,6 +92,8 @@ public class GameControl
 				}
 				else if (commands.get(0).equalsIgnoreCase("equip"))
 					model.equip(commands);
+				else if (commands.get(0).equalsIgnoreCase("help"))
+					model.help(commands);
 				else if ((commands.size() > 1) && (commands.get(0) + commands.get(1)).equalsIgnoreCase("playerstats"))
 					model.stats();
 				else if (commands.get(0).equalsIgnoreCase("drop"))
@@ -215,18 +215,6 @@ public class GameControl
 		validCommands.add("Use");
 		validCommands.add("quit");
 	}
-
-	//	private void startGame()
-	//	{
-	//		model.firstRoom(playerID);
-	//		validCommands.add("Go");
-	//		validCommands.add("Answer");
-	//		validCommands.add("Equip");
-	//		validCommands.add("Help");
-	//		validCommands.add("Enter");
-	//		validCommands.add("Use");
-	//		validCommands.add("quit");
-	//	}
 
 	/**
 	 * Method name: print

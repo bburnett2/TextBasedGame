@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Player extends Character 
 {
-	//ArrayList<Integer> contains the ID's of the completed/held things
 	private ArrayList<Item> unequippedItems = new ArrayList<Item>();
 	private ArrayList<Integer> completedPuzzles = new ArrayList<Integer>();
 	private ArrayList<Integer> defeatedMonsters = new ArrayList<Integer>();
@@ -201,9 +200,6 @@ public class Player extends Character
 			if (item.getItemID() == itemID)
 				hasItem = true;
 		}
-		//		not sure exactly why but this does not work.		
-		//		if (unequippedItems.contains(itemID))
-		//			hasItem = true;
 
 		for (Item item : equipedItems)
 		{
@@ -285,12 +281,12 @@ public class Player extends Character
 		return equipedItems;
 	}
 
-	protected boolean getFightingStatus()
-	{
-		return isFighting;
-	}
+//	protected boolean getFightingStatus()
+//	{
+//		return isFighting;
+//	}
 
-	public boolean isFighting()
+	protected boolean isFighting()
 	{
 		return isFighting;
 	}
@@ -300,12 +296,12 @@ public class Player extends Character
 		isFighting = status;
 	}
 
-	public void addMaxHealth(int hp)
+	protected void addMaxHealth(int hp)
 	{
 		maxHealth += hp;		
 	}
 
-	public void addHealth(int hp)
+	protected void addHealth(int hp)
 	{
 		if (super.health + hp <= maxHealth)
 			super.health += hp;	
@@ -313,7 +309,7 @@ public class Player extends Character
 			super.health = maxHealth;
 	}
 
-	public String stats()
+	protected String stats()
 	{
 		return name + " current health is " + health + " and  can have max health of " + maxHealth + ". \n" +
 				"They have " + attack + " attack and " + defense + " defense.";
