@@ -70,9 +70,6 @@ public class GameControl
 				{
 					model.pickUp(commands);
 				}
-				else if(commands.get(0).equalsIgnoreCase("save")){
-					model.saveGame();
-				}
 				else if (commands.get(0).equalsIgnoreCase("quit"));
 				else
 					throw new GameException ("Not a valid action command.");
@@ -109,12 +106,10 @@ public class GameControl
 	private void loadOrNew(){
 		print("Select new game or select from the list of saved games: \n");
 		ArrayList<String> loadableGames = model.getLoadableGames();
-		for(String playerID : loadableGames){
-			print(playerID);
-		}
 		String name = read();
+		
 		if(loadableGames.contains(name)){
-			model.buildPlayer(name);
+			 model.buildPlayer(name);
 		}
 		else{
 			print("What would you like your PlayerID to be");
