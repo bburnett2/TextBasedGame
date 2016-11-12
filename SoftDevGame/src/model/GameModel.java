@@ -456,7 +456,7 @@ public class GameModel
 		help.append("\nlist items			(lists items currently in your inventory)");
 		help.append("\nplayer stats			(lists player status)");
 		help.append("\nanswer <answer to puzzle> 	(answer 42)");
-		help.append("\ndescription 			 	(restates the room's description)");
+		help.append("\ndescription 			 (restates the room's description)");
 		help.append("\nattack				(used to attack a monster during a battle)");
 		help.append("\nrun				(used to run from a monster during a battle)");
 		help.append("\nenter 				(enter the elevator from any room)");
@@ -527,6 +527,8 @@ public class GameModel
 		boolean itemCreated = false;
 		if(player.hasItem(21) && player.hasItem(22)){
 			player.addItem(new Artifacts(getItemInfo(24)));
+			player.removeItem(21);
+			player.removeItem(22);
 			itemCreated = true;
 			player.addCompletedPuzzle(5);
 		}
