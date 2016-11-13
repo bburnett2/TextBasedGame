@@ -71,6 +71,10 @@ public class GameModel
 			print("Congratulations, that was correct!!!");
 			completesLevel = room.puzzle.completesLevel();
 			player.addCompletedPuzzle(room.puzzle.getId());
+			int itemRetruned = room.puzzle.getItemReturned();
+			if(itemRetruned != 0){
+				room.player.addItem(new Artifacts(getItemInfo(itemRetruned)));
+			}
 			room.completePuzzle();
 		}
 		else
@@ -160,9 +164,10 @@ public class GameModel
 
 			itemName = itemName.trim();
 		}
-
-		for (Item item : player.getUnequippedItems())
+		
+		for (int i = 0; i < player.getUnequippedItems().size(); i++)
 		{
+			Item item = player.getUnequippedItems().get(i);
 			if (item.getName().equalsIgnoreCase(itemName))
 			{
 				ArrayList<String> answer = new ArrayList<>();
@@ -367,7 +372,7 @@ public class GameModel
 				}
 				else
 					throw new GameException(
-							"Not a valid command in the elevator.  You have to reenter the elecator to use again.");
+							"Not a valid command in the elevator.  You have to reenter the elevator to use again.");
 			}
 			catch (GameException e)
 			{
@@ -433,7 +438,7 @@ public class GameModel
 	{
 		if (player.isFighting())
 		{
-			throw new GameException("You have to attack or run before you can enter the elecator");
+			throw new GameException("You have to attack or run before you can enter the elevator");
 		}
 		else
 		{

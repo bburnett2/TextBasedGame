@@ -32,18 +32,24 @@ public class Player extends Character
 
 	protected String addItem(Item item)
 	{
-		unequippedItems.add(item);
+		if(!unequippedItems.contains(item)){
+			unequippedItems.add(item);
+		}
 		return "Item has been added to unequipped items";
 	}
 
 	protected void addCompletedPuzzle(int id)
 	{
-		completedPuzzles.add(id);
+		if(!completedPuzzles.contains(id)){
+			completedPuzzles.add(id);
+		}
 	}
 
 	protected void addDefeatedMonster(int id)
 	{
-		defeatedMonsters.add(id);
+		if(!defeatedMonsters.contains(id)){
+			defeatedMonsters.add(id);
+		}
 	}
 
 	protected String addEquippedItem(String itemName)
@@ -59,7 +65,9 @@ public class Player extends Character
 					{
 						unequippedItems.get(i).use(this);
 						Armor temp = (Armor)unequippedItems.get(i);
-						equipedItems.add(temp);
+						if(!equipedItems.contains(temp)){
+							equipedItems.add(temp);
+						}
 						str = "Item " + unequippedItems.get(i).getName() + " has been equipped";
 						if (temp.attack > 0)
 							str += "\n" + name + " attack has been increased by " + temp.attack + " points.";
@@ -322,7 +330,7 @@ public class Player extends Character
 			if (unequippedItems.get(i).getItemID() == id)
 				unequippedItems.remove(i);
 		}
-		
+
 	}
 
 }

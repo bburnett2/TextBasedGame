@@ -85,23 +85,16 @@ public class SavedGamesDB extends DatabaseManager{
 	}
 
 	private void saveItems(String playerID, ArrayList<Integer> items){
-		sqlCall = "DELTE FROM Player_Item WHERE playerID = '" + playerID + "'";
-		try{
-		statement.executeUpdate(sqlCall);
-		statement.close();
-		}catch(SQLException ex){
-			
-		}
 		for(Integer integer : items){
 			sqlCall = "INSERT INTO Player_Item (PlayerID, ItemID) VALUES(";
 			sqlCall += "'" +  playerID + "'" + "," +  (int)integer + ",";
 			sqlCall = sqlCall.substring(0, sqlCall.length() - 1);
 			sqlCall += ")";
 			try{
-			statement.executeUpdate(sqlCall);
+				statement.executeUpdate(sqlCall);
 			}
 			catch(SQLException ex){
-				
+
 			}
 		}
 		try{
@@ -225,7 +218,10 @@ public class SavedGamesDB extends DatabaseManager{
 		try{
 			resultSet = statement.executeQuery(sqlCall);
 			while(resultSet.next()){
-				items.add(resultSet.getInt("ItemID"));
+				Integer itemID = resultSet.getInt("ItemID");
+				if(!items.contains(itemID)){
+					items.add(itemID);
+				}
 			}
 			statement.close();
 		}
@@ -260,7 +256,7 @@ public class SavedGamesDB extends DatabaseManager{
 				statement.close();
 			}
 			catch(SQLException ex){
-				
+
 			}
 		}
 		return puzzles;
@@ -272,7 +268,10 @@ public class SavedGamesDB extends DatabaseManager{
 		try{
 			resultSet = statement.executeQuery(sqlCall);
 			while(resultSet.next()){
-				equippedItems.add(resultSet.getInt("ItemID"));
+				Integer itemID = resultSet.getInt("ItemID");
+				if(!equippedItems.contains(itemID)){
+					equippedItems.add(itemID);
+				}
 			}
 		}
 		catch(SQLException ex){
@@ -283,7 +282,7 @@ public class SavedGamesDB extends DatabaseManager{
 				statement.close();
 			}
 			catch(SQLException ex){
-				
+
 			}
 		}
 		return equippedItems;
@@ -306,7 +305,7 @@ public class SavedGamesDB extends DatabaseManager{
 				statement.close();
 			}
 			catch(SQLException ex){
-				
+
 			}
 		}
 		return monsters;
@@ -328,9 +327,40 @@ public class SavedGamesDB extends DatabaseManager{
 				statement.close();
 			}
 			catch(SQLException ex){
-				
+
 			}
 		}
 		return savedGames;
 	}
+
+	private void deleteAll() throws SQLException{
+		sqlCall = "DELETE FROM Player_Item";
+		statement.executeUpdate(sqlCall);
+		statement.close();
+		sqlCall = "DELETE FROM Player_Item_Equipped";
+		statement.executeUpdate(sqlCall);
+		statement.close();
+		sqlCall = "DELETE FROM Player_CPuzzle";
+		statement.executeUpdate(sqlCall);
+		statement.close();
+		sqlCall = "DELETE FROM Player_DMonster";
+		statement.executeUpdate(sqlCall);
+		statement.close();
+		sqlCall = "DELETE FROM Saved_Game";
+		statement.executeUpdate(sqlCall);
+		statement.close();
+	}
+
+	//	public static void main(String[] args){
+	//		SavedGamesDB sg = new SavedGamesDB();
+	//		try
+	//		{
+	//			sg.deleteAll();
+	//		}
+	//		catch (SQLException ex)
+	//		{
+	//			// TODO Auto-generated catch block
+	//			ex.printStackTrace();
+	//		}
+	//	}
 }

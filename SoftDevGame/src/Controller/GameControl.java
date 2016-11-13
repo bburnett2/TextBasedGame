@@ -94,7 +94,7 @@ public class GameControl
 				{
 					boolean completesLevel = model.answer(commands);
 					if(completesLevel)
-						enterElevatorSubLoop();
+						endGameByWin = enterElevatorSubLoop();
 				}
 				else if (commands.get(0).equalsIgnoreCase("answer") && model.getPlayer().getCurrentRoom() == 46){
 					enterFinalSubloop(commands.get(1));
@@ -179,16 +179,13 @@ public class GameControl
 	 * puts the player in the elevator where they may select from a list of valid levels
 	 * @throws GameException 
 	 */
-	private void enterElevatorSubLoop() throws GameException
+	private boolean enterElevatorSubLoop() throws GameException
 	{
 		boolean inElevator = true;
 		String command;
 		ArrayList<String> commands = new ArrayList<String>();
 
 		boolean hasWon = model.enterElevator();
-		if(hasWon){
-			endOfGameByWin();
-		}
 		do
 		{
 			command = read();
@@ -197,6 +194,7 @@ public class GameControl
 			if (!(commands.contains("exit")))
 				inElevator = model.pushElevator(commands);
 		}while(!(inElevator) && !(commands.contains("exit")));
+		return hasWon;
 	}
 
 	//start new game with playerID, selected by user, or load saved game

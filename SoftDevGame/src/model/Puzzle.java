@@ -50,4 +50,7 @@ public class Puzzle
 		return description;
 	}
 
+	protected int getItemReturned(){
+		return itemReturned;
+	}
 }
