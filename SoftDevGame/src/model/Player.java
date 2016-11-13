@@ -315,4 +315,14 @@ public class Player extends Character
 				"They have " + attack + " attack and " + defense + " defense.";
 	}
 
+	public void removeItem(int id)
+	{
+		for(int i = 0; i < unequippedItems.size(); i++)
+		{
+			if (unequippedItems.get(i).getItemID() == id)
+				unequippedItems.remove(i);
+		}
+		
+	}
+
 }
