@@ -21,6 +21,9 @@ public class GameModel
 
 	public void go(ArrayList<String> command) throws GameException
 	{
+		if(command.size() < 2){
+			throw new GameException("must enter a direction to go");
+		}
 		int direction;
 
 		if (player.isFighting())
