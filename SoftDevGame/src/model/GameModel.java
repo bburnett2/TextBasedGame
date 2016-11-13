@@ -164,16 +164,22 @@ public class GameModel
 
 			itemName = itemName.trim();
 		}
-		
+
 		for (int i = 0; i < player.getUnequippedItems().size(); i++)
 		{
 			Item item = player.getUnequippedItems().get(i);
-			if (item.getName().equalsIgnoreCase(itemName))
-			{
-				ArrayList<String> answer = new ArrayList<>();
-				answer.add("space");
-				answer.add("use " + item.getName());
-				completesLevel = answer(answer);
+			if(item.getType().equalsIgnoreCase("consumable")){
+				item.use(player);
+			}
+			else{
+				if (item.getName().equalsIgnoreCase(itemName))
+				{
+					completesLevel = item.use(player);
+					ArrayList<String> answer = new ArrayList<>();
+					answer.add("space");
+					answer.add("use " + item.getName());
+					completesLevel = answer(answer);
+				}
 			}
 		}
 		return completesLevel;

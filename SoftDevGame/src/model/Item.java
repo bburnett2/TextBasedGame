@@ -7,20 +7,26 @@ public abstract class Item
 {
 
 	private int id;
-	private String name, description, action;
+	protected String name, description, action;
 	private boolean keyItem;
 	protected Map<Boolean, Integer> completesPuzzle;
+	protected String type;
 
 	public Item(Object[] item)
 	{
 		this.id = (int)item[0];
 		this.name = (String) item[1];
+		type = (String) item[2];
 		this.description = (String)item[3];
 		this.keyItem = (boolean)item[7];
 		this.action = (String) item[8];
 		this.completesPuzzle = (TreeMap<Boolean, Integer>)item[9];
 	}
 
+	protected String getType(){
+		return type;
+	}
+	
 	protected int getItemID()
 	{
 		return id;

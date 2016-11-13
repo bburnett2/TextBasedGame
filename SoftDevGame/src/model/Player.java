@@ -28,6 +28,7 @@ public class Player extends Character
 		unequippedItems = buildItems((ArrayList<Integer>)player[6]);
 		defeatedMonsters = (ArrayList<Integer>)player[7];
 		equipedItems = buildItems((ArrayList<Integer>)player[8]);
+		maxHealth = 10;
 	}
 
 	protected String addItem(Item item)
@@ -109,7 +110,7 @@ public class Player extends Character
 					items.add(new Armor(item));
 				else if(type.equalsIgnoreCase("Artifacts"))
 					items.add(new Artifacts(item));
-				else if(type.equalsIgnoreCase("Consumables"))
+				else if(type.equalsIgnoreCase("consumable"))
 					items.add(new Consumables(item));
 				count++;
 			}
