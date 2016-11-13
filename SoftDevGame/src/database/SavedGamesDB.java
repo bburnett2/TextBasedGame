@@ -84,13 +84,25 @@ public class SavedGamesDB extends DatabaseManager{
 		return "Game Saved";
 	}
 
-	private void saveItems(String playerID, ArrayList<Integer> items) throws SQLException{
+	private void saveItems(String playerID, ArrayList<Integer> items){
+		sqlCall = "DELTE FROM Player_Item WHERE playerID = '" + playerID + "'";
+		try{
+		statement.executeUpdate(sqlCall);
+		statement.close();
+		}catch(SQLException ex){
+			
+		}
 		for(Integer integer : items){
 			sqlCall = "INSERT INTO Player_Item (PlayerID, ItemID) VALUES(";
 			sqlCall += "'" +  playerID + "'" + "," +  (int)integer + ",";
 			sqlCall = sqlCall.substring(0, sqlCall.length() - 1);
 			sqlCall += ")";
+			try{
 			statement.executeUpdate(sqlCall);
+			}
+			catch(SQLException ex){
+				
+			}
 		}
 		try{
 			statement.close();

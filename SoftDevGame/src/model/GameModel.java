@@ -7,11 +7,11 @@ import java.util.TreeMap;
 
 import error.GameException;
 
-public class GameModel 
+public class GameModel
 {
 	public final int FIRSTROOM = 3;
 
-	//needs to be working from DB
+	// needs to be working from DB
 	private Player player;
 	private Room room = null;
 	private FinalPuzzle fPuzzle = new FinalPuzzle();
@@ -23,32 +23,32 @@ public class GameModel
 	{
 		int direction;
 
-		if(player.isFighting())
+		if (player.isFighting())
 		{
 			throw new GameException("You must fight or run.");
 		}
-		//check if door has restrictions
+		// check if door has restrictions
 		String restricedDoor = "";
-		if(room.restrictionPuzzleID != 0 && !player.hasCompleted(room.restrictionPuzzleID))
+		if (room.restrictionPuzzleID != 0 && !player.hasCompleted(room.restrictionPuzzleID))
 		{
 			restricedDoor = room.restrictedDoor;
 		}
-		if(hasStr(command, "north") && !restricedDoor.equals("north"))
+		if (hasStr(command, "north") && !restricedDoor.equals("north"))
 			direction = room.getNorth();
-		else if(hasStr(command,"south") && !restricedDoor.equals("south"))
+		else if (hasStr(command, "south") && !restricedDoor.equals("south"))
 			direction = room.getSouth();
-		else if(hasStr(command,"east") && !restricedDoor.equals("east"))
+		else if (hasStr(command, "east") && !restricedDoor.equals("east"))
 			direction = room.getEast();
-		else if(hasStr(command,"west") && !restricedDoor.equals("west"))
+		else if (hasStr(command, "west") && !restricedDoor.equals("west"))
 			direction = room.getWest();
-		else if(!restricedDoor.equalsIgnoreCase(""))
+		else if (!restricedDoor.equalsIgnoreCase(""))
 		{
 			throw new GameException("Door is blocked, solve the puzzle first");
 		}
 		else
-			throw new GameException ("Not a valid direction.");
+			throw new GameException("Not a valid direction.");
 
-		if(direction == 0)
+		if (direction == 0)
 			throw new GameException("\nThere is not a door in that direction.\n");
 
 		exitRoom();
@@ -57,15 +57,13 @@ public class GameModel
 		print(room.toString());
 	}
 
-
-
 	public boolean answer(ArrayList<String> commands) throws GameException
 	{
 		boolean correct = false;
 		boolean completesLevel = false;
 		if (room.hasPuzzle())
 			correct = room.answer(commands);
-		else 
+		else
 			throw new GameException("There is no puzzle to answer in this room.");
 
 		if (correct)
@@ -97,9 +95,9 @@ public class GameModel
 
 	public String finalAnswer(String answer)
 	{
-		Map<Boolean, String> result =  fPuzzle.finalAnswer(answer);
+		Map<Boolean, String> result = fPuzzle.finalAnswer(answer);
 		String retString;
-		if(result.containsKey(true))
+		if (result.containsKey(true))
 		{
 			player.addItem(new Artifacts(getItemInfo(35)));
 			player.addCompletedPuzzle(11);
@@ -114,8 +112,8 @@ public class GameModel
 
 	public void listItems(ArrayList<String> commands)
 	{
-		print(player.listItems());		
-	}	
+		print(player.listItems());
+	}
 
 	public void equip(ArrayList<String> commands)
 	{
@@ -132,25 +130,26 @@ public class GameModel
 		else
 			print("You need to state the item to equip");
 
-
-		// player should be telling if they have the item and equipping that item for good coding.
-		//		Item itemToAdd = null;
-		//		for(Item item : player.getUnequippedItems())
-		//		{
-		//			if(commands.contains(item.getName()) || commands.contains(item.getName().toLowerCase()))
-		//			{
-		//				if (item.isEquippable())
-		//				{
-		//					//print(player.addEquippedItem(item));
-		//					itemToAdd = item;
-		//					break;
-		//				}
-		//			}
-		//		}
-		//		print(player.addEquippedItem(itemToAdd));
+		// player should be telling if they have the item and equipping that
+		// item for good coding.
+		// Item itemToAdd = null;
+		// for(Item item : player.getUnequippedItems())
+		// {
+		// if(commands.contains(item.getName()) ||
+		// commands.contains(item.getName().toLowerCase()))
+		// {
+		// if (item.isEquippable())
+		// {
+		// //print(player.addEquippedItem(item));
+		// itemToAdd = item;
+		// break;
+		// }
+		// }
+		// }
+		// print(player.addEquippedItem(itemToAdd));
 	}
 
-	public boolean use(ArrayList<String> commands)throws GameException
+	public boolean use(ArrayList<String> commands) throws GameException
 	{
 		boolean completesLevel = false;
 		String itemName = "";
@@ -162,20 +161,20 @@ public class GameModel
 			itemName = itemName.trim();
 		}
 
-		for(Item item : player.getUnequippedItems())
+		for (Item item : player.getUnequippedItems())
 		{
 			if (item.getName().equalsIgnoreCase(itemName))
 			{
 				ArrayList<String> answer = new ArrayList<>();
 				answer.add("space");
-				answer.add("use" + item.getName());
+				answer.add("use " + item.getName());
 				completesLevel = answer(answer);
 			}
 		}
 		return completesLevel;
 	}
 
-	public void drop(ArrayList<String> commands)throws GameException
+	public void drop(ArrayList<String> commands) throws GameException
 	{
 		String itemName = "";
 		if (commands.size() > 1)
@@ -191,7 +190,7 @@ public class GameModel
 			print("Please enter an item to drop");
 	}
 
-	public void run(ArrayList<String> commands)throws GameException
+	public void run(ArrayList<String> commands) throws GameException
 	{
 		if (player.isFighting())
 		{
@@ -199,7 +198,7 @@ public class GameModel
 			room = new Room(DB.getRoomInformation(player.getPreviousRoom()), player);
 			player.setCurrentRoom(room.getId());
 			player.setFightingStatus(false);
-			print(room.toString());	
+			print(room.toString());
 		}
 		else
 			print("There is nothing to run from.");
@@ -208,9 +207,9 @@ public class GameModel
 	private boolean hasStr(ArrayList<String> command, String str)
 	{
 		boolean hasStr = false;
-		for(int i = 1; i < command.size(); i ++)
+		for (int i = 1; i < command.size(); i++)
 		{
-			if(command.get(i).equalsIgnoreCase(str))
+			if (command.get(i).equalsIgnoreCase(str))
 				hasStr = true;
 		}
 
@@ -225,7 +224,7 @@ public class GameModel
 			print(room.fight());
 			if (!player.isDead())
 			{
-				if(room.hasLevelCompletingMonster())
+				if (room.hasLevelCompletingMonster())
 				{
 					youDied.put(false, true);
 				}
@@ -243,16 +242,14 @@ public class GameModel
 		else
 			print("There is nothing to attack");
 
-
 		return youDied;
 	}
-
 
 	public boolean pushElevator(ArrayList<String> commands)
 	{
 		boolean openFloor = true;
 
-		if(!(player.isFighting()))
+		if (!(player.isFighting()))
 		{
 			try
 			{
@@ -369,7 +366,8 @@ public class GameModel
 						console.print("This is not an open floor that you can go to at this time\n");
 				}
 				else
-					throw new GameException("Not a valid command in the elevator.  You have to reenter the elecator to use again.");
+					throw new GameException(
+							"Not a valid command in the elevator.  You have to reenter the elecator to use again.");
 			}
 			catch (GameException e)
 			{
@@ -383,24 +381,24 @@ public class GameModel
 	public void pickUp(ArrayList<String> commands)
 	{
 		Item removeItem = null;
-		for(Item item : room.getItemList())
+		for (Item item : room.getItemList())
 		{
-			if(item.getName().contains(" "))
+			if (item.getName().contains(" "))
 			{
 				Scanner itemScan = new Scanner(item.getName());
 				String itemName1 = itemScan.next().toLowerCase();
 				String itemName2 = itemScan.next().toLowerCase();
-				if(commands.contains(itemName1) && commands.contains(itemName2))
+				if (commands.contains(itemName1) && commands.contains(itemName2))
 				{
 					removeItem = item;
 					print(room.player.addItem(item));
 				}
 			}
-			if(commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName()))
+			if (commands.contains(item.getName().toLowerCase()) || commands.contains(item.getName()))
 			{
 				removeItem = item;
 				print(room.player.addItem(item));
-				//				break;
+				// break;
 			}
 		}
 		room.removeItem(removeItem);
@@ -420,9 +418,11 @@ public class GameModel
 	public void firstRoom()
 	{
 
-		try{
+		try
+		{
 			room = new Room(DB.getRoomInformation(player.getCurrentRoom()), player);
-		}catch(GameException ex)
+		}
+		catch (GameException ex)
 		{
 			print(ex.getMessage());
 		}
@@ -431,7 +431,7 @@ public class GameModel
 
 	public boolean enterElevator() throws GameException
 	{
-		if(player.isFighting())
+		if (player.isFighting())
 		{
 			throw new GameException("You have to attack or run before you can enter the elecator");
 		}
@@ -446,7 +446,8 @@ public class GameModel
 	public void help(ArrayList<String> command) throws GameException
 	{
 		StringBuilder help = new StringBuilder();
-		help.append("\n\nThis is the help menu. Some sample commands are listed below in the format of \"command <argument> (example or description)\":\n");
+		help.append(
+				"\n\nThis is the help menu. Some sample commands are listed below in the format of \"command <argument> (example or description)\":\n");
 		help.append("\ngo <direction>			(go north)");
 		help.append("\npick up <item>			(pickup clothing)");
 		help.append("\nequip <item>			(equip hat)");
@@ -481,40 +482,39 @@ public class GameModel
 		return DB.getPuzzleInformation(puzzleID);
 	}
 
-
 	public ArrayList<String> getLoadableGames()
 	{
 		ArrayList<String> loadableGames = DB.getLoadableGames();
 		return loadableGames;
 	}
 
-
 	public void buildNewPlayer(String name)
 	{
 		player = new Player(name);
 	}
-
 
 	public void buildPlayer(String name)
 	{
 		player = new Player(DB.loadGame(name));
 	}
 
-	public String saveGame(){
+	public String saveGame()
+	{
 		return Game.save(player);
 	}
 
-
 	public void stats()
 	{
-		print(player.stats());		
+		print(player.stats());
 	}
 
-	public Player getPlayer(){
+	public Player getPlayer()
+	{
 		return player;
 	}
 
-	public Room getRoom(){
+	public Room getRoom()
+	{
 		return room;
 	}
 
@@ -523,9 +523,11 @@ public class GameModel
 		print(room.toString());
 	}
 
-	public boolean create(){
+	public boolean create()
+	{
 		boolean itemCreated = false;
-		if(player.hasItem(21) && player.hasItem(22)){
+		if (player.hasItem(21) && player.hasItem(22))
+		{
 			player.addItem(new Artifacts(getItemInfo(24)));
 			itemCreated = true;
 			player.addCompletedPuzzle(5);
