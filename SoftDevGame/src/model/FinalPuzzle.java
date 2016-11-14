@@ -48,7 +48,7 @@ public class FinalPuzzle{
 		}
 		return retString;
 	}
-//check against email for accuracy
+
 	public String answer3(String answer1, String answer2, String answer3)throws GameException
 	{
 		String retString ="";
@@ -60,7 +60,7 @@ public class FinalPuzzle{
 				switch(answer3){
 					case "A": retString = "yes";
 					break;
-					case "B": retString = "no";
+					case "B": retString = "yes";
 					break;
 					case "C": retString = "no";
 					break;
@@ -93,7 +93,7 @@ public class FinalPuzzle{
 				switch(answer3){
 					case "A": retString = "yes";
 					break;
-					case "B": retString = "yes";
+					case "B": retString = "no";
 					break;
 					case "C": retString = "yes";
 					break;

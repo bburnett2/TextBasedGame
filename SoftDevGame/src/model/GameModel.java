@@ -28,7 +28,7 @@ public class GameModel
 
 		if (player.isFighting())
 		{
-			throw new GameException("You must fight or run.");
+			throw new GameException("You must attack or run.");
 		}
 		// check if door has restrictions
 		String restricedDoor = "";
