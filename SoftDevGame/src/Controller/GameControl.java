@@ -17,7 +17,7 @@ import error.GameException;
  * 
  * This class - runs the game
  * 
- * Purpose  - to control all the interactions that happend during the course of the game
+ * Purpose  - to control all the interactions that happened during the course of the game
  */
 public class GameControl 
 {
