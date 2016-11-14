@@ -7,6 +7,16 @@ import java.util.TreeMap;
 
 import error.GameException;
 
+/**Class: GameModel.java 
+   * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
+ * @version 1.0 
+ * Course : ITEC 3860 Fall 2016
+   * Written: Nov 14, 2016 
+  	   * 
+   * This class –  
+   * 
+   * Purpose: –  
+   */
 public class GameModel
 {
 	public final int FIRSTROOM = 3;
@@ -19,6 +29,11 @@ public class GameModel
 	private view.Console console = new view.Console();
 	private database.DatabaseManager DB = new database.DatabaseManager();
 
+	/**
+	 * Method name: go
+	 * @param command
+	 * @throws GameException
+	 */
 	public void go(ArrayList<String> command) throws GameException
 	{
 		if(command.size() < 2){
@@ -60,6 +75,12 @@ public class GameModel
 		print(room.toString());
 	}
 
+	/**
+	 * Method name: answer
+	 * @param commands
+	 * @return
+	 * @throws GameException
+	 */
 	public boolean answer(ArrayList<String> commands) throws GameException
 	{
 		boolean correct = false;
@@ -85,21 +106,46 @@ public class GameModel
 		return completesLevel;
 	}
 
+	/**
+	 * Method name: answerFinal1
+	 * @param answer
+	 * @return
+	 * @throws GameException
+	 */
 	public String answerFinal1(String answer) throws GameException
 	{
 		return fPuzzle.answer1(answer);
 	}
 
+	/**
+	 * Method name: answerFinal2
+	 * @param answer
+	 * @return
+	 * @throws GameException
+	 */
 	public String answerFinal2(String answer) throws GameException
 	{
 		return fPuzzle.answer2(answer);
 	}
 
+	/**
+	 * Method name: answerFinal3
+	 * @param answer1
+	 * @param answer2
+	 * @param answer3
+	 * @return
+	 * @throws GameException
+	 */
 	public String answerFinal3(String answer1, String answer2, String answer3) throws GameException
 	{
 		return fPuzzle.answer3(answer1, answer2, answer3);
 	}
 
+	/**
+	 * Method name: finalAnswer
+	 * @param answer
+	 * @return
+	 */
 	public String finalAnswer(String answer)
 	{
 		Map<Boolean, String> result = fPuzzle.finalAnswer(answer);
@@ -122,6 +168,10 @@ public class GameModel
 		print(player.listItems());
 	}
 
+	/**
+	 * Method name: equip
+	 * @param commands
+	 */
 	public void equip(ArrayList<String> commands)
 	{
 		String itemName = "";
@@ -138,6 +188,12 @@ public class GameModel
 			print("You need to state the item to equip");
 	}
 
+	/**
+	 * Method name: use
+	 * @param commands
+	 * @return
+	 * @throws GameException
+	 */
 	public boolean use(ArrayList<String> commands) throws GameException
 	{
 		boolean completesLevel = false;
@@ -172,6 +228,11 @@ public class GameModel
 		return completesLevel;
 	}
 
+	/**
+	 * Method name: drop
+	 * @param commands
+	 * @throws GameException
+	 */
 	public void drop(ArrayList<String> commands) throws GameException
 	{
 		String itemName = "";
@@ -188,6 +249,11 @@ public class GameModel
 			print("Please enter an item to drop");
 	}
 
+	/**
+	 * Method name: run
+	 * @param commands
+	 * @throws GameException
+	 */
 	public void run(ArrayList<String> commands) throws GameException
 	{
 		if (player.isFighting())
@@ -202,6 +268,12 @@ public class GameModel
 			print("There is nothing to run from.");
 	}
 
+	/**
+	 * Method name: hasStr
+	 * @param command
+	 * @param str
+	 * @return
+	 */
 	private boolean hasStr(ArrayList<String> command, String str)
 	{
 		boolean hasStr = false;
@@ -214,6 +286,11 @@ public class GameModel
 		return hasStr;
 	}
 
+	/**
+	 * Method name: attack
+	 * @param commands
+	 * @return
+	 */
 	public Map<Boolean, Boolean> attack(ArrayList<String> commands)
 	{
 		Map<Boolean, Boolean> youDied = new TreeMap<>();
@@ -243,6 +320,11 @@ public class GameModel
 		return youDied;
 	}
 
+	/**
+	 * Method name: pushElevator
+	 * @param commands
+	 * @return
+	 */
 	public boolean pushElevator(ArrayList<String> commands)
 	{
 		boolean openFloor = true;
@@ -376,6 +458,10 @@ public class GameModel
 		return openFloor;
 	}
 
+	/**
+	 * Method name: pickUp
+	 * @param commands
+	 */
 	public void pickUp(ArrayList<String> commands)
 	{
 		Item removeItem = null;
@@ -402,17 +488,27 @@ public class GameModel
 		room.removeItem(removeItem);
 	}
 
+	/**
+	 * Method name: print
+	 * @param str
+	 */
 	public void print(String str)
 	{
 		console.print(str);
 	}
 
+	/**
+	 * Method name: exitRoom
+	 */
 	public void exitRoom()
 	{
 
 		room = null;
 	}
 
+	/**
+	 * Method name: firstRoom
+	 */
 	public void firstRoom()
 	{
 
@@ -427,6 +523,11 @@ public class GameModel
 		print(room.toString());
 	}
 
+	/**
+	 * Method name: enterElevator
+	 * @return
+	 * @throws GameException
+	 */
 	public boolean enterElevator() throws GameException
 	{
 		if (player.isFighting())
@@ -441,6 +542,11 @@ public class GameModel
 		}
 	}
 
+	/**
+	 * Method name: help
+	 * @param command
+	 * @throws GameException
+	 */
 	public void help(ArrayList<String> command) throws GameException
 	{
 		StringBuilder help = new StringBuilder();
@@ -465,62 +571,112 @@ public class GameModel
 		print(help.toString());
 	}
 
+	/**
+	 * Method name: getItemInfo
+	 * @param itemNum
+	 * @return
+	 */
 	public Object[] getItemInfo(int itemNum)
 	{
 		return DB.getItemInformation(itemNum);
 	}
 
+	/**
+	 * Method name: getMonster
+	 * @param monsterNumber
+	 * @return
+	 * @throws GameException
+	 */
 	public Object[] getMonster(int monsterNumber) throws GameException
 	{
 		return DB.getMonsterInformation(monsterNumber);
 	}
 
+	/**
+	 * Method name: getPuzzle
+	 * @param puzzleID
+	 * @return
+	 */
 	public Object[] getPuzzle(int puzzleID)
 	{
 		return DB.getPuzzleInformation(puzzleID);
 	}
 
+	/**
+	 * Method name: getLoadableGames
+	 * @return
+	 */
 	public ArrayList<String> getLoadableGames()
 	{
 		ArrayList<String> loadableGames = DB.getLoadableGames();
 		return loadableGames;
 	}
 
+	/**
+	 * Method name: buildNewPlayer
+	 * @param name
+	 */
 	public void buildNewPlayer(String name)
 	{
 		player = new Player(name);
 	}
 
+	/**
+	 * Method name: buildPlayer
+	 * @param name
+	 */
 	public void buildPlayer(String name)
 	{
 		player = new Player(DB.loadGame(name));
 	}
 
+	/**
+	 * Method name: saveGame
+	 * @return
+	 */
 	public String saveGame()
 	{
 		return Game.save(player);
 	}
 
+	/**
+	 * Method name: stats
+	 */
 	public void stats()
 	{
 		print(player.stats());
 	}
 
+	/**
+	 * Method name: getPlayer
+	 * @return
+	 */
 	public Player getPlayer()
 	{
 		return player;
 	}
 
+	/**
+	 * Method name: getRoom
+	 * @return
+	 */
 	public Room getRoom()
 	{
 		return room;
 	}
 
+	/**
+	 * Method name: description
+	 */
 	public void description()
 	{
 		print(room.toString());
 	}
 
+	/**
+	 * Method name: create
+	 * @return
+	 */
 	public boolean create()
 	{
 		boolean itemCreated = false;
