@@ -136,24 +136,6 @@ public class GameModel
 		}
 		else
 			print("You need to state the item to equip");
-
-		// player should be telling if they have the item and equipping that
-		// item for good coding.
-		// Item itemToAdd = null;
-		// for(Item item : player.getUnequippedItems())
-		// {
-		// if(commands.contains(item.getName()) ||
-		// commands.contains(item.getName().toLowerCase()))
-		// {
-		// if (item.isEquippable())
-		// {
-		// //print(player.addEquippedItem(item));
-		// itemToAdd = item;
-		// break;
-		// }
-		// }
-		// }
-		// print(player.addEquippedItem(itemToAdd));
 	}
 
 	public boolean use(ArrayList<String> commands) throws GameException
