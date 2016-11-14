@@ -219,6 +219,7 @@ public class GameModel
 			if(item.getType().equalsIgnoreCase("consumable"))
 			{
 				item.use(player);
+				player.removeItem(item.getItemID());
 				stats();
 			}
 			else{
@@ -568,7 +569,7 @@ public class GameModel
 		help.append("\nlist items			(lists items currently in your inventory)");
 		help.append("\nplayer stats			(lists player status)");
 		help.append("\nanswer <answer to puzzle> 	(answer 42)");
-		help.append("\ndescription 			 (restates the room's description)");
+		help.append("\ndescription 			(restates the room's description)");
 		help.append("\nattack				(used to attack a monster during a battle)");
 		help.append("\nrun				(used to run from a monster during a battle)");
 		help.append("\nenter 				(enter the elevator from any room)");
