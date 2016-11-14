@@ -220,8 +220,13 @@ public class GameControl
 			else if (name.equalsIgnoreCase("new")){
 				print("What would you like your PlayerID to be");
 				name = read();
-				model.buildNewPlayer(name);
-				hasPlayerID = true;
+				if(!loadableGames.contains(name)){
+					model.buildNewPlayer(name);
+					hasPlayerID = true;
+				}
+				else{
+					print("can't start new game with saved game name\n");
+				}
 			}
 			else {
 				print("invalid playerID");
