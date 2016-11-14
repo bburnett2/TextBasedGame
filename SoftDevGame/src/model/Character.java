@@ -97,7 +97,7 @@ public abstract class Character
 					items.add(new Armor(item));
 				else if(type.equalsIgnoreCase("Artifacts"))
 					items.add(new Artifacts(item));
-				else if(type.equalsIgnoreCase("Consumables"))
+				else if(type.equalsIgnoreCase("Consumable"))
 					items.add(new Consumables(item));
 				count++;
 			}
