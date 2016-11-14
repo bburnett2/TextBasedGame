@@ -13,7 +13,7 @@ import error.GameException;
  * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
  * @version 1.0 
  * Course : ITEC 3860 Fall 2016
- * Written: Nov 11, 2016 
+ * Written: Nov 11, 2016
  * 
  * This class - runs the game
  * 

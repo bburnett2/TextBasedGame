@@ -60,9 +60,10 @@ public class Player extends Character
 	 */
 	protected String addItem(Item item)
 	{
-		if(!unequippedItems.contains(item)){
+		if(!unequippedItems.contains(item) || item.getType().equalsIgnoreCase("consumable")){
 			unequippedItems.add(item);
 		}
+		
 		return "Item has been added to unequipped items";
 	}
 
