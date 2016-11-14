@@ -76,7 +76,11 @@ public class DatabaseManager {
 		StringBuilder strWithSpaces = new StringBuilder();
 		Scanner strScan = new Scanner(str);
 		int count = 0;
-		while(strScan.hasNext() && !strScan.hasNext("\n")){
+		while(strScan.hasNext()){
+//			if(strScan.hasNext("[a-zA-Z]\(")){
+//				count = 0;
+//				strWithSpaces.append('\n');
+//			}
 			strWithSpaces.append(strScan.next() + " ");
 			count++;
 			if(count % 15 == 0 && count !=0){
