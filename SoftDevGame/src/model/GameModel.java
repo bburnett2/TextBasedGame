@@ -30,7 +30,7 @@ public class GameModel
 	private database.DatabaseManager DB = new database.DatabaseManager();
 
 	/**
-	 * Method name: go
+	 * Method name: go <Direction>
 	 * @param command
 	 * @throws GameException
 	 */
@@ -77,6 +77,9 @@ public class GameModel
 
 	/**
 	 * Method name: answer
+	 * 
+	 * used for traditional puzzles
+	 * 
 	 * @param commands
 	 * @return
 	 * @throws GameException
@@ -109,7 +112,7 @@ public class GameModel
 	/**
 	 * Method name: answerFinal1
 	 * @param answer
-	 * @return
+	 * @return String
 	 * @throws GameException
 	 */
 	public String answerFinal1(String answer) throws GameException
@@ -120,7 +123,7 @@ public class GameModel
 	/**
 	 * Method name: answerFinal2
 	 * @param answer
-	 * @return
+	 * @return String
 	 * @throws GameException
 	 */
 	public String answerFinal2(String answer) throws GameException
@@ -133,7 +136,7 @@ public class GameModel
 	 * @param answer1
 	 * @param answer2
 	 * @param answer3
-	 * @return
+	 * @return String
 	 * @throws GameException
 	 */
 	public String answerFinal3(String answer1, String answer2, String answer3) throws GameException
@@ -144,7 +147,7 @@ public class GameModel
 	/**
 	 * Method name: finalAnswer
 	 * @param answer
-	 * @return
+	 * @returnString
 	 */
 	public String finalAnswer(String answer)
 	{
@@ -163,6 +166,10 @@ public class GameModel
 		return retString;
 	}
 
+	/**
+	 *  Method name: listItems
+	 * @param commands
+	 */
 	public void listItems(ArrayList<String> commands)
 	{
 		print(player.listItems());
@@ -191,7 +198,7 @@ public class GameModel
 	/**
 	 * Method name: use
 	 * @param commands
-	 * @return
+	 * @return boolean for end game
 	 * @throws GameException
 	 */
 	public boolean use(ArrayList<String> commands) throws GameException
@@ -209,8 +216,10 @@ public class GameModel
 		for (int i = 0; i < player.getUnequippedItems().size(); i++)
 		{
 			Item item = player.getUnequippedItems().get(i);
-			if(item.getType().equalsIgnoreCase("consumable")){
+			if(item.getType().equalsIgnoreCase("consumable"))
+			{
 				item.use(player);
+				stats();
 			}
 			else{
 				if (item.getName().equalsIgnoreCase(itemName))
@@ -270,7 +279,7 @@ public class GameModel
 	 * Method name: hasStr
 	 * @param command
 	 * @param str
-	 * @return
+	 * @return boolean
 	 */
 	private boolean hasStr(ArrayList<String> command, String str)
 	{
@@ -321,7 +330,7 @@ public class GameModel
 	/**
 	 * Method name: pushElevator
 	 * @param commands
-	 * @return
+	 * @return boolean for exiting elevator
 	 */
 	public boolean pushElevator(ArrayList<String> commands)
 	{
@@ -572,7 +581,7 @@ public class GameModel
 	/**
 	 * Method name: getItemInfo
 	 * @param itemNum
-	 * @return
+	 * @return Object[] for the DB
 	 */
 	public Object[] getItemInfo(int itemNum)
 	{
@@ -582,7 +591,7 @@ public class GameModel
 	/**
 	 * Method name: getMonster
 	 * @param monsterNumber
-	 * @return
+	 * @return Object[] for the DB
 	 * @throws GameException
 	 */
 	public Object[] getMonster(int monsterNumber) throws GameException
@@ -593,7 +602,7 @@ public class GameModel
 	/**
 	 * Method name: getPuzzle
 	 * @param puzzleID
-	 * @return
+	 * @return Object[] forom the DB
 	 */
 	public Object[] getPuzzle(int puzzleID)
 	{
@@ -602,7 +611,7 @@ public class GameModel
 
 	/**
 	 * Method name: getLoadableGames
-	 * @return
+	 * @return String array list
 	 */
 	public ArrayList<String> getLoadableGames()
 	{
@@ -630,7 +639,7 @@ public class GameModel
 
 	/**
 	 * Method name: saveGame
-	 * @return
+	 * @return String
 	 */
 	public String saveGame()
 	{
@@ -647,7 +656,7 @@ public class GameModel
 
 	/**
 	 * Method name: getPlayer
-	 * @return
+	 * @return Player
 	 */
 	public Player getPlayer()
 	{
@@ -656,7 +665,7 @@ public class GameModel
 
 	/**
 	 * Method name: getRoom
-	 * @return
+	 * @return Room
 	 */
 	public Room getRoom()
 	{
@@ -673,7 +682,7 @@ public class GameModel
 
 	/**
 	 * Method name: create
-	 * @return
+	 * @return boolean
 	 */
 	public boolean create()
 	{

@@ -42,8 +42,7 @@ public class Room
 	public String toString()
 	{
 		String str;
-		str = "\n \n \n";
-		str += discription;
+		str = discription;
 		if (!itemList.isEmpty())
 		{
 			str += "\n The room has the folowing Items:";
