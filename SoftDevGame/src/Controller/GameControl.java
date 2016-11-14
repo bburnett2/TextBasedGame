@@ -207,7 +207,7 @@ public class GameControl
 
 		boolean hasPlayerID = false;
 		while(!hasPlayerID){
-			print("Select new game or select from the list of saved games: \n");
+			print("Select new game or select from the list of saved games: [\"new\" or name below] \n");
 			ArrayList<String> loadableGames = model.getLoadableGames();
 			for(String playerID : loadableGames){
 				print(playerID);
