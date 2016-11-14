@@ -2,6 +2,16 @@ package model;
 
 import java.util.ArrayList;
 
+/**Class: Character.java 
+   * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
+   * @version 1.0 
+   * Course : ITEC 3860  Fall 2016
+   * Written: Nov 14, 2016 
+  	   * 
+   * This class –  
+   * 
+   * Purpose: –  
+   */
 public abstract class Character 
 {
 
@@ -30,11 +40,6 @@ public abstract class Character
 		this.attack = (int)character[3];
 		this.health = (int)character[4];
 		this.defense = (int)character[5];
-
-		/**At the moment there is not a object from the DB with this information therefore
-		not in the object array.  We can derive this from the constructor if you would
-		like.
-		this.deathscription = (String)monster[6];**/
 	}
 
 	/**
@@ -70,6 +75,11 @@ public abstract class Character
 		return text.toString();
 	}
 
+	/**
+	 * Method name: buildItems
+	 * @param itemInts
+	 * @return
+	 */
 	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
 	{
 		GameModel model = new GameModel();
@@ -105,6 +115,10 @@ public abstract class Character
 		return health;
 	}
 
+	/**
+	 * Method name: isDead
+	 * @return
+	 */
 	protected boolean isDead()
 	{
 		return (health < 1);
@@ -170,6 +184,11 @@ public abstract class Character
 		this.defense = defence;
 	}
 
+	/**
+	 * Method name: die
+	 * @param attacker
+	 * @return
+	 */
 	abstract protected String die(Character attacker);
 
 }

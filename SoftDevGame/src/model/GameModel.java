@@ -9,8 +9,8 @@ import error.GameException;
 
 /**Class: GameModel.java 
    * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
- * @version 1.0 
- * Course : ITEC 3860 Fall 2016
+   * @version 1.0 
+   * Course : ITEC 3860 Fall 2016
    * Written: Nov 14, 2016 
   	   * 
    * This class –  
@@ -563,7 +563,7 @@ public class GameModel
 		help.append("\npick up <item>			(pickup clothing)");
 		help.append("\nequip <item>			(equip hat)");
 		help.append("\nuse <item>			(use bagel)");
-		help.append("\ncreate				(used to creat the C on floor 4)");
+		help.append("\ncreate				(used to create the C on floor 4)");
 		help.append("\ndrop <item>			(drop bagel)");
 		help.append("\nlist items			(lists items currently in your inventory)");
 		help.append("\nplayer stats			(lists player status)");

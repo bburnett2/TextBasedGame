@@ -5,6 +5,16 @@ import java.util.Scanner;
 
 import error.GameException;
 
+/**Class: Room.java 
+   * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
+   * @version 1.0 
+   * Course : ITEC 3860 Fall 2016
+   * Written: Nov 14, 2016 
+  	   * 
+   * This class –  
+   * 
+   * Purpose: –  
+   */
 public class Room 
 {
 
@@ -18,6 +28,14 @@ public class Room
 	protected int restrictionPuzzleID;
 	protected String restrictedDoor;
 
+	/**Room
+	 * @param room
+	 * @param player
+	 * @throws GameException
+	 * agr constructor
+	 *
+	 * creates a Room object with 
+	 */
 	protected Room(Object[] room, Player player)throws GameException
 	{
 		this.player = player;
@@ -69,6 +87,11 @@ public class Room
 	}
 
 
+	/**
+	 * Method name: buildPuzzle
+	 * @param puzzleID
+	 * @return
+	 */
 	protected Puzzle buildPuzzle(int puzzleID)
 	{
 		GameModel model = new GameModel();
@@ -78,6 +101,12 @@ public class Room
 			return null;
 	}
 
+	/**
+	 * Method name: buildMonster
+	 * @param monsterNumber
+	 * @return
+	 * @throws GameException
+	 */
 	protected Monster buildMonster(int monsterNumber) throws GameException
 	{
 		GameModel model = new GameModel();
@@ -87,6 +116,11 @@ public class Room
 			return null;
 	}
 
+	/**
+	 * Method name: buildItems
+	 * @param itemInts
+	 * @return
+	 */
 	protected ArrayList<Item> buildItems(ArrayList<Integer> itemInts)
 	{
 		GameModel model = new GameModel();
@@ -115,6 +149,10 @@ public class Room
 		return items;
 	}
 
+	/**
+	 * Method name: startFight
+	 * @return
+	 */
 	protected String startFight()
 	{
 		player.setFightingStatus(true);
@@ -125,6 +163,10 @@ public class Room
 
 	//this is intended to be the method called when the player enters the attack command
 	//it contains the logic for one round attacks between the player and a monster
+	/**
+	 * Method name: fight
+	 * @return
+	 */
 	protected String fight()
 	{
 		StringBuilder str = new StringBuilder();
@@ -182,6 +224,11 @@ public class Room
 		return itemList;
 	}
 
+	/**
+	 * Method name: answer
+	 * @param commands
+	 * @return
+	 */
 	protected boolean answer(ArrayList<String> commands)
 	{
 		boolean correct = false;
@@ -225,6 +272,10 @@ public class Room
 		return id;
 	}
 
+	/**
+	 * Method name: hasPuzzle
+	 * @return
+	 */
 	protected boolean hasPuzzle()
 	{
 		boolean hasPuzzle = false;
@@ -233,11 +284,19 @@ public class Room
 		return hasPuzzle;
 	}
 
+	/**
+	 * Method name: removeItem
+	 * @param item
+	 */
 	protected void removeItem(Item item)
 	{
 		itemList.remove(item);
 	}
 
+	/**
+	 * Method name: hasMonster
+	 * @return
+	 */
 	public boolean hasMonster()
 	{
 		boolean hasMonster = true;
@@ -246,6 +305,10 @@ public class Room
 		return hasMonster;
 	}
 
+	/**
+	 * Method name: hasFinalPuzzle
+	 * @return
+	 */
 	public boolean hasFinalPuzzle()
 	{
 		boolean hasFinal = false;
@@ -256,6 +319,10 @@ public class Room
 		return hasFinal;
 	}
 
+	/**
+	 * Method name: hasLevelCompletingMonster
+	 * @return
+	 */
 	public boolean hasLevelCompletingMonster()
 	{
 		if(monster.completesLevel())
@@ -268,11 +335,17 @@ public class Room
 		}
 	}
 
+	/**
+	 * Method name: completePuzzle
+	 */
 	public void completePuzzle()
 	{
 		puzzle = null;		
 	}
 
+	/**
+	 * Method name: monsterKilled
+	 */
 	public void monsterKilled()
 	{
 		monster = null;
