@@ -153,8 +153,10 @@ public class GameModel
 		for (int i = 0; i < player.getUnequippedItems().size(); i++)
 		{
 			Item item = player.getUnequippedItems().get(i);
-			if(item.getType().equalsIgnoreCase("consumable")){
+			if(item.getType().equalsIgnoreCase("consumable"))
+			{
 				item.use(player);
+				stats();
 			}
 			else{
 				if (item.getName().equalsIgnoreCase(itemName))
