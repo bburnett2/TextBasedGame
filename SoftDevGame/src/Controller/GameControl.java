@@ -66,7 +66,7 @@ public class GameControl
 	{
 		print("Under The Feet of Many\n" +
 				"Implemented by: \n\tBess Burnett\n\tDaniel Harris\n\tMichael Holtmann\n\tMarcus Moss \n" +
-				"Designed by: \n\tMatthew Xiong \n\tMatthew Nelson \n\tJohanna Timmer \n\tTimothy Warren");
+				"Designed by: \n\tMatthew Xiong \n\tMatthew Nelson \n\tJohanna Timmer");
 		input.close();
 	}
 
