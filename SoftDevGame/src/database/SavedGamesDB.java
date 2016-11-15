@@ -23,17 +23,19 @@ public class SavedGamesDB extends DatabaseManager{
 		ArrayList<Integer> puzzles = (ArrayList<Integer>)gameInfo[6]; 
 		ArrayList<Integer> monsters = (ArrayList<Integer>)gameInfo[7];
 		ArrayList<Integer> equippedItems = (ArrayList<Integer>)gameInfo[8];
+		int maxHealth = (int)gameInfo[9];
 
-		sqlCall = "INSERT INTO Saved_Game (PlayerID,CurrentRoom,PlayerHealth,PlayerDefenese,PlayerAttack) "
+		sqlCall = "INSERT INTO Saved_Game (PlayerID,CurrentRoom,PlayerHealth,PlayerDefenese,PlayerAttack,MaxHealth) "
 				+ "VALUES(" + "'" + playerID + "'" + "," + "'" +  currentRoomID + "'" +  "," +
-				"'" + playerHealth + "'" + "," + "'" + playerDefense + "'"  + ",'" + playerAttack + "'" + ");";
+				"'" + playerHealth + "'" + "," + "'" + playerDefense + "'"  + ",'" + playerAttack + "'" + ",'" +
+				maxHealth + "');";
 		try{
 			statement.executeUpdate(sqlCall);
 		}
 		catch(SQLException ex){
 			ex.getMessage();
 			retString = updateSavedGame(playerID, currentRoomID, playerHealth, playerDefense, playerAttack, items,
-					puzzles, monsters, equippedItems);
+					puzzles, monsters, equippedItems, maxHealth);
 		}
 		try{
 			saveItems(playerID, items);
@@ -57,11 +59,11 @@ public class SavedGamesDB extends DatabaseManager{
 
 	private String updateSavedGame(String playerID, int currentRoomID, int playerHealth, int playerDefense,
 			int playerAttack, ArrayList<Integer> items, ArrayList<Integer> puzzles, 
-			ArrayList<Integer> monsters, ArrayList<Integer> equippedItems){
+			ArrayList<Integer> monsters, ArrayList<Integer> equippedItems, int maxHealth){
 
 		sqlCall = "UPDATE Saved_Game SET CurrentRoom = " + currentRoomID + ", PlayerHealth = " + playerHealth + 
-				", PlayerDefenese = " + playerDefense + ", PlayerAttack = " + playerAttack + " WHERE PlayerID = '" + 
-				playerID + "';";
+				", PlayerDefenese = " + playerDefense + ", PlayerAttack = " + playerAttack + ", MaxHealth = "
+				+ "'" + maxHealth + "' WHERE PlayerID = '" + playerID + "';";
 		try{
 			statement = connection.createStatement();
 			statement.executeUpdate(sqlCall);
@@ -71,7 +73,7 @@ public class SavedGamesDB extends DatabaseManager{
 			saveEquippedItems(playerID, equippedItems);
 		}
 		catch(SQLException ex){
-			System.out.println(ex.getMessage());
+			System.out.println(ex.getMessage() + "update");
 		}
 		finally{
 			try{
@@ -186,7 +188,7 @@ public class SavedGamesDB extends DatabaseManager{
 	}
 
 	protected Object[] loadGamePro(String PlayerID){
-		Object[] gameInfo = new Object[9];
+		Object[] gameInfo = new Object[10];
 		sqlCall = "SELECT * FROM Saved_Game WHERE PlayerID = '" + PlayerID + "'";
 		try{
 			resultSet = statement.executeQuery(sqlCall);
@@ -195,6 +197,7 @@ public class SavedGamesDB extends DatabaseManager{
 			gameInfo[3] = resultSet.getInt("PlayerAttack");
 			gameInfo[4] = resultSet.getInt("PlayerHealth");
 			gameInfo[5] = resultSet.getInt("PlayerDefenese");
+			gameInfo[9] = resultSet.getInt("MaxHealth");
 			try{
 				statement.close();
 			}
@@ -351,16 +354,16 @@ public class SavedGamesDB extends DatabaseManager{
 		statement.close();
 	}
 
-	//	public static void main(String[] args){
-	//		SavedGamesDB sg = new SavedGamesDB();
-	//		try
-	//		{
-	//			sg.deleteAll();
-	//		}
-	//		catch (SQLException ex)
-	//		{
-	//			// TODO Auto-generated catch block
-	//			ex.printStackTrace();
-	//		}
-	//	}
+//		public static void main(String[] args){
+//			SavedGamesDB sg = new SavedGamesDB();
+//			try
+//			{
+//				sg.deleteAll();
+//			}
+//			catch (SQLException ex)
+//			{
+//				// TODO Auto-generated catch block
+//				ex.printStackTrace();
+//			}
+//		}
 }

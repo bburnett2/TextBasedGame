@@ -25,6 +25,7 @@ public class Consumables extends Item
 			player.addMaxHealth(hp);
 		else 
 			player.addHealth(hp);
+		player.removeItem(getItemID());
 		return false;
 	}
 

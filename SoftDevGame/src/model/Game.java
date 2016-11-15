@@ -16,6 +16,7 @@ public class Game
 		int playerHealth = player.getHealth();
 		int playerDefense = player.getDefense();
 		int playerAttack = player.getAttack();
+		int maxHealth = player.getMaxHealth();
 		ArrayList<Item> items = player.getUnequippedItems();
 		ArrayList<Integer> puzzles = player.getCompletedPuzzles(); 
 		ArrayList<Integer> monsters = player.getDefeatedMonsters();
@@ -25,7 +26,7 @@ public class Game
 		{
 			equppedItems.add(item.getItemID());
 		}
-		Object[] gameInfo = new Object[9];
+		Object[] gameInfo = new Object[10];
 		gameInfo[0] = name;
 		gameInfo[1] = currentRoomID;
 		gameInfo[2] = playerHealth;
@@ -35,6 +36,7 @@ public class Game
 		gameInfo[6] = puzzles;
 		gameInfo[7] = monsters;
 		gameInfo[8] = equppedItems;
+		gameInfo[9] = maxHealth;
 		String retString = "Game not saved";
 		try
 		{

@@ -209,14 +209,13 @@ public class GameModel
 		{
 			for (int i = 1; i < commands.size(); i++)
 				itemName += commands.get(i) + " ";
-
 			itemName = itemName.trim();
 		}
 
 		for (int i = 0; i < player.getUnequippedItems().size(); i++)
 		{
 			Item item = player.getUnequippedItems().get(i);
-			if(item.getType().equalsIgnoreCase("consumable"))
+			if(item.getName().equalsIgnoreCase(itemName) && item.getType().equalsIgnoreCase("consumable"))
 			{
 				item.use(player);
 				stats();
