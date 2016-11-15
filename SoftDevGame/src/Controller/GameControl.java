@@ -121,13 +121,14 @@ public class GameControl
 							//last min bug fix.
 							model.getRoom().monsterKilled();
 							if(result.get(false)){
-								enterElevatorSubLoop();
+								endGameByWin = enterElevatorSubLoop();
 							}
 						}
 					}
 				}
-				else if (commands.get(0).equalsIgnoreCase("enter"))
-					enterElevatorSubLoop();
+				else if (commands.get(0).equalsIgnoreCase("enter")){
+					endGameByWin = enterElevatorSubLoop();
+				}
 				else if (commands.get(0).equalsIgnoreCase("use"))
 				{
 					boolean completesLevel = model.use(commands);
@@ -186,14 +187,19 @@ public class GameControl
 		ArrayList<String> commands = new ArrayList<String>();
 
 		boolean hasWon = model.enterElevator();
-		do
-		{
-			command = read();
-			commands = parsString(command);
+		if(hasWon){
+			endOfGameByWin();
+		}
+		else{
+			do
+			{
+				command = read();
+				commands = parsString(command);
 
-			if (!(commands.contains("exit")))
-				inElevator = model.pushElevator(commands);
-		}while(!(inElevator) && !(commands.contains("exit")));
+				if (!(commands.contains("exit")))
+					inElevator = model.pushElevator(commands);
+			}while(!(inElevator) && !(commands.contains("exit")) && !hasWon);
+		}
 		return hasWon;
 	}
 
