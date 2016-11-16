@@ -27,7 +27,7 @@ public class Player extends Character
 	 *
 	 * creates a Player object with 
 	 */
-	protected Player(String playerID)
+	public Player(String playerID)
 	{
 		super(playerID);
 		currentRoom = 3;

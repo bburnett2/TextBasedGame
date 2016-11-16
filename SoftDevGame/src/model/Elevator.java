@@ -43,7 +43,7 @@ public class Elevator
 		if (isL2Complete || isL3Complete)
 			str += "\n4 \n5";
 		if (isL4Complete || isL5Complete)
-			str += " \n6 \n7";
+			str += "\n6 \n7";
 		if (isL6Complete && isL7Complete)
 			str += "\n8";
 		
@@ -187,12 +187,12 @@ public class Elevator
 		return isFianlComplete;
 	}
 
-	public int getCurrentLevel()
+	protected int getCurrentLevel()
 	{
 		return currentLevel;
 	}
 
-	public void setCurrentLevel(int currentLevel)
+	protected void setCurrentLevel(int currentLevel)
 	{
 		this.currentLevel = currentLevel;
 	}
