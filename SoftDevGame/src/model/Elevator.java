@@ -27,7 +27,7 @@ public class Elevator
 		
 	}
 	
-	public Elevator(Player player)
+	protected Elevator(Player player)
 	{
 		this.player = player;
 	}
