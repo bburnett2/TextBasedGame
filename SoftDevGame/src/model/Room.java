@@ -59,8 +59,8 @@ public class Room
 	//toString is required to be public
 	public String toString()
 	{
-		String str;
-		str = discription;
+		String str = "\n\n\n";
+		str += discription;
 		if (!itemList.isEmpty())
 		{
 			str += "\n The room has the folowing Items:";

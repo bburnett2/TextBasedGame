@@ -13,7 +13,7 @@ import error.GameException;
  * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
  * @version 1.0 
  * Course : ITEC 3860 Fall 2016
- * Written: Nov 11, 2016 
+ * Written: Nov 11, 2016
  * 
  * This class - runs the game
  * 
@@ -121,13 +121,14 @@ public class GameControl
 							//last min bug fix.
 							model.getRoom().monsterKilled();
 							if(result.get(false)){
-								enterElevatorSubLoop();
+								endGameByWin = enterElevatorSubLoop();
 							}
 						}
 					}
 				}
-				else if (commands.get(0).equalsIgnoreCase("enter"))
-					enterElevatorSubLoop();
+				else if (commands.get(0).equalsIgnoreCase("enter")){
+					endGameByWin = enterElevatorSubLoop();
+				}
 				else if (commands.get(0).equalsIgnoreCase("use"))
 				{
 					boolean completesLevel = model.use(commands);
@@ -186,14 +187,19 @@ public class GameControl
 		ArrayList<String> commands = new ArrayList<String>();
 
 		boolean hasWon = model.enterElevator();
-		do
-		{
-			command = read();
-			commands = parsString(command);
+		if(hasWon){
+			endOfGameByWin();
+		}
+		else{
+			do
+			{
+				command = read();
+				commands = parsString(command);
 
-			if (!(commands.contains("exit")))
-				inElevator = model.pushElevator(commands);
-		}while(!(inElevator) && !(commands.contains("exit")));
+				if (!(commands.contains("exit")))
+					inElevator = model.pushElevator(commands);
+			}while(!(inElevator) && !(commands.contains("exit")) && !hasWon);
+		}
 		return hasWon;
 	}
 
@@ -220,8 +226,13 @@ public class GameControl
 			else if (name.equalsIgnoreCase("new")){
 				print("What would you like your PlayerID to be");
 				name = read();
-				model.buildNewPlayer(name);
-				hasPlayerID = true;
+				if(!loadableGames.contains(name)){
+					model.buildNewPlayer(name);
+					hasPlayerID = true;
+				}
+				else{
+					print("can't start new game with saved game name\n");
+				}
 			}
 			else {
 				print("invalid playerID");

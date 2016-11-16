@@ -50,7 +50,7 @@ public class Player extends Character
 		unequippedItems = buildItems((ArrayList<Integer>)player[6]);
 		defeatedMonsters = (ArrayList<Integer>)player[7];
 		equipedItems = buildItems((ArrayList<Integer>)player[8]);
-		maxHealth = 10;
+		maxHealth = (int)player[9];
 	}
 
 	/**
@@ -60,9 +60,10 @@ public class Player extends Character
 	 */
 	protected String addItem(Item item)
 	{
-		if(!unequippedItems.contains(item)){
+		if(!unequippedItems.contains(item) || item.getType().equalsIgnoreCase("consumable")){
 			unequippedItems.add(item);
 		}
+		
 		return "Item has been added to unequipped items";
 	}
 
@@ -451,5 +452,17 @@ public class Player extends Character
 		}
 
 	}
+
+	/**getMaxHealth
+	 * @return maxHealth: int - 
+	 * 
+	 * returns the maxHealth
+	 */
+	protected int getMaxHealth()
+	{
+		return maxHealth;
+	}
+	
+	
 
 }
