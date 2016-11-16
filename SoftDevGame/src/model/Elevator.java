@@ -23,10 +23,6 @@ public class Elevator
 	private boolean isL7Complete = false;
 	private boolean isFianlComplete = false;
 	
-	public Elevator(){
-		
-	}
-	
 	protected Elevator(Player player)
 	{
 		this.player = player;
