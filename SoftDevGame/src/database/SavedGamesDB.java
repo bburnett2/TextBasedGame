@@ -354,16 +354,16 @@ public class SavedGamesDB extends DatabaseManager{
 		statement.close();
 	}
 
-//		public static void main(String[] args){
-//			SavedGamesDB sg = new SavedGamesDB();
-//			try
-//			{
-//				sg.deleteAll();
-//			}
-//			catch (SQLException ex)
-//			{
-//				// TODO Auto-generated catch block
-//				ex.printStackTrace();
-//			}
-//		}
+		public static void main(String[] args){
+			SavedGamesDB sg = new SavedGamesDB();
+			try
+			{
+				sg.deleteAll();
+			}
+			catch (SQLException ex)
+			{
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
+		}
 }

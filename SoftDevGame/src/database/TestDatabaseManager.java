@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -80,8 +81,8 @@ public class TestDatabaseManager
 	public void testGetPuzzleInformation(){
 		Object[] expected = new Object[6];
 		expected[0] = 6;
-		expected[1] = "use 'C'";
-		expected[2] = "use 'C'";
+		expected[1] = "use C";
+		expected[2] = "use C";
 		expected[3] = 24;
 		expected[4] = 0;
 		expected[5] = true;
@@ -123,5 +124,45 @@ public class TestDatabaseManager
 		assertEquals(expected[7], actual[7]);
 		assertEquals(expected[8], actual[8]);
 		assertEquals(expected[9], actual[9]);
+	}
+	
+	@Test
+	public void testSaveGame(){
+		Object[] expected = new Object[10];
+		expected[0] = "unitTest";
+		expected[1] = 11;
+		expected[2] = 15;
+		expected[3] = 5;
+		expected[4] = 7;
+		expected[5] = new ArrayList<Integer>(Arrays.asList(1, 4, 9));
+		expected[6] = new ArrayList<Integer>(Arrays.asList(3));
+		expected[7] = new ArrayList<Integer>(Arrays.asList(4, 7));
+		expected[8] = new ArrayList<Integer>(Arrays.asList(8));
+		expected[9] = 20;
+		try{
+			dbmanage.saveGame(expected);
+		}
+		catch (SQLException ex){
+			ex.printStackTrace();
+		}
+		Object[] actual = dbmanage.loadGame("unitTest");
+		
+		assertEquals(expected[0], actual[0]);
+		assertEquals(expected[1], actual[1]);
+		assertEquals(expected[2], actual[4]);
+		assertEquals(expected[3], actual[5]);
+		assertEquals(expected[4], actual[3]);
+		assertEquals(expected[5], actual[6]);
+		assertEquals(expected[6], actual[2]);
+		assertEquals(expected[7], actual[7]);
+		assertEquals(expected[8], actual[8]);
+		assertEquals(expected[9], actual[9]);
+	}
+	
+	@Test
+	public void testGetLoadableGames(){
+		ArrayList<String> actual = dbmanage.getLoadableGames();
+		ArrayList<String> expected = new ArrayList<>(Arrays.asList("unitTest"));
+		assertEquals(expected.get(0), actual.get(0));
 	}
 }
