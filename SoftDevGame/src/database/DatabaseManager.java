@@ -35,7 +35,7 @@ public class DatabaseManager {
 			statement.setQueryTimeout(timeOut);
 		}
 		catch(SQLException ex){
-			System.out.println("conection not made");
+			System.out.println("Connection not made");
 		}
 		catch (ClassNotFoundException e) {
 			System.out.println("class not found");
@@ -52,7 +52,7 @@ public class DatabaseManager {
 		return itemDB.getItemInformationPro(itemNum);
 	}
 	
-	public Object[] getMonsterInformation(int monsterNum) throws GameException{
+	public Object[] getMonsterInformation(int monsterNum){
 		MonsterDB monsterDB = new MonsterDB();
 		return monsterDB.getMonsterInformationPro(monsterNum);
 	}

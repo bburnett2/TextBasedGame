@@ -8,7 +8,7 @@ import error.GameException;
 public class MonsterDB extends DatabaseManager
 {
 
-	protected Object[] getMonsterInformationPro(int monsterNum) throws GameException{
+	protected Object[] getMonsterInformationPro(int monsterNum){
 		sqlCall = "SELECT * FROM monster WHERE monsterID = " + monsterNum;
 		Object[] monster = new Object[8];
 		try{
@@ -23,7 +23,7 @@ public class MonsterDB extends DatabaseManager
 			monster[6] = getMonsterItemsInts(monsterNum);
 		}
 		catch(SQLException ex){
-			throw new GameException("monsterID invalid");
+		//	throw new GameException("Invalid MonsterID");
 		}
 		finally {
 			try{

@@ -2,6 +2,8 @@ package database;
 
 import java.sql.SQLException;
 
+import error.GameException;
+
 public class PuzzleDB extends DatabaseManager{
 
 	protected Object[] getPuzzleInformationPro(int puzzleNum) {
@@ -17,7 +19,7 @@ public class PuzzleDB extends DatabaseManager{
 			puzzle[5] = (resultSet.getInt("CompletesLevel") == 0) ? false : true;
 		}
 		catch(SQLException ex){
-
+		//	throw new GameException("Invalid PuzzleID");
 		}
 		finally {
 			try{

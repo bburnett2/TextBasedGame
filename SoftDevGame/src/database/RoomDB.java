@@ -6,6 +6,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import error.GameException;
+
 public class RoomDB extends DatabaseManager {
 
 	protected RoomDB(){
@@ -30,7 +32,7 @@ public class RoomDB extends DatabaseManager {
 			roomInfo[9] = getRoomPuzzles(roomNum);
 					}
 		catch(SQLException ex){
-
+		//	throw new GameException("Invalid RoomID");
 		}		finally {
 			try{
 				statement.close();

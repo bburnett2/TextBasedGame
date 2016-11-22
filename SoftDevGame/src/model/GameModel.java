@@ -8,15 +8,15 @@ import java.util.TreeMap;
 import error.GameException;
 
 /**Class: GameModel.java 
-   * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
-   * @version 1.0 
-   * Course : ITEC 3860 Fall 2016
-   * Written: Nov 14, 2016 
-  	   * 
-   * This class –  
-   * 
-   * Purpose: –  
-   */
+ * @author Bess Burnett, Daniel Harris, Michael Holtmann, Marcus Moss
+ * @version 1.0 
+ * Course : ITEC 3860 Fall 2016
+ * Written: Nov 14, 2016 
+ * 
+ * This class –  
+ * 
+ * Purpose: –  
+ */
 public class GameModel
 {
 	public final int FIRSTROOM = 3;
@@ -584,7 +584,7 @@ public class GameModel
 	 */
 	public Object[] getItemInfo(int itemNum)
 	{
-		return DB.getItemInformation(itemNum);
+			return DB.getItemInformation(itemNum);
 	}
 
 	/**

@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.TreeMap;
 
+import error.GameException;
+
 public class ItemDB extends DatabaseManager {
 	
 	protected ItemDB() {
@@ -28,7 +30,7 @@ public class ItemDB extends DatabaseManager {
 		item[9] = createBooleanMap(resultSet.getInt("Completes_Puzzle"));
 		}
 		catch(SQLException ex){
-			
+			//throw new GameException("Invalid ItemID");
 		}
 		finally {
 			try{
