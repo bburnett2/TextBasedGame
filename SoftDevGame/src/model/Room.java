@@ -80,7 +80,7 @@ public class Room
 
 		if (!(puzzle == null))
 		{
-			if(puzzle.getId() != 11)
+			if(puzzle.getId() != 11 && this.id != 21 && this.id != 16)
 				str += "\n\n" + puzzle.getDescription();
 		}
 		return str;	
